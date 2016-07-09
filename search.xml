@@ -4,6 +4,42 @@
   
     
     <entry>
+      <title><![CDATA[高级Auto Layout笔记]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/</url>
+      <content type="html"><![CDATA[<p>本文是objc.io中「Advanced Auto Layout Toolbox」的学习笔记。</p>
+<a id="more"></a>
+<p>Auto Layout，想说爱你不容易。</p>
+<h3 id="1-布局过程"><a href="#1-布局过程" class="headerlink" title="1. 布局过程"></a>1. 布局过程</h3><p>在使用了Auto Layout情况下，View显示到屏幕上分为3个阶段：</p>
+<p>约束计算：发生自子View-&gt;父View。通过显式调用<code>setNeedsUpdateConstraints</code>来触发这个过程，实际上更改约束会自动触发这个过程。在自定义View中，可以覆盖<code>updateConstraints</code>来添加或变更约束。<br>布局：发生自父View-&gt;子View。将1中计算的结果，应用到View的frame上。通过显式调用<code>setNeedsLayout</code>来触发这个过程，这个函数很廉价，因为所有的布局请求都会合并成一个layout过程去做。当然，可以通过调用<code>layoutIfNeeded</code>来迫使系统立刻更新布局。在自定义View中，可以通过覆盖<code>layoutSubviews</code>方法来hook这个过程。<br>展示：这个过程与是否使用了Auto Layout无关。发生自父View-&gt;子View。通过显式调用<code>setNeedsDisplay</code>来触发这个过程，视图的绘制过程也会被合并。类似地，可以覆盖<code>drawRect:</code>来hook这个过程。</p>
+<p>以上三个阶段是依次发生的，每一步都会依赖它的前一步。要注意，以上三个阶段这是一个迭代的过程，比如布局阶段可能触发了另一个约束计算的过程，这个计算过程又触发了新的布局过程等等。</p>
+<h3 id="2-Intrinsic-Content-Size"><a href="#2-Intrinsic-Content-Size" class="headerlink" title="2. Intrinsic Content Size"></a>2. Intrinsic Content Size</h3><p>Intrinsic这个词的意思，「本质的、固有的」。一个View的Intrinsic Content Size意指这个View想要舒舒服服地显示出来，需要多大的size。对于一个<code>numberOfLines</code>为0的Label来说，它的<code>preferredMaxLayoutWidth</code>确定、font确定，则它的<code>intrinsicContentSize</code>就定下来了。不是所有的View都有<code>intrinsicContentSize</code>，在自定义的View中，可以覆盖<code>intrinsicContentSize</code>方法来返回Intrinsic Content Size，并可以通过调用<code>invalidateIntrinsicContentSize</code>来通知布局系统在下一个布局过程采用新的Intrinsic Content Size。</p>
+<h3 id="3-Compression-Resistance-和-Content-Hugging"><a href="#3-Compression-Resistance-和-Content-Hugging" class="headerlink" title="3. Compression Resistance 和 Content Hugging"></a>3. Compression Resistance 和 Content Hugging</h3><p>首先明确：这两个属性都是讨论的前提是View在相应的维度有Intrinsic Content Size。实际上，这两个属性和Intrinsic Content Size都是被翻译成约束来实现的。举个例子（请务必多读几遍这个例子）：假设一个Label的Intrinsic Content Size是{100, 30}，它在水平和竖直方向上的Compression Resistance优先级是750，在水平和竖直方向的Content Hugging优先级是250，那么这些被转成了如下约束：</p>
+<pre><code>H:[label(&lt;=100@250)]
+H:[label(&gt;=100@750)]
+V:[label(&lt;=30@250)]
+V:[label(&gt;=30@750)]
+</code></pre><h3 id="4-Alignment-Rect"><a href="#4-Alignment-Rect" class="headerlink" title="4. Alignment Rect"></a>4. Alignment Rect</h3><p>Auto Layout操作的是View的Alignment Rect，不是View的Frame。这是个伟大的概念，用于把View的布局和显示解耦，虽然大部分情况它们是相等的。同样，View的Intrinsic Content Size也指的是Alignment Rect。在View有阴影、自定义Badge时，这个概念会很有用。在自定义的View中，可以通过覆盖<code>alignmentRectInsets</code>，来返回在特定的Frame下，Alignment Rect的edge insets是多少。还可以覆盖<code>alignmentRectForFrame:</code>和<code>frameForAlignmentRect:</code>来实现更精细的控制，蛋这两个方法必须互为反函数。</p>
+<h3 id="5-其它"><a href="#5-其它" class="headerlink" title="5. 其它"></a>5. 其它</h3><p>如果自定义的View是基于Auto Layout封装，那么它就不能在未开启Auto Layout的Window上使用，因此最好覆盖View的<code>requiresConstraintBasedLayout</code>，返回YES来宣称这件事。<br>程序挂掉：NSInternalInconsistencyException, reason: ‘Auto Layout still required after executing -layoutSubviews. 原因通常因为是我们在第2个阶段（布局阶段）更改了约束，这通常是在被覆盖的<code>layoutSubviews</code>方法里做的，这触发了第1个阶段，但是却没有再次触发布局阶段。通常的解决办法是在更改约束后再次调用<code>[super layoutSubviews]</code>来显式触发布局过程。<br>Auto Layout的性能：<a href="http://floriankugler.com/2013/04/22/auto-layout-performance-on-ios/" target="_blank" rel="external">http://floriankugler.com/2013/04/22/auto-layout-performance-on-ios/</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[日本关西游记]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/07/09/japan-kansai/</url>
+      <content type="html"><![CDATA[<p>前段时间到日本关西地区玩了几天，发现了日本一些耐人寻味的细节。</p>
+<a id="more"></a>
+<ol>
+<li>秩序。日本人乘坐上下楼扶梯都是单人靠一侧，让出一个过道给那些赶时间的人快速行走。虽然所在地不同靠左还是靠右不一定，但是几乎看不到有人站成一排堵住扶梯。</li>
+<li>礼仪。日本的服务业很发达，商场、地铁、酒店的服务员全都笑脸相迎，“阿狸嘎豆”说个不停，而且说的时候会点头示意，甚至鞠躬的也不在少数，在这种氛围下你也会不自觉变得更有礼貌，并觉得钱花的很舒服。曾在公交车上见到了一个很萌很有意思的公益广告，旨在提醒乘客在使用耳机时，注意耳机的漏音打扰到身边的人，这个细节着实震撼到我了。</li>
+<li>内敛。在街上很少见到豪车，大多数是日系简单实用的轿车，也很少见到外形夸张的豪宅，倒是雅致精巧的小木屋很常见，屋门口大多摆放着精心侍弄的花卉和盆景，人们衣着朴实，讲话声音很小，街上的女人都带着妆容，涂着红腮，即便是老妇人也不例外，这使得你一眼就能看出哪些是游客，哪些是当地人。</li>
+<li>完善。公共场所无障碍指示标识随处可见，几乎每个公共卫生间都有无障碍设施，公交车在停车上下客时，车身会向门的一侧倾斜以方便乘客上下车，在停车场或者建筑工地等车辆频繁出入的门口，会有专人看守，控制车辆，在没人经过的时候才放行车辆。</li>
+</ol>
+<p>另外，在Apple Store见到Apple TV，在街上看到人们刷Twitter，在电子用品商场见到Chromecast和装着原生Android的Nexus手机，刚开始居然会觉得不适应，然后一下子明白，这很正常。</p>
+<p>不舒服的地方？也有。逆行的人也很多，车辆不会主动让行人，我到过的几个地方没有禁摩托车，经常会有年轻人骑着摩托轰着油门经过，多普勒效应尤为刺耳。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[2015，永远年轻，永远热泪盈眶]]></title>
       <url>http://blog.liushuaiko.be/blog/2015/12/30/my-2015/</url>
       <content type="html"><![CDATA[<p>这一年，在 AliExpress 度过了完整的一年。</p>

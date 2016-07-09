@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-07-09T06:07:35.000Z</updated>
+  <updated>2016-07-09T06:50:16.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -14,6 +14,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高级Auto Layout笔记</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/</id>
+    <published>2016-07-09T06:44:50.000Z</published>
+    <updated>2016-07-09T06:50:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;本文是objc.io中「Advanced Auto Layout Toolbox」的学习笔记。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Auto Layout，想说爱你不容易。&lt;/p&gt;
+&lt;h3 id=&quot;1-布局过程&quot;&gt;&lt;a href=&quot;#1-布局过程&quot; class=&quot;headerlink&quot; title=&quot;1. 布局过程&quot;&gt;&lt;/a&gt;1. 布局过程&lt;/h3&gt;&lt;p&gt;在使用了Auto Layout情况下，View显示到屏幕上分为3个阶段：&lt;/p&gt;
+&lt;p&gt;约束计算：发生自子View-&amp;gt;父View。通过显式调用&lt;code&gt;setNeedsUpdateConstraints&lt;/code&gt;来触发这个过程，实际上更改约束会自动触发这个过程。在自定义View中，可以覆盖&lt;code&gt;updateConstraints&lt;/code&gt;来添加或变更约束。&lt;br&gt;布局：发生自父View-&amp;gt;子View。将1中计算的结果，应用到View的frame上。通过显式调用&lt;code&gt;setNeedsLayout&lt;/code&gt;来触发这个过程，这个函数很廉价，因为所有的布局请求都会合并成一个layout过程去做。当然，可以通过调用&lt;code&gt;layoutIfNeeded&lt;/code&gt;来迫使系统立刻更新布局。在自定义View中，可以通过覆盖&lt;code&gt;layoutSubviews&lt;/code&gt;方法来hook这个过程。&lt;br&gt;展示：这个过程与是否使用了Auto Layout无关。发生自父View-&amp;gt;子View。通过显式调用&lt;code&gt;setNeedsDisplay&lt;/code&gt;来触发这个过程，视图的绘制过程也会被合并。类似地，可以覆盖&lt;code&gt;drawRect:&lt;/code&gt;来hook这个过程。&lt;/p&gt;
+&lt;p&gt;以上三个阶段是依次发生的，每一步都会依赖它的前一步。要注意，以上三个阶段这是一个迭代的过程，比如布局阶段可能触发了另一个约束计算的过程，这个计算过程又触发了新的布局过程等等。&lt;/p&gt;
+&lt;h3 id=&quot;2-Intrinsic-Content-Size&quot;&gt;&lt;a href=&quot;#2-Intrinsic-Content-Size&quot; class=&quot;headerlink&quot; title=&quot;2. Intrinsic Content Size&quot;&gt;&lt;/a&gt;2. Intrinsic Content Size&lt;/h3&gt;&lt;p&gt;Intrinsic这个词的意思，「本质的、固有的」。一个View的Intrinsic Content Size意指这个View想要舒舒服服地显示出来，需要多大的size。对于一个&lt;code&gt;numberOfLines&lt;/code&gt;为0的Label来说，它的&lt;code&gt;preferredMaxLayoutWidth&lt;/code&gt;确定、font确定，则它的&lt;code&gt;intrinsicContentSize&lt;/code&gt;就定下来了。不是所有的View都有&lt;code&gt;intrinsicContentSize&lt;/code&gt;，在自定义的View中，可以覆盖&lt;code&gt;intrinsicContentSize&lt;/code&gt;方法来返回Intrinsic Content Size，并可以通过调用&lt;code&gt;invalidateIntrinsicContentSize&lt;/code&gt;来通知布局系统在下一个布局过程采用新的Intrinsic Content Size。&lt;/p&gt;
+&lt;h3 id=&quot;3-Compression-Resistance-和-Content-Hugging&quot;&gt;&lt;a href=&quot;#3-Compression-Resistance-和-Content-Hugging&quot; class=&quot;headerlink&quot; title=&quot;3. Compression Resistance 和 Content Hugging&quot;&gt;&lt;/a&gt;3. Compression Resistance 和 Content Hugging&lt;/h3&gt;&lt;p&gt;首先明确：这两个属性都是讨论的前提是View在相应的维度有Intrinsic Content Size。实际上，这两个属性和Intrinsic Content Size都是被翻译成约束来实现的。举个例子（请务必多读几遍这个例子）：假设一个Label的Intrinsic Content Size是{100, 30}，它在水平和竖直方向上的Compression Resistance优先级是750，在水平和竖直方向的Content Hugging优先级是250，那么这些被转成了如下约束：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;H:[label(&amp;lt;=100@250)]
+H:[label(&amp;gt;=100@750)]
+V:[label(&amp;lt;=30@250)]
+V:[label(&amp;gt;=30@750)]
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;4-Alignment-Rect&quot;&gt;&lt;a href=&quot;#4-Alignment-Rect&quot; class=&quot;headerlink&quot; title=&quot;4. Alignment Rect&quot;&gt;&lt;/a&gt;4. Alignment Rect&lt;/h3&gt;&lt;p&gt;Auto Layout操作的是View的Alignment Rect，不是View的Frame。这是个伟大的概念，用于把View的布局和显示解耦，虽然大部分情况它们是相等的。同样，View的Intrinsic Content Size也指的是Alignment Rect。在View有阴影、自定义Badge时，这个概念会很有用。在自定义的View中，可以通过覆盖&lt;code&gt;alignmentRectInsets&lt;/code&gt;，来返回在特定的Frame下，Alignment Rect的edge insets是多少。还可以覆盖&lt;code&gt;alignmentRectForFrame:&lt;/code&gt;和&lt;code&gt;frameForAlignmentRect:&lt;/code&gt;来实现更精细的控制，蛋这两个方法必须互为反函数。&lt;/p&gt;
+&lt;h3 id=&quot;5-其它&quot;&gt;&lt;a href=&quot;#5-其它&quot; class=&quot;headerlink&quot; title=&quot;5. 其它&quot;&gt;&lt;/a&gt;5. 其它&lt;/h3&gt;&lt;p&gt;如果自定义的View是基于Auto Layout封装，那么它就不能在未开启Auto Layout的Window上使用，因此最好覆盖View的&lt;code&gt;requiresConstraintBasedLayout&lt;/code&gt;，返回YES来宣称这件事。&lt;br&gt;程序挂掉：NSInternalInconsistencyException, reason: ‘Auto Layout still required after executing -layoutSubviews. 原因通常因为是我们在第2个阶段（布局阶段）更改了约束，这通常是在被覆盖的&lt;code&gt;layoutSubviews&lt;/code&gt;方法里做的，这触发了第1个阶段，但是却没有再次触发布局阶段。通常的解决办法是在更改约束后再次调用&lt;code&gt;[super layoutSubviews]&lt;/code&gt;来显式触发布局过程。&lt;br&gt;Auto Layout的性能：&lt;a href=&quot;http://floriankugler.com/2013/04/22/auto-layout-performance-on-ios/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://floriankugler.com/2013/04/22/auto-layout-performance-on-ios/&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是objc.io中「Advanced Auto Layout Toolbox」的学习笔记。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+      <category term="AutoLayout" scheme="http://blog.liushuaiko.be/tags/AutoLayout/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>日本关西游记</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/07/09/japan-kansai/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/07/09/japan-kansai/</id>
+    <published>2016-07-09T06:44:29.000Z</published>
+    <updated>2016-07-09T06:50:45.000Z</updated>
+    
+    <content type="html">&lt;p&gt;前段时间到日本关西地区玩了几天，发现了日本一些耐人寻味的细节。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;秩序。日本人乘坐上下楼扶梯都是单人靠一侧，让出一个过道给那些赶时间的人快速行走。虽然所在地不同靠左还是靠右不一定，但是几乎看不到有人站成一排堵住扶梯。&lt;/li&gt;
+&lt;li&gt;礼仪。日本的服务业很发达，商场、地铁、酒店的服务员全都笑脸相迎，“阿狸嘎豆”说个不停，而且说的时候会点头示意，甚至鞠躬的也不在少数，在这种氛围下你也会不自觉变得更有礼貌，并觉得钱花的很舒服。曾在公交车上见到了一个很萌很有意思的公益广告，旨在提醒乘客在使用耳机时，注意耳机的漏音打扰到身边的人，这个细节着实震撼到我了。&lt;/li&gt;
+&lt;li&gt;内敛。在街上很少见到豪车，大多数是日系简单实用的轿车，也很少见到外形夸张的豪宅，倒是雅致精巧的小木屋很常见，屋门口大多摆放着精心侍弄的花卉和盆景，人们衣着朴实，讲话声音很小，街上的女人都带着妆容，涂着红腮，即便是老妇人也不例外，这使得你一眼就能看出哪些是游客，哪些是当地人。&lt;/li&gt;
+&lt;li&gt;完善。公共场所无障碍指示标识随处可见，几乎每个公共卫生间都有无障碍设施，公交车在停车上下客时，车身会向门的一侧倾斜以方便乘客上下车，在停车场或者建筑工地等车辆频繁出入的门口，会有专人看守，控制车辆，在没人经过的时候才放行车辆。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;另外，在Apple Store见到Apple TV，在街上看到人们刷Twitter，在电子用品商场见到Chromecast和装着原生Android的Nexus手机，刚开始居然会觉得不适应，然后一下子明白，这很正常。&lt;/p&gt;
+&lt;p&gt;不舒服的地方？也有。逆行的人也很多，车辆不会主动让行人，我到过的几个地方没有禁摩托车，经常会有年轻人骑着摩托轰着油门经过，多普勒效应尤为刺耳。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前段时间到日本关西地区玩了几天，发现了日本一些耐人寻味的细节。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://blog.liushuaiko.be/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="日本" scheme="http://blog.liushuaiko.be/tags/%E6%97%A5%E6%9C%AC/"/>
+    
+      <category term="关西" scheme="http://blog.liushuaiko.be/tags/%E5%85%B3%E8%A5%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>2015，永远年轻，永远热泪盈眶</title>
@@ -1428,209 +1500,6 @@ WHERE relation=false;
       <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
     
       <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fluentd初探（3）——实战：Python + MongoDB</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/</id>
-    <published>2014-03-09T08:44:00.000Z</published>
-    <updated>2016-07-09T05:42:48.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;把Python程序的log输出到Fluentd中很简单，Fluentd已经为你写好了lib——&lt;a href=&quot;https://github.com/fluent/fluent-logger-python&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fluent-logger-python&lt;/a&gt;。从Fluentd中把数据存到MongoDB也不是很困难，因为我们安装的是稳定版本的Fluentd——td-agent，其已经自带了把数据从Fluentd输出到MongoDB的输出插件——&lt;code&gt;out_mongo&lt;/code&gt;，我们要做的就是简单做一些简单的配置。&lt;/p&gt;
-&lt;p&gt;在动手操作之前，我们还需要明白一些事情，就是通过Fluentd，把log保存到MongoDB中相比直接在程序中输出到MongoDB，有哪些好处？&lt;/p&gt;
-&lt;p&gt;一般一个程序会频繁地大量地输出log，如果直接将log写到MongoDB中，可能会引起性能问题的是数据库的锁。虽然MongoDB的锁（更多参见&lt;a href=&quot;http://docs.mongodb.org/manual/faq/concurrency/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;）比较轻量级，甚至有人提出了叫它“栓”更合适，但是频繁的insert也会引起资源竞争，并排斥其他读操作。而使用Fluentd等日志收集框架，它们会将logs缓存，并异步地以&lt;a href=&quot;http://docs.mongodb.org/manual/core/bulk-inserts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bulk inserts&lt;/a&gt;的方式写入MongoDB，比直接写入高效很多，而且对程序的性能影响很低。而且就Fluentd来说，它的数据记录是JSON形式，与MongoDB的数据格式BSON融合搭配非常完美，因此用Fluentd来收集并写入MongoDB是较为理想的解决方案。&lt;/p&gt;
-&lt;p&gt;架构图如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/fluent-mongodb.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h3&gt;&lt;h4 id=&quot;安装fluent-logger-python&quot;&gt;&lt;a href=&quot;#安装fluent-logger-python&quot; class=&quot;headerlink&quot; title=&quot;安装fluent-logger-python&quot;&gt;&lt;/a&gt;安装fluent-logger-python&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;$ sudo pip install fluent-logger
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;为Fluentd配置输入插件&quot;&gt;&lt;a href=&quot;#为Fluentd配置输入插件&quot; class=&quot;headerlink&quot; title=&quot;为Fluentd配置输入插件&quot;&gt;&lt;/a&gt;为Fluentd配置输入插件&lt;/h4&gt;&lt;p&gt;要求Fluentd的输入插件&lt;strong&gt;必须&lt;/strong&gt;做出如下配置：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;source&amp;gt;
-  type tcp
-  port 24224
-&amp;lt;/source&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;为Fluentd配置输出插件&quot;&gt;&lt;a href=&quot;#为Fluentd配置输出插件&quot; class=&quot;headerlink&quot; title=&quot;为Fluentd配置输出插件&quot;&gt;&lt;/a&gt;为Fluentd配置输出插件&lt;/h4&gt;&lt;p&gt;一个样例的输出插件配置如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;match mongo.*&amp;gt;
-    # plugin type, must be mongo
-    type mongo
-
-    # mongodb host + port
-    host 127.0.0.1
-    port 27017
-
-    # mongodb db + collection
-    database grlog
-    collection log
-
-    # for capped collection
-    capped
-    capped_size 1024m
-
-    # authentication
-    user liushuaikobe
-    password secret
-
-    # flush interval
-    flush_interval 10s
-&amp;lt;/match&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;几个点说一下，其他的不言而喻。&lt;/p&gt;
-&lt;h5 id=&quot;capped&quot;&gt;&lt;a href=&quot;#capped&quot; class=&quot;headerlink&quot; title=&quot;capped&quot;&gt;&lt;/a&gt;&lt;code&gt;capped&lt;/code&gt;&lt;/h5&gt;&lt;p&gt;即MongoDB固定大小的集合（&lt;a href=&quot;http://docs.mongodb.org/manual/core/capped-collections/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Capped Collections&lt;/a&gt;）。非常适合用来存储log信息。如果你不知道，建议先去学学基础的MongoDB的知识。&lt;/p&gt;
-&lt;h5 id=&quot;flush-interval&quot;&gt;&lt;a href=&quot;#flush-interval&quot; class=&quot;headerlink&quot; title=&quot;flush_interval&quot;&gt;&lt;/a&gt;&lt;code&gt;flush_interval&lt;/code&gt;&lt;/h5&gt;&lt;p&gt;这个参数指定了多长时间数据被写入MongoDB一次。默认是60s。支持“s”(seconds)，“m”(minutes)，“h”(hours) 后缀。&lt;/p&gt;
-&lt;h5 id=&quot;collection&quot;&gt;&lt;a href=&quot;#collection&quot; class=&quot;headerlink&quot; title=&quot;collection&quot;&gt;&lt;/a&gt;&lt;code&gt;collection&lt;/code&gt;&lt;/h5&gt;&lt;p&gt;这个参数指定了数据存入MongoDB的哪个集合。这个参数是必须的，除非设置了&lt;code&gt;tag_mapped&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;tag_mapped&lt;/code&gt;告诉Fluentd根据数据记录的tag信息把数据记录放入不同的MongoDB集合。&lt;/p&gt;
-&lt;p&gt;例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;match mongo.*&amp;gt;
-    ...
-
-    # Set &amp;apos;tag_mapped&amp;apos; if you want to use tag mapped mode.
-    tag_mapped
-
-    # If the tag is &amp;quot;mongo.foo&amp;quot;, then the prefix &amp;quot;mongo.&amp;quot; is removed.
-    # The inserted collection name is &amp;quot;foo&amp;quot;.
-    remove_tag_prefix mongo.
-
-    ...
-&amp;lt;/match&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;更多高级的配置&quot;&gt;&lt;a href=&quot;#更多高级的配置&quot; class=&quot;headerlink&quot; title=&quot;更多高级的配置&quot;&gt;&lt;/a&gt;更多高级的配置&lt;/h5&gt;&lt;p&gt;还有很多更具体的配置，比如buffer相关等，数据写入MongoDB时使用的线程数等，详情查看&lt;a href=&quot;http://docs.fluentd.org/articles/out_mongo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;重启td-agent&quot;&gt;&lt;a href=&quot;#重启td-agent&quot; class=&quot;headerlink&quot; title=&quot;重启td-agent&quot;&gt;&lt;/a&gt;重启td-agent&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;$ sudo service td-agent restart
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;代码编写&quot;&gt;&lt;a href=&quot;#代码编写&quot; class=&quot;headerlink&quot; title=&quot;代码编写&quot;&gt;&lt;/a&gt;代码编写&lt;/h3&gt;&lt;p&gt;接下来就是实际编写代码了，也非常简单。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;from fluent import sender
-from fluent import event
-
-sender.setup(&amp;apos;app&amp;apos;, host=&amp;apos;127.0.0.1&amp;apos;, port=24224)
-event.Event(&amp;apos;follow&amp;apos;, {
-    &amp;apos;msg_1&amp;apos;: &amp;apos;msg 1&amp;apos;,
-    &amp;apos;msg_2&amp;apos;: &amp;apos;msg 2&amp;apos;
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的代码就将一条数据记录（被称为event）发给了Fluentd，剩下的就是Fluentd根据你的配置把这些信息写入MongoDB了。&lt;/p&gt;
-&lt;p&gt;当然，在实际的项目中，可以采取一些灵活的手段。比如，可以根据上面所述的&lt;code&gt;tag_mapped&lt;/code&gt;将不同LEVEL的log输出到不同的集合中。&lt;/p&gt;
-&lt;p&gt;附上我的代码，仅供参考，如有错误，恳请指正。&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; logging&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; fluent &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sender&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; fluent &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; event&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; config&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;__author__ = &lt;span class=&quot;string&quot;&gt;&#39;liushuai&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;DEBUG = logging.DEBUG&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;INFO = logging.INFO&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;WARNING = logging.WARNING&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ERROR = logging.ERROR&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;CRITICAL = logging.CRITICAL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;_level_tag_name = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    DEBUG: &lt;span class=&quot;string&quot;&gt;&quot;debug&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    INFO: &lt;span class=&quot;string&quot;&gt;&quot;info&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    WARNING: &lt;span class=&quot;string&quot;&gt;&quot;warning&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ERROR: &lt;span class=&quot;string&quot;&gt;&quot;error&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    CRITICAL: &lt;span class=&quot;string&quot;&gt;&quot;critical&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sender.setup(config.FLUENTD_TAG, host=config.FLUENTD_HOST, port=config.FLUENTD_PORT)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(level, msg)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    event.Event(_level_tag_name.get(level, &lt;span class=&quot;string&quot;&gt;&quot;unknown&quot;&lt;/span&gt;), &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;msg&quot;&lt;/span&gt;: msg,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;level&quot;&lt;/span&gt;: _level_tag_name.get(level, &lt;span class=&quot;string&quot;&gt;&quot;unknown&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;单元测试：&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; unittest &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; TestCase&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; log&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;__author__ = &lt;span class=&quot;string&quot;&gt;&#39;liushuai&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;TestLog&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TestCase)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;test_log&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        msg = &lt;span class=&quot;string&quot;&gt;&quot;This log is just for testing.&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; _ &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.CRITICAL, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.ERROR, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.WARNING, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.INFO, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.DEBUG, msg)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;可以见到log已经被成功写入了MongoDB（可能会有一些延迟）：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/fluentd-mongodb-log-example.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;以上就是我使用Fluentd + Python + MongoDB进行项目log信息的集中处理的探索全过程，希望对你有帮助。如有错误，恳请留言指正。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="架构" scheme="http://blog.liushuaiko.be/categories/%E6%9E%B6%E6%9E%84/"/>
-    
-    
-      <category term="Python" scheme="http://blog.liushuaiko.be/tags/Python/"/>
-    
-      <category term="Fluentd" scheme="http://blog.liushuaiko.be/tags/Fluentd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fluentd初探（2）——基本配置</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/03/09/fluentd-2/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/03/09/fluentd-2/</id>
-    <published>2014-03-09T08:36:00.000Z</published>
-    <updated>2016-07-09T05:42:46.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;Fluentd的配置文件让我们可以通过指定输入输出插件以及设置各个插件的参数来控制Fluentd的输入输出行为。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;配置文件的位置&quot;&gt;&lt;a href=&quot;#配置文件的位置&quot; class=&quot;headerlink&quot; title=&quot;配置文件的位置&quot;&gt;&lt;/a&gt;配置文件的位置&lt;/h3&gt;&lt;p&gt;由于我们之前采用的是.rpm/.deb方式安装的稳定版本的Fluentd——td-agent，采用这种方式安装的配置文件在此：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/td-agent/td-agent.conf
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;配置文件中一些基本指令&quot;&gt;&lt;a href=&quot;#配置文件中一些基本指令&quot; class=&quot;headerlink&quot; title=&quot;配置文件中一些基本指令&quot;&gt;&lt;/a&gt;配置文件中一些基本指令&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;source&lt;/code&gt; 决定输入源&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;match&lt;/code&gt; 决定输出目的地&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;include&lt;/code&gt; 指定配置文件的包含&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;实战&quot;&gt;&lt;a href=&quot;#实战&quot; class=&quot;headerlink&quot; title=&quot;实战&quot;&gt;&lt;/a&gt;实战&lt;/h3&gt;&lt;h4 id=&quot;source&quot;&gt;&lt;a href=&quot;#source&quot; class=&quot;headerlink&quot; title=&quot;source&quot;&gt;&lt;/a&gt;&lt;code&gt;source&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;Fluentd的数据输入源是通过&lt;code&gt;source&lt;/code&gt;指令，选取使用什么输入插件，并加以配置来决定的。Fluentd标准输入插件有两个：&lt;code&gt;http&lt;/code&gt;和&lt;code&gt;forward&lt;/code&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;http&lt;/code&gt; 指定Fluentd接收来自HTTP的数据信息&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;forward&lt;/code&gt; 指定Fluentd接收来自TCP的数据包的信息&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;二者可以同时存在，也即Fluentd可以同时接受来自两个源，甚至多个源的信息。&lt;/p&gt;
-&lt;p&gt;每个source指令&lt;strong&gt;必须&lt;/strong&gt;包含一个&lt;code&gt;type&lt;/code&gt;参数。，用来指定该source使用哪个输入插件，例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Receive events from 24224/tcp
-# This is used by log forwarding and the fluent-cat command
-&amp;lt;source&amp;gt;
-  type forward
-  port 24224
-&amp;lt;/source&amp;gt;
-
-# http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
-&amp;lt;source&amp;gt;
-  type http
-  port 9880
-&amp;lt;/source&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;插播消息一：Routing&quot;&gt;&lt;a href=&quot;#插播消息一：Routing&quot; class=&quot;headerlink&quot; title=&quot;插播消息一：Routing&quot;&gt;&lt;/a&gt;插播消息一：Routing&lt;/h4&gt;&lt;p&gt;Fluentd接收到数据后，输入的数据被提交到Fluentd内部的路由模块。一条数据记录包括三方面的信息，tag，time，record。tag是一个被“.”分隔开的字符串（比e.g. myapp.access），用做路由引擎路由时的依据。time域是由输入插件指定的，必须采用Unix时间格式，record就是数据的具体内容了。一条数据记录是一个JSON对象。&lt;/p&gt;
-&lt;p&gt;比如在上述例子中，这个请求&lt;code&gt;http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}&lt;/code&gt;，让Fluentd的HTTP输入插件向路由模块提交了如下信息：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# generated by http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
-tag: myapp.access
-time: (current time)
-record: {&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;插播消息二：自己写输入插件&quot;&gt;&lt;a href=&quot;#插播消息二：自己写输入插件&quot; class=&quot;headerlink&quot; title=&quot;插播消息二：自己写输入插件&quot;&gt;&lt;/a&gt;插播消息二：自己写输入插件&lt;/h4&gt;&lt;p&gt;在&lt;a href=&quot;http://docs.fluentd.org/articles/input-plugin-overview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;查看更多信息。&lt;/p&gt;
-&lt;h4 id=&quot;match——告诉Fluentd用收到的数据做什么！&quot;&gt;&lt;a href=&quot;#match——告诉Fluentd用收到的数据做什么！&quot; class=&quot;headerlink&quot; title=&quot;match——告诉Fluentd用收到的数据做什么！&quot;&gt;&lt;/a&gt;&lt;code&gt;match&lt;/code&gt;——告诉Fluentd用收到的数据做什么！&lt;/h4&gt;&lt;p&gt;match根据上述的数据记录的tag信息对记录做出不同的处理。最常见的是通过该指令告诉Fluentd将收到的数据输出的不同的地方（这也是为什么match指令中指定的插件被称为输出插件）。Fluentd标准的输出插件是&lt;code&gt;file&lt;/code&gt;和&lt;code&gt;forward&lt;/code&gt;。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Receive events from 24224/tcp
-# This is used by log forwarding and the fluent-cat command
-&amp;lt;source&amp;gt;
-  type forward
-  port 24224
-&amp;lt;/source&amp;gt;
-
-# http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
-&amp;lt;source&amp;gt;
-  type http
-  port 9880
-&amp;lt;/source&amp;gt;
-
-# Match events tagged with &amp;quot;myapp.access&amp;quot; and
-# store them to /var/log/fluent/access.%Y-%m-%d
-# Of course, you can control how you partition your data
-# with the time_slice_format option.
-&amp;lt;match myapp.access&amp;gt;
-  type file
-  path /var/log/fluent/access
-&amp;lt;/match&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;类似地，每个match指令都得包含一个&lt;code&gt;type&lt;/code&gt;参数来指定输出插件。在上面的例子中，只有tag匹配上myapp.access的数据记录会被输出到/var/log/fluent/access中。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;forward&lt;/code&gt;输出插件是将接收到的数据流转发到其他Fluentd节点，不赘述。&lt;/p&gt;
-&lt;p&gt;当然，也可以写自己的输出插件，更多信息请看&lt;a href=&quot;http://docs.fluentd.org/articles/output-plugin-overview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;match指令中的tag模式可以支持通用字符匹配。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;*&lt;/code&gt; &lt;code&gt;a.*&lt;/code&gt;可以匹配&lt;code&gt;a.b&lt;/code&gt;，&lt;code&gt;a.c&lt;/code&gt;，不可以匹配&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;a.b.c&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;**&lt;/code&gt; &lt;code&gt;a.**&lt;/code&gt;可以匹配&lt;code&gt;a&lt;/code&gt;，&lt;code&gt;a.b&lt;/code&gt;，&lt;code&gt;a.b.c&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{X, Y, Z}&lt;/code&gt; &lt;code&gt;{a, b}&lt;/code&gt;可以匹配&lt;code&gt;a&lt;/code&gt;，&lt;code&gt;b&lt;/code&gt;，不可以匹配&lt;code&gt;c&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;以上可以混合使用，例如&lt;code&gt;a.{b,c}.*&lt;/code&gt;，&lt;code&gt;a.{b,c.**}&lt;/code&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;include——重用配置&quot;&gt;&lt;a href=&quot;#include——重用配置&quot; class=&quot;headerlink&quot; title=&quot;include——重用配置&quot;&gt;&lt;/a&gt;&lt;code&gt;include&lt;/code&gt;——重用配置&lt;/h4&gt;&lt;p&gt;例子：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# absolute path
-include /path/to/config.conf
-
-# if using a relative path, the directive will use
-# the dirname of this config file to expand the path
-include extra.conf
-
-# glob match pattern
-include config.d/*.conf
-
-# http
-include http://example.com/fluent.conf
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;Fluentd的配置文件让我们可以通过指定输入输出插件以及设置各个插件的参数来控制Fluentd的输入输出行为。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="架构" scheme="http://blog.liushuaiko.be/categories/%E6%9E%B6%E6%9E%84/"/>
-    
-    
-      <category term="Python" scheme="http://blog.liushuaiko.be/tags/Python/"/>
-    
-      <category term="Fluentd" scheme="http://blog.liushuaiko.be/tags/Fluentd/"/>
     
   </entry>
   
