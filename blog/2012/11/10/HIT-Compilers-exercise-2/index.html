@@ -1,0 +1,968 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="哈工大,编译原理," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这次实验让人煞费苦心啊，话说我已经写了一天的C语言文法了，囧。
+总结一下，可以说：程序编写很帅很顺利，文法编写很挫很纠结。我用的是LL(1)分析法（又叫预测分析法），开始的时候花了一段时间来理解LL(1)算法，后来到设计、实现、各种测试，可谓经历了一番波折。记得刚开始写的时候想用C++，后来发现竟然忘的差不多了，囧，于是索性挫到底——用Java实现，轻喷啊。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈工大软件学院编译原理实验2——语法分析">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2012/11/10/HIT-Compilers-exercise-2/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="这次实验让人煞费苦心啊，话说我已经写了一天的C语言文法了，囧。
+总结一下，可以说：程序编写很帅很顺利，文法编写很挫很纠结。我用的是LL(1)分析法（又叫预测分析法），开始的时候花了一段时间来理解LL(1)算法，后来到设计、实现、各种测试，可谓经历了一番波折。记得刚开始写的时候想用C++，后来发现竟然忘的差不多了，囧，于是索性挫到底——用Java实现，轻喷啊。">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_1.jpg">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_2.jpg">
+<meta property="og:updated_time" content="2016-07-09T05:24:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈工大软件学院编译原理实验2——语法分析">
+<meta name="twitter:description" content="这次实验让人煞费苦心啊，话说我已经写了一天的C语言文法了，囧。
+总结一下，可以说：程序编写很帅很顺利，文法编写很挫很纠结。我用的是LL(1)分析法（又叫预测分析法），开始的时候花了一段时间来理解LL(1)算法，后来到设计、实现、各种测试，可谓经历了一番波折。记得刚开始写的时候想用C++，后来发现竟然忘的差不多了，囧，于是索性挫到底——用Java实现，轻喷啊。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/bianyiyuanli_1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2012/11/10/HIT-Compilers-exercise-2/"/>
+
+  <title> 哈工大软件学院编译原理实验2——语法分析 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                哈工大软件学院编译原理实验2——语法分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2012-11-10T21:49:00+08:00" content="2012-11-10">
+              2012-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/11/10/HIT-Compilers-exercise-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/10/HIT-Compilers-exercise-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次实验让人煞费苦心啊，话说我已经写了一天的C语言文法了，囧。</p>
+<p>总结一下，可以说：程序编写很帅很顺利，文法编写很挫很纠结。我用的是LL(1)分析法（又叫预测分析法），开始的时候花了一段时间来理解LL(1)算法，后来到设计、实现、各种测试，可谓经历了一番波折。记得刚开始写的时候想用C++，后来发现竟然忘的差不多了，囧，于是索性挫到底——用Java实现，轻喷啊。<a id="more"></a></p>
+<p>这次实验的内容就是让你采用一种语法分析技术分析类高级语言中的基本语句，至少包括函数定义、变量说明、赋值、循环、分支等语句，同时还必须让程序有一定的错误处理的机制。</p>
+<p>开始要精度ppt和龙书相关的章节，知道这个LL(1)分析法到底是个啥，具体的相关的知识我不再赘述，其实我弄得也不是特别透彻，首先得知道LL(1)分析器的系统结构吧：</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_1.jpg" alt=""></p>
+<p>有一句话很重要，<strong>LL(1)分析器是模拟了最左推导的过程</strong>，这句话对理解LL(1)很有帮助。</p>
+<p>然后要理解LL(1)的通用控制算法：</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_2.jpg" alt=""></p>
+<p>漂亮，其实说的通俗一点，LL(1)分析器有一个栈，用来存放推导式，在分析的过程中，由当前栈顶元素和当前输入符号来决定下一步的操作（比如使用哪个产生式继续往下推导，或者弹出栈顶元素前移输入指针，或者报错等操作），另外不要忘了，LL(1)分析法是在模拟最左推导。</p>
+<p>根据这个算法，我们要做的事就是构造预测分析表，根据通用控制算法写总控程序，此外，构造预测分析法要用到文法每个产生式的SELECT集，构造SELECT集需要求出每个终结符和非终结符的First集，还要求出每个非终结符的Follow集。</p>
+<p>由于代码太多，这次不贴代码了，只是大体说说我的数据结构的设计。</p>
+<p>我为非终结符和终结符设计了一个基类（尽管很多情况下我设计的基类被人说成是鸡肋，我还是喜欢这样做）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCharacter</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> String what;</div><div class="line">    <span class="keyword">public</span> List&lt;String&gt; First;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCharacter</span><span class="params">()</span> </span>&#123;</div><div class="line">        First = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后终结符和非终结符继承这个基类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TerminateCharacter</span> <span class="keyword">extends</span> <span class="title">MyCharacter</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TerminateCharacter</span><span class="params">(String what)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.what = what;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NonterminalCharacter</span> <span class="keyword">extends</span> <span class="title">MyCharacter</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;String&gt; Follow;</div><div class="line">    <span class="keyword">public</span> List&lt;String&gt; Sync;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NonterminalCharacter</span><span class="params">(String what)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.what = what;</div><div class="line">        Follow = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        Sync = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 根据一些启发式的方法设置该终结符的同步记号集合，即把该终结符的FOLLOW集、FIRST集加入Sync集</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSync</span><span class="params">()</span> </span>&#123;</div><div class="line">        Sync.addAll(Follow); <span class="comment">// 添加Follow集</span></div><div class="line">        <span class="keyword">for</span> (String s : First) &#123; <span class="comment">// 添加First集</span></div><div class="line">            <span class="keyword">if</span> (!Sync.contains(s)) &#123;</div><div class="line">                Sync.add(s);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此外，产生式也作为程序的一个实体类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Production</span> </span>&#123;</div><div class="line">    <span class="comment">// 产生式的左部</span></div><div class="line">    <span class="keyword">private</span> String Left;</div><div class="line">    <span class="comment">// 产生式的右部</span></div><div class="line">    <span class="keyword">private</span> ArrayList&lt;String&gt; right;</div><div class="line">    <span class="comment">// 产生式的Select集</span></div><div class="line">    <span class="keyword">public</span> ArrayList&lt;String&gt; Select;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Production</span><span class="params">(String left, ArrayList&lt;String&gt; right)</span> </span>&#123;</div><div class="line">        Left = left;</div><div class="line">        <span class="keyword">this</span>.right = right;</div><div class="line">        <span class="keyword">this</span>.Select = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLeft</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Left;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLeft</span><span class="params">(String left)</span> </span>&#123;</div><div class="line">        Left = left;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">getRight</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> right;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRight</span><span class="params">(ArrayList&lt;String&gt; right)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.right = right;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于语法分析的输入是词法分析的Token序列，因此，我为读到程序里的Token也设计了一个实体类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String token;</div><div class="line">    <span class="keyword">private</span> String value;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Token</span><span class="params">(String token, String value)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.token = token;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> token;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.token = token;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(String value)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当一个文法确定下来，这个文法的非终结符、终结符、产生式以及这个文法的预测分析表（前提是该文法必须是LL(1)文法，而且产生式已经消除了回溯和左递归）都会确定下来，他们的数据结构如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 非终结符</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, MyCharacter&gt; nCharacters = <span class="keyword">new</span> HashMap&lt;String, MyCharacter&gt;();</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 终结符</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, MyCharacter&gt; tCharacters = <span class="keyword">new</span> HashMap&lt;String, MyCharacter&gt;();</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 产生式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Production&gt; productions;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 预测分析表</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, HashMap&lt;String, ArrayList&lt;String&gt;&gt;&gt; ForecastTable = <span class="keyword">new</span> HashMap&lt;String, HashMap&lt;String, ArrayList&lt;String&gt;&gt;&gt;();</div></pre></td></tr></table></figure></p>
+<p>终结符和非终结符用了一个Map，这个Map用字符本身作为key，该字符同时为这个字符new一个NonterminalCharacter或者TerminateCharacter的对象作为相应的value；预测分析表用了一个二维的Hash表，在查表时可以通过<code>ForecastTable.get(X).get(a)</code>完成。</p>
+<p>在写程序的时候要用到一个算法，判断一个非终结符能不能经过N步推导推出空串，这个方法贴出来写下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 递归判断X可否推出空串</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> X</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canLeadNull</span><span class="params">(String X)</span> </span>&#123;</div><div class="line">    <span class="comment">// X是终结符，则X不可能推出空串</span></div><div class="line">    <span class="keyword">if</span> (isTCharacter(X)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// X是非终结符</span></div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 查找Cache表</span></div><div class="line">        <span class="keyword">if</span> (GrammerAnalysis.canLeadNullList.contains(X)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (Production p : GrammerAnalysis.productions) &#123;</div><div class="line">            <span class="keyword">if</span> (X.equals(p.getLeft())) &#123;</div><div class="line">                <span class="comment">// 存在一个 X=&gt;$ 的产生式，则说明X可以推出空串</span></div><div class="line">                <span class="keyword">if</span> (<span class="string">"$"</span>.equals(p.getRight().get(<span class="number">0</span>))) &#123;</div><div class="line">                    <span class="comment">// 把X加入Cache</span></div><div class="line">                    GrammerAnalysis.canLeadNullList.add(X);</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 当前产生式不是 X=&gt;$ ，递归调用</span></div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; p.getRight().size(); i++) &#123;</div><div class="line">                        <span class="comment">// 当前产生式不能产生空串</span></div><div class="line">                        <span class="keyword">if</span> (!canLeadNull(p.getRight().get(i))) &#123;</div><div class="line">                            flag = <span class="keyword">false</span>;</div><div class="line">                            <span class="keyword">break</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span> (flag == <span class="keyword">true</span>) &#123;</div><div class="line">                        <span class="comment">// 把X加入Cache</span></div><div class="line">                        GrammerAnalysis.canLeadNullList.add(X);</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面程序的Cache是个啥呢？我们知道，递归一般是很耗资源的，既然文法确定了，那么一个终结符经过判断如果能推出空串，就不会变了，我们把能推出空串的非终结符保存起来，下次直接去查表不就不用再递归判断了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 为了提高递归的效率, 如果某个终结符经过N步推导后能推出空串，则把这个非终结符放在这个集合中 相当于cache</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; canLeadNullList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div></pre></td></tr></table></figure>
+<p>这个函数的编写是根据一个“公理”，即：一个非终结符序列可以经过N步推导推出空串的充要条件是构成它的每一个非终结符都能经过N步推导推出空串，所以很显然递归是方便快捷的方式。</p>
+<p>下面是总控程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 根据当前文法分析句子，输出分析结果</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> sentence</div><div class="line"> *            要分析的语句（Token表示）</div><div class="line"> * <span class="doctag">@param</span> startChar</div><div class="line"> *            当前文法的起始符号</div><div class="line"> * <span class="doctag">@return</span> 返回自顶向下推导序列</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Production&gt; <span class="title">Analysis</span><span class="params">(ArrayList&lt;String&gt; sentence,</span></span></div><div class="line">        String startChar) &#123;</div><div class="line">    ArrayList&lt;Production&gt; productionSequences = <span class="keyword">new</span> ArrayList&lt;Production&gt;();</div><div class="line">    Stack&lt;String&gt; prodChars = <span class="keyword">new</span> Stack&lt;String&gt;();</div><div class="line">    prodChars.push(<span class="string">"#"</span>);</div><div class="line">    prodChars.push(startChar);</div><div class="line">    <span class="comment">// sentence = sentence + "#";</span></div><div class="line">    sentence.add(<span class="string">"#"</span>);</div><div class="line">    <span class="keyword">int</span> currentIndex = <span class="number">0</span>; <span class="comment">// 当前分析到的下标</span></div><div class="line"></div><div class="line">    <span class="keyword">while</span> (!<span class="string">"#"</span>.equals(prodChars.peek())) &#123;</div><div class="line">        String X = prodChars.peek();</div><div class="line">        String a = <span class="string">""</span>;</div><div class="line">        <span class="keyword">if</span> (currentIndex &lt; sentence.size()) &#123;</div><div class="line">            a = sentence.get(currentIndex);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (isTCharacter(X) || <span class="string">"#"</span>.equals(X)) &#123;</div><div class="line">            <span class="keyword">if</span> (a.equals(X)) &#123;</div><div class="line">                <span class="keyword">if</span> (!<span class="string">"#"</span>.equals(X)) &#123;</div><div class="line">                    prodChars.pop();</div><div class="line">                    currentIndex++;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                String eStr = prodChars.pop();</div><div class="line">                System.err.println(<span class="string">"ERROR,Ignore Char : "</span> + eStr);</div><div class="line">                <span class="comment">// break;</span></div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            ArrayList&lt;String&gt; item = GrammerAnalysis.ForecastTable.get(X)</div><div class="line">                    .get(a);</div><div class="line">            <span class="keyword">if</span> (item != <span class="keyword">null</span>) &#123;</div><div class="line">                prodChars.pop();</div><div class="line">                <span class="keyword">if</span> (!<span class="string">"$"</span>.equals(item.get(<span class="number">0</span>))) &#123;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = item.size() - <span class="number">1</span>; i &gt; -<span class="number">1</span>; i--) &#123;</div><div class="line">                        prodChars.push(item.get(i));</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                productionSequences.add(<span class="keyword">new</span> Production(X, item));</div><div class="line">                System.out.println(X + <span class="string">" -&gt; "</span> + item);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (((NonterminalCharacter) GrammerAnalysis.nCharacters</div><div class="line">                        .get(X)).Sync.contains(a)) &#123;</div><div class="line">                    String eStr = prodChars.pop();</div><div class="line">                    System.err</div><div class="line">                            .println(<span class="string">"ERROR,Have Pop NCharacter: "</span> + eStr);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    String eStr = a;</div><div class="line">                    System.err.println(<span class="string">"ERROR,-Ignore Char : "</span> + eStr);</div><div class="line">                    currentIndex++;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// break;</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> productionSequences;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>至于C语言文法的编写，我参考了网上流传很广的一份神文法写的。写的各种纠结，各种消除左递归，消除回溯。</p>
+<p>由于现在我的文法还有bug，故暂时不贴出来了，代码和数据结构设计仅供参考。</p>
+<p>下周有用户界面设计的考试，下下周有计算机安全概论和知识产权法的考试，任重而道远啊。</p>
+<p>欢迎留言讨论。</p>
+<hr>
+<p>后记：</p>
+<p>唉，又调了一下午的文法，终于大部分都基本搞定了，不过这个文法还存在缺陷，还是贴出来吧，毕竟我花了好多心血在里面，各种消除回溯，消除左递归：</p>
+<p>缺陷记录：</p>
+<p>1.if-else有缺陷，其中selection_statement’的Select集竟然相交了，That is to say，if-else那部分不符合LL（1）文法，即，不支持else子句，求鄙视<br>2.函数调用只支持带参数的函数调用。<code>postfix_expression&#39; -&gt; ( const_expression_list )</code>这一句有点猥琐，如果这句支持无参函数调用的话又会出现if-else的情况。<br>3.给数组的某一个具体项赋值时有缺陷，不能这样复制b[3] = b[2]。<br>上述缺陷如果有时间我还愿意去调试，不过有点调不动了，仅供大家参考。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">program -&gt; external_declaration program&apos;</div><div class="line">program&apos; -&gt; external_declaration program&apos; | $</div><div class="line">#</div><div class="line">external_declaration -&gt; function_definition</div><div class="line">#</div><div class="line">function_definition -&gt; type_specifier declarator_for_fun compound_statement</div><div class="line">#</div><div class="line">type_specifier -&gt; CHAR | INT | FLOAT | CHAR*</div><div class="line">#</div><div class="line">declarator_for_fun -&gt; IDN ( declarator_for_fun&apos;</div><div class="line">declarator_for_fun&apos; -&gt; ) | parameter_list )</div><div class="line">#</div><div class="line">declarator -&gt; IDN declarator&apos;</div><div class="line">declarator&apos; -&gt; [ CONST_INT ] declarator&apos; | $</div><div class="line">#</div><div class="line">#identifer_list -&gt; IDN identifer_list&apos;</div><div class="line">#identifer_list&apos; -&gt; , IDN identifer_list&apos; | $</div><div class="line">#</div><div class="line">parameter_list -&gt; parameter_declaration parameter_list&apos;</div><div class="line">parameter_list&apos; -&gt; , parameter_declaration parameter_list&apos; | $</div><div class="line">parameter_declaration -&gt; type_specifier IDN</div><div class="line">#</div><div class="line">compound_statement -&gt; &#123; compound_statement&apos;</div><div class="line">compound_statement&apos; -&gt; &#125; | statement_list &#125; | declaration_list statement_list &#125;</div><div class="line">#</div><div class="line">declaration_list -&gt; declaration declaration_list&apos;</div><div class="line">declaration_list&apos; -&gt; declaration declaration_list&apos; | $</div><div class="line">declaration -&gt; type_specifier init_declarator declaration&apos;</div><div class="line">declaration&apos; -&gt; , init_declarator declaration&apos; | $</div><div class="line">init_declarator -&gt; declarator init_declarator&apos;</div><div class="line">init_declarator&apos; -&gt; $ | = initializer</div><div class="line">initializer -&gt; assigment_expression | &#123; const_expression_list &#125;</div><div class="line">#</div><div class="line">statement_list -&gt; statement statement_list&apos;</div><div class="line">statement_list&apos; -&gt; statement statement_list&apos; | $</div><div class="line">#</div><div class="line">statement -&gt; compound_statement | expression_statement | selection_statement | iteration_statement | jump_statement | declaration_list</div><div class="line">#</div><div class="line">expression_statement -&gt; ; | expression ;</div><div class="line">#</div><div class="line">selection_statement -&gt; IF ( expression ) statement selection_statement&apos;</div><div class="line">selection_statement&apos; -&gt; $ | ELSE statement</div><div class="line">#</div><div class="line">iteration_statement -&gt; WHILE ( expression ) statement | FOR ( expression_statement expression_statement expression ) statement</div><div class="line">#</div><div class="line">jump_statement -&gt; CONTINUE ; | BREAK ; | RETURN ; | RETURN expression ;</div><div class="line">#</div><div class="line">expression -&gt; assigment_expression expression&apos;</div><div class="line">expression&apos; -&gt; , assigment_expression expression&apos; | $</div><div class="line">#</div><div class="line">assigment_expression -&gt; IDN assigment_expression&apos;&apos; | const_expression assigment_expression&apos;</div><div class="line">assigment_expression&apos;&apos; -&gt; assigment_expression&apos; | = logical_or_expression</div><div class="line">assigment_expression&apos; -&gt; &gt; logical_or_expression | &lt; logical_or_expression | &gt;= logical_or_expression | &lt;= logical_or_expression | == logical_or_expression | != logical_or_expression | AND_OP logical_or_expression | OR_OP logical_or_expression | + logical_or_expression | - logical_or_expression | / logical_or_expression | * logical_or_expression | % logical_or_expression | $</div><div class="line">logical_or_expression -&gt; logical_and_expression logical_or_expression&apos;</div><div class="line">logical_or_expression&apos; -&gt; OR_OP logical_and_expression logical_or_expression&apos; | $</div><div class="line">#</div><div class="line">logical_and_expression -&gt; equality_expression logical_and_expression&apos;</div><div class="line">logical_and_expression&apos; -&gt; AND_OP equality_expression logical_and_expression&apos; | $</div><div class="line">#</div><div class="line">equality_expression -&gt; relational_expression equality_expression&apos;</div><div class="line">equality_expression&apos; -&gt; == relational_expression equality_expression&apos; | $</div><div class="line">equality_expression&apos; -&gt; != relational_expression equality_expression&apos; | $</div><div class="line">#</div><div class="line">relational_expression -&gt; shift_expression relational_expression&apos;</div><div class="line">relational_expression&apos; -&gt; &gt; shift_expression relational_expression&apos; | $</div><div class="line">relational_expression&apos; -&gt; &lt; shift_expression relational_expression&apos; | $</div><div class="line">relational_expression&apos; -&gt; &gt;= shift_expression relational_expression&apos; | $</div><div class="line">relational_expression&apos; -&gt; &lt;= shift_expression relational_expression&apos; | $</div><div class="line">#</div><div class="line">shift_expression -&gt; multiplicative_expression shift_expression&apos;</div><div class="line">shift_expression&apos; -&gt; + multiplicative_expression shift_expression&apos; | $</div><div class="line">shift_expression&apos; -&gt; - multiplicative_expression shift_expression&apos; | $</div><div class="line">#</div><div class="line">multiplicative_expression -&gt; cast_expression multiplicative_expression&apos;</div><div class="line">multiplicative_expression&apos; -&gt; % cast_expression multiplicative_expression&apos; | $</div><div class="line">multiplicative_expression&apos; -&gt; / cast_expression multiplicative_expression&apos; | $</div><div class="line">multiplicative_expression&apos; -&gt; * cast_expression multiplicative_expression&apos; | $</div><div class="line">#</div><div class="line">cast_expression -&gt; postfix_expression</div><div class="line">#</div><div class="line">postfix_expression -&gt; primary_expression postfix_expression&apos;</div><div class="line">postfix_expression&apos; -&gt; [ expression ] postfix_expression&apos; | $</div><div class="line">postfix_expression&apos; -&gt; ( const_expression_list )</div><div class="line">#</div><div class="line">primary_expression -&gt; IDN | const_expression | ( expression )</div><div class="line">const_expression -&gt; CONST_INT | CONST_FLOAT | CHAR* | CHAR</div><div class="line">#</div><div class="line">const_expression_list -&gt; const_expression const_expression_list&apos;</div><div class="line">const_expression_list&apos; -&gt; , const_expression const_expression_list&apos; | $</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/哈工大/" rel="tag">#哈工大</a>
+          
+            <a href="/tags/编译原理/" rel="tag">#编译原理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2012/11/02/year-by-year/" rel="next" title="一年又一年">
+                <i class="fa fa-chevron-left"></i> 一年又一年
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2012/11/19/xiami-checkin-python/" rel="prev" title="虾米网签到脚本——Python实现">
+                虾米网签到脚本——Python实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2012/11/10/HIT-Compilers-exercise-2/';
+      var disqus_title = "哈工大软件学院编译原理实验2——语法分析";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2012/11/10/HIT-Compilers-exercise-2/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,967 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MongoDB,NoSQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NoSQL & MongoDB（2）——说说MongoDB">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="前言MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。">
+<meta property="og:image" content="http://vars.qiniudn.com/mongo-data-model-normalized.png">
+<meta property="og:image" content="http://vars.qiniudn.com/mongo-data-model-denormalized.png">
+<meta property="og:updated_time" content="2016-07-09T05:42:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NoSQL & MongoDB（2）——说说MongoDB">
+<meta name="twitter:description" content="前言MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/mongo-data-model-normalized.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/"/>
+
+  <title> NoSQL & MongoDB（2）——说说MongoDB | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NoSQL & MongoDB（2）——说说MongoDB
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2014-03-18T16:17:00+08:00" content="2014-03-18">
+              2014-03-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014/03/18/nosql-mongodb-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2014/03/18/nosql-mongodb-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。 <a id="more"></a></p>
+<h3 id="MongoDB的特性"><a href="#MongoDB的特性" class="headerlink" title="MongoDB的特性"></a>MongoDB的特性</h3><p>MongoDB有很多特性，我只选几个说说，更多的请查阅<a href="http://www.mongodb.com/learn/mongodb-architecture" target="_blank" rel="external">官方文档</a>。</p>
+<h4 id="面向文档的存储"><a href="#面向文档的存储" class="headerlink" title="面向文档的存储"></a>面向文档的存储</h4><p>MongoDB将数据保存成被称为<em>文档</em>（document）的二进制表示中，这种表示形式被称为BSON（Binary JSON）。</p>
+<p>BSON是一种类JSON的二进制表示形式，BSON在给文档添加了一些额外的字段，比如文档的长度等，非常便于遍历；此外，BSON编码和解码的速度也很快，比如整数类型在BSON中就是以32（或64）位的整数存储，因此在编码和解码不用在字符串和整数类型之间换来换去。当然，对小整数来说BSON占用的空间会比JSON略大一点，但解析速度会快很多。</p>
+<p>有类似结构的文档被保存在一个<em>集合</em>（collection）中。集合相当于关系型数据库的表，文档相当于关系型数据库的记录，文档里面的域相当于关系型数据库一条记录中的不同的列。</p>
+<h4 id="数据存储模式自由"><a href="#数据存储模式自由" class="headerlink" title="数据存储模式自由"></a>数据存储模式自由</h4><p>MongoDB的文档是自描述的，我们没有必要向关系型数据库建表那样实现定义好表的结构，甚至同一个集合中的文档结构都可以不同。我们随时可以增删字段。</p>
+<h4 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h4><p>MongoDB大量使用内存来加速数据库的操作。在MongoDB中，所有的数据都是通过MMAP读取和操作（<a href="http://blog.nosqlfan.com/html/3515.html" target="_blank" rel="external">这里</a>有一篇非常好的文章来讲MongoDB数据文件内部的结构）。不被访问的数据不加载到内存中，当然这些都是操作系统帮你完成的，MongoDB管理内存的代码非常精炼，原因就是将大部分工作推给了操作系统。正因为此，对于大部分应用来讲，不需要为MongoDB设置额外的缓存层。</p>
+<h4 id="扩展方便"><a href="#扩展方便" class="headerlink" title="扩展方便"></a>扩展方便</h4><p>MongoDB非常容易使用，水平扩展非常方便。当你发现MongoDB的服务器经常出现内存缺页错误时，说明MongoDB中应用操作的数据集太大，MMAP不能将其合适地映射进内存，可以考虑将数据进行Sharding。MongoDB的一大亮点是支持自动分片，集群根据自动切分数据，做负载均衡。</p>
+<p>当然，MongoDB还有很多其他的特性，比如GridFS，地理空间索引，Replica Set等等，详细请看官方的文档。不过看了文档也只是在理论上对MongoDB有一个认识，在实际应用时会遇上什么坑都是未知的。</p>
+<p>Foursquare一直是MongoDB的忠实用户，但是也遇到过因MongoDB的Sharding负载不均导致的网站跪了11个小时。</p>
+<h3 id="也谈MongoDB数据模型的设计"><a href="#也谈MongoDB数据模型的设计" class="headerlink" title="也谈MongoDB数据模型的设计"></a>也谈MongoDB数据模型的设计</h3><p>在MongoDB数据库存储模式的设计中，比较重要的一点就是如何表现各个实体之间的关系，在MongoDB中，有两种方式：</p>
+<ol>
+<li>references（Normalized）</li>
+<li>embedded（Denormalized）</li>
+</ol>
+<h4 id="引用式文档设计"><a href="#引用式文档设计" class="headerlink" title="引用式文档设计"></a>引用式文档设计</h4><p><img src="http://vars.qiniudn.com/mongo-data-model-normalized.png" alt=""></p>
+<p>引用式文档设计跟RDBMS的数据模型差不多，对数据库的模型进行范式化，这样做让实体时间的结构表现的更加清晰，能表现出数据模型内部之间复杂的关系。在对文档进行更新的时候，因为是以引用的方式存储，只需要更新一次被引用的文档即可，有利于数据库的一致性，但是从另一方面来看，如果引用的文档和被引用的文档需要同时更新，引用式文档设计还得做两次写操作呢（MongoDB的原子性写操作是在一个文档级别的）。此外，这种方式的设计可以适应更加灵活的查询。</p>
+<p>但是这样设计的劣势也很明显，在查询的时候，不得不再去获得一次引用的文档，不论是一次查询驱动帮你将引用的文档替换成了实际的文档（如PyMongo）还是得在客户端做两次查询，都增加了开销。</p>
+<h4 id="嵌入式文档设计"><a href="#嵌入式文档设计" class="headerlink" title="嵌入式文档设计"></a>嵌入式文档设计</h4><p><img src="http://vars.qiniudn.com/mongo-data-model-denormalized.png" alt=""></p>
+<p>嵌入式的文档设计相当于提前做了join的操作，比较设计实体模型中的包含关系。这样设计优势显而易见吧，读取操作有更好的性能，而且这样的设计能较好地表示层级关系（最深支持100层的嵌套）。在更新文档的时候，可以在一个原子的写操作内完成，但是可能会出现不一致性。比如两个文档都嵌入了同一个文档，在更新完一个的时候，应用突然崩了，另一个文档还没来得及更新。</p>
+<p>需要注意的一点是，由于MongoDB的Schema非常灵活，我们完全可以在创建完文档后不断给文档添加嵌入新的文档，这就导致了文档的尺寸在创建之后不断增加，最大可以增大到BSON文档的最大的size——16MB，虽然MongoDB会为文档留出一定的<a href="http://docs.mongodb.org/manual/core/record-padding/" target="_blank" rel="external">padding</a>，但是尺寸太大的话，文档会被重新安排位置，这样会影响写入的性能，也会造成碎片。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>MongoDB的Schema非常灵活，也正因为此，我们需要对应用场景进行更加透彻的分析，一切以应用为中心。</p>
+<p>如《深入学习MongoDB》一书中所说的那样，不妨考虑一下下面的问题：</p>
+<ol>
+<li>估算一下读写比</li>
+<li>一致性很重要吗？</li>
+<li>要不要快速的读取？</li>
+</ol>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="http://en.wikipedia.org/wiki/MongoDB" target="_blank" rel="external">MongoDB, wikipedia</a></li>
+<li><a href="http://www.mongodb.com/learn/mongodb-architecture" target="_blank" rel="external">MongoDB Architecture</a></li>
+<li><a href="http://book.douban.com/subject/6068947/" target="_blank" rel="external">《MongoDB权威指南》</a></li>
+<li><a href="http://book.douban.com/subject/10439364/" target="_blank" rel="external">《深入学习MongoDB》</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag">#MongoDB</a>
+          
+            <a href="/tags/NoSQL/" rel="tag">#NoSQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/03/17/nosql-mongodb-1/" rel="next" title="NoSQL & MongoDB（1）——也谈NoSQL">
+                <i class="fa fa-chevron-left"></i> NoSQL & MongoDB（1）——也谈NoSQL
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/03/18/nosql-mongodb-3/" rel="prev" title="NoSQL & MongoDB（3）——Keynote">
+                NoSQL & MongoDB（3）——Keynote <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB的特性"><span class="nav-number">2.</span> <span class="nav-text">MongoDB的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向文档的存储"><span class="nav-number">2.1.</span> <span class="nav-text">面向文档的存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据存储模式自由"><span class="nav-number">2.2.</span> <span class="nav-text">数据存储模式自由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高性能"><span class="nav-number">2.3.</span> <span class="nav-text">高性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展方便"><span class="nav-number">2.4.</span> <span class="nav-text">扩展方便</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#也谈MongoDB数据模型的设计"><span class="nav-number">3.</span> <span class="nav-text">也谈MongoDB数据模型的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引用式文档设计"><span class="nav-number">3.1.</span> <span class="nav-text">引用式文档设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌入式文档设计"><span class="nav-number">3.2.</span> <span class="nav-text">嵌入式文档设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2014/03/18/nosql-mongodb-2/';
+      var disqus_title = "NoSQL & MongoDB（2）——说说MongoDB";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

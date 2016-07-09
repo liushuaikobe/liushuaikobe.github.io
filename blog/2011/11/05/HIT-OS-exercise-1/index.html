@@ -1,0 +1,930 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="操作系统,哈工大," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这次实验主要是修改linux V0.11版本的引导程序的代码，使操作系统在启动时能再屏幕上打印一个你自己规定的字符串。因为这次实验仅仅修改了OS的引导部分（bootsect.s），我们只需要让引导部分能正常工作就可以验证你的字符串有没有正常输出了，至于后面的System模块我们不需要让它正常加载，所以，我们还要修改build.c文件，让它执行时不加载System模块，这是本次实验的要点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HIT软件学院第一次OS实验">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2011/11/05/HIT-OS-exercise-1/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="这次实验主要是修改linux V0.11版本的引导程序的代码，使操作系统在启动时能再屏幕上打印一个你自己规定的字符串。因为这次实验仅仅修改了OS的引导部分（bootsect.s），我们只需要让引导部分能正常工作就可以验证你的字符串有没有正常输出了，至于后面的System模块我们不需要让它正常加载，所以，我们还要修改build.c文件，让它执行时不加载System模块，这是本次实验的要点。">
+<meta property="og:updated_time" content="2016-07-09T05:20:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HIT软件学院第一次OS实验">
+<meta name="twitter:description" content="这次实验主要是修改linux V0.11版本的引导程序的代码，使操作系统在启动时能再屏幕上打印一个你自己规定的字符串。因为这次实验仅仅修改了OS的引导部分（bootsect.s），我们只需要让引导部分能正常工作就可以验证你的字符串有没有正常输出了，至于后面的System模块我们不需要让它正常加载，所以，我们还要修改build.c文件，让它执行时不加载System模块，这是本次实验的要点。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2011/11/05/HIT-OS-exercise-1/"/>
+
+  <title> HIT软件学院第一次OS实验 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HIT软件学院第一次OS实验
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2011-11-05T18:41:00+08:00" content="2011-11-05">
+              2011-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2011/11/05/HIT-OS-exercise-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2011/11/05/HIT-OS-exercise-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次实验主要是修改linux V0.11版本的引导程序的代码，使操作系统在启动时能再屏幕上打印一个你自己规定的字符串。因为这次实验仅仅修改了OS的引导部分（bootsect.s），我们只需要让引导部分能正常工作就可以验证你的字符串有没有正常输出了，至于后面的System模块我们不需要让它正常加载，所以，我们还要修改build.c文件，让它执行时不加载System模块，这是本次实验的要点。<br><a id="more"></a><br>赵烔博士的《Linux 内核完全注释》一书第六章中对Linux  V0.11操作系统的引导过程有详细的描述，对本次实验有很大帮助。<br>首先要修改bootsect.s，以达到OS引导时能再屏幕上输出你指定的字符串，样例代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">! Print some inane message</div><div class="line"></div><div class="line">    mov ah,#0x03        ! read cursor pos</div><div class="line">    xor bh,bh</div><div class="line">    int 0x10</div><div class="line"></div><div class="line">    mov cx,#49                  !在这里要将原来的“24”改为“24+你指定的字符串的字符数”，我指定了25个字符串，故改为29</div><div class="line">    mov bx,#0x0007      ! page 0, attribute 7 (normal)</div><div class="line">    mov bp,#msg1</div><div class="line">    mov ax,#0x1301      ! write string, move cursor</div><div class="line">    int 0x10</div><div class="line"></div><div class="line">! ok, we&apos;ve written the message, now</div></pre></td></tr></table></figure></p>
+<p>然后在这里（bootsect.s里）加上你的字符串，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">msg1:</div><div class="line">    .byte 13,10</div><div class="line">    .ascii &quot;Loading system ...&quot;</div><div class="line">    .byte 13,10,13,10</div><div class="line">    .ascii &quot;Liushuai&apos;OS is booting...&quot;           !这里是你指定的在引导时在屏幕上显示的字符串,13和10好像是回车和空格</div></pre></td></tr></table></figure></p>
+<p>然后，如上所述，修改build.c，让其不引导System模块，代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="built_in">strcmp</span>(<span class="string">"none"</span>,argv[<span class="number">3</span>]))<span class="comment">//当第三个参数是none时</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"System block have not been wrriten!\n"</span>);<span class="comment">//提醒用户系统模块并未被写入</span></div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//直接返回</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> ((id=open(argv[<span class="number">3</span>],O_RDONLY,<span class="number">0</span>))&lt;<span class="number">0</span>)</div><div class="line">        die(<span class="string">"Unable to open 'system'"</span>);</div><div class="line"><span class="comment">//  if (read(id,buf,GCC_HEADER) != GCC_HEADER)</span></div><div class="line"><span class="comment">//      die("Unable to read header of 'system'");</span></div><div class="line"><span class="comment">//  if (((long *) buf)[5] != 0)</span></div><div class="line"><span class="comment">//      die("Non-GCC header of 'system'");</span></div><div class="line">    <span class="keyword">for</span> (i=<span class="number">0</span> ; (c=read(id,buf,<span class="keyword">sizeof</span> buf))&gt;<span class="number">0</span> ; i+=c )</div><div class="line">        <span class="keyword">if</span> (write(<span class="number">1</span>,buf,c)!=c)</div><div class="line">            die(<span class="string">"Write call failed"</span>);</div><div class="line">    close(id);</div><div class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"System is %d bytes.\n"</span>,i);</div><div class="line">    <span class="keyword">if</span> (i &gt; SYS_SIZE*<span class="number">16</span>)</div><div class="line">        die(<span class="string">"System is too big"</span>);</div><div class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>上面代码的带汉语注释的部分是修改的部分，这样做是为什么呢？<br>原来，build.c从命令行参数得到bootsect、setup和system内核的文件名，将三者做简单的整理后一起写入Image。其中system是第三个参数（argv[3]）。当“make all”或者“makeall”的时候，这个参数传过来的是正确的文件名，build.c会打开它，将内容写入Image。而“make BootImage”时，传过来的是字符串”none”。所以，改造build.c的思路就是当argv[3]是”none”的时候，只写bootsect和setup，忽略所有与system有关的工作，或者在该写system的位置都写上“0”，这是基本思想。<br>修改工作主要集中在build.c的尾部，本文中样例代码的改法只是改法中的一种。<br>此外，还要对setup.s做简单的删除，删除与System模块有关的部分，否则会出现加载虚拟机时虚拟机里的Linux0.11总是重启的现象，详见实验指导书。<br>最后是实验的报告部分，笔者的报告仅供参考。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1.有时，继承传统意味着别手蹩脚。x86计算机为了向下兼容，导致启动过程比较复杂。请找出x86计算机启动过程中，被硬件强制，软件必须遵守的两个“多此一举”的步骤（多找几个也无妨），说说它们为什么多此一举，并设计更简洁的替代方案。</div><div class="line"></div><div class="line">答：1）.BIOS初始化时，会在物理内存开始处放置大小位1KB的中断向量表，供BIOS的中断使用。这就强制了操作系统的引导程序在加载操作系统的主模块时如果要利用BIOS中断获取一些信息，则主模块的加载位置不能将BIOS的向量表覆盖掉，而操作系统的主模块一般运行时要在内存的开始处（这样主模块中的代码地址也就等于实际的物理地址，便于操作），所以操作系统的引导程序会先将主模块（如Linux0.11中的System模块）读到内存中不与BIOS中断向量表冲突的位置，之后在将主模块移动到内存起始处，将BIOS的中断向量表覆盖掉，这是“多此一举”的。</div><div class="line">解决方案是BIOS初始化时将BIOS的中断向量表放到内存中其他实模式下BIOS可以访问到的内存处，这样操作系统引导程序就可以直接将操作系统的主模块读到内存的起始处了。</div><div class="line">2）PC机加电后，执行BIOS中的代码时，由于BIOS可访问的内存有限，则操作系统最开始的引导程序（如Linux0.11中的bootsect模块）会被读到内存绝对地址0x7C00处开始执行。执行时它会自己把自己移到内存中相对靠后的位置，以便加载系统主模块。这步是“多此一举”的。</div><div class="line">解决方案是在保证可靠性的前提下尽量扩大BIOS的可访问的内存的范围，免去这不必要的移动。</div><div class="line"></div><div class="line"></div><div class="line">2.操作系统的引导程序都完成哪些功能？你知道几个操作系统引导程序？分别是什么？</div><div class="line"></div><div class="line">答：操作系统的引导程序一般完成识别主机的某些特性，确保内核被正确加载；加载内核到内存；将系统控制权交给内核；通知内核所需要的根文件系统的位置；确定根文件的设备号；将CPU由实模式切换为保护模式等功能。我知道的操作系统的引导程序有Windows NT 5.X 和Windows NT 6.X</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag">#操作系统</a>
+          
+            <a href="/tags/哈工大/" rel="tag">#哈工大</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2011/11/14/HIT-OS-exercise-2/" rel="prev" title="HIT软件学院第二次OS实验">
+                HIT软件学院第二次OS实验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2011/11/05/HIT-OS-exercise-1/';
+      var disqus_title = "HIT软件学院第一次OS实验";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2011/11/05/HIT-OS-exercise-1/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1008 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,Fluentd," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="写在前面本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fluentd初探（3）——实战：Python + MongoDB">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="写在前面本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。">
+<meta property="og:image" content="http://vars.qiniudn.com/fluent-mongodb.png">
+<meta property="og:image" content="http://vars.qiniudn.com/fluentd-mongodb-log-example.png?imageView2/2/w/400">
+<meta property="og:updated_time" content="2016-07-09T05:42:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fluentd初探（3）——实战：Python + MongoDB">
+<meta name="twitter:description" content="写在前面本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/fluent-mongodb.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/"/>
+
+  <title> Fluentd初探（3）——实战：Python + MongoDB | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Fluentd初探（3）——实战：Python + MongoDB
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2014-03-09T16:44:00+08:00" content="2014-03-09">
+              2014-03-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/架构/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014/03/09/fluentd-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2014/03/09/fluentd-3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。</p>
+<a id="more"></a>
+<p>把Python程序的log输出到Fluentd中很简单，Fluentd已经为你写好了lib——<a href="https://github.com/fluent/fluent-logger-python" target="_blank" rel="external">fluent-logger-python</a>。从Fluentd中把数据存到MongoDB也不是很困难，因为我们安装的是稳定版本的Fluentd——td-agent，其已经自带了把数据从Fluentd输出到MongoDB的输出插件——<code>out_mongo</code>，我们要做的就是简单做一些简单的配置。</p>
+<p>在动手操作之前，我们还需要明白一些事情，就是通过Fluentd，把log保存到MongoDB中相比直接在程序中输出到MongoDB，有哪些好处？</p>
+<p>一般一个程序会频繁地大量地输出log，如果直接将log写到MongoDB中，可能会引起性能问题的是数据库的锁。虽然MongoDB的锁（更多参见<a href="http://docs.mongodb.org/manual/faq/concurrency/" target="_blank" rel="external">官方文档</a>）比较轻量级，甚至有人提出了叫它“栓”更合适，但是频繁的insert也会引起资源竞争，并排斥其他读操作。而使用Fluentd等日志收集框架，它们会将logs缓存，并异步地以<a href="http://docs.mongodb.org/manual/core/bulk-inserts/" target="_blank" rel="external">bulk inserts</a>的方式写入MongoDB，比直接写入高效很多，而且对程序的性能影响很低。而且就Fluentd来说，它的数据记录是JSON形式，与MongoDB的数据格式BSON融合搭配非常完美，因此用Fluentd来收集并写入MongoDB是较为理想的解决方案。</p>
+<p>架构图如下：</p>
+<p><img src="http://vars.qiniudn.com/fluent-mongodb.png" alt=""></p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="安装fluent-logger-python"><a href="#安装fluent-logger-python" class="headerlink" title="安装fluent-logger-python"></a>安装fluent-logger-python</h4><pre><code>$ sudo pip install fluent-logger
+</code></pre><h4 id="为Fluentd配置输入插件"><a href="#为Fluentd配置输入插件" class="headerlink" title="为Fluentd配置输入插件"></a>为Fluentd配置输入插件</h4><p>要求Fluentd的输入插件<strong>必须</strong>做出如下配置：</p>
+<pre><code>&lt;source&gt;
+  type tcp
+  port 24224
+&lt;/source&gt;
+</code></pre><h4 id="为Fluentd配置输出插件"><a href="#为Fluentd配置输出插件" class="headerlink" title="为Fluentd配置输出插件"></a>为Fluentd配置输出插件</h4><p>一个样例的输出插件配置如下：</p>
+<pre><code>&lt;match mongo.*&gt;
+    # plugin type, must be mongo
+    type mongo
+
+    # mongodb host + port
+    host 127.0.0.1
+    port 27017
+
+    # mongodb db + collection
+    database grlog
+    collection log
+
+    # for capped collection
+    capped
+    capped_size 1024m
+
+    # authentication
+    user liushuaikobe
+    password secret
+
+    # flush interval
+    flush_interval 10s
+&lt;/match&gt;
+</code></pre><p>几个点说一下，其他的不言而喻。</p>
+<h5 id="capped"><a href="#capped" class="headerlink" title="capped"></a><code>capped</code></h5><p>即MongoDB固定大小的集合（<a href="http://docs.mongodb.org/manual/core/capped-collections/" target="_blank" rel="external">Capped Collections</a>）。非常适合用来存储log信息。如果你不知道，建议先去学学基础的MongoDB的知识。</p>
+<h5 id="flush-interval"><a href="#flush-interval" class="headerlink" title="flush_interval"></a><code>flush_interval</code></h5><p>这个参数指定了多长时间数据被写入MongoDB一次。默认是60s。支持“s”(seconds)，“m”(minutes)，“h”(hours) 后缀。</p>
+<h5 id="collection"><a href="#collection" class="headerlink" title="collection"></a><code>collection</code></h5><p>这个参数指定了数据存入MongoDB的哪个集合。这个参数是必须的，除非设置了<code>tag_mapped</code>。</p>
+<p><code>tag_mapped</code>告诉Fluentd根据数据记录的tag信息把数据记录放入不同的MongoDB集合。</p>
+<p>例如：</p>
+<pre><code>&lt;match mongo.*&gt;
+    ...
+
+    # Set &apos;tag_mapped&apos; if you want to use tag mapped mode.
+    tag_mapped
+
+    # If the tag is &quot;mongo.foo&quot;, then the prefix &quot;mongo.&quot; is removed.
+    # The inserted collection name is &quot;foo&quot;.
+    remove_tag_prefix mongo.
+
+    ...
+&lt;/match&gt;
+</code></pre><h5 id="更多高级的配置"><a href="#更多高级的配置" class="headerlink" title="更多高级的配置"></a>更多高级的配置</h5><p>还有很多更具体的配置，比如buffer相关等，数据写入MongoDB时使用的线程数等，详情查看<a href="http://docs.fluentd.org/articles/out_mongo" target="_blank" rel="external">这里</a>。</p>
+<h4 id="重启td-agent"><a href="#重启td-agent" class="headerlink" title="重启td-agent"></a>重启td-agent</h4><pre><code>$ sudo service td-agent restart
+</code></pre><h3 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h3><p>接下来就是实际编写代码了，也非常简单。</p>
+<pre><code>from fluent import sender
+from fluent import event
+
+sender.setup(&apos;app&apos;, host=&apos;127.0.0.1&apos;, port=24224)
+event.Event(&apos;follow&apos;, {
+    &apos;msg_1&apos;: &apos;msg 1&apos;,
+    &apos;msg_2&apos;: &apos;msg 2&apos;
+})
+</code></pre><p>上面的代码就将一条数据记录（被称为event）发给了Fluentd，剩下的就是Fluentd根据你的配置把这些信息写入MongoDB了。</p>
+<p>当然，在实际的项目中，可以采取一些灵活的手段。比如，可以根据上面所述的<code>tag_mapped</code>将不同LEVEL的log输出到不同的集合中。</p>
+<p>附上我的代码，仅供参考，如有错误，恳请指正。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> logging</div><div class="line"></div><div class="line"><span class="keyword">from</span> fluent <span class="keyword">import</span> sender</div><div class="line"><span class="keyword">from</span> fluent <span class="keyword">import</span> event</div><div class="line"></div><div class="line"><span class="keyword">import</span> config</div><div class="line"></div><div class="line"></div><div class="line">__author__ = <span class="string">'liushuai'</span></div><div class="line"></div><div class="line">DEBUG = logging.DEBUG</div><div class="line">INFO = logging.INFO</div><div class="line">WARNING = logging.WARNING</div><div class="line">ERROR = logging.ERROR</div><div class="line">CRITICAL = logging.CRITICAL</div><div class="line"></div><div class="line">_level_tag_name = &#123;</div><div class="line">    DEBUG: <span class="string">"debug"</span>,</div><div class="line">    INFO: <span class="string">"info"</span>,</div><div class="line">    WARNING: <span class="string">"warning"</span>,</div><div class="line">    ERROR: <span class="string">"error"</span>,</div><div class="line">    CRITICAL: <span class="string">"critical"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">sender.setup(config.FLUENTD_TAG, host=config.FLUENTD_HOST, port=config.FLUENTD_PORT)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(level, msg)</span>:</span></div><div class="line">    event.Event(_level_tag_name.get(level, <span class="string">"unknown"</span>), &#123;</div><div class="line">        <span class="string">"msg"</span>: msg,</div><div class="line">        <span class="string">"level"</span>: _level_tag_name.get(level, <span class="string">"unknown"</span>)</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p>单元测试：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> unittest <span class="keyword">import</span> TestCase</div><div class="line"></div><div class="line"><span class="keyword">import</span> log</div><div class="line"></div><div class="line">__author__ = <span class="string">'liushuai'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestLog</span><span class="params">(TestCase)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_log</span><span class="params">(self)</span>:</span></div><div class="line">        msg = <span class="string">"This log is just for testing."</span></div><div class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">            log.log(log.CRITICAL, msg)</div><div class="line">            log.log(log.ERROR, msg)</div><div class="line">            log.log(log.WARNING, msg)</div><div class="line">            log.log(log.INFO, msg)</div><div class="line">            log.log(log.DEBUG, msg)</div></pre></td></tr></table></figure>
+<p>可以见到log已经被成功写入了MongoDB（可能会有一些延迟）：</p>
+<p><img src="http://vars.qiniudn.com/fluentd-mongodb-log-example.png?imageView2/2/w/400" alt=""></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>以上就是我使用Fluentd + Python + MongoDB进行项目log信息的集中处理的探索全过程，希望对你有帮助。如有错误，恳请留言指正。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/Fluentd/" rel="tag">#Fluentd</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/03/09/fluentd-2/" rel="next" title="Fluentd初探（2）——基本配置">
+                <i class="fa fa-chevron-left"></i> Fluentd初探（2）——基本配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/03/17/nosql-mongodb-1/" rel="prev" title="NoSQL & MongoDB（1）——也谈NoSQL">
+                NoSQL & MongoDB（1）——也谈NoSQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装fluent-logger-python"><span class="nav-number">2.1.</span> <span class="nav-text">安装fluent-logger-python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为Fluentd配置输入插件"><span class="nav-number">2.2.</span> <span class="nav-text">为Fluentd配置输入插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为Fluentd配置输出插件"><span class="nav-number">2.3.</span> <span class="nav-text">为Fluentd配置输出插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#capped"><span class="nav-number">2.3.1.</span> <span class="nav-text">capped</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#flush-interval"><span class="nav-number">2.3.2.</span> <span class="nav-text">flush_interval</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#collection"><span class="nav-number">2.3.3.</span> <span class="nav-text">collection</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更多高级的配置"><span class="nav-number">2.3.4.</span> <span class="nav-text">更多高级的配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启td-agent"><span class="nav-number">2.4.</span> <span class="nav-text">重启td-agent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码编写"><span class="nav-number">3.</span> <span class="nav-text">代码编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2014/03/09/fluentd-3/';
+      var disqus_title = "Fluentd初探（3）——实战：Python + MongoDB";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

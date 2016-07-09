@@ -1,0 +1,973 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言《反脆弱》。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS入门——View（1）">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2014/07/23/ios-view-introduction-1/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="前言《反脆弱》。">
+<meta property="og:image" content="http://vars.qiniudn.com/iOS_view_2.png?imageView2/2/w/350">
+<meta property="og:image" content="http://vars.qiniudn.com/iOS_view_3.png =350x">
+<meta property="og:image" content="http://vars.qiniudn.com/iOS_view_1.png?imageView2/2/w/350">
+<meta property="og:image" content="http://vars.qiniudn.com/iOS_view_4.png?imageView2/2/w/350">
+<meta property="og:updated_time" content="2016-07-09T05:42:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS入门——View（1）">
+<meta name="twitter:description" content="前言《反脆弱》。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/iOS_view_2.png?imageView2/2/w/350">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2014/07/23/ios-view-introduction-1/"/>
+
+  <title> iOS入门——View（1） | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS入门——View（1）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2014-07-23T16:49:05+08:00" content="2014-07-23">
+              2014-07-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/移动互联网开发/" itemprop="url" rel="index">
+                    <span itemprop="name">移动互联网开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014/07/23/ios-view-introduction-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2014/07/23/ios-view-introduction-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="http://book.douban.com/subject/25782902/" target="_blank" rel="external">《反脆弱》</a>。</p>
+<a id="more"></a>
+<h3 id="view-in-iOS"><a href="#view-in-iOS" class="headerlink" title="view in iOS"></a>view in iOS</h3><p>一个UIButton、UILabel都是一个view，view这个概念与Android中的view一样。view，顾名思义，跟“看”相关，就是你能在屏幕上看到的一个视觉单元，在iOS开发中被抽象成了View的概念。</p>
+<p>具体到代码：</p>
+<ul>
+<li>一个view是UIView或UIView子类的实例</li>
+<li>view知道如何在application的window上绘制自己，application的window是UIWindow的实例</li>
+<li>view存在在某个层级结构（hierarchy）中，这个层级结构的根是application的window</li>
+<li>view可以处理事件，比如触摸事件等</li>
+</ul>
+<p>各种view组成了一个APP的UI。每个view都维护了一个image用来真正呈现自己，比如UIButton的image就是一个圆角矩形（在iOS 6），一个UILabel的image仅仅是一段文本。当view的属性变化时，比如UILabel的文字，view维护的image会重绘以将变化展现在屏幕上。</p>
+<h3 id="UIWindow"><a href="#UIWindow" class="headerlink" title="UIWindow"></a>UIWindow</h3><p>UIWindow是UIView的子类。每个application有且仅有一个UIWindow的实例，用作application所有view的容器。</p>
+<p>在Xcode中新建一个iOS项目，在AppDelegate.m中的<code>didFinishLaunchingWithOptions:</code>方法中，创建了一个UIWindow的实例，并给他发送了<code>makeKeyAndVisible</code>的消息，让它在屏幕上显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</div><div class="line">&#123;</div><div class="line">      self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line">      // Override point for customization after application launch.</div><div class="line"></div><div class="line">      self.window.backgroundColor = [UIColor whiteColor];</div><div class="line">      [self.window makeKeyAndVisible];</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当一个view被添加到window中，我们就说该view是window的subview。window的subview当然也可以有自己的subview，这样一个view的hierarchy就形成了。当且仅当一个view被加入到这个hierarchy中，view才能在屏幕上出现，这包括直接作为window的subview或作为其它view的subview。</p>
+<p>创建UI的过程实际上就是就是创建每个view的image，并将view加入到view hierarchy中。像一些UIButton、MKMapView等已经知道自己维护的image是什么样的，可能我们需要创建一些Apple并不给你提供支持的view，这就需要我们自定义view对象，并写代码创建view的image。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>我们在程序启动后，创建一个view，添加到view hierarchy中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</div><div class="line">&#123;</div><div class="line">   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line">   // Override point for customization after application launch.</div><div class="line"></div><div class="line">   // CGRect是一个结构体，包含一个矩形的位置和尺寸信息</div><div class="line">   CGRect viewFrame = CGRectMake(160, 240, 100, 150);</div><div class="line"></div><div class="line">   // 用这个矩形(被称为view的frame)初始化一个UIView</div><div class="line">   UIView *view = [[UIView alloc] initWithFrame:viewFrame];</div><div class="line">   [view setBackgroundColor:[UIColor orangeColor]];</div><div class="line"></div><div class="line">   // 把view添加到view的层级结构中，作为window的subview</div><div class="line">   [[self window] addSubview:view];</div><div class="line"></div><div class="line">   // =。=</div><div class="line"></div><div class="line">   self.window.backgroundColor = [UIColor whiteColor];</div><div class="line">   [self.window makeKeyAndVisible];</div><div class="line">   return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每个view都有一个实例都有一个被称为frame的矩形，frame定义了view的尺寸和相对其父view的位置。frame用CGRect来表示，CGRect是一个C结构体，包括origin和size两个成员，它们也都是结构体。origin是CGPoint类型的结构体，包括两个float类型的成员：x和y。size是CGSize类型的结构体，也包含两个float类型的成员：width和height。（注意：C结构体不是OC的对象，不能发消息给它，也不声明成指针类型指向它）。</p>
+<p>因此，view总是一个矩形。上述代码的效果图见下图。</p>
+<p><img src="http://vars.qiniudn.com/iOS_view_2.png?imageView2/2/w/350" alt=""></p>
+<p>为了理解CGRect中各个参数的含义，下面我们创建另一个View，将其作为刚才创建的View的subview。</p>
+<p>在上面代码中的<code>// =。=</code>处添加以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CGRect anotherFrame = CGRectMake(20, 30, 50, 50);</div><div class="line"></div><div class="line">UIView *anotherView = [[UIView alloc] initWithFrame:anotherFrame];</div><div class="line">[anotherView setBackgroundColor:[UIColor blueColor]];</div><div class="line"></div><div class="line">[view addSubview:anotherView];</div></pre></td></tr></table></figure>
+<p>Run，可见效果图。</p>
+<p><img src="http://vars.qiniudn.com/iOS_view_3.png =350x" alt=""></p>
+<p>如果将这个View直接作为window的subview，即改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[self window] addSubview:anotherView];</div></pre></td></tr></table></figure>
+<p>可见效果图。</p>
+<p><img src="http://vars.qiniudn.com/iOS_view_1.png?imageView2/2/w/350" alt=""></p>
+<h3 id="drawRect"><a href="#drawRect" class="headerlink" title="drawRect:"></a><code>drawRect:</code></h3><p>上面说到，各种view组成了iOS APP的UI。因此，一个view肯定不能只是带颜色的矩形。让view变得丰富的方法就是<code>drawRect:</code>。这个方法默认什么都不做，我们可以在UIView的子类中覆盖这个方法来做一些自定义的绘制。</p>
+<p>覆盖drawRect第一件事就是获取一个指向drawing context的指针。drawing context维护了当前绘制的状态信息（例如当前画笔的颜色、画笔的粗细等等），此外，drawing context还执行了绘制操作。一个绘制操作用当前的绘制状态信息绘制图形。在<code>drawRect:</code>的最后，由drawing context产生的图像就是view所维护的image了。</p>
+<p>在view收到<code>drawRect:</code>的消息前，一个drawing context自动被创建，并设置为当前的context。</p>
+<p>我们新建一个UIView的子类，并覆盖它的draw方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">- (void)drawRect:(CGRect)rect</div><div class="line">&#123;</div><div class="line">   CGContextRef ctx = UIGraphicsGetCurrentContext();</div><div class="line">   CGRect bounds = [self bounds];</div><div class="line"></div><div class="line">   // 画一个圆，计算圆的圆心半径等参数。</div><div class="line">   CGPoint center;</div><div class="line">   center.x = bounds.origin.x + bounds.size.width / 2.0;</div><div class="line">   center.y = bounds.origin.y + bounds.size.width / 2.0;</div><div class="line"></div><div class="line">   float maxRadius = hypot(bounds.size.width, bounds.size.height) / 4.0;</div><div class="line"></div><div class="line">   // 对当前的drawing context进行设置</div><div class="line">   CGContextSetLineWidth(ctx, 10);</div><div class="line">   CGContextSetRGBStrokeColor(ctx, 0.6, 0.6, 0.6, 1.0);</div><div class="line">   CGContextAddArc(ctx, center.x, center.y, maxRadius, 0.0, M_PI * 2.0, YES);</div><div class="line"></div><div class="line">   // 画出当前的线条</div><div class="line">   CGContextStrokePath(ctx);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，使用新建的UIView的子类替换上述例子中的UIView，便可得到如下的效果。</p>
+<p><img src="http://vars.qiniudn.com/iOS_view_4.png?imageView2/2/w/350" alt=""></p>
+<p>要注意的是，不管view的<code>drawRect:</code> 方法做了什么，view的背景色都是会被绘制的。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>模拟器截图使用软件是：<a href="http://www.curioustimes.de/iphonesimulatorcropper/" target="_blank" rel="external">iOS-Simulator Cropper</a>。</p>
+<p>参考文献：<a href="http://www.amazon.cn/iOS-Programming-The-Big-Nerd-Ranch-Guide-Conway-Joe/dp/0321821521/ref=sr_1_4?ie=UTF8&amp;qid=1406105859&amp;sr=8-4&amp;keywords=ios%2Bprogramming%2Bthe%2Bbig%2Bnerd%2Branch%2Bguide" target="_blank" rel="external">《iOS Programming: The Big Nerd Ranch Guide》</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/05/16/apache-reverse-proxy/" rel="next" title="使用Apache的mod_proxy模块设置其反向代理">
+                <i class="fa fa-chevron-left"></i> 使用Apache的mod_proxy模块设置其反向代理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/07/24/ios-view-introduction-2/" rel="prev" title="iOS入门——View（2）">
+                iOS入门——View（2） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#view-in-iOS"><span class="nav-number">2.</span> <span class="nav-text">view in iOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UIWindow"><span class="nav-number">3.</span> <span class="nav-text">UIWindow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#drawRect"><span class="nav-number">5.</span> <span class="nav-text">drawRect:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2014/07/23/ios-view-introduction-1/';
+      var disqus_title = "iOS入门——View（1）";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2014/07/23/ios-view-introduction-1/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

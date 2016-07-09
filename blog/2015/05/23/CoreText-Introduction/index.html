@@ -1,0 +1,1137 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,CoreText," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为了让图文混排支持iOS 6，不得不暂时放弃学习TextKit，不过正好也借着这个机会了解了文字排版的一些基本知识，以及如何直接使用底层的Core Text API，来进行图文混排。正所谓出来混，总是要还的，学一些这方面的知识，对学习TextKit也是很有帮助的！
+本文将介绍使用Core Text的API，结合Core Graphics来实现支持iOS 6的图文混排的基本思想及方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Core Text实现支持iOS 6的图文混排">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2015/05/23/CoreText-Introduction/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="为了让图文混排支持iOS 6，不得不暂时放弃学习TextKit，不过正好也借着这个机会了解了文字排版的一些基本知识，以及如何直接使用底层的Core Text API，来进行图文混排。正所谓出来混，总是要还的，学一些这方面的知识，对学习TextKit也是很有帮助的！
+本文将介绍使用Core Text的API，结合Core Graphics来实现支持iOS 6的图文混排的基本思想及方法。">
+<meta property="og:image" content="http://vars.qiniudn.com/CoreTextDemo.png">
+<meta property="og:image" content="http://vars.qiniudn.com/glyphterms.png">
+<meta property="og:image" content="http://vars.qiniudn.com/glyphmetrics.png">
+<meta property="og:image" content="http://vars.qiniudn.com/coretextterms.png">
+<meta property="og:image" content="http://vars.qiniudn.com/CoreTextCode.png">
+<meta property="og:image" content="http://vars.qiniudn.com/CTCompare.png">
+<meta property="og:updated_time" content="2016-07-09T05:35:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Core Text实现支持iOS 6的图文混排">
+<meta name="twitter:description" content="为了让图文混排支持iOS 6，不得不暂时放弃学习TextKit，不过正好也借着这个机会了解了文字排版的一些基本知识，以及如何直接使用底层的Core Text API，来进行图文混排。正所谓出来混，总是要还的，学一些这方面的知识，对学习TextKit也是很有帮助的！
+本文将介绍使用Core Text的API，结合Core Graphics来实现支持iOS 6的图文混排的基本思想及方法。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/CoreTextDemo.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2015/05/23/CoreText-Introduction/"/>
+
+  <title> 使用Core Text实现支持iOS 6的图文混排 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Core Text实现支持iOS 6的图文混排
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-05-23T18:14:21+08:00" content="2015-05-23">
+              2015-05-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/移动互联网开发/" itemprop="url" rel="index">
+                    <span itemprop="name">移动互联网开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2015/05/23/CoreText-Introduction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2015/05/23/CoreText-Introduction/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为了让图文混排支持iOS 6，不得不暂时放弃学习TextKit，不过正好也借着这个机会了解了文字排版的一些基本知识，以及如何直接使用底层的Core Text API，来进行图文混排。正所谓出来混，总是要还的，学一些这方面的知识，对学习TextKit也是很有帮助的！</p>
+<p>本文将介绍使用Core Text的API，结合Core Graphics来实现支持iOS 6的图文混排的基本思想及方法。</p>
+<a id="more"></a>
+<p>效果图预览：</p>
+<p><img src="http://vars.qiniudn.com/CoreTextDemo.png" width="30%"></p>
+<h3 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h3><p>Core Text是进行文字排版的工具，为了更称手地使用它，了解一些文字排版的基础知识很有必要。为了后续理解方便，强烈建议先阅读<a href="http://geeklu.com/2013/03/core-text/" target="_blank" rel="external">这篇很好的文章</a>，我就不拾人牙慧了。</p>
+<p>但是祭出这两幅幅神图还是很有必要的。</p>
+<p><img src="http://vars.qiniudn.com/glyphterms.png" width="50%"></p>
+<p><img src="http://vars.qiniudn.com/glyphmetrics.png" width="50%"></p>
+<p>基于上图，有几个点还是需要强调一下：</p>
+<ul>
+<li>Baseline，基线。想想你是如何在四线三格纸上写英文字母的，基线就相当于第三条线</li>
+<li>Line Origin，行原点。把一橫行文字的基线看成是一条线段，线段的起点就是这行的Line Origin</li>
+<li>Ascent，上高。一行文字，共享一条基线，最高的字形到基线的高就是上高，是一个正值</li>
+<li>Descent，下高。同Ascent，最深的字形到基线的高就是下高，是一个负值</li>
+<li>leading，行距。行与行之间的距离</li>
+</ul>
+<p>那么再回过头来看Core Text中一些基本的概念以及对应的类。</p>
+<p>进行文字的绘制，总得有个地方吧！也即总得告诉CT在那块把字给画出来？这个所谓的「地方」，就是CTFrame。<br>在使用的过程中，我们通常是用一个AttributedString来初始化一个CTFrame的工厂<code>CTFramesetter</code>，然后用这个工厂结合一个<code>CGPath</code>，来得到一个CTFrame。</p>
+<p>CT在CTFrame上绘制文字的时候，不会超出这个Frame，一行显示不下，新起一行，「行」在CT中的对象模型就是CTLine。<br>对于每一行，具有相同属性（对，就是你给AttributedString添加的属性）的紧挨着的字形集合体，被称为一个CTRun。</p>
+<p>一个Run在渲染的时候，如果设置了CTRunDelegate，那么便会向它的Delegate询问一些信息，包括这个Run的Ascent、Descent，以及宽度等等。注意CT是一个C级别的库，CTRunDelegate也是通过C语言中函数指针来完成设置的，详见下面的代码。</p>
+<p>有关Core Text的几个核心概念可以参考下图：</p>
+<p><img src="http://vars.qiniudn.com/coretextterms.png" alt="coretextterms.png"></p>
+<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>我们使用Core Text来进行排版（typeset）和文字的绘制，并利用其获取图片位置，使用Core Graphics进行图片的绘制。</p>
+<p>这个过程可以分成两步。</p>
+<ol>
+<li>使用CT进行文字的排版和绘制，为该显示图片的地方留出位置</li>
+<li>遍历每一行，按行画出这行的图片</li>
+</ol>
+<h3 id="Go-Go-Go"><a href="#Go-Go-Go" class="headerlink" title="Go Go Go"></a>Go Go Go</h3><p>在对基本的概念以及思想了解各大概后，便可以动手来实现了！</p>
+<p>且慢，为了测试结果更加直观，我们先编写一些工具方法，代码如下：</p>
+<pre><code>- (void)drawBorder:(CGRect)rect inContext:(CGContextRef)context {
+    CGPathRef rectBorderPath = CGPathCreateWithRect(rect, NULL);
+    [[UIColor redColor] setStroke];
+    CGContextAddPath(context, rectBorderPath);
+    CGContextDrawPath(context, kCGPathStroke);
+    CFRelease(rectBorderPath);
+}
+
+- (void)drawPoint:(CGPoint)point inContext:(CGContextRef)context {
+    CGContextFillRect(context, CGRectMake(point.x, point.y, 2, 2));
+}
+
+// 先转换坐标系再画点
+- (void)drawPoint:(CGPoint)point inContext:(CGContextRef)context inRect:(CGRect)rect {
+    UIView *view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor yellowColor];
+    [self addSubview:view];
+    CGPoint pointInSelf = [self convertPoint:point fromView:view];
+    [view removeFromSuperview];
+    [self drawPoint:pointInSelf inContext:context];
+}
+</code></pre><p>终于可以上关键代码了，代码中注释已经很翔实了！</p>
+<pre><code>- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    // 翻转坐标系
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+    CGContextTranslateCTM(context, 0, CGRectGetHeight(self.bounds));
+    CGContextScaleCTM(context, 1.0, -1.0);
+
+    // 可以在翻转坐标系之前也画个红绿色块来对比坐标系Y轴翻转的效果
+    CGContextSetRGBFillColor (context, 1, 0, 0, 1);
+    CGContextFillRect (context, CGRectMake (100, 100, 100, 100 ));
+    CGContextSetRGBFillColor (context, 0, 1, 0, .5);
+    CGContextFillRect (context, CGRectMake (150, 205, 100, 100));
+
+    // 准备CGPath，用于CTFrame的构造
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGFloat frameOffsetX = 20.0f;
+    CGFloat frameOffsetY = 20.0f;
+    CGRect textFrame = CGRectInset(self.bounds, frameOffsetX, frameOffsetY);
+    CGPathAddRect(path, NULL, textFrame);
+
+    [self drawBorder:textFrame inContext:context];
+
+    // 装文字的AttributedString
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@&quot;Our destiny offers not the cup of despair, but the chalice of opportunity. So let us seize it, not in fear, but in gladness.——R.M. Nixon&quot; attributes:@{NSForegroundColorAttributeName: [UIColor greenColor], NSFontAttributeName: [UIFont systemFontOfSize:22]}];
+
+    // 构造CTRunDelegate，用以给占着图片位置的空字符的CTRun作为Delegate，提供这些Run的宽、上下高等
+    NSDictionary *attrs = @{@&quot;key&quot;: @&quot;vars.me&quot;};
+    CTRunDelegateCallbacks imageCallbacks;
+    imageCallbacks.version = kCTRunDelegateVersion1;
+    imageCallbacks.dealloc = deallocCallback;
+    imageCallbacks.getDescent = descentCallback;
+    imageCallbacks.getAscent = ascentCallback;
+    imageCallbacks.getWidth = widthCallback;
+    // http://stackoverflow.com/a/12919404/1108052
+    CTRunDelegateRef runDelegate = CTRunDelegateCreate(&amp;imageCallbacks, (void *)CFBridgingRetain(attrs)); // 第二个参数就是传给callBack函数的void *类型的参数
+
+    // 随机构造几个装有图片占位符的AttributedString，插入到上面装文字的AttributedString中
+    unichar space = 0xFFFC; // 图片占位符，为什么用0xFFFC下述详情
+    NSString *spaceStr = [NSString stringWithCharacters:&amp;space length:1];
+    // 装有图片占位符的AttributedString，注意，其属性中有一个@&quot;imageName&quot;属性，这是我们区别一个Run是否是图片Run的标识，见下面遍历每行Run部分
+    NSMutableAttributedString *imageStr = [[NSMutableAttributedString alloc] initWithString:spaceStr attributes:@{(NSString *)kCTRunDelegateAttributeName: (__bridge id)runDelegate, @&quot;imageName&quot;: @&quot;001.png&quot;}];
+    [str insertAttributedString:imageStr atIndex:5];
+    [str insertAttributedString:imageStr atIndex:55];
+    [str insertAttributedString:imageStr atIndex:75];
+    [str insertAttributedString:imageStr atIndex:105];
+    [str insertAttributedString:imageStr atIndex:135];
+
+    // 构造CTFrame
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)str);
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, str.length), path, NULL);
+
+    // 得到Frame中的每一行，装在一个CFArray里
+    CFArrayRef lines = CTFrameGetLines(frame);
+
+    // 得到每一行的Line Origin（见上述知识储备部分），用以计算每一行的图片位置，注意，得到的点是以CTFrame为坐标系的坐标
+    CGPoint lineOrigins[CFArrayGetCount(lines)];
+    CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), lineOrigins);
+
+    // 下面遍历Frame中的每一行，逐行绘制图片
+    for (CFIndex i = 0; i &lt; CFArrayGetCount(lines); ++i) {
+        CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+
+        [self drawPoint:lineOrigins[i] inContext:context inRect:textFrame];
+
+        // 得到这行中的所有CTRun，状态一个CFArray里
+        CFArrayRef runs = CTLineGetGlyphRuns(line);
+
+        // 遍历这行所有Run
+        for (CFIndex j = 0; j &lt; CFArrayGetCount(runs); ++j) {
+            CTRunRef run = CFArrayGetValueAtIndex(runs, j);
+            NSDictionary *attrs = (NSDictionary *)CTRunGetAttributes(run);
+
+            // 如果某个Run的@&quot;imageName&quot;属性不为空，则说明这个Run是图片占位符，开始计算这个Run的位置，用CG画图
+            NSString *imageName = attrs[@&quot;imageName&quot;];
+            if (imageName) {
+                CGPoint lineOrigin = lineOrigins[i];
+
+                CGRect imageRunBounds; // 注意：得到的imageRun的bounds，也是在CTFrame坐标系中
+                CGFloat imageRunAsent, imageRunDecent;
+                imageRunBounds.size.width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &amp;imageRunAsent, &amp;imageRunDecent, NULL);
+                imageRunBounds.size.height = imageRunAsent + imageRunDecent;
+                imageRunBounds.origin.x = lineOrigin.x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
+                imageRunBounds.origin.y = lineOrigin.y;
+
+                // 开始画图
+                UIImage *image = [UIImage imageNamed:imageName];
+                if (image) {
+                    // 注意：画图时由于是在当前View的Context中，因此我们要根据CTFrame坐标系中的imageRunBounds，转换成在View坐标系的imageDrawRect
+                    CGRect imageDrawRect;
+                    imageDrawRect.origin.x = imageRunBounds.origin.x + lineOrigin.x + frameOffsetX;
+                    imageDrawRect.origin.y = imageRunBounds.origin.y +  frameOffsetY;
+                    imageDrawRect.size = imageRunBounds.size;
+
+                    // 用CG画图
+                    CGContextDrawImage(context, imageDrawRect, image.CGImage);
+
+                    [self drawBorder:imageDrawRect inContext:context];
+                }
+            }
+        }
+    }
+
+    CTFrameDraw(frame, context);
+
+    CFRelease(runDelegate);
+    CFRelease(frame);
+    CFRelease(path);
+    CFRelease(framesetter);
+}
+</code></pre><p>CTRunDelegate的回调函数代码如下。</p>
+<pre><code>#pragma mark - CTRunDelegate
+
+void deallocCallback(void* ref) {
+    CFBridgingRelease(ref);
+}
+
+CGFloat ascentCallback(void *ref) {
+
+    NSDictionary *attr = (__bridge NSDictionary *)ref;
+    NSLog(@&quot;%@&quot;, attr[@&quot;key&quot;]);
+
+    return 32;
+}
+
+CGFloat descentCallback(void* ref) {
+    return 0;
+}
+
+CGFloat widthCallback(void* ref) {
+    return 32;
+}
+</code></pre><p>对代码的理解可以结合下图（使用Sketch画的，真是个好工具）：</p>
+<p><img src="http://vars.qiniudn.com/CoreTextCode.png" alt="CoreTextCode.png"></p>
+<p>此外，关于上面的代码有几点补充，一是坐标系Y轴翻转的问题，前面推荐过的那篇很好的文章已经说的很详细了，这里就不做赘述了；二是为什么占位符要选择0xFFFC，有两方面原因，一个是<code>kCTRunDelegateAttributeName</code>的官方文档推荐使用这个值，二是经过我自己的测试(iPhone 5)，使用这个值有如下优势，自动把一个imageRun当成一个单词处理：</p>
+<p><img src="http://vars.qiniudn.com/CTCompare.png" width="50%"></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><a href="http://geeklu.com/2013/03/core-text/" target="_blank" rel="external">Core Text 入门</a></li>
+<li><a href="http://www.raywenderlich.com/4147/core-text-tutorial-for-ios-making-a-magazine-app" target="_blank" rel="external">Core Text Tutorial for iOS: Making a Magazine App</a></li>
+<li><a href="http://blog.devtang.com/blog/2013/10/21/the-tech-detail-of-ape-client-3/" target="_blank" rel="external">猿题库iOS客户端的技术细节（三）：基于CoreText的排版引擎</a></li>
+<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/Carbon/Reference/CoreText_Framework_Ref/index.html" target="_blank" rel="external">Core Text Reference Collection</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/CoreText/" rel="tag">#CoreText</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/04/26/UICollectionView-Optimizing/" rel="next" title="UICollectionView的数据预加载及图片加载逻辑的优化">
+                <i class="fa fa-chevron-left"></i> UICollectionView的数据预加载及图片加载逻辑的优化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015/09/22/autolayout-introduction/" rel="prev" title="一篇不算晚的Auto Layout入门教程">
+                一篇不算晚的Auto Layout入门教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识储备"><span class="nav-number">1.</span> <span class="nav-text">知识储备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本思想"><span class="nav-number">2.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Go-Go-Go"><span class="nav-number">3.</span> <span class="nav-text">Go Go Go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2015/05/23/CoreText-Introduction/';
+      var disqus_title = "使用Core Text实现支持iOS 6的图文混排";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2015/05/23/CoreText-Introduction/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,972 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="哈工大,编译原理," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="实验目的这次实验的实验目的其实很明确——对源码进行语义分析，输出语义分析结果，并要求有适当的错误处理机制。可是指导书上实验目的要求自己分析，我的分析结果：本次实验要求自己定义上次实验的语法分析的文法的SDD，然后编写程序在上次语法分析的基础上完成语义分析，生成测试程序的中间代码（三地址码）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈工大软件学院编译原理实验3——语义分析">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2012/12/08/HIT-Compilers-exercise-3/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="实验目的这次实验的实验目的其实很明确——对源码进行语义分析，输出语义分析结果，并要求有适当的错误处理机制。可是指导书上实验目的要求自己分析，我的分析结果：本次实验要求自己定义上次实验的语法分析的文法的SDD，然后编写程序在上次语法分析的基础上完成语义分析，生成测试程序的中间代码（三地址码）。">
+<meta property="og:updated_time" content="2016-07-09T05:26:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈工大软件学院编译原理实验3——语义分析">
+<meta name="twitter:description" content="实验目的这次实验的实验目的其实很明确——对源码进行语义分析，输出语义分析结果，并要求有适当的错误处理机制。可是指导书上实验目的要求自己分析，我的分析结果：本次实验要求自己定义上次实验的语法分析的文法的SDD，然后编写程序在上次语法分析的基础上完成语义分析，生成测试程序的中间代码（三地址码）。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2012/12/08/HIT-Compilers-exercise-3/"/>
+
+  <title> 哈工大软件学院编译原理实验3——语义分析 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                哈工大软件学院编译原理实验3——语义分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2012-12-08T00:14:00+08:00" content="2012-12-08">
+              2012-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/12/08/HIT-Compilers-exercise-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/12/08/HIT-Compilers-exercise-3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h3><p>这次实验的实验目的其实很明确——对源码进行语义分析，输出语义分析结果，并要求有适当的错误处理机制。可是指导书上实验目的要求自己分析，我的分析结果：本次实验要求自己定义上次实验的语法分析的文法的SDD，然后编写程序在上次语法分析的基础上完成语义分析，生成测试程序的中间代码（三地址码）。<a id="more"></a></p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>本次实验离不开一些概念：语法制导定义（syntax-directed definition ( SDD )，我觉得这个翻译略显生硬，“制导”？导弹制导系统？），语法制导翻译（Syntax-Directed　Translation（SDT），同上），以及中间代码生成（Intermediate-Code Generation，个人认为把它翻译成“中介”更好一些）。</p>
+<p>刚开始可能课上听课程度不够，对这些概念不是很了解，导致做实验时有很大的障碍。</p>
+<p>下面说说我的理解：<br>SDD是一个偏理论上的概念，龙书第二版这样说：</p>
+<blockquote>
+<p>A syntax-directed definition ( SDD ) is a context-free grammar together with attributes and rules. Attributes are associated with grammar symbols and rules are associated with productions（“rules” is “semantic rules”，笔者加）.</p>
+</blockquote>
+<p>也就是说，为了理解语言的含义，我们要把语言符号和语言符号所代表的信息联系起来，我们要为文法的每个grammar symbol(s)附加一些属性。而附加到Production的语义规则则告知这些属性是怎么得来的以及文法符号属性之间的关系是怎样的。我们可以把SDD理解为对单纯的Grammar Symbols和Productions的扩展。SDD让文法的Grammar Symbols和Productions变得“活”了，变得有意义了。</p>
+<p>SDT是一种技术（老师的讲义上把它理解为SDD的一种便于书写的形式）。这种翻译技术可以被应用到语义翻译过程中的类型检查和中间代码生成上，也可以被应用到一些某些具有特定任务的轻量级的语言中。可以这么理解，SDT是根据SDD所定义的那些规则和计算顺序对语言进行语义翻译的技术。通过SDT，我们理解了源语言到底要表达个什么意思，为后续的编译工作打下了基础。</p>
+<p>中间代码生成，是一个生成一种独立于源语言也独立于目标语言（我们叫它中间代码）的代码过程，中间代码有很多形式，生成中间代码有很多好处，这里不再赘述。中间代码的生成工作要用到SDT技术。</p>
+<p>总之，它们都没有什么明确的定义，意会这些就好。</p>
+<h3 id="引子：Python实现递归和非递归遍历树"><a href="#引子：Python实现递归和非递归遍历树" class="headerlink" title="引子：Python实现递归和非递归遍历树"></a>引子：Python实现递归和非递归遍历树</h3><p>不一定要把SDT作为一个单独的过程去完成它，可能在句法分析的过程中（句法分析当然也有可多方法，LL、LR等）就调用相应的语义子程序完成了SDT的工作。</p>
+<p>此外，这次实验我最大的收获：<strong>LL(1)语法分析的过程本质上就是一个对语法分析树进行先根遍历的过程</strong>。</p>
+<p>所以，先写一个简单的脚本实现非递归先根顺序遍历树，来模拟LL（1）的过程，以加深对其的理解。</p>
+<p>下面上代码，其中非递归遍历树的过程就是LL(1)执行时遍历语法分析树的过程，读者可以画一下树的结构，并对着输出看一下遍历顺序，会对LL分析过程中分析栈的变化的认识有帮助。</p>
+<p>树是这样被录入程序的（tree.txt）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Root:A</div><div class="line">A -&gt; B C</div><div class="line">B -&gt; D E F</div><div class="line">C -&gt; G H</div><div class="line">E -&gt; I J</div><div class="line">J -&gt; K L M</div><div class="line">H -&gt; N O</div></pre></td></tr></table></figure></p>
+<p>下面是脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">Tree = &#123;&#125;</div><div class="line">Root = <span class="keyword">None</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_tree</span><span class="params">(tree_file_path)</span>:</span></div><div class="line">    <span class="string">'''Read the Tree from the file, build the Tree'''</span></div><div class="line">    <span class="keyword">global</span> Tree,Root</div><div class="line">    tree_file = open(tree_file_path,<span class="string">"r+"</span>)</div><div class="line">    raw_Root = tree_file.readline().strip().split(<span class="string">':'</span>)</div><div class="line">    <span class="keyword">if</span> (raw_Root[<span class="number">0</span>] == <span class="string">"Root"</span>):</div><div class="line">        Root = raw_Root[<span class="number">1</span>]</div><div class="line">    <span class="keyword">for</span> eachLine <span class="keyword">in</span> tree_file.readlines():</div><div class="line">        sub_tree = eachLine.strip().split(<span class="string">' -&gt; '</span>)</div><div class="line">        Tree[sub_tree[<span class="number">0</span>]] = sub_tree[<span class="number">1</span>].split(<span class="string">' '</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">travel_tree</span><span class="params">(Tree,Root)</span>:</span></div><div class="line">    <span class="string">'''Travel the Tree by root-priority order with the stack data structure instead of recursion'''</span></div><div class="line">    stack = []</div><div class="line">    stack.append(Root)</div><div class="line">    <span class="keyword">while</span> len(stack) != <span class="number">0</span> :</div><div class="line">        <span class="keyword">print</span> <span class="string">'stack:'</span>,stack</div><div class="line">        X = stack.pop()</div><div class="line">        <span class="keyword">print</span> <span class="string">'visit:'</span>,X <span class="comment"># travel the Tree</span></div><div class="line">        <span class="keyword">if</span> X <span class="keyword">not</span> <span class="keyword">in</span> Tree: <span class="comment"># That means X is a leaf</span></div><div class="line">            <span class="keyword">continue</span></div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> list(reversed(Tree[X])):</div><div class="line">            stack.append(item)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">travel_tree_recursion</span><span class="params">(Tree,Root)</span>:</span></div><div class="line">    <span class="string">'''Travel the Tree recursively'''</span></div><div class="line">    <span class="keyword">print</span> Root,</div><div class="line">    <span class="keyword">if</span> Root <span class="keyword">not</span> <span class="keyword">in</span> Tree:</div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="keyword">for</span> X <span class="keyword">in</span> Tree[Root]:</div><div class="line">        travel_tree_recursion(Tree,X)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"Start reading the tree from file..."</span></div><div class="line">    read_tree(<span class="string">'./tree.txt'</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">"The tree is:"</span></div><div class="line">    <span class="keyword">print</span> Tree,<span class="string">'\n'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"Start traveling the tree with stack..."</span></div><div class="line">    travel_tree(Tree,Root)</div><div class="line">    <span class="keyword">print</span> <span class="string">"\nStart traveling the tree recursively..."</span></div><div class="line">    travel_tree_recursion(Tree,Root)</div></pre></td></tr></table></figure></p>
+<p>输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">Start reading the tree from file...</div><div class="line">The tree is:</div><div class="line">&#123;&apos;A&apos;: [&apos;B&apos;, &apos;C&apos;], &apos;C&apos;: [&apos;G&apos;, &apos;H&apos;], &apos;B&apos;: [&apos;D&apos;, &apos;E&apos;, &apos;F&apos;], &apos;E&apos;: [&apos;I&apos;, &apos;J&apos;], &apos;H&apos;: [&apos;N&apos;, &apos;O&apos;], &apos;J&apos;: [&apos;K&apos;, &apos;L&apos;, &apos;M&apos;]&#125;</div><div class="line"></div><div class="line">Start traveling the tree with stack...</div><div class="line">stack: [&apos;A&apos;]</div><div class="line">visit: A</div><div class="line">stack: [&apos;C&apos;, &apos;B&apos;]</div><div class="line">visit: B</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;E&apos;, &apos;D&apos;]</div><div class="line">visit: D</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;E&apos;]</div><div class="line">visit: E</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;J&apos;, &apos;I&apos;]</div><div class="line">visit: I</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;J&apos;]</div><div class="line">visit: J</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;M&apos;, &apos;L&apos;, &apos;K&apos;]</div><div class="line">visit: K</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;M&apos;, &apos;L&apos;]</div><div class="line">visit: L</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;, &apos;M&apos;]</div><div class="line">visit: M</div><div class="line">stack: [&apos;C&apos;, &apos;F&apos;]</div><div class="line">visit: F</div><div class="line">stack: [&apos;C&apos;]</div><div class="line">visit: C</div><div class="line">stack: [&apos;H&apos;, &apos;G&apos;]</div><div class="line">visit: G</div><div class="line">stack: [&apos;H&apos;]</div><div class="line">visit: H</div><div class="line">stack: [&apos;O&apos;, &apos;N&apos;]</div><div class="line">visit: N</div><div class="line">stack: [&apos;O&apos;]</div><div class="line">visit: O</div><div class="line"></div><div class="line">Start traveling the tree recursively...</div><div class="line">A B D E I J K L M F C G H N O</div></pre></td></tr></table></figure></p>
+<h3 id="本次实验"><a href="#本次实验" class="headerlink" title="本次实验"></a>本次实验</h3><p>下面说一下我的程序的具体实现，仅供参考。</p>
+<p>首先要明确，分析栈里面不会再像上次实验那样仅仅存一个文法符号的单一的类型了。这次我们要向栈里面压入至少：文法符号、代表语义动作的“挂钩”、文法符号的属性这些类型。如果想不出更好的将它们类型统一的方法，还是乖乖地把分析栈改成存放Object类型的栈吧：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Stack&lt;Object&gt; prodChars = <span class="keyword">new</span> Stack&lt;&gt;();</div></pre></td></tr></table></figure></p>
+<p>我们在出栈时，可以利用Java语言的多态性，用instanceof运算符判断弹出来的到底是个什么类型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Object X = prodChars.peek(); <span class="comment">// 从栈里弹出元素X</span></div><div class="line"><span class="keyword">if</span> (X <span class="keyword">instanceof</span> MyCharacter) &#123; <span class="comment">// X是一个文法符号</span></div><div class="line">    <span class="comment">// 在这里查找预测分析表，判断该使用哪个产生式</span></div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (X <span class="keyword">instanceof</span> HashMap&lt;?, ?&gt;) &#123; <span class="comment">// X是上一个文法符号的综合属性</span></div><div class="line">    <span class="comment">// 在这里将综合属性暂存，作为参数传给下一个语义子程序</span></div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (X <span class="keyword">instanceof</span> String) &#123; <span class="comment">// X是一个语义子程序</span></div><div class="line">    <span class="comment">// 在这里调用相应的语义子程序</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>进行SDT的过程，实际上就是前述属性的不断传递的过程，SDD中的属性又分为<strong>继承属性（inherited attribute）</strong>和<strong>综合属性（synthesized attribute）</strong>。</p>
+<p>龙书上是这样描述它们的：</p>
+<blockquote>
+<p>1 . A synthesized attribute for a nonterminal A at a parse-tree node N is defined by a semantic rule associated with the production at N. Note that the production must have A as its head. A synthesized attribute at node N is defined only in terms of attribute values at the children of N and at N itself.<br>　　节点N上的综合属性只能通过N的子节点或N本身的属性值来定义。
+　　</p>
+<ol>
+<li>An inherited attribute for a nonterminal B at a parse-tree node N is defined by a semantic rule associated with the production at the parent of N. Note that the production must have B as a symbol in its body. An inherited attribute at node N is defined only in terms of attribute values at N’s parent, N itself, and N’s siblings.<br>　　节点N上的继承属性只能通过N的父节点、 N的兄弟节点和N本身的属性值来定义;</li>
+</ol>
+</blockquote>
+<p>根据前面演示脚本的输出，不难得出，按着LL的分析顺序：<br>1.文法符号的综合属性和由左兄弟节点传递的继承属性是沿着分析栈的栈顶向栈底传递的；<br>2.其他继承属性是由栈底向栈顶传递的。</p>
+<p>为了达到传递两种不同属性的目的，我们需要设计不同的方法：<br>针对1，由于1的传递顺序是和弹栈顺序相同（栈顶-&gt;栈底），则直接在调用相应的语义子程序时顺水推舟传到栈底即可，即在语义子程序中加入诸如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">stack[top–n].put(“attribute_name”,”attribute_value”)</div></pre></td></tr></table></figure></p>
+<p>的操作即可完成栈顶方向属性向栈底传递的操作。</p>
+<p>针对2，由于2的传递顺序和弹栈方向相反（栈底-&gt;栈顶），也就意味着，对于先入栈的元素，它的属性有可能传递给后入栈的元素，我们可以用全局变量的方式来实现这个顺序的属性传递。先入栈的元素把它的属性放到一个全局变量里面，后入栈的元素根据需要去全局变量里面查找属性即可。<br>还有一些其他问题，比如属性名重复等等，这个请读者具体问题具体分析自行解决。</p>
+<p>做了这些储备之后，就基本可以着手实现了，首先是改造文法，思考并实现SDD，实际上这个过程还是有点难的，可以一步一步地先看看龙书上的样例SDD，再改造自己的文法：</p>
+<p>实验二中的文法加入了语义子程序，实际上就是一个字符串，总控程序解析这个字符串判断调用哪个语义动作子程序，下面是我的文法产生式样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#</div><div class="line">type_specifier -&gt; CHAR | INT act2 | FLOAT act3 | CHAR*</div><div class="line">#</div><div class="line">declarator -&gt; IDN act4 declarator&apos;</div><div class="line">declarator&apos; -&gt; [ CONST_INT ] act5 declarator&apos; | $ act6</div><div class="line">#</div></pre></td></tr></table></figure></p>
+<p>总控程序如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 根据当前文法分析句子，输出分析结果</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> sentence</div><div class="line"> *            要分析的语句（Token表示）</div><div class="line"> * <span class="doctag">@param</span> startChar</div><div class="line"> *            当前文法的起始符号</div><div class="line"> * <span class="doctag">@return</span> 返回自顶向下推导序列</div><div class="line"> */</div><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Production&gt; <span class="title">Analysis</span><span class="params">(ArrayList&lt;Token&gt; sentence,</span></span></div><div class="line">        String startChar) &#123;</div><div class="line">    ArrayList&lt;Production&gt; productionSequences = <span class="keyword">new</span> ArrayList&lt;Production&gt;();</div><div class="line">    Stack&lt;Object&gt; prodChars = <span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">    prodChars.push(<span class="string">"#"</span>);</div><div class="line">    prodChars.push(GrammerAnalysis.nCharacters.get(startChar));</div><div class="line">    <span class="comment">// sentence = sentence + "#";</span></div><div class="line">    sentence.add(<span class="keyword">new</span> Token(<span class="string">"#"</span>, <span class="string">"#"</span>));</div><div class="line">    <span class="keyword">int</span> currentIndex = <span class="number">0</span>; <span class="comment">// 当前分析到的下标</span></div><div class="line">    HashMap&lt;String, String&gt; recentAttr = <span class="keyword">null</span>; <span class="comment">// 语义子程序的参数</span></div><div class="line">    HashMap&lt;String, Stack&lt;String&gt;&gt; attachAttr = <span class="keyword">new</span> HashMap&lt;&gt;(); <span class="comment">// 语义子程序的参数</span></div><div class="line">    attachAttr.put(<span class="string">"MostRecentIDN"</span>, <span class="keyword">new</span> Stack&lt;String&gt;());</div><div class="line">    attachAttr.put(<span class="string">"MostRecentConstInt"</span>, <span class="keyword">new</span> Stack&lt;String&gt;());</div><div class="line">    <span class="keyword">while</span> ((prodChars.peek() <span class="keyword">instanceof</span> HashMap&lt;?, ?&gt;)</div><div class="line">            || (prodChars.peek() <span class="keyword">instanceof</span> String &amp;&amp; !<span class="string">"#"</span>.equals(prodChars</div><div class="line">                    .peek())) || prodChars.peek() <span class="keyword">instanceof</span> MyCharacter) &#123;</div><div class="line">        <span class="comment">// outputStack(prodChars);</span></div><div class="line">        Object X = prodChars.peek();</div><div class="line">        <span class="keyword">if</span> (X <span class="keyword">instanceof</span> MyCharacter) &#123; <span class="comment">// X是一个文法符号</span></div><div class="line">            String a = <span class="string">""</span>;</div><div class="line">            <span class="keyword">if</span> (currentIndex &lt; sentence.size()) &#123;</div><div class="line">                a = sentence.get(currentIndex).getToken();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (X <span class="keyword">instanceof</span> TerminateCharacter</div><div class="line">                    || <span class="string">"#"</span>.equals(((MyCharacter) X).what)) &#123;</div><div class="line">                <span class="keyword">if</span> (a.equals(((MyCharacter) X).what)) &#123;</div><div class="line">                    <span class="keyword">if</span> (!<span class="string">"#"</span>.equals(X)) &#123;</div><div class="line">                        prodChars.pop();</div><div class="line">                        <span class="keyword">if</span> (<span class="string">"IDN"</span>.equals(((MyCharacter) X).what)) &#123;</div><div class="line">                            attachAttr.get(<span class="string">"MostRecentIDN"</span>).push(</div><div class="line">                                    sentence.get(currentIndex).getValue());</div><div class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"CONST_INT"</span></div><div class="line">                                .equals(((MyCharacter) X).what)) &#123;</div><div class="line">                            attachAttr.get(<span class="string">"MostRecentConstInt"</span>).push(</div><div class="line">                                    sentence.get(currentIndex).getValue());</div><div class="line">                        &#125;</div><div class="line">                        currentIndex++;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    String eStr = ((MyCharacter) prodChars.pop()).what;</div><div class="line">                    System.err.println(<span class="string">"ERROR,Ignore Char : "</span> + eStr);</div><div class="line">                    <span class="comment">// break;</span></div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                ArrayList&lt;String&gt; item = GrammerAnalysis.ForecastTable.get(</div><div class="line">                        ((MyCharacter) X).what).get(a);</div><div class="line">                <span class="keyword">if</span> (item != <span class="keyword">null</span>) &#123;</div><div class="line">                    prodChars.pop();</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = item.size() - <span class="number">1</span>; i &gt; -<span class="number">1</span>; i--) &#123;</div><div class="line">                        <span class="keyword">if</span> (<span class="string">"$"</span>.equals(item.get(i))) &#123;</div><div class="line">                            <span class="keyword">continue</span>;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">if</span> (isNCharacter(item.get(i))) &#123;</div><div class="line">                            prodChars.push(<span class="keyword">new</span> HashMap&lt;String, String&gt;()); <span class="comment">// 非终结符入栈的同时，把用于存放它综合属性的Hash表也入栈</span></div><div class="line">                            prodChars.push(GrammerAnalysis.nCharacters</div><div class="line">                                    .get(item.get(i)));</div><div class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isTCharacter(item.get(i))) &#123;</div><div class="line">                            prodChars.push(GrammerAnalysis.tCharacters</div><div class="line">                                    .get(item.get(i)));</div><div class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (item.get(i).startsWith(<span class="string">"act"</span>)) &#123;</div><div class="line">                            prodChars.push(item.get(i));</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    productionSequences.add(<span class="keyword">new</span> Production(</div><div class="line">                            ((MyCharacter) X).what, item));</div><div class="line">                    System.out.println(((MyCharacter) X).what + <span class="string">" -&gt; "</span></div><div class="line">                            + item);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span> (((NonterminalCharacter) GrammerAnalysis.nCharacters</div><div class="line">                            .get(X)).Sync.contains(a)) &#123;</div><div class="line">                        String eStr = ((MyCharacter) prodChars.pop()).what;</div><div class="line">                        System.err.println(<span class="string">"ERROR,Have Pop NCharacter: "</span></div><div class="line">                                + eStr);</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        String eStr = a;</div><div class="line">                        System.err.println(<span class="string">"ERROR,-Ignore Char : "</span> + eStr);</div><div class="line">                        currentIndex++;</div><div class="line">                    &#125;</div><div class="line">                    <span class="comment">// break;</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (X <span class="keyword">instanceof</span> HashMap&lt;?, ?&gt;) &#123; <span class="comment">// X是上一个文法符号的综合属性</span></div><div class="line">            recentAttr = (HashMap&lt;String, String&gt;) prodChars.pop();</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (X <span class="keyword">instanceof</span> String) &#123; <span class="comment">// X是一个语义子程序</span></div><div class="line">            String s = (String) prodChars.pop(); <span class="comment">// 解析字符串判断该调用哪个语义子程序</span></div><div class="line">            SDTUtil.execAction(Integer.parseInt(s.substring(<span class="number">3</span>)), prodChars,</div><div class="line">                    recentAttr, attachAttr);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> productionSequences;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在写总控程序时，要时刻牢记LL分析法的语法分析树的遍历的顺序，根据这一点编写总控程序。</p>
+<p>此外，Java的Stack类只提供了对当前栈顶元素操作的接口，如果想对非栈顶元素进行操作，可以这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">act10</span><span class="params">(Stack&lt;Object&gt; stack,</span></span></div><div class="line">        HashMap&lt;String, String&gt; recentAttribute,</div><div class="line">        HashMap&lt;String, Stack&lt;String&gt;&gt; attachAttribute) &#123;</div><div class="line">    Stack&lt;Object&gt; tmpStack = <span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</div><div class="line">        tmpStack.push(stack.pop());</div><div class="line">    &#125;</div><div class="line">    ((HashMap&lt;String, String&gt;) stack.peek()).put(</div><div class="line">            <span class="string">"postfix_expression.result"</span>,</div><div class="line">            recentAttribute.get(<span class="string">"primary_expression.result"</span>));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</div><div class="line">        stack.push(tmpStack.pop());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的语义子程序完成的就是将某一栈顶的属性传递给stack[top - 2]的属性。</p>
+<p>这次实验过程有点复杂，但是如果一步一步梳理下来收获还是不小的，虽然可能实验完成的不怎么样，但是也还是很有成就感的，欢迎讨论。</p>
+<p>另附上Java中将标准输出重定向到文件流的方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    System.setOut(<span class="keyword">new</span> PrintStream(<span class="keyword">new</span> FileOutputStream(</div><div class="line">            FileAccessUtil.ROOT_DIR + <span class="string">"result.txt"</span>)));</div><div class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/哈工大/" rel="tag">#哈工大</a>
+          
+            <a href="/tags/编译原理/" rel="tag">#编译原理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2012/11/19/xiami-checkin-python/" rel="next" title="虾米网签到脚本——Python实现">
+                <i class="fa fa-chevron-left"></i> 虾米网签到脚本——Python实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2012/12/31/wechat-youdao-sae/" rel="prev" title="微信机器人：小蜗牛有道翻译小助手——Django + SAE + 微信公众帐号自动回复开放接口">
+                微信机器人：小蜗牛有道翻译小助手——Django + SAE + 微信公众帐号自动回复开放接口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引子：Python实现递归和非递归遍历树"><span class="nav-number">3.</span> <span class="nav-text">引子：Python实现递归和非递归遍历树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本次实验"><span class="nav-number">4.</span> <span class="nav-text">本次实验</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2012/12/08/HIT-Compilers-exercise-3/';
+      var disqus_title = "哈工大软件学院编译原理实验3——语义分析";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2012/12/08/HIT-Compilers-exercise-3/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

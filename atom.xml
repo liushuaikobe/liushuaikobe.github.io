@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>liushuaikobe</title>
+  <subtitle>随便吐个槽而已</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.liushuaiko.be/"/>
+  <updated>2016-07-09T06:07:35.000Z</updated>
+  <id>http://blog.liushuaiko.be/</id>
+  
+  <author>
+    <name>liushuaikobe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2015，永远年轻，永远热泪盈眶</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/12/30/my-2015/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/12/30/my-2015/</id>
+    <published>2015-12-30T11:34:56.000Z</published>
+    <updated>2016-07-09T06:07:35.000Z</updated>
+    
+    <content type="html">&lt;p&gt;这一年，在 AliExpress 度过了完整的一年。&lt;/p&gt;
+&lt;p&gt;这一年，感触、思考、压力、挑战、完美、不完美，就像落下的雨点，大珠小珠落玉盘。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;embed src=&quot;http://www.xiami.com/widget/40156335_1772001102/singlePlayer.swf&quot; type=&quot;application/x-shockwave-flash&quot; width=&quot;257&quot; height=&quot;33&quot; wmode=&quot;transparent&quot;&gt;
+
+&lt;p&gt;就从换房子开始吧。&lt;/p&gt;
+&lt;p&gt;在豆瓣上认识了跟我年纪相仿的小王同学，我们一起看了很多房子，在这个过程中我学会了如何去判断一个房子的好坏、性价比高低，对公司附近的小区的了如指掌。虽然最后由于种种原因没有一起合租，但是这真是一段很令人难忘的经历。最后我们租的房子都还不错，我找到了公司附近的 CBD 旁边的一个小区，对我来说可能是公司附近最好的小区了。&lt;/p&gt;
+&lt;p&gt;如果让我周末在家里呆一天，看一天电视，那么晚上回顾这一天，我肯定会有一种浪费生命罪恶感，甚至会为之抓狂。但是更罪恶的是，如果这一天让我在外面暴走，哪怕什么都不干，没有一点收获，我居然会觉得很充实。好吧，5月份之前，几乎每周末都会找一下午，约上震宇兄去西湖，绕着西湖溜达溜达，看场电影，一起吃个晚饭，随便扯扯。吃完饭各自回家前，我们会在马路边，在天桥上，甚至在公交车站，旁若无人地大声喊上一句：“fxxk，明天又要上班了！”&lt;/p&gt;
+&lt;p&gt;有一段时间的周末，我们迷上了一个 iPad 上的密室逃脱游戏，我们找了一个很偏僻的星巴克，断断续续，花了还挺久的，给刷通关了，然后通过玩这个游戏发现，自己居然不算太笨。&lt;/p&gt;
+&lt;p&gt;接着，5月末，震宇兄被变化到滨江了。我凭借着丰富的找房经验，给他不停地推荐我住的小区的房子。最后，如我所愿，震宇兄还真跟我住到了同一个小区。&lt;/p&gt;
+&lt;p&gt;在接下来的周末里，how could you believe that…&lt;/p&gt;
+&lt;p&gt;骑自行车去钱塘江边，把即兴在地摊上买的小风筝在喝一口水的功夫内放丢，然后在某宝上买了一个3倍大的风筝，最终放飞;&lt;br&gt;在1688上批发了一批儿童小飞碟，类似竹蜻蜓的东西，到 CBD 去卖，巧妙与 cops 周旋，最终盈亏平衡；&lt;br&gt;逢热片必坐地铁穿过钱塘江去一个人少价低环境好的电影院看了它，回去的路上一路狂喷；&lt;br&gt;自己做晚饭，震宇兄秀刀工手被割伤两次；&lt;br&gt;在公司锁上自行车后才发现没带钥匙;&lt;br&gt;God damn insane！&lt;/p&gt;
+&lt;h3 id=&quot;程序猿&quot;&gt;&lt;a href=&quot;#程序猿&quot; class=&quot;headerlink&quot; title=&quot;程序猿&quot;&gt;&lt;/a&gt;程序猿&lt;/h3&gt;&lt;p&gt;前几天大飞问我，说你现在不停地做需求做业务，也没时间钻研一些新技术吧。&lt;/p&gt;
+&lt;p&gt;我想了想，一切脱离业务的技术都是耍流氓。技术不能凭空产生，一定得先有业务需求（广义上的）才会有技术。一定不要只完成某个需求，而要把它做好，做精。在这方面我一直觉得我做的还是不错的，总是能在完成需求的过程中迸发出很多点子，也总是能尝试一些新的东西，效果还不错。&lt;/p&gt;
+&lt;p&gt;上半年一直投入在 iPad App 的开发。可以说这是我技术提升的踏板。因为种种原因我在 iPad App 上的「权力」还是比较大的，带我的小伙技术也非常扎实，跟着他做了不少，也学了不少。&lt;/p&gt;
+&lt;p&gt;我们一起提高 App 质量，改进开发流程，优化 App 性能，产出了很多质量还不错的组件，在这个过程中我也渐渐熟悉公司的业务，熟悉 iOS 开发的套路，熟悉一个需求的生命周期，处处留心皆学问。&lt;/p&gt;
+&lt;p&gt;九月份开始转投 iPhone 的开发，开发了一个模块，做了一个很核心的业务，有了 iPad 的基础，开发起来还算顺手。&lt;/p&gt;
+&lt;p&gt;当然，今年也自学了一些东西。能想起来的就 Core Animation 和 Swfit 了。今年买了苹果的开发者资格，自学 Swift 写了一个看妹子的 App，最终因为某些原因没通过审核，但是当我照例晒到朋友圈时，Fenng 居然给我点了赞，在 GitHub 上发的时候，onevcat 还 star 了，这些都是很哦妹子嘤的经历。&lt;/p&gt;
+&lt;h3 id=&quot;双十一&quot;&gt;&lt;a href=&quot;#双十一&quot; class=&quot;headerlink&quot; title=&quot;双十一&quot;&gt;&lt;/a&gt;双十一&lt;/h3&gt;&lt;p&gt;记得大一时，一天晚上，熄灯后，都准备睡觉时，彪彪还在那玩电脑，鼠标啪啪点个不停，一脸兴奋的告诉我们，光棍节，某宝在各种促销，都玩疯了！原来这货还在买球鞋。&lt;/p&gt;
+&lt;p&gt;5年后，十一黄金周前夕，我结束了4天的休假，赶回公司，加班准备双十一。&lt;/p&gt;
+&lt;p&gt;后面一段时间，整个 Team 都很累。&lt;/p&gt;
+&lt;p&gt;大促 App 发布当晚，看得出来，大家都像刚改造好放出来一样，以自己的方式释放着压力。然而，居然发现了一个挺严重的 bug，我的。坦率地讲，当时很慌，顶着巨大的压力修复，进入了新的一轮打包过程……&lt;/p&gt;
+&lt;p&gt;发布后第二天中午，哦不，当天，我们凌晨3点回去的，我们去公司旁一家小店吃了寿司，随便扯扯淡，轻松的感觉，久违了。&lt;/p&gt;
+&lt;p&gt;双十一对我来说是一次考验也是一次历练，那时候第一次有种真真切切的，我在做一些事情，我在创造价值的感觉，哦妹子嘤。&lt;/p&gt;
+&lt;h3 id=&quot;买买买&quot;&gt;&lt;a href=&quot;#买买买&quot; class=&quot;headerlink&quot; title=&quot;买买买&quot;&gt;&lt;/a&gt;买买买&lt;/h3&gt;&lt;p&gt;一次跟朋友闲扯，得出一个结论，干这一行好尴尬，赚的钱吧，不太容易让孩子成为富二代，但也不至于生活的太差。这个结论真是太对了。&lt;/p&gt;
+&lt;p&gt;今年买了很多东西，捷安特自行车、Dell U2515H、电动牙刷，坚果手机，甚至萌生了把小时候因为父母给的钱不够买不起的小玩意儿都买回来的想法[doge脸]。&lt;/p&gt;
+&lt;p&gt;此外，今年买了很多 App，买了很多 Service，VPS 、GitHub 私有 repo 等等，这也是工作后观念的一个转变，免费的总是最贵的。&lt;/p&gt;
+&lt;p&gt;上半年的股市热，我买了点基金，以另一种方式参与到了炒股的大潮中，结局能猜到，很惨。好在没投太多，因此损失不是特别大，但是整件事情让我明白是该学学经济、理财方面的知识了。&lt;/p&gt;
+&lt;h3 id=&quot;其它&quot;&gt;&lt;a href=&quot;#其它&quot; class=&quot;headerlink&quot; title=&quot;其它&quot;&gt;&lt;/a&gt;其它&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;年度必看国产剧：《琅琊榜》&lt;/li&gt;
+&lt;li&gt;年度必看美剧：《疑犯追踪》《无耻之徒》&lt;/li&gt;
+&lt;li&gt;年度可看国产电影：《烈日灼心》《老炮儿》&lt;/li&gt;
+&lt;li&gt;年度必看外国电影：《火星救援》&lt;/li&gt;
+&lt;li&gt;年度 iOS 开发者必用工具：FLEX&lt;/li&gt;
+&lt;li&gt;年度必买 App：1Password Dash Reeder&lt;/li&gt;
+&lt;li&gt;年度最不值得购买商品：坚果手机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;2016&quot;&gt;&lt;a href=&quot;#2016&quot; class=&quot;headerlink&quot; title=&quot;2016&quot;&gt;&lt;/a&gt;2016&lt;/h3&gt;&lt;p&gt;目前能想到的是多学一些经济知识，还有一些设计 &amp;amp; Sketch方面的知识，技术上就不说了，因为我觉得自己总能找到一些点，做一些有趣的事情。&lt;/p&gt;
+&lt;p&gt;最后，每个经历都是一次成长，希望自己能不忘初心，厚积薄发，永远年轻，永远热泪盈眶。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这一年，在 AliExpress 度过了完整的一年。&lt;/p&gt;
+&lt;p&gt;这一年，感触、思考、压力、挑战、完美、不完美，就像落下的雨点，大珠小珠落玉盘。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://blog.liushuaiko.be/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>提高工作效率篇之命令行版的 Alfred —— z</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/12/17/awesome-z/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/12/17/awesome-z/</id>
+    <published>2015-12-17T11:31:38.000Z</published>
+    <updated>2016-07-09T05:36:32.000Z</updated>
+    
+    <content type="html">&lt;p&gt; z 是一个非常 awesome 的脚本，它通过分析并记录你 &lt;code&gt;cd&lt;/code&gt; 命令的路径，建立它自己的数据索引，之后通过 z 命令可以快速跳到你想要 cd 的目录下。对于需要频繁在命令行中切换路径的工友来说，简直是神器。&lt;/p&gt;
+ &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;一图胜千言：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/awesome_z.gif&quot; alt=&quot;awesome_z&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如何安装呢？&lt;/p&gt;
+&lt;p&gt;如果你用的是 zsh + oh-my-zsh，整个过程大概需要花费30秒。&lt;/p&gt;
+&lt;p&gt;打开&lt;code&gt;~/.zshrc&lt;/code&gt;，找到 &lt;code&gt;plugins&lt;/code&gt;这一行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;plugins=(git osx sublime)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;添加 z：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;plugins=(git osx sublime z)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后 restart 命令行，先 cd 一番，让 z 学习一下，之后就尽情的 z 吧！&lt;/p&gt;
+&lt;p&gt;如果你没有使用 zsh，或者没有使用 oh-my-zsh，稍麻烦一点点。&lt;/p&gt;
+&lt;p&gt;首先去这里 &lt;a href=&quot;https://github.com/rupa/z&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/rupa/z&lt;/a&gt; 把脚本 z.sh 下载下来，之后在 &lt;code&gt;~/.zshrc&lt;/code&gt; 中加上这样的一句话，在命令行打开后执行 z：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;source /path/to/z.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你甚至没有使用 zsh，那么可能要在 ~/.bashrc 里加上类似的命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;. /path/to/z.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BTW，可以用 &lt;code&gt;z -l&lt;/code&gt; 来看目前 z 的数据情况。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; z 是一个非常 awesome 的脚本，它通过分析并记录你 &lt;code&gt;cd&lt;/code&gt; 命令的路径，建立它自己的数据索引，之后通过 z 命令可以快速跳到你想要 cd 的目录下。对于需要频繁在命令行中切换路径的工友来说，简直是神器。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="工具集" scheme="http://blog.liushuaiko.be/categories/%E5%B7%A5%E5%85%B7%E9%9B%86/"/>
+    
+    
+      <category term="z" scheme="http://blog.liushuaiko.be/tags/z/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给iOS App添加基于3D touch的Quick Actions</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/10/28/iOS9-Quick-Actions/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/10/28/iOS9-Quick-Actions/</id>
+    <published>2015-10-28T02:41:22.000Z</published>
+    <updated>2016-07-09T05:36:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;3D Touch 的问世，给 iOS App 交互增加了更多的可能。（废话）&lt;/p&gt;
+&lt;p&gt;Apple 官方介绍了3种应用场景：&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;给 App 增加 Quick Actions：重按 App 图标，弹出一个快捷菜单&lt;/li&gt;
+&lt;li&gt;Peek &amp;amp; Pop：轻按弹出 preview，再用力一点按 commit&lt;/li&gt;
+&lt;li&gt;绘图类 App：例如按压的力道不同，线条的粗细则不同&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文介绍了如何给 iOS App 添加基于 3D touch 的 Quick Actions，也即 Shortcut Items。&lt;/p&gt;
+&lt;p&gt;其实 Apple 给的 &lt;a href=&quot;https://developer.apple.com/library/prerelease/ios/samplecode/ApplicationShortcuts/Introduction/Intro.html#//apple_ref/doc/uid/TP40016545&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sample Project&lt;/a&gt; 非常翔实，读者可以直接下下来运行来看。&lt;/p&gt;
+&lt;h3 id=&quot;没有屌屌的6s真机，我该怎么办呢？&quot;&gt;&lt;a href=&quot;#没有屌屌的6s真机，我该怎么办呢？&quot; class=&quot;headerlink&quot; title=&quot;没有屌屌的6s真机，我该怎么办呢？&quot;&gt;&lt;/a&gt;没有屌屌的6s真机，我该怎么办呢？&lt;/h3&gt;&lt;p&gt;这里有个对 iPhone 模拟器的小 tweak——&lt;a href=&quot;https://github.com/DeskConnect/SBShortcutMenuSimulator&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SBShortcutMenuSimulator&lt;/a&gt;，可以让 6s 模拟器展示出某个 App 的快捷菜单。&lt;/p&gt;
+&lt;p&gt;但要注意的是，这个 tweak 并没有模拟 3D touch，而只能模拟展示某个 App 的 Quick Actions。&lt;/p&gt;
+&lt;h3 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/iOS_quick_action_1.png&quot; width=&quot;30%&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;开始添加&quot;&gt;&lt;a href=&quot;#开始添加&quot; class=&quot;headerlink&quot; title=&quot;开始添加&quot;&gt;&lt;/a&gt;开始添加&lt;/h3&gt;&lt;p&gt;为 App 添加 Shortcut 有两种方式，一种是直接在 info.plist 里配置，另一种是通过代码添加。在代码里添加至少需要 App 运行过一次才会生效。&lt;/p&gt;
+&lt;h3 id=&quot;在-info-plist-里配置：向系统注册-Static-类型的-Quick-Actions&quot;&gt;&lt;a href=&quot;#在-info-plist-里配置：向系统注册-Static-类型的-Quick-Actions&quot; class=&quot;headerlink&quot; title=&quot;在 info.plist 里配置：向系统注册 Static 类型的 Quick Actions&quot;&gt;&lt;/a&gt;在 info.plist 里配置：向系统注册 Static 类型的 Quick Actions&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/iOS_quick_action_2.png&quot; width=&quot;70%&quot;&gt;&lt;/p&gt;
+&lt;p&gt;添加很简单。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;UIApplicationShortcutItemType&lt;/code&gt;（必须） - 菜单项的ID，将来处理菜单的点击事件时，可以用来标识菜单项&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;UIApplicationShortcutItemTitle&lt;/code&gt;（必须） &amp;amp; &lt;code&gt;UIApplicationShortcutItemSubtitle&lt;/code&gt;（可选） - 菜单项的标题&amp;amp;副标题&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;UIApplicationShortcutItemIconType&lt;/code&gt;(可选) &amp;amp; &lt;code&gt;UIApplicationShortcutItemIconFile&lt;/code&gt;（可选） - 系统预置了&lt;a href=&quot;https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/#//apple_ref/c/tdef/UIApplicationShortcutIconType&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;几种icon类型&lt;/a&gt;，当然，你也可以指定icon文件，见 &lt;a href=&quot;https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationShortcutIcon_Class/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;UIApplicationShortcutIcon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;UIApplicationShortcutItemUserInfo&lt;/code&gt;（可选） - 用于传递信息，例如可以把App当前版本等信息传到代码中，即在代码中获取到 Shortcut Item 实例时，可以进一步获取这个字典，拿到里面的信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;在代码里添加：运行时动态注册-Quick-Actions&quot;&gt;&lt;a href=&quot;#在代码里添加：运行时动态注册-Quick-Actions&quot; class=&quot;headerlink&quot; title=&quot;在代码里添加：运行时动态注册 Quick Actions&quot;&gt;&lt;/a&gt;在代码里添加：运行时动态注册 Quick Actions&lt;/h3&gt;&lt;p&gt;上图中的每个菜单项抽象到代码中是一个&lt;code&gt;UIApplicationShortcutItem&lt;/code&gt;类，&lt;code&gt;UIApplication&lt;/code&gt;类中新增了一个属性&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/#//apple_ref/occ/instp/UIApplication/shortcutItems&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;shortcutItems&lt;/code&gt;&lt;/a&gt;。我们需要在&lt;code&gt;application:didFinishLaunchingWithOptions:&lt;/code&gt;中给这个属性赋值。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#define BUILD_TYPE(X) [NSString stringWithFormat:@&amp;quot;%@.%@&amp;quot;, [NSBundle mainBundle].bundleIdentifier, X]
+
+if (!application.shortcutItems || application.shortcutItems.count == 0) {
+    UIApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc] initWithType:BUILD_TYPE(@&amp;quot;Type3&amp;quot;)
+                                                                              localizedTitle:@&amp;quot;GitHub&amp;quot;
+                                                                           localizedSubtitle:@&amp;quot;liushuaikobe&amp;quot;
+                                                                                        icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeLove]
+                                                                                    userInfo:nil];
+    application.shortcutItems = @[item];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要注意的是，在代码里直接设置&lt;code&gt;application.shortcutItems&lt;/code&gt;不会覆盖掉我们在 info.plist 里静态设置的菜单项，会 append 在 info.plist 中菜单项的后面。&lt;/p&gt;
+&lt;h3 id=&quot;小结&quot;&gt;&lt;a href=&quot;#小结&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h3&gt;&lt;p&gt;系统会优先显示静态的 Quick Actions，然后看看还有没有地方再决定是否展示动态的 Quick Actions。至于最多显示几个，官方文档也没给出明确的数字，只是用「system-defined limit」带过。不过经过测试，目前最多只能展示4个。&lt;/p&gt;
+&lt;p&gt;此外，在runtime获取到的&lt;code&gt;shortcutItems&lt;/code&gt;，也只包括动态注册的 Quick Actions，静态注册的 Actions 是不包括在内的，因此在为这个数组赋值时，要注意加一个只注册一次的保护，先判断里面有没有值。&lt;/p&gt;
+&lt;h3 id=&quot;Shortcut的事件处理&quot;&gt;&lt;a href=&quot;#Shortcut的事件处理&quot; class=&quot;headerlink&quot; title=&quot;Shortcut的事件处理&quot;&gt;&lt;/a&gt;Shortcut的事件处理&lt;/h3&gt;&lt;p&gt;&lt;code&gt;UIApplicationDelegate&lt;/code&gt;给我们提供了一个回调：&lt;code&gt;application:performActionForShortcutItem:completionHandler:&lt;/code&gt;，用于处理 App 的 Quick Actions。无论 App 的 Quick Action 启动了 App 还是重新让 App 回到前台，这个方法都会被调用。&lt;/p&gt;
+&lt;p&gt;因此，我们可以把处理 Quick Actions 的逻辑放在这里：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (BOOL)handleQuickActions:(UIApplicationShortcutItem *)item {
+
+    void (^handle)(NSString *) = ^(NSString *type) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;Handle&amp;quot; message:type preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@&amp;quot;OK&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:action];
+
+        [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    };
+
+    if ([item.type isEqualToString:BUILD_TYPE(@&amp;quot;Type1&amp;quot;)]) {
+        handle(item.type);
+        return YES;
+    } else if ([item.type isEqualToString:BUILD_TYPE(@&amp;quot;Type2&amp;quot;)]) {
+        handle(item.type);
+        return YES;
+    } else if ([item.type isEqualToString:BUILD_TYPE(@&amp;quot;Type3&amp;quot;)]) {
+        handle(item.type);
+        return YES;
+    }
+
+    return NO;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    BOOL hasHandled = [self handleQuickActions:shortcutItem];
+    completionHandler(hasHandled); // 告诉系统Quick Actions有没有被妥善处理
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当 Quick Actions 启动（不是从后台唤醒到前台）了 App 时，&lt;code&gt;UIApplicationDelegate&lt;/code&gt;中的方法&lt;code&gt;application:willFinishLaunchingWithOptions:&lt;/code&gt;和&lt;code&gt;application:didFinishLaunchingWithOptions:&lt;/code&gt;还是会照常被调用，且这两个方法被调用了之后，&lt;code&gt;- application:performActionForShortcutItem:completionHandler:&lt;/code&gt;才会被调用。&lt;/p&gt;
+&lt;p&gt;这种情况下，被点击的 Shortcut Item 会被放在这两个方法的参数 Options 字典中，作为&lt;code&gt;UIApplicationLaunchOptionsShortcutItemKey&lt;/code&gt;这个 key 的 value。因此，当你不得不在这两个方法中对 App 由 Quick Action 启动做一些特别的处理，那么官方的 Demo 推荐这样做：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 首先在实现了 UIApplicationDelegate 的类中增加一个这样的实例变量，
+// 用于保存当前触发 Quick Action 的 Shortcut Item 的引用
+
+UIApplicationShortcutItem *_currentItem;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    if (launchOptions &amp;amp;&amp;amp; launchOptions[UIApplicationLaunchOptionsShortcutItemKey]) {
+
+        // 说明是由 Quick Action 启动的App
+        // 获取到 Shortcut Item 的引用
+
+        _currentItem = launchOptions[UIApplicationLaunchOptionsShortcutItemKey];
+
+        // 如若返回NO，则系统不会调用 performActionForShortcutItem 方法
+        // 因为我们会在 applicationDidBecomeActive 做出处理
+        // 因此这里不希望 performActionForShortcutItem 先处理一下
+
+        return NO;
+    }
+
+    return YES;
+}
+
+// 接着，在 applicationDidBecomeActive 时，做出处理
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if (_currentItem) {
+        [self handleShortcartItem:_currentItem];
+        _currentItem = nil;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;官方的 Sample Project 用 Swift 编写，综合使用了 &lt;code&gt;guard&lt;/code&gt;，新式 enum 等多个 Swift 新特性，强烈建议读者前去阅读。&lt;/p&gt;
+&lt;p&gt;以上。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;3D Touch 的问世，给 iOS App 交互增加了更多的可能。（废话）&lt;/p&gt;
+&lt;p&gt;Apple 官方介绍了3种应用场景：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一篇不算晚的Auto Layout入门教程</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/09/22/autolayout-introduction/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/09/22/autolayout-introduction/</id>
+    <published>2015-09-22T02:54:20.000Z</published>
+    <updated>2016-07-09T05:36:07.000Z</updated>
+    
+    <content type="html">&lt;p&gt;自打我混iOS圈以来，写UI就使用的是frame绝对布局。说是「绝对」，但在写的时候也已带着动态的思想了。比如，尽可能地用&lt;code&gt;autoResizingMask&lt;/code&gt;。但是对于那种mask不能用的场景，在写布局时就像在做小学几何题，很是复杂。&lt;/p&gt;
+&lt;p&gt;在近期的项目中，尝试了Auto Layout，试着把自己的心得总结一下。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;Auto-Layout-简介&quot;&gt;&lt;a href=&quot;#Auto-Layout-简介&quot; class=&quot;headerlink&quot; title=&quot;Auto Layout 简介&quot;&gt;&lt;/a&gt;Auto Layout 简介&lt;/h3&gt;&lt;p&gt;网上介绍Auto Layout的文章很多，有一点大家很少提到。就Auto Layout本身来说，它并不是什么新鲜的技术。Auto Layou系统是&lt;a href=&quot;https://en.wikipedia.org/wiki/Cassowary_(software&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Cassowary&lt;/a&gt;算法的Cocoa实现。Cassowary是一个在二十世纪九十年代被发明，解析&lt;strong&gt;线性&lt;/strong&gt;等式、不等式约束的一个算法。&lt;/p&gt;
+&lt;p&gt;开发者提供一系列的&lt;strong&gt;布局规则&lt;/strong&gt;给Cocoa Auto Layout系统，它基于Cassowary算法，把规则转换成了View(s)的frame，完成了布局。这个所谓的「布局规则」，就是Auto Layout里的「约束」，Constraint。&lt;/p&gt;
+&lt;p&gt;前面说到，Cassowary算法解析的线性等式、不等式，因此，我们提供给Auto Layout的约束是线性的约束。可以简单把线性约束理解为用一次方程来描述的约束。&lt;/p&gt;
+&lt;p&gt;一次方程，它的基本形式（以等式为例）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;y = kx + b
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;自然地，在Auto Layout中，一个约束该长什么样子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;view1的某个属性 = k * view2的某个属性 + b
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如上面所示，一个约束描述了两个属性之间的关系，涉及到了7个量（view1、属性1、关系、view2、属性2、k、b）。&lt;/p&gt;
+&lt;p&gt;我们就是把这种形式的一条条的规则提供给Auto Layout，它综合了许许多多这样的规则，来完成布局。&lt;/p&gt;
+&lt;p&gt;「Hey，小奥，这个View要靠左显示，离它爹10像素吧！」&lt;br&gt;「小奥，这个Label跟它上面的按钮垂直居中！」&lt;/p&gt;
+&lt;p&gt;怎么样？反正给我的感受是，frame布局是我们替机器思考，而Auto Layout，是为我们自己思考。&lt;/p&gt;
+&lt;h3 id=&quot;Constraint-in-Code&quot;&gt;&lt;a href=&quot;#Constraint-in-Code&quot; class=&quot;headerlink&quot; title=&quot;Constraint in Code&quot;&gt;&lt;/a&gt;Constraint in Code&lt;/h3&gt;&lt;p&gt;上文我们介绍了在逻辑中该怎么去表示一个「约束」。那落实到代码中，该怎么表示呢？&lt;/p&gt;
+&lt;p&gt;苹果给我们提供了这样一个类，用作代码中一个约束的抽象——&lt;code&gt;NSLayoutConstraint&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;它有一个很长的构造方法，返回一个约束实例，这个方法的参数就是上面提到的7个量：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSLayoutConstraint *c = [NSLayoutConstraint constraintWithItem:view1 attribute:attr1
+                                                     relatedBy:relation
+                                                        toItem:view2 attribute:attr2
+                                                    multiplier:k constant:b];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通过这个方法，我们构造一个又一个的&lt;code&gt;NSLayoutConstraint&lt;/code&gt;实例，通过把这些实例add给合适的View的方式提供给Auto Layout System，就完成了代码层面的添加约束的过程。&lt;/p&gt;
+&lt;h3 id=&quot;Before-starting&quot;&gt;&lt;a href=&quot;#Before-starting&quot; class=&quot;headerlink&quot; title=&quot;Before starting&quot;&gt;&lt;/a&gt;Before starting&lt;/h3&gt;&lt;p&gt;在你迫不及待的想上手之前，有两点务必记住。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代码上忘掉&lt;code&gt;frame&lt;/code&gt;和&lt;code&gt;autoresizingMask&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;父View当前的大小是不可靠的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于第一点，由于Auto Layout System已经接管了frame的设置，如果你再来掺一脚，会有很多诡异的问题。注意我说的是在代码上忘掉&lt;code&gt;frame&lt;/code&gt;，在思考某个特定View的约束时，还是要想到它的frame的概念的。回想我们的frame布局时代，一个frame：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{x, y, width, height}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;有四个量，也就是说至少需要四个量才能确定一个View的布局，逻辑上想想确实是那么回事。那我在我们添加某个View的约束时，也至少需要四个约束，才能确定一个View的布局。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;水平方向：我在哪？我多宽？
+竖直方向：我在哪？我多高？
+　　　　　　　　　　　　　---- 一个View的独白
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;忘掉&lt;code&gt;autoresizingMask&lt;/code&gt;同理。我们甚至&lt;strong&gt;必须要&lt;/strong&gt;显式地设置&lt;code&gt;translatesAutoresizingMaskIntoConstraints&lt;/code&gt;来保证约束的正确解析。当你在Auto Layout里摸爬滚打，痛不欲生却无论如何也没有正确优雅的布局映入你眼帘的时候，一定要记得回过头来看看，是不是忘记把相关View的这个属性设置为&lt;code&gt;NO&lt;/code&gt;了！&lt;/p&gt;
+&lt;p&gt;对于第二点，这是为了强迫你用动态的思维去思考该怎么描述约束。走出根据父View的bounds来设置子View的frame的时代吧，enjoy Auto Layout！&lt;/p&gt;
+&lt;h3 id=&quot;Add-Constraints&quot;&gt;&lt;a href=&quot;#Add-Constraints&quot; class=&quot;headerlink&quot; title=&quot;Add Constraints&quot;&gt;&lt;/a&gt;Add Constraints&lt;/h3&gt;&lt;p&gt;接下来我们就开始计划着给View添加约束了。假设给了你一块地（一个View），你要给它的子View们添加约束，用Auto Layout进行布局，大致的思路如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;给这些Views大致分分组。当子View很多时，没必要全把他们当儿子。合理地用一些Container View，把儿子变成孙子，达到简化约束的目的。&lt;/li&gt;
+&lt;li&gt;确定儿子们的布局依赖等级关系。举个例子，要想确定儿子A的位置，首先我得知道儿子B的位置。换句话说，只要儿子B的位置确定了，那么儿子A的位置就能确定。&lt;/li&gt;
+&lt;li&gt;找出那些只依赖父亲的儿子，也即依赖关系最顶层的儿子（一定存在），先添加它们的约束。&lt;/li&gt;
+&lt;li&gt;根据依赖关系层级，逐级添加约束&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Example&quot;&gt;&lt;a href=&quot;#Example&quot; class=&quot;headerlink&quot; title=&quot;Example&quot;&gt;&lt;/a&gt;Example&lt;/h3&gt;&lt;p&gt;假设我们要实现一个TableView，它的每个Cell中有个ImageView，显示一张图。大致效果如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/autolayout1.png&quot; width=&quot;40%&quot;&gt;&lt;/p&gt;
+&lt;p&gt;按着上面的思路，因为这个父亲（TableView Cell的contentView，注意使用Auto Layout布局TableView Cell一定要把儿子加在cotnentView上，不然在iOS 7、8上会有很诡异的问题）只有一个儿子，布局依赖关系也就很清楚了，开始构思约束。&lt;/p&gt;
+&lt;p&gt;Wait，在添加约束前，要先告知Auto Layout System ImageView和self.contentView的父子关系：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_imageView = [[UIImageView alloc] init];
+_imageView.backgroundColor = [UIColor orangeColor];
+_imageView.translatesAutoresizingMaskIntoConstraints = NO; // Don&amp;apos;t forget !!
+[self.contentView addSubview:_imageView];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;OK，首先，这个ImageView的上、左、下距离它爹各20，约束如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSLayoutConstraint *c1 = [NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeLeft
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.contentView attribute:NSLayoutAttributeLeft
+                                                     multiplier:1 constant:20];
+
+NSLayoutConstraint *c2 = [NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.contentView attribute:NSLayoutAttributeTop
+                                                     multiplier:1 constant:20];
+
+NSLayoutConstraint *c3 = [NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeBottom
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.contentView attribute:NSLayoutAttributeBottom
+                                                     multiplier:1 constant:-20];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;来分析一下。垂直方向，当&lt;code&gt;self.contentView&lt;/code&gt;的高度确定后，由于我们指定了&lt;code&gt;_imageView&lt;/code&gt;的上下边距，则y和height都能被确定；水平方向上，我们指定了左边距，能确定x，但是width不能确定，因此我们还需要一个约束：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSLayoutConstraint *c4 = [NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeWidth
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:_imageView attribute:NSLayoutAttributeHeight
+                                                     multiplier:1 constant:0];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;c4&lt;/code&gt;告诉了Auto Layout System，&lt;code&gt;_imageView&lt;/code&gt;的长和宽相等。这样，它的约束就齐活了。&lt;/p&gt;
+&lt;p&gt;接着，这四个约束要给谁加。注意，每个约束要加载这个约束涉及到的两个View的&lt;strong&gt;最小父View&lt;/strong&gt;上，Forgiveness，这是我自己提出的概念。注意到&lt;code&gt;c1&lt;/code&gt;，&lt;code&gt;c2&lt;/code&gt;，&lt;code&gt;c3&lt;/code&gt;涉及到的两个View是&lt;code&gt;self.contentView&lt;/code&gt;和&lt;code&gt;_imageView&lt;/code&gt;，其中&lt;code&gt;_imageView&lt;/code&gt;是&lt;code&gt;self.contentView&lt;/code&gt;的子View，因此约束就需要加给&lt;code&gt;self.contentView&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[self.contentView addConstraints:@[c1, c2, c3]];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;c4&lt;/code&gt;涉及到的两个View是&lt;code&gt;_imageView&lt;/code&gt;本身，约束加给它自己。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[_imageView addConstraint:c4];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;运行起来，结果如下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/autolayout2.png&quot; width=&quot;30%&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Visual-Format-Language&quot;&gt;&lt;a href=&quot;#Visual-Format-Language&quot; class=&quot;headerlink&quot; title=&quot;Visual Format Language&quot;&gt;&lt;/a&gt;Visual Format Language&lt;/h3&gt;&lt;p&gt;继续上面的例子。或许你会抱怨，每个View都需要搞这么一发，得写多少代码啊！&lt;/p&gt;
+&lt;p&gt;苹果贴心地给我们搞了一套形象地表示约束的方法——Visual Format Language（VFL）。&lt;/p&gt;
+&lt;p&gt;上面的&lt;code&gt;c1&lt;/code&gt;，&lt;code&gt;c2&lt;/code&gt;，&lt;code&gt;c3&lt;/code&gt;可以表示成：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CGFloat leftMargin = 20;
+
+NSArray *cs = [NSLayoutConstraint constraintsWithVisualFormat:@&amp;quot;H:|-(leftMargin)-[_imageView]&amp;quot;
+                                                      options:0 metrics:@{@&amp;quot;leftMargin&amp;quot;: @(leftMargin)}
+                                                        views:NSDictionaryOfVariableBindings(_imageView)];
+NSArray *cs1 = [NSLayoutConstraint constraintsWithVisualFormat:@&amp;quot;V:|-20-[_imageView]-20-|&amp;quot;
+                                                      options:0 metrics:nil
+                                                        views:NSDictionaryOfVariableBindings(_imageView)];
+
+[self.contentView addConstraints:cs];
+[self.contentView addConstraints:cs1];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要把VFL说完，得新写一篇文章了啊，篇幅限制，就不展开叙述了，具体请看：&lt;a href=&quot;https://developer.apple.com/library/prerelease/tvos/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;后续&quot;&gt;&lt;a href=&quot;#后续&quot; class=&quot;headerlink&quot; title=&quot;后续&quot;&gt;&lt;/a&gt;后续&lt;/h3&gt;&lt;p&gt;如果认真看到这，那么相信你是真的入门了。Auto Layout的东西还有很多，值得你去花时间继续深入调研。&lt;/p&gt;
+&lt;p&gt;比如，每个约束还有优先级之分。当Auto Layout System发现你给它的约束有冲突，它会根据有冲突的约束的优先级进行仲裁。&lt;/p&gt;
+&lt;p&gt;还有一些其它的东西是入门之后需要细细体会的，最好自己写一些Demo。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.objc.io/issues/3-views/advanced-auto-layout-toolbox/#frame-vs-alignment-rect&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Frame vs. Alignment Rect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.objc.io/issues/3-views/advanced-auto-layout-toolbox/#intrinsic-content-size&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Intrinsic Content Size 以及 Compression Resistance 和 Content Hugging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.objc.io/issues/3-views/advanced-auto-layout-toolbox/#animation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Animation with Auto Layout&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt; &lt;em&gt;参考文献&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stacks.11craft.com/cassowary-cocoa-autolayout-and-enaml-constraints.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stacks.11craft.com/cassowary-cocoa-autolayout-and-enaml-constraints.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.informit.com/articles/article.aspx?p=2151265&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.informit.com/articles/article.aspx?p=2151265&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sourceforge.net/p/cassowary/wiki/Home/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://sourceforge.net/p/cassowary/wiki/Home/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/16281229/1108052&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/a/16281229/1108052&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.objc.io/issues/3-views/advanced-auto-layout-toolbox/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.objc.io/issues/3-views/advanced-auto-layout-toolbox/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/library/prerelease/tvos/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://developer.apple.com/library/prerelease/tvos/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自打我混iOS圈以来，写UI就使用的是frame绝对布局。说是「绝对」，但在写的时候也已带着动态的思想了。比如，尽可能地用&lt;code&gt;autoResizingMask&lt;/code&gt;。但是对于那种mask不能用的场景，在写布局时就像在做小学几何题，很是复杂。&lt;/p&gt;
+&lt;p&gt;在近期的项目中，尝试了Auto Layout，试着把自己的心得总结一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+      <category term="AutoLayout" scheme="http://blog.liushuaiko.be/tags/AutoLayout/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Core Text实现支持iOS 6的图文混排</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/05/23/CoreText-Introduction/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/05/23/CoreText-Introduction/</id>
+    <published>2015-05-23T10:14:21.000Z</published>
+    <updated>2016-07-09T05:35:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;为了让图文混排支持iOS 6，不得不暂时放弃学习TextKit，不过正好也借着这个机会了解了文字排版的一些基本知识，以及如何直接使用底层的Core Text API，来进行图文混排。正所谓出来混，总是要还的，学一些这方面的知识，对学习TextKit也是很有帮助的！&lt;/p&gt;
+&lt;p&gt;本文将介绍使用Core Text的API，结合Core Graphics来实现支持iOS 6的图文混排的基本思想及方法。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;效果图预览：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/CoreTextDemo.png&quot; width=&quot;30%&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;知识储备&quot;&gt;&lt;a href=&quot;#知识储备&quot; class=&quot;headerlink&quot; title=&quot;知识储备&quot;&gt;&lt;/a&gt;知识储备&lt;/h3&gt;&lt;p&gt;Core Text是进行文字排版的工具，为了更称手地使用它，了解一些文字排版的基础知识很有必要。为了后续理解方便，强烈建议先阅读&lt;a href=&quot;http://geeklu.com/2013/03/core-text/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这篇很好的文章&lt;/a&gt;，我就不拾人牙慧了。&lt;/p&gt;
+&lt;p&gt;但是祭出这两幅幅神图还是很有必要的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/glyphterms.png&quot; width=&quot;50%&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/glyphmetrics.png&quot; width=&quot;50%&quot;&gt;&lt;/p&gt;
+&lt;p&gt;基于上图，有几个点还是需要强调一下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Baseline，基线。想想你是如何在四线三格纸上写英文字母的，基线就相当于第三条线&lt;/li&gt;
+&lt;li&gt;Line Origin，行原点。把一橫行文字的基线看成是一条线段，线段的起点就是这行的Line Origin&lt;/li&gt;
+&lt;li&gt;Ascent，上高。一行文字，共享一条基线，最高的字形到基线的高就是上高，是一个正值&lt;/li&gt;
+&lt;li&gt;Descent，下高。同Ascent，最深的字形到基线的高就是下高，是一个负值&lt;/li&gt;
+&lt;li&gt;leading，行距。行与行之间的距离&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那么再回过头来看Core Text中一些基本的概念以及对应的类。&lt;/p&gt;
+&lt;p&gt;进行文字的绘制，总得有个地方吧！也即总得告诉CT在那块把字给画出来？这个所谓的「地方」，就是CTFrame。&lt;br&gt;在使用的过程中，我们通常是用一个AttributedString来初始化一个CTFrame的工厂&lt;code&gt;CTFramesetter&lt;/code&gt;，然后用这个工厂结合一个&lt;code&gt;CGPath&lt;/code&gt;，来得到一个CTFrame。&lt;/p&gt;
+&lt;p&gt;CT在CTFrame上绘制文字的时候，不会超出这个Frame，一行显示不下，新起一行，「行」在CT中的对象模型就是CTLine。&lt;br&gt;对于每一行，具有相同属性（对，就是你给AttributedString添加的属性）的紧挨着的字形集合体，被称为一个CTRun。&lt;/p&gt;
+&lt;p&gt;一个Run在渲染的时候，如果设置了CTRunDelegate，那么便会向它的Delegate询问一些信息，包括这个Run的Ascent、Descent，以及宽度等等。注意CT是一个C级别的库，CTRunDelegate也是通过C语言中函数指针来完成设置的，详见下面的代码。&lt;/p&gt;
+&lt;p&gt;有关Core Text的几个核心概念可以参考下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/coretextterms.png&quot; alt=&quot;coretextterms.png&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h3&gt;&lt;p&gt;我们使用Core Text来进行排版（typeset）和文字的绘制，并利用其获取图片位置，使用Core Graphics进行图片的绘制。&lt;/p&gt;
+&lt;p&gt;这个过程可以分成两步。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用CT进行文字的排版和绘制，为该显示图片的地方留出位置&lt;/li&gt;
+&lt;li&gt;遍历每一行，按行画出这行的图片&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;Go-Go-Go&quot;&gt;&lt;a href=&quot;#Go-Go-Go&quot; class=&quot;headerlink&quot; title=&quot;Go Go Go&quot;&gt;&lt;/a&gt;Go Go Go&lt;/h3&gt;&lt;p&gt;在对基本的概念以及思想了解各大概后，便可以动手来实现了！&lt;/p&gt;
+&lt;p&gt;且慢，为了测试结果更加直观，我们先编写一些工具方法，代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)drawBorder:(CGRect)rect inContext:(CGContextRef)context {
+    CGPathRef rectBorderPath = CGPathCreateWithRect(rect, NULL);
+    [[UIColor redColor] setStroke];
+    CGContextAddPath(context, rectBorderPath);
+    CGContextDrawPath(context, kCGPathStroke);
+    CFRelease(rectBorderPath);
+}
+
+- (void)drawPoint:(CGPoint)point inContext:(CGContextRef)context {
+    CGContextFillRect(context, CGRectMake(point.x, point.y, 2, 2));
+}
+
+// 先转换坐标系再画点
+- (void)drawPoint:(CGPoint)point inContext:(CGContextRef)context inRect:(CGRect)rect {
+    UIView *view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor yellowColor];
+    [self addSubview:view];
+    CGPoint pointInSelf = [self convertPoint:point fromView:view];
+    [view removeFromSuperview];
+    [self drawPoint:pointInSelf inContext:context];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;终于可以上关键代码了，代码中注释已经很翔实了！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    // 翻转坐标系
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+    CGContextTranslateCTM(context, 0, CGRectGetHeight(self.bounds));
+    CGContextScaleCTM(context, 1.0, -1.0);
+
+    // 可以在翻转坐标系之前也画个红绿色块来对比坐标系Y轴翻转的效果
+    CGContextSetRGBFillColor (context, 1, 0, 0, 1);
+    CGContextFillRect (context, CGRectMake (100, 100, 100, 100 ));
+    CGContextSetRGBFillColor (context, 0, 1, 0, .5);
+    CGContextFillRect (context, CGRectMake (150, 205, 100, 100));
+
+    // 准备CGPath，用于CTFrame的构造
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGFloat frameOffsetX = 20.0f;
+    CGFloat frameOffsetY = 20.0f;
+    CGRect textFrame = CGRectInset(self.bounds, frameOffsetX, frameOffsetY);
+    CGPathAddRect(path, NULL, textFrame);
+
+    [self drawBorder:textFrame inContext:context];
+
+    // 装文字的AttributedString
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@&amp;quot;Our destiny offers not the cup of despair, but the chalice of opportunity. So let us seize it, not in fear, but in gladness.——R.M. Nixon&amp;quot; attributes:@{NSForegroundColorAttributeName: [UIColor greenColor], NSFontAttributeName: [UIFont systemFontOfSize:22]}];
+
+    // 构造CTRunDelegate，用以给占着图片位置的空字符的CTRun作为Delegate，提供这些Run的宽、上下高等
+    NSDictionary *attrs = @{@&amp;quot;key&amp;quot;: @&amp;quot;vars.me&amp;quot;};
+    CTRunDelegateCallbacks imageCallbacks;
+    imageCallbacks.version = kCTRunDelegateVersion1;
+    imageCallbacks.dealloc = deallocCallback;
+    imageCallbacks.getDescent = descentCallback;
+    imageCallbacks.getAscent = ascentCallback;
+    imageCallbacks.getWidth = widthCallback;
+    // http://stackoverflow.com/a/12919404/1108052
+    CTRunDelegateRef runDelegate = CTRunDelegateCreate(&amp;amp;imageCallbacks, (void *)CFBridgingRetain(attrs)); // 第二个参数就是传给callBack函数的void *类型的参数
+
+    // 随机构造几个装有图片占位符的AttributedString，插入到上面装文字的AttributedString中
+    unichar space = 0xFFFC; // 图片占位符，为什么用0xFFFC下述详情
+    NSString *spaceStr = [NSString stringWithCharacters:&amp;amp;space length:1];
+    // 装有图片占位符的AttributedString，注意，其属性中有一个@&amp;quot;imageName&amp;quot;属性，这是我们区别一个Run是否是图片Run的标识，见下面遍历每行Run部分
+    NSMutableAttributedString *imageStr = [[NSMutableAttributedString alloc] initWithString:spaceStr attributes:@{(NSString *)kCTRunDelegateAttributeName: (__bridge id)runDelegate, @&amp;quot;imageName&amp;quot;: @&amp;quot;001.png&amp;quot;}];
+    [str insertAttributedString:imageStr atIndex:5];
+    [str insertAttributedString:imageStr atIndex:55];
+    [str insertAttributedString:imageStr atIndex:75];
+    [str insertAttributedString:imageStr atIndex:105];
+    [str insertAttributedString:imageStr atIndex:135];
+
+    // 构造CTFrame
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)str);
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, str.length), path, NULL);
+
+    // 得到Frame中的每一行，装在一个CFArray里
+    CFArrayRef lines = CTFrameGetLines(frame);
+
+    // 得到每一行的Line Origin（见上述知识储备部分），用以计算每一行的图片位置，注意，得到的点是以CTFrame为坐标系的坐标
+    CGPoint lineOrigins[CFArrayGetCount(lines)];
+    CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), lineOrigins);
+
+    // 下面遍历Frame中的每一行，逐行绘制图片
+    for (CFIndex i = 0; i &amp;lt; CFArrayGetCount(lines); ++i) {
+        CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+
+        [self drawPoint:lineOrigins[i] inContext:context inRect:textFrame];
+
+        // 得到这行中的所有CTRun，状态一个CFArray里
+        CFArrayRef runs = CTLineGetGlyphRuns(line);
+
+        // 遍历这行所有Run
+        for (CFIndex j = 0; j &amp;lt; CFArrayGetCount(runs); ++j) {
+            CTRunRef run = CFArrayGetValueAtIndex(runs, j);
+            NSDictionary *attrs = (NSDictionary *)CTRunGetAttributes(run);
+
+            // 如果某个Run的@&amp;quot;imageName&amp;quot;属性不为空，则说明这个Run是图片占位符，开始计算这个Run的位置，用CG画图
+            NSString *imageName = attrs[@&amp;quot;imageName&amp;quot;];
+            if (imageName) {
+                CGPoint lineOrigin = lineOrigins[i];
+
+                CGRect imageRunBounds; // 注意：得到的imageRun的bounds，也是在CTFrame坐标系中
+                CGFloat imageRunAsent, imageRunDecent;
+                imageRunBounds.size.width = CTRunGetTypographicBounds(run, CFRangeMake(0, 0), &amp;amp;imageRunAsent, &amp;amp;imageRunDecent, NULL);
+                imageRunBounds.size.height = imageRunAsent + imageRunDecent;
+                imageRunBounds.origin.x = lineOrigin.x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
+                imageRunBounds.origin.y = lineOrigin.y;
+
+                // 开始画图
+                UIImage *image = [UIImage imageNamed:imageName];
+                if (image) {
+                    // 注意：画图时由于是在当前View的Context中，因此我们要根据CTFrame坐标系中的imageRunBounds，转换成在View坐标系的imageDrawRect
+                    CGRect imageDrawRect;
+                    imageDrawRect.origin.x = imageRunBounds.origin.x + lineOrigin.x + frameOffsetX;
+                    imageDrawRect.origin.y = imageRunBounds.origin.y +  frameOffsetY;
+                    imageDrawRect.size = imageRunBounds.size;
+
+                    // 用CG画图
+                    CGContextDrawImage(context, imageDrawRect, image.CGImage);
+
+                    [self drawBorder:imageDrawRect inContext:context];
+                }
+            }
+        }
+    }
+
+    CTFrameDraw(frame, context);
+
+    CFRelease(runDelegate);
+    CFRelease(frame);
+    CFRelease(path);
+    CFRelease(framesetter);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CTRunDelegate的回调函数代码如下。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#pragma mark - CTRunDelegate
+
+void deallocCallback(void* ref) {
+    CFBridgingRelease(ref);
+}
+
+CGFloat ascentCallback(void *ref) {
+
+    NSDictionary *attr = (__bridge NSDictionary *)ref;
+    NSLog(@&amp;quot;%@&amp;quot;, attr[@&amp;quot;key&amp;quot;]);
+
+    return 32;
+}
+
+CGFloat descentCallback(void* ref) {
+    return 0;
+}
+
+CGFloat widthCallback(void* ref) {
+    return 32;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对代码的理解可以结合下图（使用Sketch画的，真是个好工具）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/CoreTextCode.png&quot; alt=&quot;CoreTextCode.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;此外，关于上面的代码有几点补充，一是坐标系Y轴翻转的问题，前面推荐过的那篇很好的文章已经说的很详细了，这里就不做赘述了；二是为什么占位符要选择0xFFFC，有两方面原因，一个是&lt;code&gt;kCTRunDelegateAttributeName&lt;/code&gt;的官方文档推荐使用这个值，二是经过我自己的测试(iPhone 5)，使用这个值有如下优势，自动把一个imageRun当成一个单词处理：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/CTCompare.png&quot; width=&quot;50%&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://geeklu.com/2013/03/core-text/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Core Text 入门&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.raywenderlich.com/4147/core-text-tutorial-for-ios-making-a-magazine-app&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Core Text Tutorial for iOS: Making a Magazine App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.devtang.com/blog/2013/10/21/the-tech-detail-of-ape-client-3/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;猿题库iOS客户端的技术细节（三）：基于CoreText的排版引擎&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.apple.com/library/prerelease/ios/documentation/Carbon/Reference/CoreText_Framework_Ref/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Core Text Reference Collection&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了让图文混排支持iOS 6，不得不暂时放弃学习TextKit，不过正好也借着这个机会了解了文字排版的一些基本知识，以及如何直接使用底层的Core Text API，来进行图文混排。正所谓出来混，总是要还的，学一些这方面的知识，对学习TextKit也是很有帮助的！&lt;/p&gt;
+&lt;p&gt;本文将介绍使用Core Text的API，结合Core Graphics来实现支持iOS 6的图文混排的基本思想及方法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+      <category term="CoreText" scheme="http://blog.liushuaiko.be/tags/CoreText/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UICollectionView的数据预加载及图片加载逻辑的优化</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/04/26/UICollectionView-Optimizing/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/04/26/UICollectionView-Optimizing/</id>
+    <published>2015-04-26T09:26:34.000Z</published>
+    <updated>2016-07-09T05:35:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;当App中使用了&lt;code&gt;UICollectionView&lt;/code&gt;以瀑布流的形式来呈现数据时，站在用户的角度，用户在自上至下一页一页浏览这些内容的过程中，当用户感到滑动很流畅自然，每页内容从无到有需要用户等待的时间很短甚至几乎感觉不到，那么&lt;code&gt;UICollectionView&lt;/code&gt;才会带给用户一个很好的体验。本文介绍了为了达到这两个目的所作出的一些客户端的优化。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;数据的预加载&quot;&gt;&lt;a href=&quot;#数据的预加载&quot; class=&quot;headerlink&quot; title=&quot;数据的预加载&quot;&gt;&lt;/a&gt;数据的预加载&lt;/h3&gt;&lt;p&gt;数据预加载的目的是不必等到用户某一时刻浏览到CollectionView的末尾了，也即本地已经没有更多数据展示了才去发请求拿下一页数据，而是有一个预判，用户就快要看完本地的数据了，可以向Server要下一页数据了！&lt;/p&gt;
+&lt;p&gt;为了实现预加载，最开始的方案是在UI层面的预判。根据&lt;code&gt;UICollectionView&lt;/code&gt;的基类是&lt;code&gt;UIScrollView&lt;/code&gt;，大致思路是对于沿竖直方向滚动的CollectionView，考察它的&lt;code&gt;contentOffset.y&lt;/code&gt;和&lt;code&gt;conetntSize.height&lt;/code&gt;，结合CollectionView的&lt;code&gt;frame.size.height&lt;/code&gt;，可以计算CollectionView全部内容底下还有多高没展示出来，如果高度小于我们预先设定的阈值（用户快滑到底了），那么就触发加载下一页的请求。&lt;/p&gt;
+&lt;p&gt;这样做似乎没什么问题，但是仔细想想，其实并不优雅。一方面，一旦有UI调整的需求，CollectionView每行的高度有调整时，我们也要去调整阈值，来决定是否去请求下一页数据；另一方面，App中不同场景下的CollectionView每行高度不同，需要根据不同场景去Tuning，找出合适的阈值。&lt;/p&gt;
+&lt;p&gt;后来很自然想到在逻辑上进行预判，也就是我们现在使用的方案。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;UICollectionView&lt;/code&gt;每个Cell都需要一个数据模型对象（Data Transfer Object，下称DTO）来支持它的显示，通常客户端拿到的服务端返回的数据后，做一系列的解析，得到一个一个DTO，用以支持CollectionView的展示。到代码层面DTO们被保存在一个数组里，任意时刻在正确的状态下&lt;code&gt;UICollectionView&lt;/code&gt;的总Cell数量应该跟当前本地DTO的个数相等，Cell跟DTO是一一对应的关系，&lt;strong&gt;数据的预加载本质上就是DTO的预加载&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;用户在滚动&lt;code&gt;UICollectionView&lt;/code&gt;时，当&lt;code&gt;UICollectionView&lt;/code&gt;根据预定的配置觉得它该展示某行某列的Cell时，会向它的DataSource[2]发送&lt;code&gt;collectionView:cellForItemAtIndexPath:&lt;/code&gt;消息[3]，询问那行那列该展示什么，这个方法返回一个Cell对象，&lt;code&gt;UICollectionView&lt;/code&gt;拿到这个Cell后就把它展示在相应位置。通常这个方法中要做的重要事情就是去上文提到的保存DTO的数组中根据Cell的行列索引找到这个Cell对应的DTO，根据DTO对Cell配置一番，返回给&lt;code&gt;UICollectionView&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt; 顺着这个思路，在这个方法中可以知道当前&lt;code&gt;UICollectionView&lt;/code&gt;需要展示的Cell的索引，由于Cell跟DTO是一一对应的关系，那我们也知道了当前需要的DTO在总数据模型对象中的索引，当剩下的数据模型对象不够支持一页的显示时，就去请求下一页。&lt;/p&gt;
+&lt;p&gt;表达的可能有点抽象，假设请求一次Server返回20个DTO，过程可以更形象化一点：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- CollectionView: 数据源数据源，用户滑到第181个Cell要露出来了，快给我！
+- DataSource: 好的，我首先要去拿第181个Cell对应的DTO，根据这个配置好一个Cell给你去展示！
+等等，你都已经展示到第181个Cell了啊！我发现DTO目前本地总共只有200个，200 - 181 = 19 &amp;lt; 20不够支持你展示下一页所需要的20个Cell了，我先发起一个异步请求，去拿新一页的DTO！
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关键代码，很简单：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSUInteger countOfDataModel = dataModel.count; // 目前本地有的DTO数量
+NSUInteger currentRequestIndex = indexPath.row; // 当前需要的Cell索引，也即当前需要的数据模型索引
+
+if (countOfDataModel - currentRequestIndex &amp;lt; 19) {
+    [self fetchNextPageAsync];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要注意的问题是要做好防止重复发送请求的保护工作。&lt;/p&gt;
+&lt;h3 id=&quot;图片加载逻辑优化&quot;&gt;&lt;a href=&quot;#图片加载逻辑优化&quot; class=&quot;headerlink&quot; title=&quot;图片加载逻辑优化&quot;&gt;&lt;/a&gt;图片加载逻辑优化&lt;/h3&gt;&lt;p&gt;当&lt;code&gt;UICollectionView&lt;/code&gt;的每个Cell都需要展示一个（或多个）图片时，在上文提到的根据DTO配置Cell过程中，会根据DTO中指定的图片的URL，发送一个异步的图片请求，等到图片请求完毕了，再把图片展示到对应的Cell上（当然，可以把这一切交给&lt;code&gt;SDWebImage&lt;/code&gt;: ）。&lt;/p&gt;
+&lt;p&gt;或许你会问，加载图片已经是异步了啊，我还要优化什么？不，这远远不够。在实际的测试中，这种朴素的做法依然会带来明显的滑动过程的卡顿。使用Instruments进行profile发现，在滑动过程中始终会丢那么15帧左右，不能忍！&lt;/p&gt;
+&lt;p&gt;再回到&lt;code&gt;UICollectionView&lt;/code&gt;继承自&lt;code&gt;UIScrollView&lt;/code&gt;上来。通过&lt;code&gt;UIScrollView&lt;/code&gt;的Delegate，我们能感知到滑动过程中CollectionView的各种关键状态，包括用户的手是否正在拖拽，以及CollectionView是否正在滑动、减速等等，这就是我们优化的秘密武器！&lt;/p&gt;
+&lt;p&gt;那么，本着不该做的事情不要做，或者等到不得不做的时候再做的原则，让我们分析用户在滑动CollectionView的过程中有哪些地方可以细抠。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户在滑动（拖拽）CollectionView时（手与屏幕正在接触），很有可能是用户在认真逐个浏览每个Cell，要去加载当前可见Cell的图片&lt;/li&gt;
+&lt;li&gt;用户滑动CollectionView结束后，手离开了屏幕，并引发了CollectionView减速时，&lt;strong&gt;预判&lt;/strong&gt;CollectionView减速结束后静止时的状态，对于那些将来静止时用户可见的Cell，提前去加载它们的图片；对于那些只是“昙花一现”的Cell，即它们只是在减速的过程中出现那么一刹那，就被“顶”上去了，只加载这些Cell中图片在本地有缓存的图片（从内存中加载，不值得去发网络请求，即使是异步的也不值得）&lt;/li&gt;
+&lt;li&gt;减速结束后，CollectionView处于静止状态，加载当前全部可见Cell的图片&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OK，那么来看我们怎么实现它。&lt;/p&gt;
+&lt;p&gt;对于CollectionView的每个Cell，我们给它添加一个异步加载图片的方法&lt;code&gt;loadImage&lt;/code&gt;。直接上关键代码，看了便知。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// CollectionView将来静止时可见的区域，同时也是标识CollectionView当前是正在被用户拖拽还是已经被拖拽完毕并正在减速
+@property (nonatomic, strong) CGRect *targetRect;
+
+#pragma mark - UICollectionView DataSource
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // ....
+    [self loadImageForCell:cell atIndexPath:indexPath];
+    // ....
+}
+
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.targetRect = nil;
+    [self loadImageForVisibleCells];
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    self.targetRect = CGRectMake(targetContentOffset-&amp;gt;x, targetContentOffset-&amp;gt;y, scrollView.frame.size.width, scrollView.frame.size.height);
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.targetRect = nil;
+    [self loadImageForVisibleCells];
+}
+
+#pragma mark - Decide to Load Image For Cells
+
+- (void)loadImageForCell:(AESmartCollectionFlowViewCell *)cell
+        atIndexPath:(NSIndexPath *)indexPath {
+    // Cell的targetURLString是指派给Cell的新的图片URL，在根据Cell的DTO配置Cell时为其赋值
+    if (!cell.targetURLString) {
+        return;
+    }
+    // Cell的imageURLString是Cell的当前正在显示的图片URL
+    if (![cell.targetURLString isEqualToString:cell.imageURLString] || cell.isDisplayingPlaceholderNow) {
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+        CGRect cellFrame = attr.frame;
+
+        BOOL shouldLoadImageForCurrentCell = YES;
+        // 如果正在减速而且当前Cell的frame不在将来滑动停止后的可见区域
+        if (self.targetRect &amp;amp;&amp;amp; !CGRectIntersectsRect(self.targetRect.CGRectValue, cellFrame)) {
+            // 那么只有Cell的targetURL在内存的缓存中，才去加载它
+            SDImageCache *imageCache = [SDImageCache sharedImageCache];
+            NSString *key = [manager cacheKeyForURL:[NSURL URLWithString:cell.targetURLString]];
+            if (![imageCache imageFromMemoryCacheForKey:key]) {
+                shouldLoadImageForCurrentCell = NO;
+            }
+        }
+        if (shouldLoadImageForCurrentCell) {
+            [cell loadImage];
+        }
+    }
+}
+
+- (void)loadImageForVisibleCells {
+    NSArray *visibleCells = [self.collectionView visibleCells];
+    for (UICollectionViewCell *cell in visibleCells) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        [self loadImageForCell:cell atIndexPath:indexPath];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;做了这些努力后，再去profile一下，发现网速良好情况下滑动时帧率只丢了那么1、2帧，而且滑动起来无明显卡顿！&lt;/p&gt;
+&lt;h3 id=&quot;要么不做，要么做绝&quot;&gt;&lt;a href=&quot;#要么不做，要么做绝&quot; class=&quot;headerlink&quot; title=&quot;要么不做，要么做绝&quot;&gt;&lt;/a&gt;要么不做，要么做绝&lt;/h3&gt;&lt;p&gt;哈哈，这个有点狠啊，颇有朱元璋的风格。&lt;/p&gt;
+&lt;p&gt;做了这么多后，我们发现，数据预加载完毕后，向CollectionView发送&lt;code&gt;reloadData&lt;/code&gt;消息通知它数据模型变化时，就在这一瞬间，还是会导致CollectionView卡顿那么一下下。&lt;/p&gt;
+&lt;p&gt;好吧不能忍，封装一个我们自己的&lt;code&gt;reloadData&lt;/code&gt;方法，在这里简单的hold住reload，根据上文中的&lt;code&gt;targetRect&lt;/code&gt;属性的标记作用，当且仅当在CollectionView减速停止后，再去真正向它发送&lt;code&gt;reloadData&lt;/code&gt;消息。在这里仅提供思路，不做赘述了。&lt;/p&gt;
+&lt;p&gt;此外，在开发中，我们把这一系列的方法以&lt;code&gt;NSObject&lt;/code&gt;类的Category形式做一个封装，这样不管谁是CollectionView的Delegate或者DataSource都可以从容应对。&lt;/p&gt;
+&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;这里头还是有一定玄机的，篇幅限制只写了关键思路，真正的实践需要一个状态机的思维，不断去感受不断去测试不断去Tuning。当然，&lt;code&gt;UITableView&lt;/code&gt;的优化完全可以使用相同的方式。最后，用户可能感受不到你做了什么，但起码，对得起自己的情怀：）。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&quot;标记&quot;&gt;&lt;a href=&quot;#标记&quot; class=&quot;headerlink&quot; title=&quot;标记&quot;&gt;&lt;/a&gt;标记&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;[1] Android中的&lt;code&gt;GridView&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;[2] Android中的Adapter&lt;/li&gt;
+&lt;li&gt;[3] Android中的&lt;code&gt;getView()&lt;/code&gt;方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://tech.glowing.com/cn/practice-in-uiscrollview/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;UIScrollView 实践经验&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当App中使用了&lt;code&gt;UICollectionView&lt;/code&gt;以瀑布流的形式来呈现数据时，站在用户的角度，用户在自上至下一页一页浏览这些内容的过程中，当用户感到滑动很流畅自然，每页内容从无到有需要用户等待的时间很短甚至几乎感觉不到，那么&lt;code&gt;UICollectionView&lt;/code&gt;才会带给用户一个很好的体验。本文介绍了为了达到这两个目的所作出的一些客户端的优化。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+      <category term="UICollectionView" scheme="http://blog.liushuaiko.be/tags/UICollectionView/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Manacher&#39;s algorithm：优雅的求最长回文子串</title>
+    <link href="http://blog.liushuaiko.be/blog/2015/04/12/Manachers-algorithm/"/>
+    <id>http://blog.liushuaiko.be/blog/2015/04/12/Manachers-algorithm/</id>
+    <published>2015-04-12T04:51:06.000Z</published>
+    <updated>2016-07-09T05:35:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;2015年第一篇文章，力求做到用中文把&lt;a href=&quot;http://en.wikipedia.org/wiki/Longest_palindromic_substring#Manacher.27s_algorithm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Manacher’s算法&lt;/a&gt;解释的通俗易懂。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;历史-amp-背景&quot;&gt;&lt;a href=&quot;#历史-amp-背景&quot; class=&quot;headerlink&quot; title=&quot;历史&amp;amp;背景&quot;&gt;&lt;/a&gt;历史&amp;amp;背景&lt;/h3&gt;&lt;p&gt;Manacher’s算法是Manacher在1975年提出的一个在线性时间里找出给定字符串中全部回文子串的算法，随着人们的研究，人们发现Manacher’s算法也可以用来求给定字符串的&lt;strong&gt;最长&lt;/strong&gt;回文子串，当然也是线性时间。再后来，有两个小伙提出了基于suffix trees的算法，同样是线性时间求解最长回文子串，慢慢地，人们又找到了一些高效的并行算法求解这类问题。&lt;/p&gt;
+&lt;p&gt;本文将阐述Manacher’s算法用于求解给定字符串的最长回文子串，样例代码使用Python。&lt;/p&gt;
+&lt;h3 id=&quot;算法&quot;&gt;&lt;a href=&quot;#算法&quot; class=&quot;headerlink&quot; title=&quot;算法&quot;&gt;&lt;/a&gt;算法&lt;/h3&gt;&lt;p&gt;Manacher’s算法真的很简单，你只要静下心来，花二十分钟来阅读并理解以下文字，绝对可以理解，理解了就一辈子都忘不了，接着你会暗暗叫绝，这算法真太赞了。相信你在看到本文之前也看了很多其他的文章，为了减少读者的理解障碍，使用的变量名称我都会尽量跟其他文章的一样。&lt;/p&gt;
+&lt;h4 id=&quot;预处理&quot;&gt;&lt;a href=&quot;#预处理&quot; class=&quot;headerlink&quot; title=&quot;预处理&quot;&gt;&lt;/a&gt;&lt;strong&gt;预处理&lt;/strong&gt;&lt;/h4&gt;&lt;hr&gt;
+&lt;p&gt;为了将最长子串长度为奇数和偶数这两种情况统一转成奇数情况处理，Manacher’s算法在输入字符串的每个字符之间加了一个特殊字符；&lt;/p&gt;
+&lt;p&gt;为了简化处理过程中遍历字符串时对边界条件的判断，在开头加上另一个特殊字符，这些特殊字符要保证不会出现在任何输入字符串里，见下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/manacher_5.png&quot; alt=&quot;manacher_5&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;&lt;strong&gt;准备工作&lt;/strong&gt;&lt;/h4&gt;&lt;hr&gt;
+&lt;p&gt;OK，下面是理解这个算法的过程中，要&lt;strong&gt;随时装在脑子&lt;/strong&gt;里的一些东西：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;回文串：由于我们预处理，我们只考虑回文串为奇数的情况，回文串的特性就是&lt;strong&gt;对称&lt;/strong&gt;，记住&lt;strong&gt;对称&lt;/strong&gt;，在脑子里想想沿着回文串中间的那个字符（下称中心字符）把回文串对折的场景吧，完美的重合。我们把处理后得到的字符串叫s&lt;/li&gt;
+&lt;li&gt;考虑s中的任一回文子串，该回文串的中心字符在s中的索引记为center，这个回文串中某个字符在s中的索引是i，那么该字符在该回文串中对称字符的索引&lt;code&gt;j = 2 * center - i&lt;/code&gt;，见下图：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/manacher_4.png&quot; alt=&quot;manacher_4&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;高能预警&quot;&gt;&lt;a href=&quot;#高能预警&quot; class=&quot;headerlink&quot; title=&quot;高能预警&quot;&gt;&lt;/a&gt;&lt;strong&gt;高能预警&lt;/strong&gt;&lt;/h4&gt;&lt;hr&gt;
+&lt;p&gt;上面的你都理解了，那么我们看算法的精髓部分，静下心。&lt;/p&gt;
+&lt;p&gt;首先介绍一下变量，仔细阅读，很重要，下面的叙述是基于这些变量的：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/manacher_1.png&quot; alt=&quot;manacher_1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;OK，初始假设 current_longest_p_str 的中心字符是 s[0]，也即 center=0，且假设 p[0]=0。&lt;/p&gt;
+&lt;p&gt;从 s[1] 开始遍历 s（略过我们为了处理边界在开头加的特殊字符），对 s[i]，分两种情况来看：&lt;/p&gt;
+&lt;h5 id=&quot;情况1&quot;&gt;&lt;a href=&quot;#情况1&quot; class=&quot;headerlink&quot; title=&quot;情况1&quot;&gt;&lt;/a&gt;&lt;strong&gt;情况1&lt;/strong&gt;&lt;/h5&gt;&lt;hr&gt;
+&lt;p&gt;s[i] 在 current_longest_p_str 内（如果在的话，可以进一步得出，s[i] 一定在其右半部分，因为是按顺序遍历s，i一定大于center）。&lt;/p&gt;
+&lt;p&gt;记i关于center的对称点为j（别忘了&lt;code&gt;j = 2 * center - i&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;此时，如果&lt;code&gt;i + p[j] &amp;lt; mx&lt;/code&gt;的话，等价于&lt;code&gt;j - p[j] &amp;gt; mx的对称点&lt;/code&gt;，意味着，以 s[j] 为中心的最长回文串完完整整的在current_longest_p_str内，根据current_longest_p_str的对称性，可得以s[i]为中心的最长回文串也完完整整的在current_longest_p_str内，因此 p[i]=p[j] 成立，见下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/manacher_3.png&quot; alt=&quot;manacher_3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果&lt;code&gt;i + p[j] &amp;gt;= mx&lt;/code&gt;的话，意味着，以 s[j] 为中心的最长回文串的一部分在 current_longest_p_str 内。根据 current_longest_p_str 的对称性我们可以知道，以 s[i] 为中心的最长回文子串，至少可以延展到 mx。那 mx 之后的部分呢？由于 mx 之后的字符串我们没办法利用 current_longest_p_str 的对称性了，没办法，只能一个一个去匹配了。转到代码上就是我们可以把 p[i] 置为 mx - i，也即我们已经知道s[i]向右可以扩展到 mx 了（下图橙色框起来部分），再根据逐步向两侧扩展的情况去更新 p[i] 。见下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/manacher_2.png&quot; alt=&quot;manacher_2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;综合以上两种情况，可以得出&lt;code&gt;p[i] = min(p[j], mx - i)&lt;/code&gt;，也即&lt;code&gt;p[i] = min(p[2 * center - i], mx - i)&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&quot;情况2&quot;&gt;&lt;a href=&quot;#情况2&quot; class=&quot;headerlink&quot; title=&quot;情况2&quot;&gt;&lt;/a&gt;&lt;strong&gt;情况2&lt;/strong&gt;&lt;/h5&gt;&lt;hr&gt;
+&lt;p&gt;s[i]不在 current_longest_p_str 中，没办法利用 current_longest_p_str 的对称性，只能先将 p[i] 置为0，再向两侧扩展一个一个匹配来更新 p[i] 了。&lt;/p&gt;
+&lt;h3 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Solution&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;pre_process&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, s)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;.join((&lt;span class=&quot;string&quot;&gt;&quot;$#&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;#&quot;&lt;/span&gt;.join(s), &lt;span class=&quot;string&quot;&gt;&quot;#&quot;&lt;/span&gt;))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# @return a string&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;longestPalindrome&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, s)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        s_new = self.pre_process(s)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        p = [&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        center = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        mx = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, len(s_new)):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;# 情况2，s[i]不在current_longest_p_str中&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; i &amp;gt; mx:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                p.append(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;# 情况1，s[i]在current_longest_p_str中&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                p.append(min(mx - i, p[&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; * center - i]))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;# 没办法，只能一个一个去匹配了&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;# 注意，对于以s[i]为中心的最长回文子串完完整整包括在current_longest_p_str的情况，while循环不会执行，想想为什么&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (i - p[i] - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;) &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (i + p[i]  + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;) &amp;lt; len(s_new) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; s_new[i - p[i] - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] == s_new[i + p[i] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                p[i] += &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;# 更新current_longest_p_str相关信息&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; p[i] &amp;gt; mx - center:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                center = i&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                mx = i + p[i]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; s_new[center - p[center]: center + p[center] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;].replace(&lt;span class=&quot;string&quot;&gt;&quot;#&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;希望能给你带来一点帮助，如有理解错误，恳请指正。&lt;/p&gt;
+&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.felix021.com/blog/read.php?2040&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Manacher’s ALGORITHM: O(n)时间求字符串的最长回文子串&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Manacher’s Algorithm – Linear Time Longest Palindromic Substring – Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://articles.leetcode.com/2011/11/longest-palindromic-substring-part-ii.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Longest Palindromic Substring Part II&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2015年第一篇文章，力求做到用中文把&lt;a href=&quot;http://en.wikipedia.org/wiki/Longest_palindromic_substring#Manacher.27s_algorithm&quot;&gt;Manacher’s算法&lt;/a&gt;解释的通俗易懂。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="计算机基础" scheme="http://blog.liushuaiko.be/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Manacher" scheme="http://blog.liushuaiko.be/tags/Manacher/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的2014</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/12/30/my-2014/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/12/30/my-2014/</id>
+    <published>2014-12-30T13:39:44.000Z</published>
+    <updated>2016-07-09T05:34:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;不知是自己接触的技术越来越牛逼了还是接触的东西越来越弱智了，这一年真的很少提笔去写一些技术上的文章。这种表达个人情感的文章写多了又会觉得自己很矫情，那么今年的年终总结我会力求不带任何感情色彩。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;改变&quot;&gt;&lt;a href=&quot;#改变&quot; class=&quot;headerlink&quot; title=&quot;改变&quot;&gt;&lt;/a&gt;改变&lt;/h4&gt;&lt;p&gt;哈尔滨到杭州，旧知己到新搭档，Android到iOS，无拘无束到谨小慎微，只求自己的棱角不被磨平，无论何时像鹏总那样保持着对技术的热爱与激情。&lt;/p&gt;
+&lt;p&gt;做得饭越来越好吃。&lt;/p&gt;
+&lt;h4 id=&quot;读书&quot;&gt;&lt;a href=&quot;#读书&quot; class=&quot;headerlink&quot; title=&quot;读书&quot;&gt;&lt;/a&gt;读书&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;《白夜行》&lt;/li&gt;
+&lt;li&gt;《嫌疑犯X的献身》&lt;/li&gt;
+&lt;li&gt;《Objective-C高级编程》&lt;/li&gt;
+&lt;li&gt;《iOS Programming : The Big Nerd Ranch Guide》&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;影视&quot;&gt;&lt;a href=&quot;#影视&quot; class=&quot;headerlink&quot; title=&quot;影视&quot;&gt;&lt;/a&gt;影视&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;电影：37部，《星际穿越》等&lt;/li&gt;
+&lt;li&gt;美剧：4部，《绝命毒师》、《权力的游戏》、《越狱》、《行尸走肉》&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;旅行&quot;&gt;&lt;a href=&quot;#旅行&quot; class=&quot;headerlink&quot; title=&quot;旅行&quot;&gt;&lt;/a&gt;旅行&lt;/h4&gt;&lt;p&gt;青岛4日游。&lt;/p&gt;
+&lt;h4 id=&quot;第一&quot;&gt;&lt;a href=&quot;#第一&quot; class=&quot;headerlink&quot; title=&quot;第一&quot;&gt;&lt;/a&gt;第一&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;第一次坐飞机&lt;/li&gt;
+&lt;li&gt;第一次坐高铁&lt;/li&gt;
+&lt;li&gt;第一次海淘&lt;/li&gt;
+&lt;li&gt;第一份工资&lt;/li&gt;
+&lt;li&gt;第一次用工资给父母买东西&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;2个月全职+￥6300考下了驾照&lt;/li&gt;
+&lt;li&gt;往instagram上传了38张照片&lt;/li&gt;
+&lt;li&gt;写了13篇技术博客&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;入手的东西&quot;&gt;&lt;a href=&quot;#入手的东西&quot; class=&quot;headerlink&quot; title=&quot;入手的东西&quot;&gt;&lt;/a&gt;入手的东西&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Kindle Paperwhite 2&lt;/li&gt;
+&lt;li&gt;Razer DeathAdder 鼠标&lt;/li&gt;
+&lt;li&gt;Logitech M545 无线鼠标&lt;/li&gt;
+&lt;li&gt;RainDesign mStand&lt;/li&gt;
+&lt;li&gt;Casio AQ-S810W-1AV Solar Watch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;技术提高不多。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不知是自己接触的技术越来越牛逼了还是接触的东西越来越弱智了，这一年真的很少提笔去写一些技术上的文章。这种表达个人情感的文章写多了又会觉得自己很矫情，那么今年的年终总结我会力求不带任何感情色彩。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://blog.liushuaiko.be/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python入门分享</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/12/29/Python-Introduction/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/12/29/Python-Introduction/</id>
+    <published>2014-12-29T14:33:02.000Z</published>
+    <updated>2016-07-09T05:34:24.000Z</updated>
+    
+    <content type="html">&lt;p&gt;给组内小伙伴们分享Python知识做的slides，本来分享共有三场，但是由于种种原因第三场取消了，也就没去准备.其实第三次分享本来也是要讲那些“Google + 官方文档”就可以搞定的东西。把前两次分享的slides给大家分享出来。&lt;/p&gt;
+&lt;p&gt;在slideshare上，自备梯子。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/43048982&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/ssuser146893/python-1-43048982&quot; title=&quot;Introduction to Python-1&quot; target=&quot;_blank&quot;&gt;Introduction to Python(1) - History and Basics&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/ssuser146893&quot; target=&quot;_blank&quot;&gt;Shuai Liu&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/43048983&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/ssuser146893/python-2-43048983&quot; title=&quot;Introduction to Python-2&quot; target=&quot;_blank&quot;&gt;Introduction to Python(2) - Advanced and Be Pythonic&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/ssuser146893&quot; target=&quot;_blank&quot;&gt;Shuai Liu&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;给组内小伙伴们分享Python知识做的slides，本来分享共有三场，但是由于种种原因第三场取消了，也就没去准备.其实第三次分享本来也是要讲那些“Google + 官方文档”就可以搞定的东西。把前两次分享的slides给大家分享出来。&lt;/p&gt;
+&lt;p&gt;在slideshare上，自备梯子。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="程序设计语言" scheme="http://blog.liushuaiko.be/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Python" scheme="http://blog.liushuaiko.be/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书的日子</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/11/07/when-I-was-at-school/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/11/07/when-I-was-at-school/</id>
+    <published>2014-11-07T13:45:14.000Z</published>
+    <updated>2016-07-09T05:42:58.000Z</updated>
+    
+    <content type="html">&lt;p&gt;说来也巧，晚上跟意林匆匆吃了个饭，晚上回来听到的第一首歌就是曾经听意林唱过的。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;郝云的&lt;a href=&quot;http://www.xiami.com/song/1772141275&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《活着》&lt;/a&gt;。那是大学里最后一次班饭，吃完了大家似乎还不尽兴，由彪彪撺掇着去了学校后面的KTV，大家外表上没有表现出任何要散伙的伤感，班上的几个比较腼腆的同学还是不怎么说话，对唱歌不感冒的几个同学凑成一桌打起了牌。记不清是谁点了这首歌，但开始是梁栋拿着话筒准备唱的，意林是属于比较活跃的类型，听到前奏后赶忙去抢了另一只话筒，就这样我全程听完了他们唱的这首歌。&lt;/p&gt;
+&lt;p&gt;听的时候就一个感觉，我靠将来的生活不会就是歌里唱的那样吧。&lt;/p&gt;
+&lt;p&gt;梁栋，大一军训时站我身边的人。那时大家都很腼腆，努力给人留个好印象。意林跟梁栋都是我隔壁宿舍的，他们给我的感觉就是从来不为学分绩发愁，每天都过得很快乐，因此听歌的时候我觉得这首歌真是配极了他们。&lt;/p&gt;
+&lt;p&gt;今天跟意林说到，来杭小三分之一年了。很多时候真是怀念极了哈尔滨那个冰天雪地的城市，怀念极了在大学的日子。当时我决定放弃保研，家人，各种同学等我深爱的人都说别了吧，offer年年有，保研弃了将来再想读研可就难了，甚至是到现在，就在今晚，吃完饭时意林还说，“你这能保研的不保研”，我也是醉了。那么现在你问我呢，谈不上后悔，就两点让我耿耿于怀，其一，现在生活中，没有一个想骂“傻B”就可以不用思考直接脱口而出的人，更多情况甚至思考了也不能脱口而出，其二，不会随便喊两句，就会有人跟我一起去游泳，去滑冰，去…..等等。&lt;/p&gt;
+&lt;p&gt;那么，现在还在国内上学的同学们，我从一个过来人的角度给你们个建议。&lt;/p&gt;
+&lt;p&gt;无论你在哪个学校，在围墙内还是围墙外，无论什么原因还在读书，请一定要&lt;strong&gt;珍惜当下&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;大四的时候，郭哥就不停给我灌输，大四是你人生中最闲的日子。到现在我觉得郭哥说的太有道理了。读书的日子，是人生中最快乐、最自由的日子。在大四我考下了驾照，学会了游泳，做完了毕设，差一点得了校优，能在刮着风的下午陪Cliff去打篮球，我很庆幸能有这些经历和回忆。正因为这些都变成了回忆，我就更加羡慕现在还在读书的人，希望你们珍惜当下，享受读书的生活。&lt;/p&gt;
+&lt;p&gt;以上。&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;慌慌张张 匆匆忙忙&lt;br&gt;为何生活总是这样&lt;br&gt;难道说我的理想&lt;br&gt;就是这样度过一生的时光&lt;br&gt;不卑不亢 不慌不忙&lt;br&gt;也许生活应该这样&lt;br&gt;难道说六十岁以后&lt;br&gt;再去寻找我想要的自由&lt;br&gt;一年一年飞逝而去   &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;说来也巧，晚上跟意林匆匆吃了个饭，晚上回来听到的第一首歌就是曾经听意林唱过的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://blog.liushuaiko.be/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>iOS开发之内存管理（2）——After ARC</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/07/31/ios-memory-management-arc/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/07/31/ios-memory-management-arc/</id>
+    <published>2014-07-31T03:03:49.000Z</published>
+    <updated>2016-07-09T05:42:57.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;一定要记住，&lt;a href=&quot;http://blog.vars.me/blog/2014/07/30/ioskai-fa-zhi-nei-cun-guan-li-1-before-arc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;上文&lt;/a&gt;所提到的“引用计数式内存管理”的本质部分在ARC中并没有相应的改变。ARC只是在RC的前面加了一个A，即自动帮我们处理“引用计数”的相关部分。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;所有权修饰符&quot;&gt;&lt;a href=&quot;#所有权修饰符&quot; class=&quot;headerlink&quot; title=&quot;所有权修饰符&quot;&gt;&lt;/a&gt;所有权修饰符&lt;/h3&gt;&lt;p&gt;当ARC有效时，id类型和OC的对象类型在声明变量时必须加上所有权修饰符，共有四种：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;__strong
+__weak
+__unsafe_unretained
+__autoreleasing
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;strong&quot;&gt;&lt;a href=&quot;#strong&quot; class=&quot;headerlink&quot; title=&quot;__strong&quot;&gt;&lt;/a&gt;&lt;code&gt;__strong&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;这是id类型和对象类型&lt;strong&gt;默认&lt;/strong&gt;的所有权修饰符。也就是说，&lt;strong&gt;ARC有效时&lt;/strong&gt;，下面的代码，实际上是被附加了所有权修饰符。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [[NSObject alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 上面一行代码与下面这行相同&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;id __strong obj = [[NSObject alloc] init];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;附有&lt;code&gt;__strong&lt;/code&gt;修饰符的变量obj在超出其变量作用域时，即在该变量应该被废弃时，会释放其被赋予的对象。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    id __strong obj = [[NSObject alloc] init]; // 强引用，自己持有该对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 到此为止，超出了obj的作用域，强引用失效，obj自动释放持有的对象，而对象的所有者不存在，因此废弃该对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 可见，默认的__strong与Java类似&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的代码等价与在&lt;strong&gt;ARC无效&lt;/strong&gt;时的：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    id obj = [[NSObject alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    [obj release];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们可以看到，ARC我们不用手动调用retain和release，非常方便，如果你之前写过Java，就更觉得这才是本来应该有的方式嘛！在ARC有效时，取得非自己生成并持有的对象，在超出变量作用域时，也会自动释放变量所持有的对象（这仅仅会导致对象的引用计数减1，但是这不等于一定会废弃该对象，因为对象可能还被其他变量所引用）。&lt;/p&gt;
+&lt;p&gt;但是，Java的内存管理跟OC还是有很大不同的，具体的可以看看知乎上的&lt;a href=&quot;http://t.cn/RPIXYa2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这篇回答&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&quot;weak&quot;&gt;&lt;a href=&quot;#weak&quot; class=&quot;headerlink&quot; title=&quot;__weak&quot;&gt;&lt;/a&gt;&lt;code&gt;__weak&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;看起来通过&lt;code&gt;__strong&lt;/code&gt;可以完美的解决内存管理和回收的问题，但是这里面有一个重大的问题——&lt;strong&gt;循环引用&lt;/strong&gt;！&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;// 定义Test类&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@interface Test: NSObject&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    id __strong obj_;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- (void)setObject:(id __strong)obj;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@end&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@implementation Test&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- (id)init&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    self = [super init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return self;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- (void)setObject:(id __strong)obj&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    obj_ = obj;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@end&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 以下为循环引用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 对象A&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // test0持有对象A的强引用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    id test0 = [[Test alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 对象B&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // test1持有对象B的强引用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    id test1 = [[Test alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 对象A的obj_成员持有对象B的强引用&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 此时，持有对象B强引用的变量为test1和对象A的obj_变量&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    [test0 setObject:test1];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    // 同上分析&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    [test1 setObject:test0];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 到这为止超出了test0和test1变量的作用域，他们的强引用失效。分别释放各自持有的Test对象&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 但是，对象A被对象B的obj_持有（强引用），对象B被对象A的obj_持有（强引用）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 发生了内存泄露！&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;不仅上面的情况，在对象自己持有其自身时，也会发生循环引用导致内存泄露。&lt;/p&gt;
+&lt;p&gt;那么怎么避免循环引用呢，使用&lt;code&gt;__weak&lt;/code&gt;就可以做到了！&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;__weak&lt;/code&gt;修饰符与&lt;code&gt;__strong&lt;/code&gt;相反，提供弱引用。弱引用不持有对象的实例，不会导致对象的引用计数加1。&lt;code&gt;__weak&lt;/code&gt;修饰符还有一个优点就是如果一个变量持有对象的弱引用，当该对象被废弃时，变量将自动失效并且被赋值成nil，与Java的WeakReference很像，因此，&lt;code&gt;__weak&lt;/code&gt;修饰符的变量在使用时应当判断是否为nil。&lt;/p&gt;
+&lt;p&gt;这样，使用&lt;code&gt;__weak&lt;/code&gt;修饰符就可以不会导致对象的引用计数加1，正确的使用可以避免出现引用环，从而避免循环引用。&lt;/p&gt;
+&lt;h4 id=&quot;unsafe-unretained&quot;&gt;&lt;a href=&quot;#unsafe-unretained&quot; class=&quot;headerlink&quot; title=&quot;__unsafe_unretained&quot;&gt;&lt;/a&gt;&lt;code&gt;__unsafe_unretained&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;遗憾的是，&lt;code&gt;__weak&lt;/code&gt;修饰符只能用于iOS5以上及OS X Lion以上版本的程序，以下的APP不得不使用&lt;code&gt;__unsafe_unretained&lt;/code&gt;。正如其名，该修饰符是不安全的修饰符。尽管使用ARC式内存管理是编译器的工作，但附有该修饰符的变量不属于编译器的内存管理对象，这点要注意。&lt;/p&gt;
+&lt;p&gt;附有&lt;code&gt;__unsafe_unretained&lt;/code&gt;修饰符的变量同附有&lt;code&gt;__weak&lt;/code&gt;修饰符的变量一样，也是不持有对象的，但是唯一的区别是，当对象被废弃时，变量不会被置成nil，可能会造成“野指针”！&lt;/p&gt;
+&lt;h4 id=&quot;autoreleasing&quot;&gt;&lt;a href=&quot;#autoreleasing&quot; class=&quot;headerlink&quot; title=&quot;__autoreleasing&quot;&gt;&lt;/a&gt;&lt;code&gt;__autoreleasing&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;ARC有效时，显式地附加&lt;code&gt;__autoreleasing&lt;/code&gt;修饰符比较罕见。这块基本上编译器已经帮你弄好了，你不需要怎么关心，对于新手来说，把上面的理解应该就够了。&lt;/p&gt;
+&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;有一个很好的比喻来帮助理解这些修饰符，对象就是气球，&lt;code&gt;__strong&lt;/code&gt;指针像线，&lt;code&gt;__weak&lt;/code&gt;指针像看着气球的眼睛（气球跑了我是知道的，我就不去看气球了），&lt;code&gt;__unsafe_retained&lt;/code&gt;指针像一道射向气球的激光（即使气球跑了也不知道，激光依然照向那个位置），&lt;code&gt;__autoreleasing&lt;/code&gt;像挡着气球的屋顶（可以挡住多个气球）。&lt;/p&gt;
+&lt;p&gt;如果我有什么地方理解有错误，恳请指正，因为我是绝对的新手。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;一定要记住，&lt;a href=&quot;http://blog.vars.me/blog/2014/07/30/ioskai-fa-zhi-nei-cun-guan-li-1-before-arc/&quot;&gt;上文&lt;/a&gt;所提到的“引用计数式内存管理”的本质部分在ARC中并没有相应的改变。ARC只是在RC的前面加了一个A，即自动帮我们处理“引用计数”的相关部分。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS开发之内存管理（1）——Before ARC</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/07/30/ios-memory-management-mrc/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/07/30/ios-memory-management-mrc/</id>
+    <published>2014-07-30T09:23:10.000Z</published>
+    <updated>2016-07-09T05:42:56.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;Automatic-Reference-Counting&quot;&gt;&lt;a href=&quot;#Automatic-Reference-Counting&quot; class=&quot;headerlink&quot; title=&quot;Automatic Reference Counting&quot;&gt;&lt;/a&gt;Automatic Reference Counting&lt;/h3&gt;&lt;p&gt;提到Objective-C中的内存管理，就不得不提到ARC（自动引用计数）。使用了ARC和不使用ARC，OC内存管理方式没有变，都是基于引用计数，但是程序员在编写代码上大有不同。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;首先要明确的&quot;&gt;&lt;a href=&quot;#首先要明确的&quot; class=&quot;headerlink&quot; title=&quot;首先要明确的&quot;&gt;&lt;/a&gt;首先要明确的&lt;/h3&gt;&lt;p&gt;内存管理的目的，简而言之，就是确保对象在分配了内存并初始化后，程序中要用到该对象时候，对象还在，程序不再使用该对象时，该对象占用的内存能及时释放，不会造成内存泄露。&lt;/p&gt;
+&lt;p&gt;在引用计数式内存管理中，还要明确以下几点（说原则不是原则，读了之后你就明白了）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* 自己生成的对象，自己所持有
+* 非自己生成的对象，自己也可以持有
+* 自己持有的对象，不再需要时释放
+* 非自己持有的对象，不能释放
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;持有，比较难理解，意思是有一个强引用指向了对象，&lt;strong&gt;持有了对象 &amp;lt;=&amp;gt; 导致对象的引用计数加1&lt;/strong&gt;。把对象比喻成氢气球，持有就是用一根线拴住了气球，你拿着气球线。&lt;/p&gt;
+&lt;h3 id=&quot;Before-ARC&quot;&gt;&lt;a href=&quot;#Before-ARC&quot; class=&quot;headerlink&quot; title=&quot;Before ARC&quot;&gt;&lt;/a&gt;Before ARC&lt;/h3&gt;&lt;p&gt;在ARC之前，程序员需要手动管理内存，对对象的持有和释放主要是通过retain和release方法来完成的。&lt;/p&gt;
+&lt;p&gt;虽然新版本的SDK默认使用了ARC，但是正如郭总说的，真是不能同意更多。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;选择SDK要注意的一点就是，在iOS 4.0以后，引入了Auto Reference Counting（ARC）这一技术，个人感觉使用ARC虽然方便了内存管理，但是对于新手来说缺少了手动管理内存的历练，这里欠下的债，将来一定要还的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;自己生成的对象，自己所持有&quot;&gt;&lt;a href=&quot;#自己生成的对象，自己所持有&quot; class=&quot;headerlink&quot; title=&quot;自己生成的对象，自己所持有&quot;&gt;&lt;/a&gt;自己生成的对象，自己所持有&lt;/h4&gt;&lt;p&gt;下面的代码，意味着创建了一个NSObject的对象，并让id类型的变量obj持有了该对象。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [[NSObject alloc] init];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此外，如果你的方法使用以下名称开头（驼峰式开头，例如名为allocate的方法就不会有相同的效果），意为着调用这些方法达到的效果是一致的，都是生成了一个对象，并返回一个指向该对象并持有该对象的指针。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;alloc
+new
+copy
+mutableCopy
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;非自己生成的对象，自己也可以持有&quot;&gt;&lt;a href=&quot;#非自己生成的对象，自己也可以持有&quot; class=&quot;headerlink&quot; title=&quot;非自己生成的对象，自己也可以持有&quot;&gt;&lt;/a&gt;非自己生成的对象，自己也可以持有&lt;/h4&gt;&lt;p&gt;不是自己把对象造出来的，但是也可以持有这个对象。&lt;/p&gt;
+&lt;p&gt;如下面的例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [NSMutableArray array];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;到此为止，上面的代码并没有创建一个NSMutableArray，仅仅是取得了对象的存在（这是通过autorelease实现的），也即仅仅获得了对象的地址，obj没有持有对象，也即对象的引用计数并未因这行代码而加1。&lt;/p&gt;
+&lt;p&gt;但是，当你给obj发送retain的消息后，obj就持有了对象，对象的引用计数加1了。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;[obj retain];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;自己持有的对象，不再需要时释放-非自己持有的对象，不能释放&quot;&gt;&lt;a href=&quot;#自己持有的对象，不再需要时释放-非自己持有的对象，不能释放&quot; class=&quot;headerlink&quot; title=&quot;自己持有的对象，不再需要时释放 | 非自己持有的对象，不能释放&quot;&gt;&lt;/a&gt;自己持有的对象，不再需要时释放 | 非自己持有的对象，不能释放&lt;/h4&gt;&lt;p&gt;自己持有的对象，一旦不再需要，持有者有义务释放对象。释放对象使用的是release方法。记住一定得是持有了对象才能释放，你根本就没牵住气球怎么释放啊。&lt;/p&gt;
+&lt;p&gt;看下面的例子。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [[NSObject alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[obj release];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们首先生成了一个对象，并让obj持有了对象，接着我们调用release方法释放了对象。在release方法内部会判断对象的引用计数，如果为0了就调用对象的dealloc方法废弃对象。&lt;/p&gt;
+&lt;h4 id=&quot;小结&quot;&gt;&lt;a href=&quot;#小结&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;调用alloc或者retain方法后，引用计数值加1&lt;/li&gt;
+&lt;li&gt;调用release后，引用计数值减1&lt;/li&gt;
+&lt;li&gt;引用计数值为0时，调用dealloc方法废弃对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;记住，这些都是在没有ARC，程序员进行手动内存管理时的一些东西。&lt;/p&gt;
+&lt;h3 id=&quot;After-ARC&quot;&gt;&lt;a href=&quot;#After-ARC&quot; class=&quot;headerlink&quot; title=&quot;After ARC&quot;&gt;&lt;/a&gt;After ARC&lt;/h3&gt;&lt;p&gt;自从有了ARC，一切都不一样了。具体请看&lt;a href=&quot;http://blog.vars.me/blog/2014/07/31/ioskai-fa-zhi-nei-cun-guan-li-2-after-arc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下篇文章&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;还看了其他的东西，如autorelease和autoreleasepool等，以及引用计数具体的实现（直接将引用计数保存在对象里和使用散列表等），说太多不容易被接受，再加上自己的理解也不是很透彻，就不叙述了。&lt;/p&gt;
+&lt;p&gt;此外推荐一些比较有用的OC和iOS的网站：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.raywenderlich.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;raywenderlich&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.objc.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;objc&lt;/a&gt; | &lt;a href=&quot;http://objccn.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;objc中文翻译&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://book.douban.com/subject/24720270/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Objective-C高级编程》&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后送一句话，与君共勉。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不要因为走得太远，就忘了自己为什么出发。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Automatic-Reference-Counting&quot;&gt;&lt;a href=&quot;#Automatic-Reference-Counting&quot; class=&quot;headerlink&quot; title=&quot;Automatic Reference Counting&quot;&gt;&lt;/a&gt;Automatic Reference Counting&lt;/h3&gt;&lt;p&gt;提到Objective-C中的内存管理，就不得不提到ARC（自动引用计数）。使用了ARC和不使用ARC，OC内存管理方式没有变，都是基于引用计数，但是程序员在编写代码上大有不同。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS入门——View（2）</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/07/24/ios-view-introduction-2/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/07/24/ios-view-introduction-2/</id>
+    <published>2014-07-24T03:35:24.000Z</published>
+    <updated>2016-07-09T05:42:55.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;view的重绘&quot;&gt;&lt;a href=&quot;#view的重绘&quot; class=&quot;headerlink&quot; title=&quot;view的重绘&quot;&gt;&lt;/a&gt;view的重绘&lt;/h3&gt;&lt;p&gt;当一个UIView的实例收到&lt;code&gt;setNeedsDisplay:&lt;/code&gt;，便会重绘它所维护的图像。当它们的内容发生变化时，UIView的子类会给自己发&lt;code&gt;setNeedsDisplay:&lt;/code&gt;消息。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;要注意的是，view的重绘不是立即完成的，而是被添加到一个装有需要重绘的view的list中。每个iOS APP都有一个run loop，这个无线循环的的作用是监听用户的输入，然后找到处理这个事件的handlers，handlers可能还会调用其他的方法来处理事件，当所有的方法结束后，控制权转会run loop，这时，view才回被重绘。&lt;/p&gt;
+&lt;p&gt;控制权转回run loop时，在run loop中会检查有哪些view需要被重绘，然后run loop会准备好必要的drawing contexts，向所有收到&lt;code&gt;setNeedsDisplay:&lt;/code&gt;消息的view发送&lt;code&gt;drawRect:&lt;/code&gt;消息。&lt;/p&gt;
+&lt;p&gt;只有发生变化的view才回被重绘，其他的view的image会直接显示到屏幕上。&lt;/p&gt;
+&lt;h3 id=&quot;UIResponder&quot;&gt;&lt;a href=&quot;#UIResponder&quot; class=&quot;headerlink&quot; title=&quot;UIResponder&quot;&gt;&lt;/a&gt;&lt;code&gt;UIResponder&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;UIResponder&lt;/code&gt;这个类很重要。它是&lt;code&gt;UIView&lt;/code&gt;、&lt;code&gt;UIViewController&lt;/code&gt;和&lt;code&gt;UIApplication&lt;/code&gt;的基类（顺便提一下，&lt;code&gt;UIWindow&lt;/code&gt;是&lt;code&gt;UIView&lt;/code&gt;的子类）。&lt;/p&gt;
+&lt;p&gt;responser，顾名思义就是可以对事件做出响应以及能够处理事件的对象。在iOS中有响应链的概念，这在Android开发中也有类似的事件分发和传递的概念。具体可以查看SO的这个问题：&lt;a href=&quot;http://stackoverflow.com/questions/6005033/why-uiviewcontroller-is-a-subclass-of-uiresponder&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Why UIViewController is a subclass of UIResponder?&lt;/a&gt;。有关响应链，iOS&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;说的再好不过了（可以等到看完下篇介绍ViewController的文章后再回来看看这个）。&lt;/p&gt;
+&lt;p&gt;想让一个responser成为window的first responser（第一个响应事件的对象），向它发送&lt;code&gt;becomeFirstResponder:&lt;/code&gt;的消息即可，前提是responser的&lt;code&gt;canBecomeFirstResponder:&lt;/code&gt;返回YES。要注意的是，如果想要给一个view发送这个消息时，只有view在view hierarchy中时才可以这样做。判断一个view是不是在view hierarchy中只需看view的window属性是不是指向一个UIWindow对象，如果没有指向（为nil），则view不在view hierarchy中。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;view的重绘&quot;&gt;&lt;a href=&quot;#view的重绘&quot; class=&quot;headerlink&quot; title=&quot;view的重绘&quot;&gt;&lt;/a&gt;view的重绘&lt;/h3&gt;&lt;p&gt;当一个UIView的实例收到&lt;code&gt;setNeedsDisplay:&lt;/code&gt;，便会重绘它所维护的图像。当它们的内容发生变化时，UIView的子类会给自己发&lt;code&gt;setNeedsDisplay:&lt;/code&gt;消息。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS入门——View（1）</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/07/23/ios-view-introduction-1/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/07/23/ios-view-introduction-1/</id>
+    <published>2014-07-23T08:49:05.000Z</published>
+    <updated>2016-07-09T05:42:54.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://book.douban.com/subject/25782902/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《反脆弱》&lt;/a&gt;。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;view-in-iOS&quot;&gt;&lt;a href=&quot;#view-in-iOS&quot; class=&quot;headerlink&quot; title=&quot;view in iOS&quot;&gt;&lt;/a&gt;view in iOS&lt;/h3&gt;&lt;p&gt;一个UIButton、UILabel都是一个view，view这个概念与Android中的view一样。view，顾名思义，跟“看”相关，就是你能在屏幕上看到的一个视觉单元，在iOS开发中被抽象成了View的概念。&lt;/p&gt;
+&lt;p&gt;具体到代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个view是UIView或UIView子类的实例&lt;/li&gt;
+&lt;li&gt;view知道如何在application的window上绘制自己，application的window是UIWindow的实例&lt;/li&gt;
+&lt;li&gt;view存在在某个层级结构（hierarchy）中，这个层级结构的根是application的window&lt;/li&gt;
+&lt;li&gt;view可以处理事件，比如触摸事件等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;各种view组成了一个APP的UI。每个view都维护了一个image用来真正呈现自己，比如UIButton的image就是一个圆角矩形（在iOS 6），一个UILabel的image仅仅是一段文本。当view的属性变化时，比如UILabel的文字，view维护的image会重绘以将变化展现在屏幕上。&lt;/p&gt;
+&lt;h3 id=&quot;UIWindow&quot;&gt;&lt;a href=&quot;#UIWindow&quot; class=&quot;headerlink&quot; title=&quot;UIWindow&quot;&gt;&lt;/a&gt;UIWindow&lt;/h3&gt;&lt;p&gt;UIWindow是UIView的子类。每个application有且仅有一个UIWindow的实例，用作application所有view的容器。&lt;/p&gt;
+&lt;p&gt;在Xcode中新建一个iOS项目，在AppDelegate.m中的&lt;code&gt;didFinishLaunchingWithOptions:&lt;/code&gt;方法中，创建了一个UIWindow的实例，并给他发送了&lt;code&gt;makeKeyAndVisible&lt;/code&gt;的消息，让它在屏幕上显示。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      // Override point for customization after application launch.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      self.window.backgroundColor = [UIColor whiteColor];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      [self.window makeKeyAndVisible];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return YES;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当一个view被添加到window中，我们就说该view是window的subview。window的subview当然也可以有自己的subview，这样一个view的hierarchy就形成了。当且仅当一个view被加入到这个hierarchy中，view才能在屏幕上出现，这包括直接作为window的subview或作为其它view的subview。&lt;/p&gt;
+&lt;p&gt;创建UI的过程实际上就是就是创建每个view的image，并将view加入到view hierarchy中。像一些UIButton、MKMapView等已经知道自己维护的image是什么样的，可能我们需要创建一些Apple并不给你提供支持的view，这就需要我们自定义view对象，并写代码创建view的image。&lt;/p&gt;
+&lt;h3 id=&quot;实例&quot;&gt;&lt;a href=&quot;#实例&quot; class=&quot;headerlink&quot; title=&quot;实例&quot;&gt;&lt;/a&gt;实例&lt;/h3&gt;&lt;p&gt;我们在程序启动后，创建一个view，添加到view hierarchy中。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // Override point for customization after application launch.&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // CGRect是一个结构体，包含一个矩形的位置和尺寸信息&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGRect viewFrame = CGRectMake(160, 240, 100, 150);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 用这个矩形(被称为view的frame)初始化一个UIView&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   UIView *view = [[UIView alloc] initWithFrame:viewFrame];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   [view setBackgroundColor:[UIColor orangeColor]];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 把view添加到view的层级结构中，作为window的subview&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   [[self window] addSubview:view];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // =。=&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   self.window.backgroundColor = [UIColor whiteColor];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   [self.window makeKeyAndVisible];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   return YES;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;每个view都有一个实例都有一个被称为frame的矩形，frame定义了view的尺寸和相对其父view的位置。frame用CGRect来表示，CGRect是一个C结构体，包括origin和size两个成员，它们也都是结构体。origin是CGPoint类型的结构体，包括两个float类型的成员：x和y。size是CGSize类型的结构体，也包含两个float类型的成员：width和height。（注意：C结构体不是OC的对象，不能发消息给它，也不声明成指针类型指向它）。&lt;/p&gt;
+&lt;p&gt;因此，view总是一个矩形。上述代码的效果图见下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/iOS_view_2.png?imageView2/2/w/350&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;为了理解CGRect中各个参数的含义，下面我们创建另一个View，将其作为刚才创建的View的subview。&lt;/p&gt;
+&lt;p&gt;在上面代码中的&lt;code&gt;// =。=&lt;/code&gt;处添加以下代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;CGRect anotherFrame = CGRectMake(20, 30, 50, 50);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;UIView *anotherView = [[UIView alloc] initWithFrame:anotherFrame];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[anotherView setBackgroundColor:[UIColor blueColor]];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[view addSubview:anotherView];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Run，可见效果图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/iOS_view_3.png =350x&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果将这个View直接作为window的subview，即改为：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;[[self window] addSubview:anotherView];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可见效果图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/iOS_view_1.png?imageView2/2/w/350&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;drawRect&quot;&gt;&lt;a href=&quot;#drawRect&quot; class=&quot;headerlink&quot; title=&quot;drawRect:&quot;&gt;&lt;/a&gt;&lt;code&gt;drawRect:&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;上面说到，各种view组成了iOS APP的UI。因此，一个view肯定不能只是带颜色的矩形。让view变得丰富的方法就是&lt;code&gt;drawRect:&lt;/code&gt;。这个方法默认什么都不做，我们可以在UIView的子类中覆盖这个方法来做一些自定义的绘制。&lt;/p&gt;
+&lt;p&gt;覆盖drawRect第一件事就是获取一个指向drawing context的指针。drawing context维护了当前绘制的状态信息（例如当前画笔的颜色、画笔的粗细等等），此外，drawing context还执行了绘制操作。一个绘制操作用当前的绘制状态信息绘制图形。在&lt;code&gt;drawRect:&lt;/code&gt;的最后，由drawing context产生的图像就是view所维护的image了。&lt;/p&gt;
+&lt;p&gt;在view收到&lt;code&gt;drawRect:&lt;/code&gt;的消息前，一个drawing context自动被创建，并设置为当前的context。&lt;/p&gt;
+&lt;p&gt;我们新建一个UIView的子类，并覆盖它的draw方法。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;- (void)drawRect:(CGRect)rect&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGContextRef ctx = UIGraphicsGetCurrentContext();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGRect bounds = [self bounds];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 画一个圆，计算圆的圆心半径等参数。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGPoint center;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   center.x = bounds.origin.x + bounds.size.width / 2.0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   center.y = bounds.origin.y + bounds.size.width / 2.0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   float maxRadius = hypot(bounds.size.width, bounds.size.height) / 4.0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 对当前的drawing context进行设置&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGContextSetLineWidth(ctx, 10);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGContextSetRGBStrokeColor(ctx, 0.6, 0.6, 0.6, 1.0);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGContextAddArc(ctx, center.x, center.y, maxRadius, 0.0, M_PI * 2.0, YES);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   // 画出当前的线条&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   CGContextStrokePath(ctx);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样，使用新建的UIView的子类替换上述例子中的UIView，便可得到如下的效果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/iOS_view_4.png?imageView2/2/w/350&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;要注意的是，不管view的&lt;code&gt;drawRect:&lt;/code&gt; 方法做了什么，view的背景色都是会被绘制的。&lt;/p&gt;
+&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;模拟器截图使用软件是：&lt;a href=&quot;http://www.curioustimes.de/iphonesimulatorcropper/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS-Simulator Cropper&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;a href=&quot;http://www.amazon.cn/iOS-Programming-The-Big-Nerd-Ranch-Guide-Conway-Joe/dp/0321821521/ref=sr_1_4?ie=UTF8&amp;amp;qid=1406105859&amp;amp;sr=8-4&amp;amp;keywords=ios%2Bprogramming%2Bthe%2Bbig%2Bnerd%2Branch%2Bguide&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《iOS Programming: The Big Nerd Ranch Guide》&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://book.douban.com/subject/25782902/&quot;&gt;《反脆弱》&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Apache的mod_proxy模块设置其反向代理</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/05/16/apache-reverse-proxy/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/05/16/apache-reverse-proxy/</id>
+    <published>2014-05-16T14:05:00.000Z</published>
+    <updated>2016-07-09T05:42:53.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;反向代理简介&quot;&gt;&lt;a href=&quot;#反向代理简介&quot; class=&quot;headerlink&quot; title=&quot;反向代理简介&quot;&gt;&lt;/a&gt;反向代理简介&lt;/h3&gt;&lt;p&gt;本文介绍一下使用mod_proxy模块配置Apache2作为反向代理服务器。&lt;/p&gt;
+&lt;p&gt;首先什么是反向代理呢？我们来看两个例子。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;晚上在实验室，我很饿，但是由于某种原因不能亲自去超市买吃的，我就对yuri同学说：“yuri，我要一袋小浣熊干脆面，你去帮我买一袋带回来！”yuri听罢，跑去超市买了一袋干脆面给了我，这样，我愉快的吃上了干脆面。在这个过程中，我让yuri代理我去做了一些事情，把超市想象成Server，把我想象成Client，那么yuri起到的就是一个正向代理的作用，正向代理，代理的是Client。&lt;/p&gt;
+&lt;p&gt;再看另一个例子。超市授权yuri作为代理负责接客。顾客买东西不直接去超市买，直接去yuri那里：“yuri，我要一袋干脆面！”，这时yuri就会去超市取出干脆面给顾客。对于顾客来说，他不知道自己买的东西是在超市里，只知道yuri给了我想要的东西。仍然把顾客想象成Client，把超市想象成Server，这样，yuri起到的是一个反向代理的作用，反向代理，代理的是Server。&lt;/p&gt;
+&lt;p&gt;这里有一篇非常好的&lt;a href=&quot;http://z00w00.blog.51cto.com/515114/1031287&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;介绍两种代理的作用以及应用场景。&lt;/p&gt;
+&lt;h3 id=&quot;一种应用场景&quot;&gt;&lt;a href=&quot;#一种应用场景&quot; class=&quot;headerlink&quot; title=&quot;一种应用场景&quot;&gt;&lt;/a&gt;一种应用场景&lt;/h3&gt;&lt;p&gt;反向代理一种典型应用场景是我买了一个VPS，假设其IP是X.X.X.X，注册了一个域名example.com，想跑一些网站。有一个用node写的网站，默认端口是3000。&lt;/p&gt;
+&lt;p&gt;如果我们想做出这样的映射：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;example.com         -&amp;gt;    X.X.X.X （即默认的80端口）
+foo.example.com     -&amp;gt;    X.X.X.X:3000 （即node的站点）
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当然，在域名提供商那里做一些配置，实现第一个映射不难，然后我们当然可以通过example.com:3000访问到我的node站。&lt;/p&gt;
+&lt;p&gt;但是这样一点都不酷，当你向妹子吹嘘：“呐，我写了个很屌的网站，example.com，加上3000端口号去访问下”。好吧，这时会想到把该node站的端口改成HTTP默认的80，以便可以直接通过example.com访问到，但是问题又来了，已经有一个站点在80端口上了，这就麻烦了。&lt;/p&gt;
+&lt;p&gt;这时候，用Apache的反向代理可以非常优雅地解决这个问题。&lt;/p&gt;
+&lt;h3 id=&quot;mod-proxy和Apache&quot;&gt;&lt;a href=&quot;#mod-proxy和Apache&quot; class=&quot;headerlink&quot; title=&quot;mod_proxy和Apache&quot;&gt;&lt;/a&gt;mod_proxy和Apache&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.2/mod/mod_proxy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mod_proxy&lt;/a&gt;实现了代理和网关的功能。Apache的代理功能被分到几个不同的模块中：mod_proxy_http，mod_proxy_ftp，mod_proxy_ajp，mod_proxy_balancer，mod_proxy_connect。根据需求需要加载mod_proxy和不同的模块。&lt;/p&gt;
+&lt;h4 id=&quot;安装Apache2&quot;&gt;&lt;a href=&quot;#安装Apache2&quot; class=&quot;headerlink&quot; title=&quot;安装Apache2&quot;&gt;&lt;/a&gt;安装Apache2&lt;/h4&gt;&lt;p&gt;首先确认Apache2已经安装在了机器上。在Ubuntu Server下去&lt;code&gt;/etc/apache2&lt;/code&gt;下看一下，看看有没有&lt;code&gt;apache2.conf&lt;/code&gt;，以及&lt;code&gt;sites-available&lt;/code&gt;等目录，如果没有，使用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;即可安装。安装完成后，在浏览器访问机器的默认的80端口就会看到It works的提示了。&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;/etc/inid.d/apache2&lt;/code&gt;中有apache的控制脚本，使用这些脚本控制Apache。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* Usage: /etc/init.d/apache2 {start|stop|graceful-stop|restart|reload|force-reload|start-htcacheclean|stop-htcacheclean|status}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;安装并加载mod-proxy&quot;&gt;&lt;a href=&quot;#安装并加载mod-proxy&quot; class=&quot;headerlink&quot; title=&quot;安装并加载mod_proxy&quot;&gt;&lt;/a&gt;安装并加载mod_proxy&lt;/h4&gt;&lt;p&gt;接着，使用以下命令看一下Apache目前已经加载了哪些模块：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ apache2ctl -M
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果没有proxy相关的模块，那么就需要安装模块：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libapache2-mod-proxy-html
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;还要安装它的依赖：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libxml2-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接着enable proxy模块：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ a2enmod proxy proxy_http
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此为止，我们做好了准备工作，现在再次查看已加载的模块发现已经有proxy相关的模块了。&lt;/p&gt;
+&lt;h4 id=&quot;配置反向代理&quot;&gt;&lt;a href=&quot;#配置反向代理&quot; class=&quot;headerlink&quot; title=&quot;配置反向代理&quot;&gt;&lt;/a&gt;配置反向代理&lt;/h4&gt;&lt;p&gt;打开Apache2的默认的配置文件&lt;code&gt;/etc/apache2/sites-enabled/000-default&lt;/code&gt;，增加一个&lt;code&gt;VirtualHost *:80&lt;/code&gt;的配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
+    ServerAdmin webmaster@localhost
+    ServerName foo.example.com
+
+    ProxyRequests off
+
+    &amp;lt;Proxy *&amp;gt;
+        Order deny,allow
+        allow from all
+    &amp;lt;/Proxy&amp;gt;
+
+    &amp;lt;Location /&amp;gt;
+        ProxyPass http://localhost:3000/
+        ProxyPassReverse http://localhost:3000/
+    &amp;lt;/Location&amp;gt;
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样，就把来自foo.example.com请求转发给了localhost:3000，而80端口仍然可用。&lt;/p&gt;
+&lt;p&gt;同时将旧的&lt;code&gt;VirtualHost *:80&lt;/code&gt;中&lt;code&gt;ServerName&lt;/code&gt;改成&lt;code&gt;example.com&lt;/code&gt;，完成的配置文件如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
+    ServerAdmin webmaster@localhost
+    ServerName example.com
+
+    DocumentRoot /var/www
+    &amp;lt;Directory /&amp;gt;
+        Options FollowSymLinks
+        AllowOverride None
+    &amp;lt;/Directory&amp;gt;
+    &amp;lt;Directory /var/www/&amp;gt;
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    &amp;lt;/Directory&amp;gt;
+
+    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+    &amp;lt;Directory &amp;quot;/usr/lib/cgi-bin&amp;quot;&amp;gt;
+        AllowOverride None
+        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+        Order allow,deny
+        Allow from all
+    &amp;lt;/Directory&amp;gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    Alias /doc/ &amp;quot;/usr/share/doc/&amp;quot;
+    &amp;lt;Directory &amp;quot;/usr/share/doc/&amp;quot;&amp;gt;
+        Options Indexes MultiViews FollowSymLinks
+        AllowOverride None
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.0/255.0.0.0 ::1/128
+    &amp;lt;/Directory&amp;gt;
+&amp;lt;/VirtualHost&amp;gt;
+
+&amp;lt;VirtualHost *:80&amp;gt;
+    ServerAdmin webmaster@localhost
+    ServerName foo.example.com
+
+    ProxyRequests off
+
+    &amp;lt;Proxy *&amp;gt;
+        Order deny,allow
+        allow from all
+    &amp;lt;/Proxy&amp;gt;
+
+    &amp;lt;Location /&amp;gt;
+        ProxyPass http://localhost:3000/
+        ProxyPassReverse http://localhost:3000/
+    &amp;lt;/Location&amp;gt;
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后，重启一下Apache。对了，别忘了去域名提供商那里设置一下！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---------------------------------------------------------
+HOST NAME | IP ADDRESS/URL                | RECORD TYPE
+---------------------------------------------------------
+@          | http://www.example.com        | URL Redirect
+---------------------------------------------------------
+www          | X.X.X.X                        | A(Address)
+---------------------------------------------------------
+foo          | X.X.X.X                        | A(Address)
+---------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;以上就是我是配置Apache2将不同域名映射到同一IP的不同端口的全过程，如有错误，恳请指正。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;反向代理简介&quot;&gt;&lt;a href=&quot;#反向代理简介&quot; class=&quot;headerlink&quot; title=&quot;反向代理简介&quot;&gt;&lt;/a&gt;反向代理简介&lt;/h3&gt;&lt;p&gt;本文介绍一下使用mod_proxy模块配置Apache2作为反向代理服务器。&lt;/p&gt;
+&lt;p&gt;首先什么是反向代理呢？我们来看两个例子。
+    
+    </summary>
+    
+      <category term="架构" scheme="http://blog.liushuaiko.be/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="Apache" scheme="http://blog.liushuaiko.be/tags/Apache/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NoSQL &amp; MongoDB（3）——Keynote</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-3/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-3/</id>
+    <published>2014-03-18T13:49:00.000Z</published>
+    <updated>2016-07-09T05:42:52.000Z</updated>
+    
+    <content type="html">&lt;p&gt;本次讲座的Keynote，在Sperker Deck上。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;script async class=&quot;speakerdeck-embed&quot; data-id=&quot;6908b030da9901310a6036f9d2e151d0&quot; data-ratio=&quot;1.33333333333333&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本次讲座的Keynote，在Sperker Deck上。
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://blog.liushuaiko.be/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
+    
+      <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NoSQL &amp; MongoDB（2）——说说MongoDB</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/</id>
+    <published>2014-03-18T08:17:00.000Z</published>
+    <updated>2016-07-09T05:42:51.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;MongoDB的特性&quot;&gt;&lt;a href=&quot;#MongoDB的特性&quot; class=&quot;headerlink&quot; title=&quot;MongoDB的特性&quot;&gt;&lt;/a&gt;MongoDB的特性&lt;/h3&gt;&lt;p&gt;MongoDB有很多特性，我只选几个说说，更多的请查阅&lt;a href=&quot;http://www.mongodb.com/learn/mongodb-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&quot;面向文档的存储&quot;&gt;&lt;a href=&quot;#面向文档的存储&quot; class=&quot;headerlink&quot; title=&quot;面向文档的存储&quot;&gt;&lt;/a&gt;面向文档的存储&lt;/h4&gt;&lt;p&gt;MongoDB将数据保存成被称为&lt;em&gt;文档&lt;/em&gt;（document）的二进制表示中，这种表示形式被称为BSON（Binary JSON）。&lt;/p&gt;
+&lt;p&gt;BSON是一种类JSON的二进制表示形式，BSON在给文档添加了一些额外的字段，比如文档的长度等，非常便于遍历；此外，BSON编码和解码的速度也很快，比如整数类型在BSON中就是以32（或64）位的整数存储，因此在编码和解码不用在字符串和整数类型之间换来换去。当然，对小整数来说BSON占用的空间会比JSON略大一点，但解析速度会快很多。&lt;/p&gt;
+&lt;p&gt;有类似结构的文档被保存在一个&lt;em&gt;集合&lt;/em&gt;（collection）中。集合相当于关系型数据库的表，文档相当于关系型数据库的记录，文档里面的域相当于关系型数据库一条记录中的不同的列。&lt;/p&gt;
+&lt;h4 id=&quot;数据存储模式自由&quot;&gt;&lt;a href=&quot;#数据存储模式自由&quot; class=&quot;headerlink&quot; title=&quot;数据存储模式自由&quot;&gt;&lt;/a&gt;数据存储模式自由&lt;/h4&gt;&lt;p&gt;MongoDB的文档是自描述的，我们没有必要向关系型数据库建表那样实现定义好表的结构，甚至同一个集合中的文档结构都可以不同。我们随时可以增删字段。&lt;/p&gt;
+&lt;h4 id=&quot;高性能&quot;&gt;&lt;a href=&quot;#高性能&quot; class=&quot;headerlink&quot; title=&quot;高性能&quot;&gt;&lt;/a&gt;高性能&lt;/h4&gt;&lt;p&gt;MongoDB大量使用内存来加速数据库的操作。在MongoDB中，所有的数据都是通过MMAP读取和操作（&lt;a href=&quot;http://blog.nosqlfan.com/html/3515.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;有一篇非常好的文章来讲MongoDB数据文件内部的结构）。不被访问的数据不加载到内存中，当然这些都是操作系统帮你完成的，MongoDB管理内存的代码非常精炼，原因就是将大部分工作推给了操作系统。正因为此，对于大部分应用来讲，不需要为MongoDB设置额外的缓存层。&lt;/p&gt;
+&lt;h4 id=&quot;扩展方便&quot;&gt;&lt;a href=&quot;#扩展方便&quot; class=&quot;headerlink&quot; title=&quot;扩展方便&quot;&gt;&lt;/a&gt;扩展方便&lt;/h4&gt;&lt;p&gt;MongoDB非常容易使用，水平扩展非常方便。当你发现MongoDB的服务器经常出现内存缺页错误时，说明MongoDB中应用操作的数据集太大，MMAP不能将其合适地映射进内存，可以考虑将数据进行Sharding。MongoDB的一大亮点是支持自动分片，集群根据自动切分数据，做负载均衡。&lt;/p&gt;
+&lt;p&gt;当然，MongoDB还有很多其他的特性，比如GridFS，地理空间索引，Replica Set等等，详细请看官方的文档。不过看了文档也只是在理论上对MongoDB有一个认识，在实际应用时会遇上什么坑都是未知的。&lt;/p&gt;
+&lt;p&gt;Foursquare一直是MongoDB的忠实用户，但是也遇到过因MongoDB的Sharding负载不均导致的网站跪了11个小时。&lt;/p&gt;
+&lt;h3 id=&quot;也谈MongoDB数据模型的设计&quot;&gt;&lt;a href=&quot;#也谈MongoDB数据模型的设计&quot; class=&quot;headerlink&quot; title=&quot;也谈MongoDB数据模型的设计&quot;&gt;&lt;/a&gt;也谈MongoDB数据模型的设计&lt;/h3&gt;&lt;p&gt;在MongoDB数据库存储模式的设计中，比较重要的一点就是如何表现各个实体之间的关系，在MongoDB中，有两种方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;references（Normalized）&lt;/li&gt;
+&lt;li&gt;embedded（Denormalized）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;引用式文档设计&quot;&gt;&lt;a href=&quot;#引用式文档设计&quot; class=&quot;headerlink&quot; title=&quot;引用式文档设计&quot;&gt;&lt;/a&gt;引用式文档设计&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/mongo-data-model-normalized.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;引用式文档设计跟RDBMS的数据模型差不多，对数据库的模型进行范式化，这样做让实体时间的结构表现的更加清晰，能表现出数据模型内部之间复杂的关系。在对文档进行更新的时候，因为是以引用的方式存储，只需要更新一次被引用的文档即可，有利于数据库的一致性，但是从另一方面来看，如果引用的文档和被引用的文档需要同时更新，引用式文档设计还得做两次写操作呢（MongoDB的原子性写操作是在一个文档级别的）。此外，这种方式的设计可以适应更加灵活的查询。&lt;/p&gt;
+&lt;p&gt;但是这样设计的劣势也很明显，在查询的时候，不得不再去获得一次引用的文档，不论是一次查询驱动帮你将引用的文档替换成了实际的文档（如PyMongo）还是得在客户端做两次查询，都增加了开销。&lt;/p&gt;
+&lt;h4 id=&quot;嵌入式文档设计&quot;&gt;&lt;a href=&quot;#嵌入式文档设计&quot; class=&quot;headerlink&quot; title=&quot;嵌入式文档设计&quot;&gt;&lt;/a&gt;嵌入式文档设计&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/mongo-data-model-denormalized.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;嵌入式的文档设计相当于提前做了join的操作，比较设计实体模型中的包含关系。这样设计优势显而易见吧，读取操作有更好的性能，而且这样的设计能较好地表示层级关系（最深支持100层的嵌套）。在更新文档的时候，可以在一个原子的写操作内完成，但是可能会出现不一致性。比如两个文档都嵌入了同一个文档，在更新完一个的时候，应用突然崩了，另一个文档还没来得及更新。&lt;/p&gt;
+&lt;p&gt;需要注意的一点是，由于MongoDB的Schema非常灵活，我们完全可以在创建完文档后不断给文档添加嵌入新的文档，这就导致了文档的尺寸在创建之后不断增加，最大可以增大到BSON文档的最大的size——16MB，虽然MongoDB会为文档留出一定的&lt;a href=&quot;http://docs.mongodb.org/manual/core/record-padding/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;padding&lt;/a&gt;，但是尺寸太大的话，文档会被重新安排位置，这样会影响写入的性能，也会造成碎片。&lt;/p&gt;
+&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;MongoDB的Schema非常灵活，也正因为此，我们需要对应用场景进行更加透彻的分析，一切以应用为中心。&lt;/p&gt;
+&lt;p&gt;如《深入学习MongoDB》一书中所说的那样，不妨考虑一下下面的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;估算一下读写比&lt;/li&gt;
+&lt;li&gt;一致性很重要吗？&lt;/li&gt;
+&lt;li&gt;要不要快速的读取？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/MongoDB&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MongoDB, wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mongodb.com/learn/mongodb-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MongoDB Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://book.douban.com/subject/6068947/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《MongoDB权威指南》&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://book.douban.com/subject/10439364/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《深入学习MongoDB》&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://blog.liushuaiko.be/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
+    
+      <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NoSQL &amp; MongoDB（1）——也谈NoSQL</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/03/17/nosql-mongodb-1/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/03/17/nosql-mongodb-1/</id>
+    <published>2014-03-17T08:37:00.000Z</published>
+    <updated>2016-07-09T05:42:50.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;贵工大这破网我就不得不抱怨一句了，有位师兄形容这“网速慢的心都在滴血”，太恰当不过了！&lt;/p&gt;
+&lt;p&gt;本人这个NoSQL&amp;amp;MongoDB的技术分享从上学期开始就开始准备了，但是上学期师弟们考试的考试，把妹的把妹，抢票的抢票，基本对科研没什么激情了，于是移到了这学期。写点东西捋一下思路，同时也做一下总结。&lt;/p&gt;
+&lt;p&gt;当然，我只能从理论上把我看到的、听到的做出一些总结，并没有丰富的实际应用经验，恳请大家对我理解出现偏差的地方做出指正。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;No-SQL&quot;&gt;&lt;a href=&quot;#No-SQL&quot; class=&quot;headerlink&quot; title=&quot;No-SQL&quot;&gt;&lt;/a&gt;No-SQL&lt;/h3&gt;&lt;h4 id=&quot;Carlo-Strozzi-和他的-“NoSQL”&quot;&gt;&lt;a href=&quot;#Carlo-Strozzi-和他的-“NoSQL”&quot; class=&quot;headerlink&quot; title=&quot;Carlo Strozzi 和他的 “NoSQL”&quot;&gt;&lt;/a&gt;Carlo Strozzi 和他的 “NoSQL”&lt;/h4&gt;&lt;p&gt;提起NoSQL这个概念，就不得不提起&lt;a href=&quot;http://www.strozzi.it/users/carlo/vitae.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Carlo Strozzi&lt;/a&gt;。据史料记载，早在1998年，Strozzi用NoSQL来命名他开发的轻量级开源的&lt;strong&gt;关系型&lt;/strong&gt;数据库，这个关系型数据库没有通常的SQL（Structured Query Language）查询接口，它的给用户提供的接口是UNIX的shell，使用一系列的命令流，基于UNIX IO重定向的支持，在操作系统的管道之上，一个命令的结果可以传给另一个命令，来实现数据库的查询等操作。此外，Strozzi NoSQL的数据存储在操作系统的文件系统中的普通文件里，以ASCII码的形式存储，非常方便移植，而且可以非常方便的使用其他文本处理命令处理，例如sed等。&lt;/p&gt;
+&lt;p&gt;总结一下，这里的“NoSQL”数据库不过就是一系列Shell命令的集合，这些命令操作的是OS文件系统的普通文件。&lt;/p&gt;
+&lt;p&gt;因此，在这里，“NoSQL”意为——“没有结构化查询语言”。&lt;/p&gt;
+&lt;p&gt;Strozzi还特意强调了他的NoSQL和现在的NoSQL运动的不同，他形容现在的NoSQL运动：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;departs from the relational model altogether; it should therefore have been called more appropriately ‘NoREL’&lt;br&gt;完全背离了关系模型，叫它“No Relationship”更合适&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;A-meetup-San-Francisco&quot;&gt;&lt;a href=&quot;#A-meetup-San-Francisco&quot; class=&quot;headerlink&quot; title=&quot;A meetup @ San Francisco&quot;&gt;&lt;/a&gt;A meetup @ San Francisco&lt;/h4&gt;&lt;p&gt;到2009年，一位叫Johan Oskarsson人举办了一个技术聚会，是一个关于“开源，分布式，非关系型的数据库”的讨论和分享的会议。会上讨论了比较成熟的例子——Google的&lt;a href=&quot;http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BigTable&lt;/a&gt;和Amazon的&lt;a href=&quot;http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dynamo&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;在这个会期间，时任Rackspace员工的Eric Evans提出“NoSQL”。他提出这个名字纯属一拍脑门就定的那种，在当时看来比较片面，因为Johan本来是想将会议的重心放在大数据以及分布式系统上，虽然有些的确是非关系型的系统，但是直接叫“NoSQL”实在有点“跑偏”。&lt;/p&gt;
+&lt;p&gt;Eric自己也说：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My regret however isn’t about what the name says, it’s about what it doesn’t.&lt;br&gt;我感到抱歉的不是NoSQL表达出的什么意思，而是它没表达出的意思。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;到此，NoSQL可以理解为Non-Relationship，人们anti-RDBMS，对非关系型的数据库的认识逐渐加深。&lt;/p&gt;
+&lt;h4 id=&quot;no-sql-east-Atlanta&quot;&gt;&lt;a href=&quot;#no-sql-east-Atlanta&quot; class=&quot;headerlink&quot; title=&quot;no:sql(east) @ Atlanta&quot;&gt;&lt;/a&gt;no:sql(east) @ Atlanta&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;SELECT fun, profit
+FROM real_world
+WHERE relation=false;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上是本次会议的主题。可以看到，它是用SQL写的，而本次会议又是有关于NoSQL的会议。在会议上，大部分会议的出席者觉得将NoSQL理解为“Not Only SQL”更合适。他们认为，关系型数据库与非关系型数据库各有用武之地，不能完全否定、反对任何一个。NoSQL的存在恰恰是对大部分RDBMS技术实现上的限制做了弥补。&lt;/p&gt;
+&lt;p&gt;到现在，NoSQL的含义就比较和谐了，“Not Only SQL”。&lt;/p&gt;
+&lt;h3 id=&quot;CAP理论&quot;&gt;&lt;a href=&quot;#CAP理论&quot; class=&quot;headerlink&quot; title=&quot;CAP理论&quot;&gt;&lt;/a&gt;CAP理论&lt;/h3&gt;&lt;p&gt;CAP理论是理论计算机科学中一个定理，在2000年由UC Berkeley的Eric Brewer教授提出猜想，2年后，MIT的两个小伙&lt;a href=&quot;http://www.julianbrowne.com/article/viewer/brewers-cap-theorem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;证明&lt;/a&gt;了它，使之成为一个定理。这个定理指出了：一个分布式系统&lt;strong&gt;不可能&lt;/strong&gt;同时保证以下三点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Consistency（一致性）&lt;/li&gt;
+&lt;li&gt;Availability （可用性）&lt;/li&gt;
+&lt;li&gt;Partition tolerance （分区容忍性）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;Consistency&quot;&gt;&lt;a href=&quot;#Consistency&quot; class=&quot;headerlink&quot; title=&quot;Consistency&quot;&gt;&lt;/a&gt;Consistency&lt;/h4&gt;&lt;p&gt;整个集群的数据都是一致的，因此我们不管读写集群中哪个节点都可以得到相同的数据。&lt;/p&gt;
+&lt;h4 id=&quot;Availability&quot;&gt;&lt;a href=&quot;#Availability&quot; class=&quot;headerlink&quot; title=&quot;Availability&quot;&gt;&lt;/a&gt;Availability&lt;/h4&gt;&lt;p&gt;整个集群是可访问的，对一个请求来说，不管请求成功或失败，都有回应。&lt;/p&gt;
+&lt;h4 id=&quot;Partition-tolerance&quot;&gt;&lt;a href=&quot;#Partition-tolerance&quot; class=&quot;headerlink&quot; title=&quot;Partition tolerance&quot;&gt;&lt;/a&gt;Partition tolerance&lt;/h4&gt;&lt;p&gt;当集群出现通信上的中断导致的任意信息的丢失时，集群是可以接受的，可以容忍的。&lt;/p&gt;
+&lt;p&gt;以上三者不可能同时获得。举个例子，一个分布式系统中的两个节点X和Y，同为主节点，现在假设网络出现故障，导致X和Y不能通信，他们之间不能互发信息了，不过我可以忍啊，丢点信息就丢点信息吧（满足P）！那么现在C和A我必须放弃一个，不信请看，这时Y点来了一个写请求，我可以怎么办？&lt;/p&gt;
+&lt;p&gt;A）放弃一致性，接受这个写请求，写到Y点，但是X和Y的数据不同步&lt;br&gt;B）放弃可用性，直接拒绝写请求，基本上整个集群也就不工作了&lt;/p&gt;
+&lt;p&gt;而既然是一个分布式的系统，必须能容忍分区，假设不能容忍，那么我这个分布式系统中每个点之间一点信息都不能丢，网络一点故障都不能有！这样的分布式系统是不存在的（只有单机系统可以满足这）。那么我们必须得在C和A之间做一个取舍。&lt;/p&gt;
+&lt;h3 id=&quot;BASE&quot;&gt;&lt;a href=&quot;#BASE&quot; class=&quot;headerlink&quot; title=&quot;BASE&quot;&gt;&lt;/a&gt;BASE&lt;/h3&gt;&lt;p&gt;BASE这个缩写也是由Eric Brewer提出的，他自己也承认有点生搬硬凑的意思。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basically Available（基本可用）&lt;/li&gt;
+&lt;li&gt;Soft state（软状态）&lt;/li&gt;
+&lt;li&gt;Eventual consistency（最终一致性）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;BASE完全不同ACID。ACID比较被人熟知，数据库事务的四个特性原子性，事务内的操作要么全成功，要么全失败；一致性，事务执行前后数据库的完整性没有被破坏，从一个合法的状态到另一个合法的状态；隔离性，当多个事务并发访问数据库时，保证他们一个一个执行；持久性，事务完成后，该事务对数据库做出的更改是永久被保存的，即使数据库执行完事务后立刻就崩了。&lt;/p&gt;
+&lt;p&gt;BASE原则通常被用来描述NoSQL数据库。其中基本可用表示系统绝大部分是可用的，但是服务器可能会因为一些原因挂掉；软状态指的是整个系统的状态会随时变化，即使没有新的写操作，因为系统是最终一致性；最终一致性，弱一致性的特例，不保证任一时刻节点同一份数据都是相同的，但随着时间的迁移，不同节点的同一份数据朝同一趋势变化，最终一致，比如DNS系统就是典型的最终一致性。&lt;/p&gt;
+&lt;h3 id=&quot;为什么我们需要NoSQL&quot;&gt;&lt;a href=&quot;#为什么我们需要NoSQL&quot; class=&quot;headerlink&quot; title=&quot;为什么我们需要NoSQL&quot;&gt;&lt;/a&gt;为什么我们需要NoSQL&lt;/h3&gt;&lt;p&gt;在有了理论基础之后，我们不禁思考，为什么我们需要NoSQL？&lt;/p&gt;
+&lt;p&gt;传统的数据库一般是比较注重CAP理论中的CA。由于传统数据库对事物的支持，导致其很难扩展。实际上开始的时候，业界的公司并没有开始就去反对SQL，反对关系型设计，而是随着业务的扩展与增加，他们发现传统的关系型数据库越来越不能满足他们的需求：空前的事务处理，对海量数据访问低延迟，以及在不可靠环境中服务的高可用性。开始这些公司也尝试了传统的解决方案：为硬件升级，当为硬件各种升级也满足不了需求时，人们就尝试将现有的数据库模式（Schema）简化，反范式化，不要那么多的外键引用，引进各种查询缓存，将服务器分成读写专用等等。&lt;/p&gt;
+&lt;p&gt;虽然这么多技术大大扩展了现有的数据库的功能，但是都没有解决最核心的问题，都治标不治本。&lt;/p&gt;
+&lt;p&gt;接着，IT界发生了一些戏剧性的变化。当大多数关系型数据库技术被设计的时候，硬件部署上主要的模型是需要高配置的服务器以及专用的存储区域网络（SAN）。关系型数据库的这种模型被牢牢地印在脑子里：&lt;strong&gt;一台&lt;/strong&gt;单独的服务器负责管理整个存储系统的一致性状态，换句话说，数据库只管理本地的数据文件，在硬件允许的情况下尽可能多地提供并发的访问。当时的数据库不需要做冗余，因为单机已经能满足设计需求了，数据的可靠性也可以通过一个随时可以接替Master位置的可以处理查询请求的机器来保证。除了这种简单的失效备援的复制，当时有很少的技术可以选择，而且他们都是基于高一致性的中心化数据管理机制的观念。最后，这种关系型数据库再普遍不过的架构和设计终于不能满足水平扩展、低延迟、以及可用性的需求。&lt;/p&gt;
+&lt;p&gt;人们的需求渐渐清晰，完全可以开发一个新的东西来满足这些需求啊！接着这些公司就开发了一些机构内部使用的解决方案，这些方案抛弃了现有的数据库的一些特性，如Join、强一致性等等，范式也从各种表之间的制约变成了更像是简单的Key-Value的查询，在部署上也不需要各种昂贵的服务器了。于是这些公司就把现有的数据库放到一边，他们明白可以在新的解决方案上做的更好，这些机构内部的解决方案就对我们现在在市场上看到的很多NoSQL做了很大的启发，NoSQL就是这样逐渐发展起来。&lt;/p&gt;
+&lt;h3 id=&quot;现在较为常见的NoSQL&quot;&gt;&lt;a href=&quot;#现在较为常见的NoSQL&quot; class=&quot;headerlink&quot; title=&quot;现在较为常见的NoSQL&quot;&gt;&lt;/a&gt;现在较为常见的NoSQL&lt;/h3&gt;&lt;p&gt;有一个网站列举了市面上较为常见的NoSQL数据库：&lt;a href=&quot;http://nosql-databases.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nosql-databases&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下面有一张表更加直观：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/nosql-db.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://yankaycom-wordpress.stor.sinaapp.com/NoSql_Database_Note.html?q=/wp-content/NoSql_Database_Note.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL数据库笔谈, 颜开的博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL, Greg Burd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/NoSQL&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL, wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Strozzi_NoSQL_\(RDBMS\&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Strozzi NoSQL, wikipedia&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.julianbrowne.com/article/viewer/brewers-cap-theorem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Brewer’s CAP Theorem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/12346326/nosql-cap-theorem-availability-and-partition-tolerance&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL CAP theorem - Availability and Partition Tolerance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/3342497/explanation-of-base-terminology&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Explanation of BASE terminology&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://dirlt.com/you-can-not-sacrifice-partition-tolerance.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;You Can’t Sacrifice Partition Tolerance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;贵工大这破网我就不得不抱怨一句了，有位师兄形容这“网速慢的心都在滴血”，太恰当不过了！&lt;/p&gt;
+&lt;p&gt;本人这个NoSQL&amp;amp;MongoDB的技术分享从上学期开始就开始准备了，但是上学期师弟们考试的考试，把妹的把妹，抢票的抢票，基本对科研没什么激情了，于是移到了这学期。写点东西捋一下思路，同时也做一下总结。&lt;/p&gt;
+&lt;p&gt;当然，我只能从理论上把我看到的、听到的做出一些总结，并没有丰富的实际应用经验，恳请大家对我理解出现偏差的地方做出指正。
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://blog.liushuaiko.be/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
+    
+      <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fluentd初探（3）——实战：Python + MongoDB</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/03/09/fluentd-3/</id>
+    <published>2014-03-09T08:44:00.000Z</published>
+    <updated>2016-07-09T05:42:48.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;把Python程序的log输出到Fluentd中很简单，Fluentd已经为你写好了lib——&lt;a href=&quot;https://github.com/fluent/fluent-logger-python&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fluent-logger-python&lt;/a&gt;。从Fluentd中把数据存到MongoDB也不是很困难，因为我们安装的是稳定版本的Fluentd——td-agent，其已经自带了把数据从Fluentd输出到MongoDB的输出插件——&lt;code&gt;out_mongo&lt;/code&gt;，我们要做的就是简单做一些简单的配置。&lt;/p&gt;
+&lt;p&gt;在动手操作之前，我们还需要明白一些事情，就是通过Fluentd，把log保存到MongoDB中相比直接在程序中输出到MongoDB，有哪些好处？&lt;/p&gt;
+&lt;p&gt;一般一个程序会频繁地大量地输出log，如果直接将log写到MongoDB中，可能会引起性能问题的是数据库的锁。虽然MongoDB的锁（更多参见&lt;a href=&quot;http://docs.mongodb.org/manual/faq/concurrency/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;）比较轻量级，甚至有人提出了叫它“栓”更合适，但是频繁的insert也会引起资源竞争，并排斥其他读操作。而使用Fluentd等日志收集框架，它们会将logs缓存，并异步地以&lt;a href=&quot;http://docs.mongodb.org/manual/core/bulk-inserts/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bulk inserts&lt;/a&gt;的方式写入MongoDB，比直接写入高效很多，而且对程序的性能影响很低。而且就Fluentd来说，它的数据记录是JSON形式，与MongoDB的数据格式BSON融合搭配非常完美，因此用Fluentd来收集并写入MongoDB是较为理想的解决方案。&lt;/p&gt;
+&lt;p&gt;架构图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/fluent-mongodb.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h3&gt;&lt;h4 id=&quot;安装fluent-logger-python&quot;&gt;&lt;a href=&quot;#安装fluent-logger-python&quot; class=&quot;headerlink&quot; title=&quot;安装fluent-logger-python&quot;&gt;&lt;/a&gt;安装fluent-logger-python&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;$ sudo pip install fluent-logger
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;为Fluentd配置输入插件&quot;&gt;&lt;a href=&quot;#为Fluentd配置输入插件&quot; class=&quot;headerlink&quot; title=&quot;为Fluentd配置输入插件&quot;&gt;&lt;/a&gt;为Fluentd配置输入插件&lt;/h4&gt;&lt;p&gt;要求Fluentd的输入插件&lt;strong&gt;必须&lt;/strong&gt;做出如下配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;source&amp;gt;
+  type tcp
+  port 24224
+&amp;lt;/source&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;为Fluentd配置输出插件&quot;&gt;&lt;a href=&quot;#为Fluentd配置输出插件&quot; class=&quot;headerlink&quot; title=&quot;为Fluentd配置输出插件&quot;&gt;&lt;/a&gt;为Fluentd配置输出插件&lt;/h4&gt;&lt;p&gt;一个样例的输出插件配置如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;match mongo.*&amp;gt;
+    # plugin type, must be mongo
+    type mongo
+
+    # mongodb host + port
+    host 127.0.0.1
+    port 27017
+
+    # mongodb db + collection
+    database grlog
+    collection log
+
+    # for capped collection
+    capped
+    capped_size 1024m
+
+    # authentication
+    user liushuaikobe
+    password secret
+
+    # flush interval
+    flush_interval 10s
+&amp;lt;/match&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;几个点说一下，其他的不言而喻。&lt;/p&gt;
+&lt;h5 id=&quot;capped&quot;&gt;&lt;a href=&quot;#capped&quot; class=&quot;headerlink&quot; title=&quot;capped&quot;&gt;&lt;/a&gt;&lt;code&gt;capped&lt;/code&gt;&lt;/h5&gt;&lt;p&gt;即MongoDB固定大小的集合（&lt;a href=&quot;http://docs.mongodb.org/manual/core/capped-collections/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Capped Collections&lt;/a&gt;）。非常适合用来存储log信息。如果你不知道，建议先去学学基础的MongoDB的知识。&lt;/p&gt;
+&lt;h5 id=&quot;flush-interval&quot;&gt;&lt;a href=&quot;#flush-interval&quot; class=&quot;headerlink&quot; title=&quot;flush_interval&quot;&gt;&lt;/a&gt;&lt;code&gt;flush_interval&lt;/code&gt;&lt;/h5&gt;&lt;p&gt;这个参数指定了多长时间数据被写入MongoDB一次。默认是60s。支持“s”(seconds)，“m”(minutes)，“h”(hours) 后缀。&lt;/p&gt;
+&lt;h5 id=&quot;collection&quot;&gt;&lt;a href=&quot;#collection&quot; class=&quot;headerlink&quot; title=&quot;collection&quot;&gt;&lt;/a&gt;&lt;code&gt;collection&lt;/code&gt;&lt;/h5&gt;&lt;p&gt;这个参数指定了数据存入MongoDB的哪个集合。这个参数是必须的，除非设置了&lt;code&gt;tag_mapped&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tag_mapped&lt;/code&gt;告诉Fluentd根据数据记录的tag信息把数据记录放入不同的MongoDB集合。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;match mongo.*&amp;gt;
+    ...
+
+    # Set &amp;apos;tag_mapped&amp;apos; if you want to use tag mapped mode.
+    tag_mapped
+
+    # If the tag is &amp;quot;mongo.foo&amp;quot;, then the prefix &amp;quot;mongo.&amp;quot; is removed.
+    # The inserted collection name is &amp;quot;foo&amp;quot;.
+    remove_tag_prefix mongo.
+
+    ...
+&amp;lt;/match&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;更多高级的配置&quot;&gt;&lt;a href=&quot;#更多高级的配置&quot; class=&quot;headerlink&quot; title=&quot;更多高级的配置&quot;&gt;&lt;/a&gt;更多高级的配置&lt;/h5&gt;&lt;p&gt;还有很多更具体的配置，比如buffer相关等，数据写入MongoDB时使用的线程数等，详情查看&lt;a href=&quot;http://docs.fluentd.org/articles/out_mongo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&quot;重启td-agent&quot;&gt;&lt;a href=&quot;#重启td-agent&quot; class=&quot;headerlink&quot; title=&quot;重启td-agent&quot;&gt;&lt;/a&gt;重启td-agent&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;$ sudo service td-agent restart
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;代码编写&quot;&gt;&lt;a href=&quot;#代码编写&quot; class=&quot;headerlink&quot; title=&quot;代码编写&quot;&gt;&lt;/a&gt;代码编写&lt;/h3&gt;&lt;p&gt;接下来就是实际编写代码了，也非常简单。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from fluent import sender
+from fluent import event
+
+sender.setup(&amp;apos;app&amp;apos;, host=&amp;apos;127.0.0.1&amp;apos;, port=24224)
+event.Event(&amp;apos;follow&amp;apos;, {
+    &amp;apos;msg_1&amp;apos;: &amp;apos;msg 1&amp;apos;,
+    &amp;apos;msg_2&amp;apos;: &amp;apos;msg 2&amp;apos;
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的代码就将一条数据记录（被称为event）发给了Fluentd，剩下的就是Fluentd根据你的配置把这些信息写入MongoDB了。&lt;/p&gt;
+&lt;p&gt;当然，在实际的项目中，可以采取一些灵活的手段。比如，可以根据上面所述的&lt;code&gt;tag_mapped&lt;/code&gt;将不同LEVEL的log输出到不同的集合中。&lt;/p&gt;
+&lt;p&gt;附上我的代码，仅供参考，如有错误，恳请指正。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; logging&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; fluent &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sender&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; fluent &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; event&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; config&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;__author__ = &lt;span class=&quot;string&quot;&gt;&#39;liushuai&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;DEBUG = logging.DEBUG&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;INFO = logging.INFO&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;WARNING = logging.WARNING&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ERROR = logging.ERROR&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;CRITICAL = logging.CRITICAL&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;_level_tag_name = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    DEBUG: &lt;span class=&quot;string&quot;&gt;&quot;debug&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    INFO: &lt;span class=&quot;string&quot;&gt;&quot;info&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    WARNING: &lt;span class=&quot;string&quot;&gt;&quot;warning&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ERROR: &lt;span class=&quot;string&quot;&gt;&quot;error&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    CRITICAL: &lt;span class=&quot;string&quot;&gt;&quot;critical&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sender.setup(config.FLUENTD_TAG, host=config.FLUENTD_HOST, port=config.FLUENTD_PORT)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(level, msg)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    event.Event(_level_tag_name.get(level, &lt;span class=&quot;string&quot;&gt;&quot;unknown&quot;&lt;/span&gt;), &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;msg&quot;&lt;/span&gt;: msg,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;level&quot;&lt;/span&gt;: _level_tag_name.get(level, &lt;span class=&quot;string&quot;&gt;&quot;unknown&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;单元测试：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; unittest &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; TestCase&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; log&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;__author__ = &lt;span class=&quot;string&quot;&gt;&#39;liushuai&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;TestLog&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TestCase)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;test_log&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        msg = &lt;span class=&quot;string&quot;&gt;&quot;This log is just for testing.&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; _ &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.CRITICAL, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.ERROR, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.WARNING, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.INFO, msg)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            log.log(log.DEBUG, msg)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以见到log已经被成功写入了MongoDB（可能会有一些延迟）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/fluentd-mongodb-log-example.png?imageView2/2/w/400&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;以上就是我使用Fluentd + Python + MongoDB进行项目log信息的集中处理的探索全过程，希望对你有帮助。如有错误，恳请留言指正。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;本文主要介绍Fluentd在Python Application中的应用，将Python程序在运行时输出的log输入到Fluentd，并最终持久化到MongoDB中。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="架构" scheme="http://blog.liushuaiko.be/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="Python" scheme="http://blog.liushuaiko.be/tags/Python/"/>
+    
+      <category term="Fluentd" scheme="http://blog.liushuaiko.be/tags/Fluentd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fluentd初探（2）——基本配置</title>
+    <link href="http://blog.liushuaiko.be/blog/2014/03/09/fluentd-2/"/>
+    <id>http://blog.liushuaiko.be/blog/2014/03/09/fluentd-2/</id>
+    <published>2014-03-09T08:36:00.000Z</published>
+    <updated>2016-07-09T05:42:46.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;Fluentd的配置文件让我们可以通过指定输入输出插件以及设置各个插件的参数来控制Fluentd的输入输出行为。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;配置文件的位置&quot;&gt;&lt;a href=&quot;#配置文件的位置&quot; class=&quot;headerlink&quot; title=&quot;配置文件的位置&quot;&gt;&lt;/a&gt;配置文件的位置&lt;/h3&gt;&lt;p&gt;由于我们之前采用的是.rpm/.deb方式安装的稳定版本的Fluentd——td-agent，采用这种方式安装的配置文件在此：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/td-agent/td-agent.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;配置文件中一些基本指令&quot;&gt;&lt;a href=&quot;#配置文件中一些基本指令&quot; class=&quot;headerlink&quot; title=&quot;配置文件中一些基本指令&quot;&gt;&lt;/a&gt;配置文件中一些基本指令&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;source&lt;/code&gt; 决定输入源&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;match&lt;/code&gt; 决定输出目的地&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include&lt;/code&gt; 指定配置文件的包含&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;实战&quot;&gt;&lt;a href=&quot;#实战&quot; class=&quot;headerlink&quot; title=&quot;实战&quot;&gt;&lt;/a&gt;实战&lt;/h3&gt;&lt;h4 id=&quot;source&quot;&gt;&lt;a href=&quot;#source&quot; class=&quot;headerlink&quot; title=&quot;source&quot;&gt;&lt;/a&gt;&lt;code&gt;source&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;Fluentd的数据输入源是通过&lt;code&gt;source&lt;/code&gt;指令，选取使用什么输入插件，并加以配置来决定的。Fluentd标准输入插件有两个：&lt;code&gt;http&lt;/code&gt;和&lt;code&gt;forward&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;http&lt;/code&gt; 指定Fluentd接收来自HTTP的数据信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;forward&lt;/code&gt; 指定Fluentd接收来自TCP的数据包的信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;二者可以同时存在，也即Fluentd可以同时接受来自两个源，甚至多个源的信息。&lt;/p&gt;
+&lt;p&gt;每个source指令&lt;strong&gt;必须&lt;/strong&gt;包含一个&lt;code&gt;type&lt;/code&gt;参数。，用来指定该source使用哪个输入插件，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Receive events from 24224/tcp
+# This is used by log forwarding and the fluent-cat command
+&amp;lt;source&amp;gt;
+  type forward
+  port 24224
+&amp;lt;/source&amp;gt;
+
+# http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
+&amp;lt;source&amp;gt;
+  type http
+  port 9880
+&amp;lt;/source&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;插播消息一：Routing&quot;&gt;&lt;a href=&quot;#插播消息一：Routing&quot; class=&quot;headerlink&quot; title=&quot;插播消息一：Routing&quot;&gt;&lt;/a&gt;插播消息一：Routing&lt;/h4&gt;&lt;p&gt;Fluentd接收到数据后，输入的数据被提交到Fluentd内部的路由模块。一条数据记录包括三方面的信息，tag，time，record。tag是一个被“.”分隔开的字符串（比e.g. myapp.access），用做路由引擎路由时的依据。time域是由输入插件指定的，必须采用Unix时间格式，record就是数据的具体内容了。一条数据记录是一个JSON对象。&lt;/p&gt;
+&lt;p&gt;比如在上述例子中，这个请求&lt;code&gt;http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}&lt;/code&gt;，让Fluentd的HTTP输入插件向路由模块提交了如下信息：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# generated by http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
+tag: myapp.access
+time: (current time)
+record: {&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;插播消息二：自己写输入插件&quot;&gt;&lt;a href=&quot;#插播消息二：自己写输入插件&quot; class=&quot;headerlink&quot; title=&quot;插播消息二：自己写输入插件&quot;&gt;&lt;/a&gt;插播消息二：自己写输入插件&lt;/h4&gt;&lt;p&gt;在&lt;a href=&quot;http://docs.fluentd.org/articles/input-plugin-overview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;查看更多信息。&lt;/p&gt;
+&lt;h4 id=&quot;match——告诉Fluentd用收到的数据做什么！&quot;&gt;&lt;a href=&quot;#match——告诉Fluentd用收到的数据做什么！&quot; class=&quot;headerlink&quot; title=&quot;match——告诉Fluentd用收到的数据做什么！&quot;&gt;&lt;/a&gt;&lt;code&gt;match&lt;/code&gt;——告诉Fluentd用收到的数据做什么！&lt;/h4&gt;&lt;p&gt;match根据上述的数据记录的tag信息对记录做出不同的处理。最常见的是通过该指令告诉Fluentd将收到的数据输出的不同的地方（这也是为什么match指令中指定的插件被称为输出插件）。Fluentd标准的输出插件是&lt;code&gt;file&lt;/code&gt;和&lt;code&gt;forward&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Receive events from 24224/tcp
+# This is used by log forwarding and the fluent-cat command
+&amp;lt;source&amp;gt;
+  type forward
+  port 24224
+&amp;lt;/source&amp;gt;
+
+# http://this.host:9880/myapp.access?json={&amp;quot;event&amp;quot;:&amp;quot;data&amp;quot;}
+&amp;lt;source&amp;gt;
+  type http
+  port 9880
+&amp;lt;/source&amp;gt;
+
+# Match events tagged with &amp;quot;myapp.access&amp;quot; and
+# store them to /var/log/fluent/access.%Y-%m-%d
+# Of course, you can control how you partition your data
+# with the time_slice_format option.
+&amp;lt;match myapp.access&amp;gt;
+  type file
+  path /var/log/fluent/access
+&amp;lt;/match&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;类似地，每个match指令都得包含一个&lt;code&gt;type&lt;/code&gt;参数来指定输出插件。在上面的例子中，只有tag匹配上myapp.access的数据记录会被输出到/var/log/fluent/access中。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;forward&lt;/code&gt;输出插件是将接收到的数据流转发到其他Fluentd节点，不赘述。&lt;/p&gt;
+&lt;p&gt;当然，也可以写自己的输出插件，更多信息请看&lt;a href=&quot;http://docs.fluentd.org/articles/output-plugin-overview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;match指令中的tag模式可以支持通用字符匹配。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; &lt;code&gt;a.*&lt;/code&gt;可以匹配&lt;code&gt;a.b&lt;/code&gt;，&lt;code&gt;a.c&lt;/code&gt;，不可以匹配&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;a.b.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;**&lt;/code&gt; &lt;code&gt;a.**&lt;/code&gt;可以匹配&lt;code&gt;a&lt;/code&gt;，&lt;code&gt;a.b&lt;/code&gt;，&lt;code&gt;a.b.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{X, Y, Z}&lt;/code&gt; &lt;code&gt;{a, b}&lt;/code&gt;可以匹配&lt;code&gt;a&lt;/code&gt;，&lt;code&gt;b&lt;/code&gt;，不可以匹配&lt;code&gt;c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上可以混合使用，例如&lt;code&gt;a.{b,c}.*&lt;/code&gt;，&lt;code&gt;a.{b,c.**}&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&quot;include——重用配置&quot;&gt;&lt;a href=&quot;#include——重用配置&quot; class=&quot;headerlink&quot; title=&quot;include——重用配置&quot;&gt;&lt;/a&gt;&lt;code&gt;include&lt;/code&gt;——重用配置&lt;/h4&gt;&lt;p&gt;例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# absolute path
+include /path/to/config.conf
+
+# if using a relative path, the directive will use
+# the dirname of this config file to expand the path
+include extra.conf
+
+# glob match pattern
+include config.d/*.conf
+
+# http
+include http://example.com/fluent.conf
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;Fluentd的配置文件让我们可以通过指定输入输出插件以及设置各个插件的参数来控制Fluentd的输入输出行为。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="架构" scheme="http://blog.liushuaiko.be/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="Python" scheme="http://blog.liushuaiko.be/tags/Python/"/>
+    
+      <category term="Fluentd" scheme="http://blog.liushuaiko.be/tags/Fluentd/"/>
+    
+  </entry>
+  
+</feed>

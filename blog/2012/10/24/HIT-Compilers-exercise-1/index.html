@@ -1,0 +1,975 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="哈工大,编译原理," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这次实验被“过来人”们定位很简单，实验内容如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈工大软件学院编译原理实验1——词法分析">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2012/10/24/HIT-Compilers-exercise-1/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="这次实验被“过来人”们定位很简单，实验内容如下：">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_3.jpg">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_4.jpg">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_5.jpg">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_6.jpg">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_7.jpg">
+<meta property="og:image" content="http://vars.qiniudn.com/bianyiyuanli_8.jpg">
+<meta property="og:updated_time" content="2016-07-09T06:05:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈工大软件学院编译原理实验1——词法分析">
+<meta name="twitter:description" content="这次实验被“过来人”们定位很简单，实验内容如下：">
+<meta name="twitter:image" content="http://vars.qiniudn.com/bianyiyuanli_3.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2012/10/24/HIT-Compilers-exercise-1/"/>
+
+  <title> 哈工大软件学院编译原理实验1——词法分析 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                哈工大软件学院编译原理实验1——词法分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2012-10-24T21:18:00+08:00" content="2012-10-24">
+              2012-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/计算机基础/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/10/24/HIT-Compilers-exercise-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/10/24/HIT-Compilers-exercise-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这次实验被“过来人”们定位很简单，实验内容如下：</p>
+<a id="more"></a>
+<hr>
+<p>对如下工作进行展开描述<br>(1) 给出语言的词法规则描述<br>· 标识符、关键字、整常数、字符常数、浮点常数<br>· 单界符：＋，－，×，;，…<br>· 双界符：/*，:=，&gt;=，&lt;=，!=，…<br>· 注释<br>(2) 针对这种单词的状态转换图和程序框图<br>(3) 核心数据结构的设计<br>如符号表、关键字等<br>(4) 错误处理<br>错误的位置及类型等</p>
+<hr>
+<p>这次实验我是用python写了一个简单的C语言的词法分析器，词法分析器的编写有很多种方式，比如可以用正则表达式编写，也可以用LEX工具自动生成，当然，也可以用比较朴素的方式——基于有穷自动机（Finite Automata，FA），也即基于有穷自动机的状态转移来编写程序。</p>
+<p>说起这个有穷自动机（Finite Automata，FA），真心感觉是个好东西，分析问题简单清晰，而且很直观。记得对有穷自动机有感性认识是在上学期考试分数并不高的《计算机网络》课上，全龙哥讲那个RDT协议的不同版本的时候，用这个自动机来表明遇到不同情况时发送端和接收端要采取的行动。</p>
+<p>自动机的形式化定义：<br>M=(Q，Σ，δ，q0，F)<br>Q→有穷状态集<br>Σ→有穷输入字母表<br>δ→从Q×Σ→2Q的映射函数（2Q是Q的幂集）<br>q0∈Q，是唯一的初态<br>F →终态集合，是Q的子集</p>
+<p>这里说说我个人的理解。对有穷自动机的形式化定义的理解比较重要的是上述第三条说明的理解：δ→从Q×Σ→2Q的映射函数。也即这个δ定义了某个具体FA的状态间转移关系，或者说定义了某个FA的状态间转移的规则。所谓状态的幂集就是状态集Q的所有子集构成的集族。则这句话的字面意思是：状态集和字母表的笛卡尔乘积到状态集的幂集的映射函数。</p>
+<p>比如：M1 = (Q，Σ，δ，q0，F)，其中Q = {q,q0,q1,q2…,qn}，又((q，a) , {q1,q2,q3})∈δ，也即δ((q,a)) = {q1,q2,q3}。则说明自动机M1有一个状态q，q在遇到字母a的时候，自动机状态可能跳转到q1,q2,q3三个状态。自动机又分为有穷自动机和无穷自动机两种，这里不再赘述。</p>
+<p>有穷自动机可以用状态图直观表示，例子见下文中图。</p>
+<p>至于词法分析的一些基本知识，简单叙述一下：</p>
+<hr>
+<p>定义：<br>词法分析器的功能输入源程序，按照构词规则分解成一系列单词符号。单词是语言中具有独立意义的最小单位，包括关键字、标识符、运算符、界符和常量等。<br>(1) 关键字 是由程序语言定义的具有固定意义的标识符。例如，Pascal 中的begin，end，if，while都是保留字。这些字通常不用作一般标识符。<br>(2) 标识符 用来表示各种名字，如变量名，数组名，过程名等等。<br>(3) 常数  常数的类型一般有整型、实型、布尔型、文字型等。<br>(4) 运算符 如+、-、*、/等等。<br>(5) 界符  如逗号、分号、括号、等等。<br>输出：<br>词法分析器所输出单词符号常常表示成如下的二元式：<code>(单词种别，单词符号的属性值)</code>。<br>单词种别通常用整数编码。标识符一般统归为一种。常数则宜按类型（整、实、布尔等）分种。关键字可将其全体视为一种。运算符可采用一符一种的方法。界符一般用一符一种的方法。对于每个单词符号，除了给出了种别编码之外，还应给出有关单词符号的属性信息。单词符号的属性是指单词符号的特性或特征。<br>示例：<br>比如如下的代码段：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(i&gt;=j) i--;</div></pre></td></tr></table></figure></p>
+<p>经词法分析器处理后，它将被转为如下的单词符号序列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;while, _&gt;</div><div class="line">&lt;(, _&gt;</div><div class="line">&lt;id, 指向i的符号表项的指针&gt;</div><div class="line">&lt;&gt;=, _&gt;</div><div class="line">&lt;id, 指向j的符号表项的指针&gt;</div><div class="line">&lt;), _&gt;</div><div class="line">&lt;id, 指向i的符号表项的指针&gt;</div><div class="line">&lt;--, _&gt;</div><div class="line">&lt;;, _&gt;</div></pre></td></tr></table></figure></p>
+<p>词法分析分析器作为一个独立子程序：<br>词法分析是编译过程中的一个阶段，在语法分析前进行。词法分析作为一遍，可以简化设计，改进编译效率，增加编译系统的可移植性。也可以和语法分析结合在一起作为一遍，由语法分析程序调用词法分析程序来获得当前单词供语法分析使用。</p>
+<hr>
+<p>我写的这个词法分析器，不是很健全，尤其是错误处理机制，像在字符串识别中，’ab’是C语言中不合法的char变量，但是我的词法分析器不能判断出错误，会死循环；此外，只能识别出有限的关键字、有限形式的字符串（相信读者看懂我的状态机就知道哪里有限了），由于时间不够了，我不想再改了，下面贴出代码，供大家参考。</p>
+<p>对了，贴代码之前，先说说我的词法分析器的状态机的设计。</p>
+<p>我对“数字”的词法分析用了一个状态机，包括浮点数、整形数，状态机如下：</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_3.jpg" alt=""></p>
+<p>对“字符（串）”的识别用了一个状态机，包括关键字、char、以及char *，如下：</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_4.jpg" alt=""></p>
+<p>当然，对C语言的注释的识别也用了一个状态机，必须先把源码中的注释cut掉才能进行分析，如下：</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_5.jpg" alt=""></p>
+<p>我对运算符的识别（包括双目和单目）没有采用明显的状态机，都是直接分析判断的，实际从某种意义上来讲对它们的分析也是采用了状态机的原理，只是状态机结构比较简单，就没再显式用state表示，它们的状态机实际上如下：</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_6.jpg" alt=""></p>
+<p>下面上代码：<br>Scanner.py，作为主模块来执行：<br><figure class="highlight python"><figcaption><span>Scanner.py</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">Created on 2012-10-18</div><div class="line"></div><div class="line">@author: liushuai</div><div class="line">'''</div><div class="line"><span class="keyword">import</span> string</div><div class="line"><span class="keyword">import</span> Category</div><div class="line"><span class="keyword">import</span> FileAccess</div><div class="line"></div><div class="line">_currentIndex = <span class="number">0</span></div><div class="line">_Tokens = []</div><div class="line">_prog = <span class="string">""</span></div><div class="line">_categoryNo = <span class="number">-1</span></div><div class="line"></div><div class="line">_stateNumber = <span class="number">0</span></div><div class="line">_stateString = <span class="number">0</span></div><div class="line">_potentialNumber = <span class="string">""</span></div><div class="line">_potentialString = <span class="string">""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readComments</span><span class="params">(prog)</span>:</span></div><div class="line">    <span class="string">'''Read the comments of a program'''</span></div><div class="line">    state = <span class="number">0</span></div><div class="line">    currentIndex, beginIndex, endIndex = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</div><div class="line">    commentsIndexs = []</div><div class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> prog:</div><div class="line">        <span class="keyword">if</span> state == <span class="number">0</span>:</div><div class="line">            <span class="keyword">if</span> c == <span class="string">'/'</span>:</div><div class="line">                beginIndex = currentIndex</div><div class="line">                state = <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">pass</span></div><div class="line">        <span class="keyword">elif</span> state == <span class="number">1</span>:</div><div class="line">            <span class="keyword">if</span> c == <span class="string">'*'</span>:</div><div class="line">                state = <span class="number">2</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                state = <span class="number">0</span></div><div class="line">        <span class="keyword">elif</span> state == <span class="number">2</span>:</div><div class="line">            <span class="keyword">if</span> c == <span class="string">'*'</span>:</div><div class="line">                state = <span class="number">3</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">pass</span></div><div class="line">        <span class="keyword">elif</span> state == <span class="number">3</span>:</div><div class="line">            <span class="keyword">if</span> c == <span class="string">'*'</span>:</div><div class="line">                <span class="keyword">pass</span></div><div class="line">            <span class="keyword">elif</span> c == <span class="string">'/'</span>:</div><div class="line">                endIndex = currentIndex</div><div class="line">                commentsIndexs.append([beginIndex, endIndex])</div><div class="line">                state = <span class="number">0</span> <span class="comment">#set 0 state</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                state = <span class="number">2</span></div><div class="line">        currentIndex += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> commentsIndexs</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cutComments</span><span class="params">(prog, commentsIndexs)</span>:</span></div><div class="line">    <span class="string">'''cut the comments of the program prog'''</span></div><div class="line">    num = len(commentsIndexs)</div><div class="line">    <span class="keyword">if</span> num == <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> prog</div><div class="line">    <span class="keyword">else</span> :</div><div class="line">        comments = []</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(num):</div><div class="line">            comments.append(prog[commentsIndexs[i][<span class="number">0</span>]:commentsIndexs[i][<span class="number">1</span>] + <span class="number">1</span>])</div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> comments:</div><div class="line">            prog = prog.replace(item, <span class="string">""</span>)</div><div class="line">        <span class="keyword">return</span> prog</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">scan</span><span class="params">(helper)</span>:</span></div><div class="line">    <span class="string">'''scan the program, and analysis it'''</span></div><div class="line">    <span class="keyword">global</span> _stateNumber, _stateString, _currentIndex, _Tokens, _prog, _categoryNo, _potentialNumber, _potentialString</div><div class="line">    currentChar = _prog[_currentIndex]</div><div class="line">    <span class="comment">######################################CHAR STRING######################################</span></div><div class="line">    <span class="keyword">if</span> currentChar == <span class="string">'\''</span> <span class="keyword">or</span> currentChar == <span class="string">'\"'</span> <span class="keyword">or</span> currentChar <span class="keyword">in</span> string.letters + <span class="string">"_$\\%\@"</span>  <span class="keyword">or</span> (currentChar <span class="keyword">in</span> string.digits <span class="keyword">and</span> _stateString != <span class="number">0</span>):</div><div class="line">        <span class="keyword">if</span> _stateString == <span class="number">0</span>:</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'\''</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">1</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> currentChar == <span class="string">"\""</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">2</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> currentChar <span class="keyword">in</span> string.letters + <span class="string">"$_"</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">7</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">1</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.letters + <span class="string">"#$@%"</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">3</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> currentChar == <span class="string">'\\'</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">9</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">2</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.letters + <span class="string">"\\% "</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">4</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">3</span>:</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'\''</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">5</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">4</span>:</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'\"'</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">6</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> currentChar <span class="keyword">in</span> string.letters + <span class="string">"\\% "</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">4</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">7</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.digits + string.letters + <span class="string">"$_"</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">8</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.digits + string.letters + <span class="string">"$_"</span>:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">9</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> [<span class="string">'b'</span>, <span class="string">'n'</span>, <span class="string">'t'</span>, <span class="string">'\\'</span>, <span class="string">'\''</span>, <span class="string">'\"'</span>]:</div><div class="line">                _potentialString = <span class="string">"%s%s"</span> % (_potentialString, currentChar)</div><div class="line">                _stateString = <span class="number">3</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">                _stateNumber = <span class="number">10</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">    <span class="comment">######################################  NUMBERS  ######################################</span></div><div class="line">    <span class="keyword">elif</span> currentChar <span class="keyword">in</span> string.digits + <span class="string">"."</span>:</div><div class="line">        <span class="keyword">if</span> _stateNumber == <span class="number">0</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> <span class="string">"123456789"</span>:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">6</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> currentChar == <span class="string">'0'</span>:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">4</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _stateNumber = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> _stateNumber == <span class="number">4</span>:</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'.'</span>:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">5</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _stateNumber = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> _stateNumber == <span class="number">5</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.digits:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">7</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _stateNumber = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> _stateNumber == <span class="number">6</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.digits:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">6</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">elif</span> currentChar == <span class="string">'.'</span>:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">5</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _stateNumber = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> _stateNumber == <span class="number">7</span>:</div><div class="line">            <span class="keyword">if</span> currentChar <span class="keyword">in</span> string.digits:</div><div class="line">                _potentialNumber = <span class="string">"%s%s"</span> % (_potentialNumber, currentChar)</div><div class="line">                _stateNumber = <span class="number">7</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                _stateNumber = <span class="number">8</span></div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">    <span class="comment">######################################OTEAR OPERATERS######################################</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">if</span> _stateNumber == <span class="number">6</span> <span class="keyword">or</span> _stateNumber == <span class="number">4</span>:</div><div class="line">            helper.outPutToken(_potentialNumber, <span class="string">"INT"</span>, Category.IdentifierTable[<span class="string">"INT"</span>])</div><div class="line">        <span class="keyword">elif</span> _stateNumber == <span class="number">7</span>:</div><div class="line">            helper.outPutToken(_potentialNumber, <span class="string">"FLOAT"</span>, Category.IdentifierTable[<span class="string">"FLOAT"</span>])</div><div class="line">        <span class="keyword">elif</span> _stateNumber != <span class="number">0</span>:</div><div class="line">            helper.outPutToken(<span class="string">"ERROR NUMBER"</span>, <span class="string">"None"</span>, <span class="string">"None"</span>)</div><div class="line">        _stateNumber = <span class="number">0</span></div><div class="line">        _potentialNumber = <span class="string">""</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> _stateString == <span class="number">7</span> <span class="keyword">or</span> _stateString == <span class="number">8</span>:</div><div class="line">            <span class="keyword">if</span> _potentialString <span class="keyword">in</span> Category.KeyWordsTable:</div><div class="line">                helper.outPutToken(_potentialString, _potentialString.upper(), Category.IdentifierTable[_potentialString.upper()])</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                helper.outPutToken(_potentialString, <span class="string">"IDN"</span> , Category.IdentifierTable[<span class="string">"IDN"</span>])</div><div class="line">                helper.setSymbolTable(_potentialString, <span class="string">"IDN"</span> , Category.IdentifierTable[<span class="string">"IDN"</span>])</div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">5</span>:</div><div class="line">            helper.outPutToken(_potentialString, <span class="string">"CHAR"</span>, Category.IdentifierTable[<span class="string">"CHAR"</span>])</div><div class="line">        <span class="keyword">elif</span> _stateString == <span class="number">6</span>:</div><div class="line">            helper.outPutToken(_potentialString, <span class="string">"CHAR *"</span>, Category.IdentifierTable[<span class="string">"CHAR *"</span>])</div><div class="line">        <span class="keyword">elif</span> _stateString != <span class="number">0</span>:</div><div class="line">            helper.outPutToken(<span class="string">"ERROR STRING"</span>, <span class="string">"None"</span>, <span class="string">"None"</span>)</div><div class="line">        _stateString = <span class="number">0</span></div><div class="line">        _potentialString = <span class="string">""</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> currentChar == <span class="string">" "</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'&gt;'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">"="</span>:</div><div class="line">                helper.outPutToken(<span class="string">"&gt;="</span>, <span class="string">"&gt;="</span>, Category.IdentifierTable[<span class="string">"&gt;="</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"&gt;"</span>, <span class="string">"&gt;"</span>, Category.IdentifierTable[<span class="string">"&gt;"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'&lt;'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">"="</span>:</div><div class="line">                helper.outPutToken(<span class="string">"&lt;="</span>, <span class="string">"&lt;="</span>, Category.IdentifierTable[<span class="string">"&lt;="</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"&lt;"</span>, <span class="string">"&lt;"</span>, Category.IdentifierTable[<span class="string">"&lt;"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'+'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'+'</span>:</div><div class="line">                helper.outPutToken(<span class="string">"++"</span>, <span class="string">"++"</span>, Category.IdentifierTable[<span class="string">"++"</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"+"</span>, <span class="string">"+"</span>, Category.IdentifierTable[<span class="string">"+"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'-'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'-'</span>:</div><div class="line">                helper.outPutToken(<span class="string">"--"</span>, <span class="string">"--"</span>, Category.IdentifierTable[<span class="string">"--"</span>])</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                helper.outPutToken(<span class="string">"-"</span>, <span class="string">"-"</span>, Category.IdentifierTable[<span class="string">"-"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'='</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'='</span>:</div><div class="line">                helper.outPutToken(<span class="string">"=="</span>, <span class="string">"=="</span>, Category.IdentifierTable[<span class="string">"=="</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"="</span>, <span class="string">"="</span>, Category.IdentifierTable[<span class="string">"="</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'!'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'='</span>:</div><div class="line">                helper.outPutToken(<span class="string">"!="</span>, <span class="string">"!="</span>, Category.IdentifierTable[<span class="string">"!="</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"!"</span>, <span class="string">"!"</span>, Category.IdentifierTable[<span class="string">"!"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'&amp;'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'&amp;'</span>:</div><div class="line">                helper.outPutToken(<span class="string">"&amp;&amp;"</span>, <span class="string">"&amp;&amp;"</span>, Category.IdentifierTable[<span class="string">"&amp;&amp;"</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"&amp;"</span>, <span class="string">"&amp;"</span>, Category.IdentifierTable[<span class="string">"&amp;"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'|'</span>:</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">            currentChar = _prog[_currentIndex]</div><div class="line">            <span class="keyword">if</span> currentChar == <span class="string">'|'</span>:</div><div class="line">                helper.outPutToken(<span class="string">"||"</span>, <span class="string">"||"</span>, Category.IdentifierTable[<span class="string">"||"</span>])</div><div class="line">                _currentIndex += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span> :</div><div class="line">                helper.outPutToken(<span class="string">"|"</span>, <span class="string">"|"</span>, Category.IdentifierTable[<span class="string">"||"</span>])</div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'*'</span>:</div><div class="line">            helper.outPutToken(<span class="string">"*"</span>, <span class="string">"*"</span>, Category.IdentifierTable[<span class="string">"*"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'/'</span>:</div><div class="line">            helper.outPutToken(<span class="string">"/"</span>, <span class="string">"/"</span>, Category.IdentifierTable[<span class="string">"/"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">';'</span>:</div><div class="line">            helper.outPutToken(<span class="string">";"</span>, <span class="string">";"</span>, Category.IdentifierTable[<span class="string">";"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">","</span>:</div><div class="line">            helper.outPutToken(<span class="string">","</span>, <span class="string">","</span>, Category.IdentifierTable[<span class="string">","</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'&#123;'</span>:</div><div class="line">            helper.outPutToken(<span class="string">"&#123;"</span>, <span class="string">"&#123;"</span>, Category.IdentifierTable[<span class="string">"&#123;"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'&#125;'</span>:</div><div class="line">            helper.outPutToken(<span class="string">"&#125;"</span>, <span class="string">"&#125;"</span>, Category.IdentifierTable[<span class="string">"&#125;"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'['</span>:</div><div class="line">            helper.outPutToken(<span class="string">"["</span>, <span class="string">"["</span>, Category.IdentifierTable[<span class="string">"["</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">']'</span>:</div><div class="line">            helper.outPutToken(<span class="string">"]"</span>, <span class="string">"]"</span>, Category.IdentifierTable[<span class="string">"]"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">'('</span>:</div><div class="line">            helper.outPutToken(<span class="string">"("</span>, <span class="string">"("</span>, Category.IdentifierTable[<span class="string">"("</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> currentChar == <span class="string">')'</span>:</div><div class="line">            helper.outPutToken(<span class="string">")"</span>, <span class="string">")"</span>, Category.IdentifierTable[<span class="string">")"</span>])</div><div class="line">            _currentIndex += <span class="number">1</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    helper = FileAccess.FileHelper(<span class="string">"H://test.c"</span>, <span class="string">"H://token.txt"</span>, <span class="string">"H://symbol_table.txt"</span>)</div><div class="line">    prog = helper.readProg()</div><div class="line">    <span class="keyword">print</span> prog</div><div class="line">    comments = readComments(prog)</div><div class="line">    _prog = cutComments(prog, comments)</div><div class="line">    <span class="keyword">print</span> _prog</div><div class="line">    <span class="keyword">while</span> _currentIndex &lt; len(_prog):</div><div class="line">        scan(helper)</div><div class="line">    helper.closeFiles()</div></pre></td></tr></table></figure></p>
+<p>Category.py，这个模块里面定义了一些C语言中的关键字、运算符等等，是种别码表：<br><figure class="highlight python"><figcaption><span>Category.py</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">Created on 2012-10-18</div><div class="line"></div><div class="line">@author: liushuai</div><div class="line">'''</div><div class="line">IdentifierTable = &#123;<span class="string">"INT"</span>:<span class="number">1</span>,<span class="string">"FLOAT"</span>:<span class="number">2</span>,<span class="string">"CHAR"</span>:<span class="number">3</span>,<span class="string">"IDN"</span>:<span class="number">4</span>,<span class="string">"WHILE"</span>:<span class="number">5</span>,<span class="string">"FOR"</span>:<span class="number">6</span>,<span class="string">"DO"</span>:<span class="number">7</span>,<span class="string">"BREAK"</span>:<span class="number">31</span>,<span class="string">"CONTINUE"</span>:<span class="number">32</span>,<span class="string">"CHAR *"</span>:<span class="number">33</span>,<span class="string">"IF"</span>:<span class="number">37</span>,</div><div class="line">                   <span class="string">"*"</span>:<span class="number">8</span>,<span class="string">"/"</span>:<span class="number">9</span>,<span class="string">"+"</span>:<span class="number">10</span>,<span class="string">"-"</span>:<span class="number">11</span>,<span class="string">"&gt;"</span>:<span class="number">12</span>,<span class="string">"&lt;"</span>:<span class="number">13</span>,<span class="string">"="</span>:<span class="number">14</span>,</div><div class="line">                   <span class="string">"++"</span>:<span class="number">15</span>,<span class="string">"--"</span>:<span class="number">16</span>,<span class="string">"=="</span>:<span class="number">17</span>,<span class="string">"!="</span>:<span class="number">18</span>,<span class="string">"&gt;="</span>:<span class="number">19</span>,<span class="string">"&lt;="</span>:<span class="number">20</span>,</div><div class="line">                   <span class="string">"&amp;&amp;"</span>:<span class="number">28</span>,<span class="string">"||"</span>:<span class="number">29</span>,<span class="string">"!"</span>:<span class="number">30</span>,<span class="string">"&amp;"</span>:<span class="number">35</span>,<span class="string">"|"</span>:<span class="number">36</span>,</div><div class="line">                   <span class="string">";"</span>:<span class="number">21</span>,<span class="string">","</span>:<span class="number">34</span>,</div><div class="line">                   <span class="string">"&#123;"</span>:<span class="number">22</span>,<span class="string">"&#125;"</span>:<span class="number">23</span>,<span class="string">"["</span>:<span class="number">24</span>,<span class="string">"]"</span>:<span class="number">25</span>,<span class="string">"("</span>:<span class="number">26</span>,<span class="string">")"</span>:<span class="number">27</span>&#125;</div><div class="line">KeyWordsTable = (<span class="string">"int"</span>, <span class="string">"float"</span>, <span class="string">"char"</span>, <span class="string">"while"</span>, <span class="string">"for"</span>, <span class="string">"do"</span>,<span class="string">"break"</span>,<span class="string">"continue"</span>,<span class="string">"char *"</span>,<span class="string">"if"</span>)</div></pre></td></tr></table></figure></p>
+<p>FileAccess.py，里面定义了一个类用来进行对文件的操作，例如输出Token序列以及符号表到文件：<br><figure class="highlight python"><figcaption><span>FileAccess.py</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">Created on 2012-10-23</div><div class="line"></div><div class="line">@author: liushuai</div><div class="line">'''</div><div class="line"></div><div class="line"><span class="keyword">import</span> Category</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHelper</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,progPath,tokenPath,symbolTablePath)</span>:</span></div><div class="line">        self.progPath = progPath</div><div class="line">        self.tokenPath = tokenPath</div><div class="line">        self.symbolTablePath = symbolTablePath</div><div class="line"></div><div class="line">        self.tokenFp = open(self.tokenPath,<span class="string">"w"</span>)</div><div class="line">        self.symbolTableFp = open(self.symbolTablePath,<span class="string">"w"</span>)</div><div class="line"></div><div class="line">        self.symbolTable = &#123;&#125;.fromkeys(Category.KeyWordsTable) <span class="comment">#initialize symbol table</span></div><div class="line">        <span class="keyword">print</span> self.symbolTable</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">readProg</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'''read the program into the RAM'''</span></div><div class="line">        fp = open(self.progPath, <span class="string">"r+"</span>)</div><div class="line">        prog = <span class="string">""</span></div><div class="line">        <span class="keyword">for</span> eachLine <span class="keyword">in</span> fp.readlines():</div><div class="line">            <span class="comment">#print eachLine</span></div><div class="line">            prog = <span class="string">"%s%s"</span> % (prog, eachLine.strip())</div><div class="line">        fp.close()</div><div class="line">        <span class="keyword">return</span> prog</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">outPutToken</span><span class="params">(self,tokenSelf,tokenInner,tokenNo)</span>:</span></div><div class="line">        <span class="string">'''output token into a file'''</span></div><div class="line">        self.tokenFp.write(<span class="string">"("</span> + tokenInner + <span class="string">","</span> + tokenSelf + <span class="string">")"</span> + <span class="string">"\n"</span>)</div><div class="line">        <span class="keyword">print</span> <span class="string">"("</span> + tokenInner + <span class="string">","</span> + tokenSelf + <span class="string">")"</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setSymbolTable</span><span class="params">(self,tokenSelf,tokenInner,tokenNo)</span>:</span></div><div class="line">        <span class="string">'''output symbol into symbol table'''</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.symbolTable.has_key(tokenSelf):</div><div class="line">            self.symbolTable[tokenSelf] = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">writeSymbolToFile</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.symbolTable:</div><div class="line">            self.symbolTableFp.write(k + <span class="string">"\n"</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">closeFiles</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">'''close token Files'''</span></div><div class="line">        self.writeSymbolToFile()</div><div class="line">        <span class="keyword">if</span> self.tokenFp != <span class="keyword">None</span>:</div><div class="line">            self.tokenFp.close()</div><div class="line">        <span class="keyword">if</span> self.symbolTableFp != <span class="keyword">None</span>:</div><div class="line">            self.symbolTableFp.close()</div></pre></td></tr></table></figure></p>
+<p>下面是我的测试C语言程序：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span>  str[<span class="number">10000</span>];</div><div class="line">    <span class="keyword">int</span> num[<span class="number">30</span>]=&#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">char</span> <span class="built_in">std</span>[<span class="number">28</span>]=&#123;<span class="string">"abcdefghijklmnopqrstuvwxyz"</span>&#125;;</div><div class="line">    <span class="keyword">int</span> i,j,temp;</div><div class="line">    <span class="keyword">float</span> test=<span class="number">-0.34</span>;</div><div class="line">    <span class="keyword">float</span> test1=<span class="number">23.45</span>;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> tom;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++)             <span class="comment">/*字符的读入*/</span></div><div class="line">    &#123;</div><div class="line">        str[i]=getchar();</div><div class="line">        <span class="keyword">if</span> (str[i]==<span class="string">'\n'</span>)</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">10000</span>;i++)             <span class="comment">/*字符的统计数量*/</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (str[i]==<span class="string">'\n'</span>)</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">        j=str[i] - <span class="number">97</span>; <span class="comment">/*-97 or sth - 97?*/</span></div><div class="line">        num[j]++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">27</span>;i++)              <span class="comment">/*字符的按出现频率排序*/</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (j=i+<span class="number">1</span>;j&lt;<span class="number">26</span>;j++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (num[j]&gt;num[i])</div><div class="line">            &#123;</div><div class="line">                temp=num[j];</div><div class="line">                num[j]=num[i];</div><div class="line">                num[i]=temp;</div><div class="line"></div><div class="line">                tom=<span class="built_in">std</span>[j];</div><div class="line">                <span class="built_in">std</span>[j]=<span class="built_in">std</span>[i];</div><div class="line">                <span class="built_in">std</span>[i]=tom;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">27</span>;i++)                     <span class="comment">/*字符的按字母表顺序排序*/</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (j=i+<span class="number">1</span>;j&lt;<span class="number">26</span>;j++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (num[i]==num[j])</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="built_in">std</span>[j]&lt;<span class="built_in">std</span>[i])</div><div class="line">                &#123;</div><div class="line">                    tom=<span class="built_in">std</span>[j];</div><div class="line">                    <span class="built_in">std</span>[j]=<span class="built_in">std</span>[i];</div><div class="line">                    <span class="built_in">std</span>[i]=tom;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="number">29</span>;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (num[i]==<span class="number">0</span>)</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后脚本输出如下：<br>Token.txt:</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_7.jpg" alt=""></p>
+<p>Symbol_table.txt:</p>
+<p><img src="http://vars.qiniudn.com/bianyiyuanli_8.jpg" alt=""></p>
+<p>这次实验就算做完了。</p>
+<p>虽然完成的很水，但是正确情况下的输出还是令人满意的，词法分析完事后，等着句法分析调用它的输出结果吧。对了，至于符号表在整个编译阶段的作用，龙书第一版2.4节和6.7节有介绍，请读者查阅。</p>
+<p>写的很水很水，如有不足，欢迎指正。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/哈工大/" rel="tag">#哈工大</a>
+          
+            <a href="/tags/编译原理/" rel="tag">#编译原理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2012/09/15/remove-space-python/" rel="next" title="用python去除文件中的空格 || Tab || 回车">
+                <i class="fa fa-chevron-left"></i> 用python去除文件中的空格 || Tab || 回车
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2012/10/26/HIT-UI-design-quiz/" rel="prev" title="用户界面设计小Quiz——缺省值问题">
+                用户界面设计小Quiz——缺省值问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2012/10/24/HIT-Compilers-exercise-1/';
+      var disqus_title = "哈工大软件学院编译原理实验1——词法分析";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2012/10/24/HIT-Compilers-exercise-1/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

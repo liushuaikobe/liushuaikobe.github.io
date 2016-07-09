@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="终于，收到了知乎的回复，一面就被拒了（此处应该有一个悲伤的表情）。不过也没什么遗憾了，申请了好多次，终于申请到了笔试和面试的机会。通过这次的经历，我知道了路还很长很长，想把这次的经历写下来，也算是一种纪念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知乎笔试（1）——富文本过滤">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2013/06/29/zhihu-examination-1/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="终于，收到了知乎的回复，一面就被拒了（此处应该有一个悲伤的表情）。不过也没什么遗憾了，申请了好多次，终于申请到了笔试和面试的机会。通过这次的经历，我知道了路还很长很长，想把这次的经历写下来，也算是一种纪念。">
+<meta property="og:image" content="http://vars.qiniudn.com/zhihu_bishi_1.jpeg">
+<meta property="og:updated_time" content="2016-07-09T06:06:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="知乎笔试（1）——富文本过滤">
+<meta name="twitter:description" content="终于，收到了知乎的回复，一面就被拒了（此处应该有一个悲伤的表情）。不过也没什么遗憾了，申请了好多次，终于申请到了笔试和面试的机会。通过这次的经历，我知道了路还很长很长，想把这次的经历写下来，也算是一种纪念。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/zhihu_bishi_1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2013/06/29/zhihu-examination-1/"/>
+
+  <title> 知乎笔试（1）——富文本过滤 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                知乎笔试（1）——富文本过滤
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2013-06-29T09:32:00+08:00" content="2013-06-29">
+              2013-06-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/程序设计语言/" itemprop="url" rel="index">
+                    <span itemprop="name">程序设计语言</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/06/29/zhihu-examination-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/06/29/zhihu-examination-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>终于，收到了知乎的回复，一面就被拒了（此处应该有一个悲伤的表情）。不过也没什么遗憾了，申请了好多次，终于申请到了笔试和面试的机会。通过这次的经历，我知道了路还很长很长，想把这次的经历写下来，也算是一种纪念。<a id="more"></a></p>
+<h3 id="笔试题一——富文本过滤"><a href="#笔试题一——富文本过滤" class="headerlink" title="笔试题一——富文本过滤"></a>笔试题一——富文本过滤</h3><p>当我收到知乎的笔试题时，很激动，因为真心很想去知乎，用颤抖的手打开邮件，里面有两道题，第一道是这样的：<br><img src="http://vars.qiniudn.com/zhihu_bishi_1.jpeg" alt=""><br>最开始才疏学浅，不知道富文本过滤要干些什么，去搜索了一番，大致知道了过滤是要对Html进行解析，去掉不合法的标签和字符。我最开始还想加上自动correct富文本的功能，比如如果标签不闭合，自动补全等等，但是记得那几天事情真心太多了，还有SQA的口试，没花太多的时间去完善代码。<br>知道了要干什么，就可以开始写了。我首先想到的肯定是要用到一个解析html库之类，跑一遍html，在解析html的过程中做一些处理。之前有用到过Python中的ElementTree解析过xml，首先去搜索了一番，找到了以下一些资料：<br><a href="http://stackoverflow.com/questions/2676872/how-to-parse-malformed-html-in-python-using-standard-libraries" target="_blank" rel="external">How to parse malformed HTML in python, using standard libraries</a><br>大致说Python里面有很多解析Html的库，内建的HtmlParser貌似是一种方法，但是它却经常在一些非常普通的html时会出现问题，如果你成功解决了这些问题，那么你很有可能重写了一个库——BeautifulSoup。靠谱的解析Html的方式大概有三种：<a href="http://codespeak.net/lxml//lxmlhtml.html" target="_blank" rel="external">lxml.html</a>，<a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="external">BeautifulSoup</a>，<a href="http://code.google.com/p/html5lib/" target="_blank" rel="external">html5lib</a>。<br>但是考虑到可能面试官不会去安装这些库，我还是决定用python内建的HtmlParser去完成这道题。去搜了一下这个类的使用方法，发现原理跟Java使用SAX方式解析XML是一样的，都是提供了一系列的回调方法，使用时需要继承自相应的类，覆盖这些方法，添加上你自己的处理。比如遇到起始的tag有一个回调的方法，遇到文本有一个回调的方法，还需要一个变量来保存上一次遇到的tag，代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> HTMLParser, sys</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EditorParser</span><span class="params">(HTMLParser.HTMLParser)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, standard)</span>:</span></div><div class="line">        HTMLParser.HTMLParser.__init__(self)</div><div class="line">        self.standard = standard</div><div class="line">        self.clean_text = []</div><div class="line">        self.pre_tag = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_starttag</span><span class="params">(self, tag, attrs)</span>:</span></div><div class="line">        <span class="keyword">if</span> tag <span class="keyword">in</span> self.standard:</div><div class="line">            self.clean_text.append(<span class="string">'&lt;'</span>)</div><div class="line">            self.clean_text.append(tag)</div><div class="line">            <span class="keyword">for</span> name, val <span class="keyword">in</span> attrs:</div><div class="line">                <span class="keyword">if</span> self.standard[tag] <span class="keyword">and</span> name <span class="keyword">in</span> self.standard[tag]:</div><div class="line">                    exp = <span class="string">' %s="%s"'</span> % (name, val)</div><div class="line">                    self.clean_text.append(exp)</div><div class="line">            self.clean_text.append(<span class="string">'&gt;'</span>)</div><div class="line">            self.pre_tag = tag</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_data</span><span class="params">(self, data)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.pre_tag <span class="keyword">in</span> self.standard:</div><div class="line">            self.clean_text.append(data)</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_endtag</span><span class="params">(self, tag)</span>:</span></div><div class="line">        <span class="keyword">if</span> tag <span class="keyword">in</span> self.standard:</div><div class="line">            self.clean_text.append(<span class="string">'&lt;/&#123;0&#125;&gt;'</span>.format(tag))</div><div class="line">            self.pre_tag = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_clean_text</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">''</span>.join(self.clean_text)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">'\nUse like this:\n\t$python filter.py [html_file_to_handle]\nThe clean html will be output to a new html file.\n'</span></div><div class="line">        <span class="keyword">return</span></div><div class="line"></div><div class="line">    html = open(sys.argv[<span class="number">1</span>], <span class="string">'r'</span>)</div><div class="line"></div><div class="line">    legal_tag_attr = &#123;<span class="string">'a'</span> : [<span class="string">'href'</span>, <span class="string">'title'</span>], <span class="string">'abbr'</span> : [<span class="string">'title'</span>], <span class="string">'acronym'</span> : [<span class="string">'title'</span>], <span class="string">'b'</span> : <span class="keyword">None</span>, <span class="string">'blockquote'</span> : [<span class="string">'cite'</span>], <span class="string">'cite'</span> : <span class="keyword">None</span>, \</div><div class="line">                        <span class="string">'code'</span> : <span class="keyword">None</span>, <span class="string">'del'</span> : [<span class="string">'datetime'</span>], <span class="string">'em'</span> : <span class="keyword">None</span>, <span class="string">'i'</span> : <span class="keyword">None</span>, <span class="string">'q'</span> :[<span class="string">'cite'</span>], <span class="string">'strike'</span> : <span class="keyword">None</span>, <span class="string">'strong'</span> : <span class="keyword">None</span>, <span class="string">'pre'</span> : <span class="keyword">None</span>&#125;</div><div class="line"></div><div class="line">    editorParser = EditorParser(legal_tag_attr)</div><div class="line">    editorParser.feed(html.read())</div><div class="line">    clean_text = editorParser.get_clean_text()</div><div class="line"></div><div class="line">    editorParser.close()</div><div class="line">    html.close()</div><div class="line"></div><div class="line">    <span class="comment"># print clean_text</span></div><div class="line"></div><div class="line">    clean_html = open(sys.argv[<span class="number">1</span>].split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'_clean.html'</span>, <span class="string">'w'</span>)</div><div class="line">    clean_html.write(clean_text)</div><div class="line">    clean_html.close()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>这样一个简单的过滤器就写完了，功能比较简单，仅仅能去掉不合法的标签以及不合法的属性，没有纠错功能。</p>
+<h3 id="样例输入与输出"><a href="#样例输入与输出" class="headerlink" title="样例输入与输出"></a>样例输入与输出</h3><p>样例的输入：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">abbr</span>&gt;</span>This is legal abbr text.<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.zhihu.com"</span> <span class="attr">id</span>=<span class="string">"bad_id"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">strong</span> <span class="attr">name</span>=<span class="string">"bad_name"</span> <span class="attr">id</span>=<span class="string">"bad_id"</span> <span class="attr">class</span>=<span class="string">"bad_class"</span>&gt;</span>This is a legal strong href<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>This is a bad head<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">acronym</span> <span class="attr">title</span>=<span class="string">"acronym titel"</span>&gt;</span><span class="tag">&lt;/<span class="name">acronym</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">em</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>This is bad body.<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span> <span class="attr">class</span>=<span class="string">"bad_class"</span>&gt;</span>This is bad title.<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>经过过滤后的样例输出：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">abbr</span>&gt;</span>This is legal abbr text.<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.zhihu.com"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>This is a legal strong href<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">acronym</span> <span class="attr">title</span>=<span class="string">"acronym titel"</span>&gt;</span><span class="tag">&lt;/<span class="name">acronym</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><a href="">HtmlParser</a>提供的功能真的很少，只提供了最基本的功能，要对HTML做一些深入的操作还得用其他的lib。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/04/22/C-pointer/" rel="next" title="C语言指针声明探秘">
+                <i class="fa fa-chevron-left"></i> C语言指针声明探秘
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/07/18/zhihu-examination-2/" rel="prev" title="知乎笔试（2）——日志处理">
+                知乎笔试（2）——日志处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#笔试题一——富文本过滤"><span class="nav-number">1.</span> <span class="nav-text">笔试题一——富文本过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入与输出"><span class="nav-number">2.</span> <span class="nav-text">样例输入与输出</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2013/06/29/zhihu-examination-1/';
+      var disqus_title = "知乎笔试（1）——富文本过滤";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2013/06/29/zhihu-examination-1/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

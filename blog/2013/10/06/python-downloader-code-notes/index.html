@@ -1,0 +1,972 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="LUSKByQiyf_s-YHcRVWBEOt-QwAQ7PKL0itEKZgtspE" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="liushuaikobe" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="读了一个用Python从网上下载大量文件的代码，不长的代码里可以学习的东西非常多，现在把它写下来分析一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个Python downloader的代码分析">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2013/10/06/python-downloader-code-notes/index.html">
+<meta property="og:site_name" content="liushuaikobe">
+<meta property="og:description" content="读了一个用Python从网上下载大量文件的代码，不长的代码里可以学习的东西非常多，现在把它写下来分析一下。">
+<meta property="og:updated_time" content="2016-07-09T05:30:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个Python downloader的代码分析">
+<meta name="twitter:description" content="读了一个用Python从网上下载大量文件的代码，不长的代码里可以学习的东西非常多，现在把它写下来分析一下。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2013/10/06/python-downloader-code-notes/"/>
+
+  <title> 一个Python downloader的代码分析 | liushuaikobe </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42629277-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">liushuaikobe</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">随便吐个槽而已</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awesome">
+          <a href="/awesome" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bolt"></i> <br />
+            
+            Awesome
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一个Python downloader的代码分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2013-10-06T14:02:00+08:00" content="2013-10-06">
+              2013-10-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/程序设计语言/" itemprop="url" rel="index">
+                    <span itemprop="name">程序设计语言</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/10/06/python-downloader-code-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/10/06/python-downloader-code-notes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>读了一个用Python从网上下载大量文件的代码，不长的代码里可以学习的东西非常多，现在把它写下来分析一下。<a id="more"></a>      </p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>代码是这样的：    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> (division, print_function, absolute_import,</div><div class="line">                        unicode_literals)</div><div class="line"></div><div class="line">__all__ = [<span class="string">"fetch"</span>]</div><div class="line"></div><div class="line"><span class="keyword">import</span> gevent</div><div class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</div><div class="line">monkey.patch_all()</div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> shutil</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product</div><div class="line"><span class="keyword">from</span> tempfile <span class="keyword">import</span> NamedTemporaryFile</div><div class="line"></div><div class="line">data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), <span class="string">"data"</span>)</div><div class="line">filename = os.path.join(data_dir, <span class="string">"&#123;year&#125;-&#123;month:02d&#125;-&#123;day:02d&#125;-&#123;n&#125;.json.gz"</span>)</div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    os.makedirs(data_dir)</div><div class="line"><span class="keyword">except</span> os.error:</div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line">url = <span class="string">"http://data.githubarchive.org/&#123;year&#125;-&#123;month:02d&#125;-&#123;day:02d&#125;-&#123;n&#125;.json.gz"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">(year, month, day, n)</span>:</span></div><div class="line">    kwargs = &#123;<span class="string">"year"</span>: year, <span class="string">"month"</span>: month, <span class="string">"day"</span>: day, <span class="string">"n"</span>: n&#125;</div><div class="line">    local_fn = filename.format(**kwargs)</div><div class="line"></div><div class="line">    <span class="comment"># Skip if the file exists.</span></div><div class="line">    <span class="keyword">if</span> os.path.exists(local_fn):</div><div class="line">        <span class="keyword">return</span></div><div class="line"></div><div class="line">    <span class="comment"># Download the remote file.</span></div><div class="line">    remote = url.format(**kwargs)</div><div class="line">    r = requests.get(remote)</div><div class="line">    <span class="keyword">if</span> r.status_code == requests.codes.ok:</div><div class="line">        <span class="comment"># Atomically write to disk.</span></div><div class="line">        <span class="comment"># http://stackoverflow.com/questions/2333872/ \</span></div><div class="line">        <span class="comment">#        atomic-writing-to-file-with-python</span></div><div class="line">        f = NamedTemporaryFile(<span class="string">"wb"</span>, delete=<span class="keyword">False</span>)</div><div class="line">        f.write(r.content)</div><div class="line">        f.flush()</div><div class="line">        os.fsync(f.fileno())</div><div class="line">        f.close()</div><div class="line">        shutil.move(f.name, local_fn)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    <span class="keyword">for</span> year, month <span class="keyword">in</span> product(range(<span class="number">2011</span>, <span class="number">2014</span>), range(<span class="number">1</span>, <span class="number">13</span>)):</div><div class="line">        jobs = [gevent.spawn(fetch, year, month, day, n)</div><div class="line">                <span class="keyword">for</span> n, day <span class="keyword">in</span> product(range(<span class="number">1</span>, <span class="number">32</span>), range(<span class="number">24</span>))]</div><div class="line">        gevent.joinall(jobs)</div><div class="line">        print(<span class="string">"Finished &#123;0&#125;-&#123;1&#125;"</span>.format(year, month))</div></pre></td></tr></table></figure>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>这段代码实现的功能是，从远程下载大量的json文件，并保存到本地。    </p>
+<p>运行它需要额外安装的库有：<a href="http://docs.python-requests.org/en/latest/" target="_blank" rel="external">requests</a>，<a href="http://www.gevent.org/" target="_blank" rel="external">gevent</a>。这些库可以通过pip安装，开头的这个<code>monkey.patch_all()</code>后面会有介绍。</p>
+<p><a href="http://docs.python.org/2/library/shutil.html" target="_blank" rel="external">shutil</a>这个库名字是由“shell”与“util”合成，提供了一些较高层次上的文件和文件集合操作，但是会丢失文件的一些metadata，比如用户和用户组。其他的诸如itertools、tempfile功能就不言而喻了。     </p>
+<p>在代码的开始，首先构造了用于存放将要下载的文件的目录的路径字符串，使用了<code>os.path</code>中的一些方法。<code>__file__</code>变量存放当前脚本路径（可能是一个相对路径，取决于在命令行中执行该脚本时按何种路径执行）。接着构造了将要下载的文件的绝对路径（包括文件名），起一个模板的作用，为下面调用<code>format()</code>做准备。    </p>
+<p>接着是创建文件夹并构造下载目标的url模板字符串。     </p>
+<p>脚本结构清晰，有一个函数<code>fetch()</code>，通过执行这个函数来完成远程文件的下载与保存。</p>
+<h3 id="fetch"><a href="#fetch" class="headerlink" title="fetch()"></a>fetch()</h3><p>这是脚本中干活的函数，有以下几个点需要我们掌握。    </p>
+<h4 id="args与-kwargs"><a href="#args与-kwargs" class="headerlink" title="*args与**kwargs"></a><code>*args</code>与<code>**kwargs</code></h4><p>在Python函数定义中，我们经常会发现函数带有如下形式的参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(arg, *args, **kwargs)</span>:</span></div><div class="line">	<span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>上例中函数<code>foo()</code>的后两个参数没有显式定义，类似于允许传递不定数量参数的函数，但比那要灵活很多。在调用时，与<code>*args</code>对应的参数将会打包成一个元组传递给函数；<code>**kwargs</code>应为函数定义中最后一个形参，对应的参数必须以<code>arg=val</code>的形式传递，所有这样的参数会打包成字典传给函数。     </p>
+<p>还有一种传递方式是直接用<code>*(&#39;baz&#39;, 123)</code>或<code>**{&#39;bar&#39;:12, 34:56}</code>这样的形式直接传递。还有很多灵活的用法，请自行搜索。    </p>
+<p>回到本脚本上来，<code>str.format(*args, **kwargs)</code>，这是str类型里面的<a href="http://docs.python.org/2/library/stdtypes.html#str.format" target="_blank" rel="external">format</a>方法的定义，本脚本就是直接将一个参数字典传递给<code>format</code>函数。    </p>
+<h4 id="Requests-HTTP-for-Humans"><a href="#Requests-HTTP-for-Humans" class="headerlink" title="Requests: HTTP for Humans"></a>Requests: HTTP for Humans</h4><p><a href="http://docs.python-requests.org/en/latest/" target="_blank" rel="external">requests</a>这个库比较给力，作者认为python自带的urllib2虽然提供了很多方法来让程序员完成日常所需的一些http需求，但是那些方法比较凌乱，要兼容不同时代的不同网络，在使用时要做很多多余的工作。Python不应该是这样的啊！于是requests诞生了，有很多<a href="http://docs.python-requests.org/en/latest/#feature-support" target="_blank" rel="external">exciting features</a>。    </p>
+<p>脚本中首先构造了欲下载文件实际的URL，之后用requests库中优雅的的<code>get</code>方法来下载文件，不得不承认，requests库真的非常优雅，一行代码，读者可以尝试使用urllib2来完成同样的功能。    </p>
+<p><a href="https://gist.github.com/kennethreitz/973705" target="_blank" rel="external">这里</a>还有一个requests与urllib2实现登录远程服务器的一个代码的对比。      </p>
+<p>requests库可以让程序与web无缝结合，用起来很顺手，下次在写跟web有关的函数时，可以试试这个，用户反响很好。      </p>
+<h4 id="原子性地写入文件（Atomically-write-to-disk）"><a href="#原子性地写入文件（Atomically-write-to-disk）" class="headerlink" title="原子性地写入文件（Atomically write to disk）"></a>原子性地写入文件（Atomically write to disk）</h4><p>脚本中，当下载成功后，要将下载到的文件写入磁盘。作者为了保证数据的有效性与正确性，采用了原子性地将文件写入。基本思路是，将数据写入一个临时文件，待确保数据写入成功后，将临时文件改名为目标文件名。注意的是，更名操作仅仅在源文件和目标文件在同一个文件系统的情况下是原子操作，而且，源文件和目标文件的名称必须不相同。更多的细节请参考脚本注释中给出的SO<a href="http://stackoverflow.com/questions/2333872/atomic-writing-to-file-with-python" target="_blank" rel="external">讨论</a>链接。        </p>
+<h4 id="file-flush-与os-fsync"><a href="#file-flush-与os-fsync" class="headerlink" title="file.flush()与os.fsync()"></a><code>file.flush()</code>与<code>os.fsync()</code></h4><p>为了确保数据<strong>一定</strong>被写入了磁盘，在<code>file.flush()</code>后面又补加了一句<code>os.fsync()</code>。这是为什么呢？<br>在这个过程中涉及到两个层次的buffer：</p>
+<pre><code>1. 内部的buffer（Internal buffers）
+2. 操作系统的buffer（Operating system buffers）
+</code></pre><p>所谓Internal buffers是由程序创建的buffer，例如runtime、lib、language，旨在避免频繁地进行系统调用来将数据写入磁盘，以提高效率。也即每次向文件对象写入数据时，实际上是写入了这个buffer，什么时候这个buffer满了，数据才真正调用系统调用写入实际的文件。     </p>
+<p>然而，由于操作系统还有一层buffer，上述操作也并不意味着就一定将数据写入了实实在在的文件，仅仅意味着数据从由程序运行时维护的buffer转移到了操作系统的那层buffer。        </p>
+<p>设想一下这种情况，当数据在操作系统的buffer中时，突然机器断电了，数据就丢了。     </p>
+<p>为了解决这种情况，<code>flush</code>与<code>fsync</code>就诞生了。       </p>
+<p>首先，<code>flush</code>将逗留在Internal buffer的数据写入实际的文件，注意，假设此时有另外一个进程打开了这个文件进行读取，是<strong>可以</strong>读到被<code>flush</code>的内容的，但是这不意味着数据被永久存入了磁盘。    </p>
+<p>接下来，我们调用<code>fsync</code>来把存储在Operating system buffer中的数据同步到实实在在的硬盘中去。  </p>
+<p>其实，我们在编写程序的过程中没有必要纠结于此。调用<code>flush</code>，剩下的交给OS即可。但是万一要求数据必须稳妥地存入外存，或者你有强迫症，就在<code>flush</code>后面加一个<code>fsync</code>吧。注意这肯定会对效率与性能有所影响。具体可以参考<a href="http://stackoverflow.com/questions/7127075/what-exactly-the-pythons-file-flush-is-doing" target="_blank" rel="external">这里</a>。</p>
+<h3 id="main"><a href="#main" class="headerlink" title="__main__"></a>__main__</h3><h4 id="itertools-product"><a href="#itertools-product" class="headerlink" title="itertools.product()"></a><code>itertools.product()</code></h4><p>这个函数接受两个列表作为参数，返回一个由两个列表的笛卡尔乘积作为元素的迭代器。</p>
+<h4 id="gevent"><a href="#gevent" class="headerlink" title="gevent"></a>gevent</h4><p><a href="http://www.gevent.org/" target="_blank" rel="external">gevent</a>这个库更是牛B到爆。它是一个基于Python协程的网络库，官网的第一句话简明地介绍了它：</p>
+<blockquote>
+<p>gevent is a <a href="http://en.wikipedia.org/wiki/Coroutine" target="_blank" rel="external">coroutine</a>-based Python networking library that uses <a href="http://greenlet.readthedocs.org/en/latest/" target="_blank" rel="external">greenlet</a> to provide a high-level synchronous API on top of the <a href="http://monkey.org/~provos/libevent/" target="_blank" rel="external">libevent</a> event loop.</p>
+</blockquote>
+<p>翻译不好，于是直接把这搬上来了，主要是对greenlet和libevent都不熟悉。    </p>
+<p>协程（Co-routine）是什么呢？简单来说，就是可以暂时中断，之后再继续执行的程序。想到什么了？对，就是Python的generater、yield，还有<code>range()</code>与<code>xrange()</code>。协程跟这些有着千丝万缕的联系。     </p>
+<p>这里有一篇很好的<a href="http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/" target="_blank" rel="external">文章</a>来讲co-routine和gevent。<a href="http://simple-is-better.com/news/334" target="_blank" rel="external">这里</a>也是一篇好文，讲解gevent的优点和缺点。    </p>
+<p>在理解了协程的过程之后，我认为协程跟多线程最大的区别就在于，协程之间的切换相对比thread之间的context-switch来说，成本很小；而且，thread的context-switch虽然我们可以进行某种程度的控制，但是大部分还是得靠OS来决定要先排程哪个thread，而coroutine的执行完全是由我们自己控制的。也就是说，协程们是在用户态由程序员控制进行排程，协程其实是在一个线程中折腾的。       </p>
+<p>回到脚本上来，从远程下载文件保存到本地，这其中要做大量的IO操作。脚本是采用了gevent库利用协程进行高效地下载。其中<code>joinall()</code>是等待所有协程都return之后，主程序继续向下执行。          </p>
+<p>再去看脚本开头的<code>monkey.patch_all()</code>，这是将Python内建的函数库中一些同步IO操作取代成gevent的异步IO操作，这样，当IO阻塞发生时，会切到主线程进行协程的排程，而非阻塞在那里。    </p>
+<p>想了解更多，可以去阅读greeelet和gevent的源码。      </p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>实不相瞒，我也写了代码做同样的工作。但是，我用了shell的<code>wget</code>。看了这个downloader，真的除了膜拜别无他求。如果让我用Python写一个downloader，我顶多会用多线程（可能嫌麻烦，连多线程也不用，求喷）？会考虑写入文件的原子性吗？会去主动搜索一下能提高效率的lib吗？     </p>
+<p>在读了这段代码之后，真心觉得<code>知也无涯</code>啊。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/07/18/zhihu-examination-2/" rel="next" title="知乎笔试（2）——日志处理">
+                <i class="fa fa-chevron-left"></i> 知乎笔试（2）——日志处理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/12/01/ios-developing-one-week/" rel="prev" title="iOS Developer for a week">
+                iOS Developer for a week <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.PNG"
+               alt="liushuaikobe" />
+          <p class="site-author-name" itemprop="name">liushuaikobe</p>
+          <p class="site-description motion-element" itemprop="description">iDeveloper | Pythoner | 🍺</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liushuaikobe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://stackoverflow.com/users/1108052/liushuaikobe" target="_blank" title="SO">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                  SO
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/liushuaikobe" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.flickr.com/photos/liushuaikobe/" target="_blank" title="Flickr">
+                  
+                    <i class="fa fa-fw fa-flickr"></i>
+                  
+                  Flickr
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fetch"><span class="nav-number">3.</span> <span class="nav-text">fetch()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#args与-kwargs"><span class="nav-number">3.1.</span> <span class="nav-text">*args与**kwargs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Requests-HTTP-for-Humans"><span class="nav-number">3.2.</span> <span class="nav-text">Requests: HTTP for Humans</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性地写入文件（Atomically-write-to-disk）"><span class="nav-number">3.3.</span> <span class="nav-text">原子性地写入文件（Atomically write to disk）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#file-flush-与os-fsync"><span class="nav-number">3.4.</span> <span class="nav-text">file.flush()与os.fsync()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">4.</span> <span class="nav-text">__main__</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#itertools-product"><span class="nav-number">4.1.</span> <span class="nav-text">itertools.product()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gevent"><span class="nav-number">4.2.</span> <span class="nav-text">gevent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liushuaikobe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'liushuaikobe';
+      var disqus_identifier = 'blog/2013/10/06/python-downloader-code-notes/';
+      var disqus_title = "一个Python downloader的代码分析";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2013/10/06/python-downloader-code-notes/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
