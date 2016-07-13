@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-07-09T06:50:16.000Z</updated>
+  <updated>2016-07-13T14:36:37.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -16,11 +16,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Swift中Optional的map和flatMap</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/</id>
+    <published>2016-07-13T14:31:57.000Z</published>
+    <updated>2016-07-13T14:36:37.000Z</updated>
+    
+    <content type="html">&lt;p&gt;用过Swift的读者想必对&lt;code&gt;map&lt;/code&gt;和&lt;code&gt;flatMap&lt;/code&gt;不陌生，它们定义在&lt;code&gt;SequenceType&lt;/code&gt;协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;但是不知读者是否知道，Swift中的Optional类型，也有&lt;code&gt;map&lt;/code&gt;和&lt;code&gt;flatMap&lt;/code&gt;方法。&lt;/p&gt;
+&lt;p&gt;首先看这样的场景：&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; avatarURL: &lt;span class=&quot;type&quot;&gt;String&lt;/span&gt;? = &lt;span class=&quot;string&quot;&gt;&quot;http://blog.liushuaiko.be/images/avatar.PNG&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;不妨假设&lt;code&gt;avatarURL&lt;/code&gt;的来源以及是否有值我们不得而知，因此我们将其定义为一个&lt;code&gt;Optional&amp;lt;String&amp;gt;&lt;/code&gt;类型。在使用它时，我们需要做一系列的判断赋值：&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; _avatarURL = avatarURL &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; url = &lt;span class=&quot;type&quot;&gt;NSURL&lt;/span&gt;(string: _avatarURL) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(url.absoluteString)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样的场景通常在解析网络请求返回的JSON时很常见，不知不觉就出现了所谓的「大括号阶梯」。&lt;/p&gt;
+&lt;p&gt;我们可以用Optional类型中定义的&lt;code&gt;map&lt;/code&gt;和&lt;code&gt;flatMap&lt;/code&gt;来避免这种情况，先看下用了之后会变成什么样子：&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;avatarURL.flatMap &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;NSURL&lt;/span&gt;(string: $&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;.&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;($&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;.absoluteString)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;打开&lt;code&gt;Optional&lt;/code&gt;的定义，&lt;code&gt;map&lt;/code&gt;和&lt;code&gt;flatMap&lt;/code&gt;一览无余，你应该顺便发现，Optional在Swift里是一个enum。&lt;/p&gt;
+&lt;p&gt;去掉&lt;code&gt;@noescape&lt;/code&gt;和&lt;code&gt;throws&lt;/code&gt;，它们的原型更加清晰：&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;map&lt;/span&gt;&amp;lt;U&amp;gt;&lt;span class=&quot;params&quot;&gt;(f: Wrapped -&amp;gt; U)&lt;/span&gt;&lt;/span&gt; -&amp;gt; &lt;span class=&quot;type&quot;&gt;U&lt;/span&gt;?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;flatMap&lt;/span&gt;&amp;lt;U&amp;gt;&lt;span class=&quot;params&quot;&gt;(f: Wrapped -&amp;gt; U?)&lt;/span&gt;&lt;/span&gt; -&amp;gt; &lt;span class=&quot;type&quot;&gt;U&lt;/span&gt;?&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在这两个泛型函数中，&lt;code&gt;Wrapped&lt;/code&gt;是Optional的泛型参数，即Optional包裹的类型。两个函数唯一的不同是接收的参数「函数的返回值」不同，一个期待函数返回&lt;code&gt;U&lt;/code&gt;，另一个期待函数返回&lt;code&gt;U?&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;两个函数在表现上是类似的，如果可选类型有值（!= nil），则返回&lt;code&gt;f(Wrapped Value)&lt;/code&gt;，否则直接返回nil。&lt;/p&gt;
+&lt;p&gt;那么不难理解前面的例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; url:&lt;span class=&quot;type&quot;&gt;NSURL&lt;/span&gt;? = avatarURL.flatMap &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;NSURL&lt;/span&gt;(string: $&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;// NSURL? 相当于 U?&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; nothing:&lt;span class=&quot;type&quot;&gt;Optional&lt;/span&gt; = url.&lt;span class=&quot;built_in&quot;&gt;map&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;($&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;.absoluteString) &lt;span class=&quot;comment&quot;&gt;// 什么都不返回，因此这个map返回一个什么都不包裹的Optional&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用过Swift的读者想必对&lt;code&gt;map&lt;/code&gt;和&lt;code&gt;flatMap&lt;/code&gt;不陌生，它们定义在&lt;code&gt;SequenceType&lt;/code&gt;协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="程序设计语言" scheme="http://blog.liushuaiko.be/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Swift" scheme="http://blog.liushuaiko.be/tags/Swift/"/>
+    
+  </entry>
+  
+  <entry>
     <title>高级Auto Layout笔记</title>
     <link href="http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/"/>
     <id>http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/</id>
     <published>2016-07-09T06:44:50.000Z</published>
-    <updated>2016-07-09T06:50:16.000Z</updated>
+    <updated>2016-07-13T14:38:02.000Z</updated>
     
     <content type="html">&lt;p&gt;本文是objc.io中「Advanced Auto Layout Toolbox」的学习笔记。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1405,92 +1444,6 @@ foo          | X.X.X.X                        | A(Address)
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。
-    
-    </summary>
-    
-      <category term="数据库" scheme="http://blog.liushuaiko.be/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
-    
-      <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NoSQL &amp; MongoDB（1）——也谈NoSQL</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/03/17/nosql-mongodb-1/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/03/17/nosql-mongodb-1/</id>
-    <published>2014-03-17T08:37:00.000Z</published>
-    <updated>2016-07-09T05:42:50.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;贵工大这破网我就不得不抱怨一句了，有位师兄形容这“网速慢的心都在滴血”，太恰当不过了！&lt;/p&gt;
-&lt;p&gt;本人这个NoSQL&amp;amp;MongoDB的技术分享从上学期开始就开始准备了，但是上学期师弟们考试的考试，把妹的把妹，抢票的抢票，基本对科研没什么激情了，于是移到了这学期。写点东西捋一下思路，同时也做一下总结。&lt;/p&gt;
-&lt;p&gt;当然，我只能从理论上把我看到的、听到的做出一些总结，并没有丰富的实际应用经验，恳请大家对我理解出现偏差的地方做出指正。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;No-SQL&quot;&gt;&lt;a href=&quot;#No-SQL&quot; class=&quot;headerlink&quot; title=&quot;No-SQL&quot;&gt;&lt;/a&gt;No-SQL&lt;/h3&gt;&lt;h4 id=&quot;Carlo-Strozzi-和他的-“NoSQL”&quot;&gt;&lt;a href=&quot;#Carlo-Strozzi-和他的-“NoSQL”&quot; class=&quot;headerlink&quot; title=&quot;Carlo Strozzi 和他的 “NoSQL”&quot;&gt;&lt;/a&gt;Carlo Strozzi 和他的 “NoSQL”&lt;/h4&gt;&lt;p&gt;提起NoSQL这个概念，就不得不提起&lt;a href=&quot;http://www.strozzi.it/users/carlo/vitae.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Carlo Strozzi&lt;/a&gt;。据史料记载，早在1998年，Strozzi用NoSQL来命名他开发的轻量级开源的&lt;strong&gt;关系型&lt;/strong&gt;数据库，这个关系型数据库没有通常的SQL（Structured Query Language）查询接口，它的给用户提供的接口是UNIX的shell，使用一系列的命令流，基于UNIX IO重定向的支持，在操作系统的管道之上，一个命令的结果可以传给另一个命令，来实现数据库的查询等操作。此外，Strozzi NoSQL的数据存储在操作系统的文件系统中的普通文件里，以ASCII码的形式存储，非常方便移植，而且可以非常方便的使用其他文本处理命令处理，例如sed等。&lt;/p&gt;
-&lt;p&gt;总结一下，这里的“NoSQL”数据库不过就是一系列Shell命令的集合，这些命令操作的是OS文件系统的普通文件。&lt;/p&gt;
-&lt;p&gt;因此，在这里，“NoSQL”意为——“没有结构化查询语言”。&lt;/p&gt;
-&lt;p&gt;Strozzi还特意强调了他的NoSQL和现在的NoSQL运动的不同，他形容现在的NoSQL运动：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;departs from the relational model altogether; it should therefore have been called more appropriately ‘NoREL’&lt;br&gt;完全背离了关系模型，叫它“No Relationship”更合适&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;A-meetup-San-Francisco&quot;&gt;&lt;a href=&quot;#A-meetup-San-Francisco&quot; class=&quot;headerlink&quot; title=&quot;A meetup @ San Francisco&quot;&gt;&lt;/a&gt;A meetup @ San Francisco&lt;/h4&gt;&lt;p&gt;到2009年，一位叫Johan Oskarsson人举办了一个技术聚会，是一个关于“开源，分布式，非关系型的数据库”的讨论和分享的会议。会上讨论了比较成熟的例子——Google的&lt;a href=&quot;http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BigTable&lt;/a&gt;和Amazon的&lt;a href=&quot;http://s3.amazonaws.com/AllThingsDistributed/sosp/amazon-dynamo-sosp2007.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dynamo&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;在这个会期间，时任Rackspace员工的Eric Evans提出“NoSQL”。他提出这个名字纯属一拍脑门就定的那种，在当时看来比较片面，因为Johan本来是想将会议的重心放在大数据以及分布式系统上，虽然有些的确是非关系型的系统，但是直接叫“NoSQL”实在有点“跑偏”。&lt;/p&gt;
-&lt;p&gt;Eric自己也说：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;My regret however isn’t about what the name says, it’s about what it doesn’t.&lt;br&gt;我感到抱歉的不是NoSQL表达出的什么意思，而是它没表达出的意思。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;到此，NoSQL可以理解为Non-Relationship，人们anti-RDBMS，对非关系型的数据库的认识逐渐加深。&lt;/p&gt;
-&lt;h4 id=&quot;no-sql-east-Atlanta&quot;&gt;&lt;a href=&quot;#no-sql-east-Atlanta&quot; class=&quot;headerlink&quot; title=&quot;no:sql(east) @ Atlanta&quot;&gt;&lt;/a&gt;no:sql(east) @ Atlanta&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;SELECT fun, profit
-FROM real_world
-WHERE relation=false;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上是本次会议的主题。可以看到，它是用SQL写的，而本次会议又是有关于NoSQL的会议。在会议上，大部分会议的出席者觉得将NoSQL理解为“Not Only SQL”更合适。他们认为，关系型数据库与非关系型数据库各有用武之地，不能完全否定、反对任何一个。NoSQL的存在恰恰是对大部分RDBMS技术实现上的限制做了弥补。&lt;/p&gt;
-&lt;p&gt;到现在，NoSQL的含义就比较和谐了，“Not Only SQL”。&lt;/p&gt;
-&lt;h3 id=&quot;CAP理论&quot;&gt;&lt;a href=&quot;#CAP理论&quot; class=&quot;headerlink&quot; title=&quot;CAP理论&quot;&gt;&lt;/a&gt;CAP理论&lt;/h3&gt;&lt;p&gt;CAP理论是理论计算机科学中一个定理，在2000年由UC Berkeley的Eric Brewer教授提出猜想，2年后，MIT的两个小伙&lt;a href=&quot;http://www.julianbrowne.com/article/viewer/brewers-cap-theorem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;证明&lt;/a&gt;了它，使之成为一个定理。这个定理指出了：一个分布式系统&lt;strong&gt;不可能&lt;/strong&gt;同时保证以下三点：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Consistency（一致性）&lt;/li&gt;
-&lt;li&gt;Availability （可用性）&lt;/li&gt;
-&lt;li&gt;Partition tolerance （分区容忍性）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;Consistency&quot;&gt;&lt;a href=&quot;#Consistency&quot; class=&quot;headerlink&quot; title=&quot;Consistency&quot;&gt;&lt;/a&gt;Consistency&lt;/h4&gt;&lt;p&gt;整个集群的数据都是一致的，因此我们不管读写集群中哪个节点都可以得到相同的数据。&lt;/p&gt;
-&lt;h4 id=&quot;Availability&quot;&gt;&lt;a href=&quot;#Availability&quot; class=&quot;headerlink&quot; title=&quot;Availability&quot;&gt;&lt;/a&gt;Availability&lt;/h4&gt;&lt;p&gt;整个集群是可访问的，对一个请求来说，不管请求成功或失败，都有回应。&lt;/p&gt;
-&lt;h4 id=&quot;Partition-tolerance&quot;&gt;&lt;a href=&quot;#Partition-tolerance&quot; class=&quot;headerlink&quot; title=&quot;Partition tolerance&quot;&gt;&lt;/a&gt;Partition tolerance&lt;/h4&gt;&lt;p&gt;当集群出现通信上的中断导致的任意信息的丢失时，集群是可以接受的，可以容忍的。&lt;/p&gt;
-&lt;p&gt;以上三者不可能同时获得。举个例子，一个分布式系统中的两个节点X和Y，同为主节点，现在假设网络出现故障，导致X和Y不能通信，他们之间不能互发信息了，不过我可以忍啊，丢点信息就丢点信息吧（满足P）！那么现在C和A我必须放弃一个，不信请看，这时Y点来了一个写请求，我可以怎么办？&lt;/p&gt;
-&lt;p&gt;A）放弃一致性，接受这个写请求，写到Y点，但是X和Y的数据不同步&lt;br&gt;B）放弃可用性，直接拒绝写请求，基本上整个集群也就不工作了&lt;/p&gt;
-&lt;p&gt;而既然是一个分布式的系统，必须能容忍分区，假设不能容忍，那么我这个分布式系统中每个点之间一点信息都不能丢，网络一点故障都不能有！这样的分布式系统是不存在的（只有单机系统可以满足这）。那么我们必须得在C和A之间做一个取舍。&lt;/p&gt;
-&lt;h3 id=&quot;BASE&quot;&gt;&lt;a href=&quot;#BASE&quot; class=&quot;headerlink&quot; title=&quot;BASE&quot;&gt;&lt;/a&gt;BASE&lt;/h3&gt;&lt;p&gt;BASE这个缩写也是由Eric Brewer提出的，他自己也承认有点生搬硬凑的意思。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Basically Available（基本可用）&lt;/li&gt;
-&lt;li&gt;Soft state（软状态）&lt;/li&gt;
-&lt;li&gt;Eventual consistency（最终一致性）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;BASE完全不同ACID。ACID比较被人熟知，数据库事务的四个特性原子性，事务内的操作要么全成功，要么全失败；一致性，事务执行前后数据库的完整性没有被破坏，从一个合法的状态到另一个合法的状态；隔离性，当多个事务并发访问数据库时，保证他们一个一个执行；持久性，事务完成后，该事务对数据库做出的更改是永久被保存的，即使数据库执行完事务后立刻就崩了。&lt;/p&gt;
-&lt;p&gt;BASE原则通常被用来描述NoSQL数据库。其中基本可用表示系统绝大部分是可用的，但是服务器可能会因为一些原因挂掉；软状态指的是整个系统的状态会随时变化，即使没有新的写操作，因为系统是最终一致性；最终一致性，弱一致性的特例，不保证任一时刻节点同一份数据都是相同的，但随着时间的迁移，不同节点的同一份数据朝同一趋势变化，最终一致，比如DNS系统就是典型的最终一致性。&lt;/p&gt;
-&lt;h3 id=&quot;为什么我们需要NoSQL&quot;&gt;&lt;a href=&quot;#为什么我们需要NoSQL&quot; class=&quot;headerlink&quot; title=&quot;为什么我们需要NoSQL&quot;&gt;&lt;/a&gt;为什么我们需要NoSQL&lt;/h3&gt;&lt;p&gt;在有了理论基础之后，我们不禁思考，为什么我们需要NoSQL？&lt;/p&gt;
-&lt;p&gt;传统的数据库一般是比较注重CAP理论中的CA。由于传统数据库对事物的支持，导致其很难扩展。实际上开始的时候，业界的公司并没有开始就去反对SQL，反对关系型设计，而是随着业务的扩展与增加，他们发现传统的关系型数据库越来越不能满足他们的需求：空前的事务处理，对海量数据访问低延迟，以及在不可靠环境中服务的高可用性。开始这些公司也尝试了传统的解决方案：为硬件升级，当为硬件各种升级也满足不了需求时，人们就尝试将现有的数据库模式（Schema）简化，反范式化，不要那么多的外键引用，引进各种查询缓存，将服务器分成读写专用等等。&lt;/p&gt;
-&lt;p&gt;虽然这么多技术大大扩展了现有的数据库的功能，但是都没有解决最核心的问题，都治标不治本。&lt;/p&gt;
-&lt;p&gt;接着，IT界发生了一些戏剧性的变化。当大多数关系型数据库技术被设计的时候，硬件部署上主要的模型是需要高配置的服务器以及专用的存储区域网络（SAN）。关系型数据库的这种模型被牢牢地印在脑子里：&lt;strong&gt;一台&lt;/strong&gt;单独的服务器负责管理整个存储系统的一致性状态，换句话说，数据库只管理本地的数据文件，在硬件允许的情况下尽可能多地提供并发的访问。当时的数据库不需要做冗余，因为单机已经能满足设计需求了，数据的可靠性也可以通过一个随时可以接替Master位置的可以处理查询请求的机器来保证。除了这种简单的失效备援的复制，当时有很少的技术可以选择，而且他们都是基于高一致性的中心化数据管理机制的观念。最后，这种关系型数据库再普遍不过的架构和设计终于不能满足水平扩展、低延迟、以及可用性的需求。&lt;/p&gt;
-&lt;p&gt;人们的需求渐渐清晰，完全可以开发一个新的东西来满足这些需求啊！接着这些公司就开发了一些机构内部使用的解决方案，这些方案抛弃了现有的数据库的一些特性，如Join、强一致性等等，范式也从各种表之间的制约变成了更像是简单的Key-Value的查询，在部署上也不需要各种昂贵的服务器了。于是这些公司就把现有的数据库放到一边，他们明白可以在新的解决方案上做的更好，这些机构内部的解决方案就对我们现在在市场上看到的很多NoSQL做了很大的启发，NoSQL就是这样逐渐发展起来。&lt;/p&gt;
-&lt;h3 id=&quot;现在较为常见的NoSQL&quot;&gt;&lt;a href=&quot;#现在较为常见的NoSQL&quot; class=&quot;headerlink&quot; title=&quot;现在较为常见的NoSQL&quot;&gt;&lt;/a&gt;现在较为常见的NoSQL&lt;/h3&gt;&lt;p&gt;有一个网站列举了市面上较为常见的NoSQL数据库：&lt;a href=&quot;http://nosql-databases.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nosql-databases&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;下面有一张表更加直观：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/nosql-db.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://yankaycom-wordpress.stor.sinaapp.com/NoSql_Database_Note.html?q=/wp-content/NoSql_Database_Note.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL数据库笔谈, 颜开的博客&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.usenix.org/legacy/publications/login/2011-10/openpdfs/Burd.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL, Greg Burd&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/NoSQL&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL, wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Strozzi_NoSQL_\(RDBMS\&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Strozzi NoSQL, wikipedia&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.julianbrowne.com/article/viewer/brewers-cap-theorem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Brewer’s CAP Theorem&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/12346326/nosql-cap-theorem-availability-and-partition-tolerance&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NoSQL CAP theorem - Availability and Partition Tolerance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/3342497/explanation-of-base-terminology&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Explanation of BASE terminology&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://dirlt.com/you-can-not-sacrifice-partition-tolerance.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;You Can’t Sacrifice Partition Tolerance&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h3&gt;&lt;p&gt;贵工大这破网我就不得不抱怨一句了，有位师兄形容这“网速慢的心都在滴血”，太恰当不过了！&lt;/p&gt;
-&lt;p&gt;本人这个NoSQL&amp;amp;MongoDB的技术分享从上学期开始就开始准备了，但是上学期师弟们考试的考试，把妹的把妹，抢票的抢票，基本对科研没什么激情了，于是移到了这学期。写点东西捋一下思路，同时也做一下总结。&lt;/p&gt;
-&lt;p&gt;当然，我只能从理论上把我看到的、听到的做出一些总结，并没有丰富的实际应用经验，恳请大家对我理解出现偏差的地方做出指正。
     
     </summary>
     

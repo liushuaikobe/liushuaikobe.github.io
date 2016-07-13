@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title><![CDATA[Swift中Optional的map和flatMap]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/</url>
+      <content type="html"><![CDATA[<p>用过Swift的读者想必对<code>map</code>和<code>flatMap</code>不陌生，它们定义在<code>SequenceType</code>协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。</p>
+<a id="more"></a>
+<p>但是不知读者是否知道，Swift中的Optional类型，也有<code>map</code>和<code>flatMap</code>方法。</p>
+<p>首先看这样的场景：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> avatarURL: <span class="type">String</span>? = <span class="string">"http://blog.liushuaiko.be/images/avatar.PNG"</span></div></pre></td></tr></table></figure>
+<p>不妨假设<code>avatarURL</code>的来源以及是否有值我们不得而知，因此我们将其定义为一个<code>Optional&lt;String&gt;</code>类型。在使用它时，我们需要做一系列的判断赋值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> _avatarURL = avatarURL &#123;</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> url = <span class="type">NSURL</span>(string: _avatarURL) &#123;</div><div class="line">        <span class="built_in">print</span>(url.absoluteString)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的场景通常在解析网络请求返回的JSON时很常见，不知不觉就出现了所谓的「大括号阶梯」。</p>
+<p>我们可以用Optional类型中定义的<code>map</code>和<code>flatMap</code>来避免这种情况，先看下用了之后会变成什么样子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">avatarURL.flatMap &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">NSURL</span>(string: $<span class="number">0</span>)</div><div class="line">&#125;.<span class="built_in">map</span> &#123;</div><div class="line">    <span class="built_in">print</span>($<span class="number">0</span>.absoluteString)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打开<code>Optional</code>的定义，<code>map</code>和<code>flatMap</code>一览无余，你应该顺便发现，Optional在Swift里是一个enum。</p>
+<p>去掉<code>@noescape</code>和<code>throws</code>，它们的原型更加清晰：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;U&gt;<span class="params">(f: Wrapped -&gt; U)</span></span> -&gt; <span class="type">U</span>?</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;U&gt;<span class="params">(f: Wrapped -&gt; U?)</span></span> -&gt; <span class="type">U</span>?</div></pre></td></tr></table></figure>
+<p>在这两个泛型函数中，<code>Wrapped</code>是Optional的泛型参数，即Optional包裹的类型。两个函数唯一的不同是接收的参数「函数的返回值」不同，一个期待函数返回<code>U</code>，另一个期待函数返回<code>U?</code>。</p>
+<p>两个函数在表现上是类似的，如果可选类型有值（!= nil），则返回<code>f(Wrapped Value)</code>，否则直接返回nil。</p>
+<p>那么不难理解前面的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> url:<span class="type">NSURL</span>? = avatarURL.flatMap &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">NSURL</span>(string: $<span class="number">0</span>) <span class="comment">// NSURL? 相当于 U?</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> nothing:<span class="type">Optional</span> = url.<span class="built_in">map</span> &#123;</div><div class="line">    <span class="built_in">print</span>($<span class="number">0</span>.absoluteString) <span class="comment">// 什么都不返回，因此这个map返回一个什么都不包裹的Optional</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[高级Auto Layout笔记]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/</url>
       <content type="html"><![CDATA[<p>本文是objc.io中「Advanced Auto Layout Toolbox」的学习笔记。</p>

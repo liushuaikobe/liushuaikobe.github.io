@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C," />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -88,18 +88,16 @@
 
 
 
-<meta name="description" content="看到标题是不是想：这么水的题目也往blog里面写，是不是想赚积分想疯了？">
+<meta name="description" content="用过Swift的读者想必对map和flatMap不陌生，它们定义在SequenceType协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言打印杨辉三角">
-<meta property="og:url" content="http://blog.liushuaiko.be/blog/2013/03/15/C-yanghui-triangle/index.html">
+<meta property="og:title" content="Swift中Optional的map和flatMap">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/index.html">
 <meta property="og:site_name" content="liushuaikobe">
-<meta property="og:description" content="看到标题是不是想：这么水的题目也往blog里面写，是不是想赚积分想疯了？">
-<meta property="og:image" content="http://vars.qiniudn.com/c_yanghui_sanjiao.png">
-<meta property="og:updated_time" content="2016-07-09T06:06:17.000Z">
+<meta property="og:description" content="用过Swift的读者想必对map和flatMap不陌生，它们定义在SequenceType协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。">
+<meta property="og:updated_time" content="2016-07-13T14:36:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C语言打印杨辉三角">
-<meta name="twitter:description" content="看到标题是不是想：这么水的题目也往blog里面写，是不是想赚积分想疯了？">
-<meta name="twitter:image" content="http://vars.qiniudn.com/c_yanghui_sanjiao.png">
+<meta name="twitter:title" content="Swift中Optional的map和flatMap">
+<meta name="twitter:description" content="用过Swift的读者想必对map和flatMap不陌生，它们定义在SequenceType协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。">
 
 
 
@@ -120,9 +118,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2013/03/15/C-yanghui-triangle/"/>
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/"/>
 
-  <title> C语言打印杨辉三角 | liushuaikobe </title>
+  <title> Swift中Optional的map和flatMap | liushuaikobe </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -304,7 +302,7 @@
             
             
               
-                C语言打印杨辉三角
+                Swift中Optional的map和flatMap
               
             
           </h1>
@@ -316,8 +314,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2013-03-15T22:48:00+08:00" content="2013-03-15">
-              2013-03-15
+            <time itemprop="dateCreated" datetime="2016-07-13T22:31:57+08:00" content="2016-07-13">
+              2016-07-13
             </time>
           </span>
 
@@ -346,8 +344,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2013/03/15/C-yanghui-triangle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/03/15/C-yanghui-triangle/" itemprop="commentsCount"></span>
+                <a href="/blog/2016/07/13/swift-optional-map/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/07/13/swift-optional-map/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -375,12 +373,23 @@
       
 
       
-        <p>看到标题是不是想：这么水的题目也往blog里面写，是不是想赚积分想疯了？</p>
+        <p>用过Swift的读者想必对<code>map</code>和<code>flatMap</code>不陌生，它们定义在<code>SequenceType</code>协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。</p>
 <a id="more"></a>
-<p>好吧，事情是这样的：<br>学院有一个实习派遣考试，官方报道，考试不通过不允许校外实习。<br>题目非常水，全是基础知识，通过做这我更加坚定了之前的想法，总用Java、Python啥的，会让我越来越“弱”。求一个int数组的长度，第一反应是<code>len(array)</code>，接着是<code>array.length</code>，最后好一通想要<code>sizeof(array)/sizeof(int)</code>，囧。最让我无奈的是，二次函数求根公式竟然怎么想都想不出来，我去，这通推导！</p>
-<p>有一题是那种还挺像笔试题的，让你只用一个一维数组打印杨辉三角，输出三角行数用户输入，小于100，数组长度小于100，还真想了一会，好吧，就随便写一下吧，来鞭策自己。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_triangle</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= n; i++)</div><div class="line">    &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>,a[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i, j, N;</div><div class="line">    <span class="keyword">int</span> a[<span class="number">100</span>] = &#123;<span class="number">1</span>, <span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">int</span> old, s;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Input the number of line:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;N);</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++)</div><div class="line">    &#123;</div><div class="line">            old = a[<span class="number">0</span>];</div><div class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; j++)</div><div class="line">            &#123;</div><div class="line">                    s = old;</div><div class="line">                    old = a[j + <span class="number">1</span>];</div><div class="line">                    a [j + <span class="number">1</span>] = s + old;</div><div class="line">            &#125;</div><div class="line">            print_triangle(a,i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="http://vars.qiniudn.com/c_yanghui_sanjiao.png" alt=""></p>
-<p>程序设计基本功不能忽视，加油吧少年们。</p>
+<p>但是不知读者是否知道，Swift中的Optional类型，也有<code>map</code>和<code>flatMap</code>方法。</p>
+<p>首先看这样的场景：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> avatarURL: <span class="type">String</span>? = <span class="string">"http://blog.liushuaiko.be/images/avatar.PNG"</span></div></pre></td></tr></table></figure>
+<p>不妨假设<code>avatarURL</code>的来源以及是否有值我们不得而知，因此我们将其定义为一个<code>Optional&lt;String&gt;</code>类型。在使用它时，我们需要做一系列的判断赋值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> _avatarURL = avatarURL &#123;</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> url = <span class="type">NSURL</span>(string: _avatarURL) &#123;</div><div class="line">        <span class="built_in">print</span>(url.absoluteString)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的场景通常在解析网络请求返回的JSON时很常见，不知不觉就出现了所谓的「大括号阶梯」。</p>
+<p>我们可以用Optional类型中定义的<code>map</code>和<code>flatMap</code>来避免这种情况，先看下用了之后会变成什么样子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">avatarURL.flatMap &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">NSURL</span>(string: $<span class="number">0</span>)</div><div class="line">&#125;.<span class="built_in">map</span> &#123;</div><div class="line">    <span class="built_in">print</span>($<span class="number">0</span>.absoluteString)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打开<code>Optional</code>的定义，<code>map</code>和<code>flatMap</code>一览无余，你应该顺便发现，Optional在Swift里是一个enum。</p>
+<p>去掉<code>@noescape</code>和<code>throws</code>，它们的原型更加清晰：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;U&gt;<span class="params">(f: Wrapped -&gt; U)</span></span> -&gt; <span class="type">U</span>?</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;U&gt;<span class="params">(f: Wrapped -&gt; U?)</span></span> -&gt; <span class="type">U</span>?</div></pre></td></tr></table></figure>
+<p>在这两个泛型函数中，<code>Wrapped</code>是Optional的泛型参数，即Optional包裹的类型。两个函数唯一的不同是接收的参数「函数的返回值」不同，一个期待函数返回<code>U</code>，另一个期待函数返回<code>U?</code>。</p>
+<p>两个函数在表现上是类似的，如果可选类型有值（!= nil），则返回<code>f(Wrapped Value)</code>，否则直接返回nil。</p>
+<p>那么不难理解前面的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> url:<span class="type">NSURL</span>? = avatarURL.flatMap &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">NSURL</span>(string: $<span class="number">0</span>) <span class="comment">// NSURL? 相当于 U?</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> nothing:<span class="type">Optional</span> = url.<span class="built_in">map</span> &#123;</div><div class="line">    <span class="built_in">print</span>($<span class="number">0</span>.absoluteString) <span class="comment">// 什么都不返回，因此这个map返回一个什么都不包裹的Optional</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -412,7 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag">#C</a>
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
           
         </div>
       
@@ -421,17 +430,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2013/03/07/androidnei-kernel-compile/" rel="next" title="Android内核的编译与裁剪">
-                <i class="fa fa-chevron-left"></i> Android内核的编译与裁剪
+              <a href="/blog/2016/07/09/advanced-autolayout/" rel="next" title="高级Auto Layout笔记">
+                <i class="fa fa-chevron-left"></i> 高级Auto Layout笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2013/04/17/vxworks-mq-cs/" rel="prev" title="VxWorks中基于消息队列实现C/S通信">
-                VxWorks中基于消息队列实现C/S通信 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -749,9 +754,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'liushuaikobe';
-      var disqus_identifier = 'blog/2013/03/15/C-yanghui-triangle/';
-      var disqus_title = "C语言打印杨辉三角";
-      var disqus_url = 'http://blog.liushuaiko.be/blog/2013/03/15/C-yanghui-triangle/';
+      var disqus_identifier = 'blog/2016/07/13/swift-optional-map/';
+      var disqus_title = "Swift中Optional的map和flatMap";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

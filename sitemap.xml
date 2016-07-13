@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.liushuaiko.be/blog/2016/07/09/japan-kansai/</loc>
+    <loc>http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/</loc>
     
-    <lastmod>2016-07-09T06:50:45.000Z</lastmod>
+    <lastmod>2016-07-13T14:38:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.liushuaiko.be/blog/2016/07/09/advanced-autolayout/</loc>
+    <loc>http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/</loc>
     
-    <lastmod>2016-07-09T06:50:16.000Z</lastmod>
+    <lastmod>2016-07-13T14:36:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.liushuaiko.be/blog/2016/07/09/japan-kansai/</loc>
+    
+    <lastmod>2016-07-09T06:50:45.000Z</lastmod>
     
   </url>
   
