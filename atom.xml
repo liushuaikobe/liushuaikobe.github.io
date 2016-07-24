@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-07-13T14:36:37.000Z</updated>
+  <updated>2016-07-24T14:55:51.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>KBtalKing Race II按键编程手记</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/07/24/kbtalking-programing/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/07/24/kbtalking-programing/</id>
+    <published>2016-07-24T14:51:43.000Z</published>
+    <updated>2016-07-24T14:55:51.000Z</updated>
+    
+    <content type="html">&lt;p&gt;入手这款红轴机械键盘已经一年半多了，直到最近才掌握了它的自定义按键编程技巧。前几天得知，这个键盘居然停产了。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/IMG_0009.JPG&quot; alt=&quot;keyboard&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;按键编程&quot;&gt;&lt;a href=&quot;#按键编程&quot; class=&quot;headerlink&quot; title=&quot;按键编程&quot;&gt;&lt;/a&gt;按键编程&lt;/h2&gt;&lt;p&gt;所谓按键编程，就是让一个按键在与功能键&lt;code&gt;Pn&lt;/code&gt;一起按下时，响应为一些按键的组合。通过这种方式，把我们经常需要输入的文字内容简化为一次按键即可输入完成，大大提高了工作效率。&lt;/p&gt;
+&lt;p&gt;有人提到为什么不使用输入法的自定义短语？好吧，输入法自定义短语的前提是“输入法”，按键编程只需要键盘。&lt;/p&gt;
+&lt;h2 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; title=&quot;步骤&quot;&gt;&lt;/a&gt;步骤&lt;/h2&gt;&lt;p&gt;假设我们想达到，按&lt;code&gt;Pn + P&lt;/code&gt;，响应为&lt;code&gt;ggpull&lt;/code&gt;的目的，那么操作步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;按&lt;code&gt;Fn + 右侧Ctrl&lt;/code&gt;，进入编程模式，此时键盘按键灯熄灭，Pn灯闪烁&lt;/li&gt;
+&lt;li&gt;按&lt;code&gt;P&lt;/code&gt;，此时，Pn灯常亮&lt;/li&gt;
+&lt;li&gt;依次按下&lt;code&gt;G&lt;/code&gt;、&lt;code&gt;G&lt;/code&gt;、&lt;code&gt;P&lt;/code&gt;、&lt;code&gt;U&lt;/code&gt;、&lt;code&gt;L&lt;/code&gt;、&lt;code&gt;L&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;按&lt;code&gt;Fn&lt;/code&gt;，结束编程，Pn灯闪烁&lt;/li&gt;
+&lt;li&gt;如果想继续给其它按键编程，重复2-4即可，否则按&lt;code&gt;Fn + 右侧Ctrl&lt;/code&gt;，Pn灯熄灭，编程结束&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;测试一下，按住&lt;code&gt;Pn&lt;/code&gt;，同时按下&lt;code&gt;P&lt;/code&gt;，&lt;code&gt;ggpull&lt;/code&gt;在屏幕上回显了。&lt;/p&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h2&gt;&lt;p&gt;我使用的是zsh作为终端，oh-my-zsh作为配置，在终端输入&lt;code&gt;zsh_stats&lt;/code&gt;，可以列出最常输入的20个命令，选择一些使用上述方式简化输入吧。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;入手这款红轴机械键盘已经一年半多了，直到最近才掌握了它的自定义按键编程技巧。前几天得知，这个键盘居然停产了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="工具集" scheme="http://blog.liushuaiko.be/categories/%E5%B7%A5%E5%85%B7%E9%9B%86/"/>
+    
+    
+      <category term="KBtalKing" scheme="http://blog.liushuaiko.be/tags/KBtalKing/"/>
+    
+  </entry>
   
   <entry>
     <title>Swift中Optional的map和flatMap</title>
@@ -1386,64 +1423,6 @@ foo          | X.X.X.X                        | A(Address)
     <summary type="html">
     
       &lt;p&gt;本次讲座的Keynote，在Sperker Deck上。
-    
-    </summary>
-    
-      <category term="数据库" scheme="http://blog.liushuaiko.be/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
-    
-      <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NoSQL &amp; MongoDB（2）——说说MongoDB</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-2/</id>
-    <published>2014-03-18T08:17:00.000Z</published>
-    <updated>2016-07-09T05:42:51.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;MongoDB的特性&quot;&gt;&lt;a href=&quot;#MongoDB的特性&quot; class=&quot;headerlink&quot; title=&quot;MongoDB的特性&quot;&gt;&lt;/a&gt;MongoDB的特性&lt;/h3&gt;&lt;p&gt;MongoDB有很多特性，我只选几个说说，更多的请查阅&lt;a href=&quot;http://www.mongodb.com/learn/mongodb-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;面向文档的存储&quot;&gt;&lt;a href=&quot;#面向文档的存储&quot; class=&quot;headerlink&quot; title=&quot;面向文档的存储&quot;&gt;&lt;/a&gt;面向文档的存储&lt;/h4&gt;&lt;p&gt;MongoDB将数据保存成被称为&lt;em&gt;文档&lt;/em&gt;（document）的二进制表示中，这种表示形式被称为BSON（Binary JSON）。&lt;/p&gt;
-&lt;p&gt;BSON是一种类JSON的二进制表示形式，BSON在给文档添加了一些额外的字段，比如文档的长度等，非常便于遍历；此外，BSON编码和解码的速度也很快，比如整数类型在BSON中就是以32（或64）位的整数存储，因此在编码和解码不用在字符串和整数类型之间换来换去。当然，对小整数来说BSON占用的空间会比JSON略大一点，但解析速度会快很多。&lt;/p&gt;
-&lt;p&gt;有类似结构的文档被保存在一个&lt;em&gt;集合&lt;/em&gt;（collection）中。集合相当于关系型数据库的表，文档相当于关系型数据库的记录，文档里面的域相当于关系型数据库一条记录中的不同的列。&lt;/p&gt;
-&lt;h4 id=&quot;数据存储模式自由&quot;&gt;&lt;a href=&quot;#数据存储模式自由&quot; class=&quot;headerlink&quot; title=&quot;数据存储模式自由&quot;&gt;&lt;/a&gt;数据存储模式自由&lt;/h4&gt;&lt;p&gt;MongoDB的文档是自描述的，我们没有必要向关系型数据库建表那样实现定义好表的结构，甚至同一个集合中的文档结构都可以不同。我们随时可以增删字段。&lt;/p&gt;
-&lt;h4 id=&quot;高性能&quot;&gt;&lt;a href=&quot;#高性能&quot; class=&quot;headerlink&quot; title=&quot;高性能&quot;&gt;&lt;/a&gt;高性能&lt;/h4&gt;&lt;p&gt;MongoDB大量使用内存来加速数据库的操作。在MongoDB中，所有的数据都是通过MMAP读取和操作（&lt;a href=&quot;http://blog.nosqlfan.com/html/3515.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;有一篇非常好的文章来讲MongoDB数据文件内部的结构）。不被访问的数据不加载到内存中，当然这些都是操作系统帮你完成的，MongoDB管理内存的代码非常精炼，原因就是将大部分工作推给了操作系统。正因为此，对于大部分应用来讲，不需要为MongoDB设置额外的缓存层。&lt;/p&gt;
-&lt;h4 id=&quot;扩展方便&quot;&gt;&lt;a href=&quot;#扩展方便&quot; class=&quot;headerlink&quot; title=&quot;扩展方便&quot;&gt;&lt;/a&gt;扩展方便&lt;/h4&gt;&lt;p&gt;MongoDB非常容易使用，水平扩展非常方便。当你发现MongoDB的服务器经常出现内存缺页错误时，说明MongoDB中应用操作的数据集太大，MMAP不能将其合适地映射进内存，可以考虑将数据进行Sharding。MongoDB的一大亮点是支持自动分片，集群根据自动切分数据，做负载均衡。&lt;/p&gt;
-&lt;p&gt;当然，MongoDB还有很多其他的特性，比如GridFS，地理空间索引，Replica Set等等，详细请看官方的文档。不过看了文档也只是在理论上对MongoDB有一个认识，在实际应用时会遇上什么坑都是未知的。&lt;/p&gt;
-&lt;p&gt;Foursquare一直是MongoDB的忠实用户，但是也遇到过因MongoDB的Sharding负载不均导致的网站跪了11个小时。&lt;/p&gt;
-&lt;h3 id=&quot;也谈MongoDB数据模型的设计&quot;&gt;&lt;a href=&quot;#也谈MongoDB数据模型的设计&quot; class=&quot;headerlink&quot; title=&quot;也谈MongoDB数据模型的设计&quot;&gt;&lt;/a&gt;也谈MongoDB数据模型的设计&lt;/h3&gt;&lt;p&gt;在MongoDB数据库存储模式的设计中，比较重要的一点就是如何表现各个实体之间的关系，在MongoDB中，有两种方式：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;references（Normalized）&lt;/li&gt;
-&lt;li&gt;embedded（Denormalized）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;引用式文档设计&quot;&gt;&lt;a href=&quot;#引用式文档设计&quot; class=&quot;headerlink&quot; title=&quot;引用式文档设计&quot;&gt;&lt;/a&gt;引用式文档设计&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/mongo-data-model-normalized.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;引用式文档设计跟RDBMS的数据模型差不多，对数据库的模型进行范式化，这样做让实体时间的结构表现的更加清晰，能表现出数据模型内部之间复杂的关系。在对文档进行更新的时候，因为是以引用的方式存储，只需要更新一次被引用的文档即可，有利于数据库的一致性，但是从另一方面来看，如果引用的文档和被引用的文档需要同时更新，引用式文档设计还得做两次写操作呢（MongoDB的原子性写操作是在一个文档级别的）。此外，这种方式的设计可以适应更加灵活的查询。&lt;/p&gt;
-&lt;p&gt;但是这样设计的劣势也很明显，在查询的时候，不得不再去获得一次引用的文档，不论是一次查询驱动帮你将引用的文档替换成了实际的文档（如PyMongo）还是得在客户端做两次查询，都增加了开销。&lt;/p&gt;
-&lt;h4 id=&quot;嵌入式文档设计&quot;&gt;&lt;a href=&quot;#嵌入式文档设计&quot; class=&quot;headerlink&quot; title=&quot;嵌入式文档设计&quot;&gt;&lt;/a&gt;嵌入式文档设计&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/mongo-data-model-denormalized.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;嵌入式的文档设计相当于提前做了join的操作，比较设计实体模型中的包含关系。这样设计优势显而易见吧，读取操作有更好的性能，而且这样的设计能较好地表示层级关系（最深支持100层的嵌套）。在更新文档的时候，可以在一个原子的写操作内完成，但是可能会出现不一致性。比如两个文档都嵌入了同一个文档，在更新完一个的时候，应用突然崩了，另一个文档还没来得及更新。&lt;/p&gt;
-&lt;p&gt;需要注意的一点是，由于MongoDB的Schema非常灵活，我们完全可以在创建完文档后不断给文档添加嵌入新的文档，这就导致了文档的尺寸在创建之后不断增加，最大可以增大到BSON文档的最大的size——16MB，虽然MongoDB会为文档留出一定的&lt;a href=&quot;http://docs.mongodb.org/manual/core/record-padding/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;padding&lt;/a&gt;，但是尺寸太大的话，文档会被重新安排位置，这样会影响写入的性能，也会造成碎片。&lt;/p&gt;
-&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;MongoDB的Schema非常灵活，也正因为此，我们需要对应用场景进行更加透彻的分析，一切以应用为中心。&lt;/p&gt;
-&lt;p&gt;如《深入学习MongoDB》一书中所说的那样，不妨考虑一下下面的问题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;估算一下读写比&lt;/li&gt;
-&lt;li&gt;一致性很重要吗？&lt;/li&gt;
-&lt;li&gt;要不要快速的读取？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/MongoDB&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MongoDB, wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.mongodb.com/learn/mongodb-architecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MongoDB Architecture&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.douban.com/subject/6068947/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《MongoDB权威指南》&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.douban.com/subject/10439364/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《深入学习MongoDB》&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;MongoDB是一个典型的NoSQL数据库，“mongo”来自单词“humongous”，是由之前的10gen公司开发的（现在这个公司已经改名为MongoDB Inc.）。在2007年的时候，这个公司想开发一个Paas，在开发的过程中MongoDB诞生，后来MongoDB作为一个开源产品单独发布，采用AGPL协议。
     
     </summary>
     

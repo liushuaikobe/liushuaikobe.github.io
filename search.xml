@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title><![CDATA[KBtalKing Race II按键编程手记]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/07/24/kbtalking-programing/</url>
+      <content type="html"><![CDATA[<p>入手这款红轴机械键盘已经一年半多了，直到最近才掌握了它的自定义按键编程技巧。前几天得知，这个键盘居然停产了。</p>
+<a id="more"></a>
+<p><img src="http://7nj23c.com1.z0.glb.clouddn.com/IMG_0009.JPG" alt="keyboard"></p>
+<h2 id="按键编程"><a href="#按键编程" class="headerlink" title="按键编程"></a>按键编程</h2><p>所谓按键编程，就是让一个按键在与功能键<code>Pn</code>一起按下时，响应为一些按键的组合。通过这种方式，把我们经常需要输入的文字内容简化为一次按键即可输入完成，大大提高了工作效率。</p>
+<p>有人提到为什么不使用输入法的自定义短语？好吧，输入法自定义短语的前提是“输入法”，按键编程只需要键盘。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>假设我们想达到，按<code>Pn + P</code>，响应为<code>ggpull</code>的目的，那么操作步骤如下：</p>
+<ol>
+<li>按<code>Fn + 右侧Ctrl</code>，进入编程模式，此时键盘按键灯熄灭，Pn灯闪烁</li>
+<li>按<code>P</code>，此时，Pn灯常亮</li>
+<li>依次按下<code>G</code>、<code>G</code>、<code>P</code>、<code>U</code>、<code>L</code>、<code>L</code></li>
+<li>按<code>Fn</code>，结束编程，Pn灯闪烁</li>
+<li>如果想继续给其它按键编程，重复2-4即可，否则按<code>Fn + 右侧Ctrl</code>，Pn灯熄灭，编程结束</li>
+</ol>
+<p>测试一下，按住<code>Pn</code>，同时按下<code>P</code>，<code>ggpull</code>在屏幕上回显了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>我使用的是zsh作为终端，oh-my-zsh作为配置，在终端输入<code>zsh_stats</code>，可以列出最常输入的20个命令，选择一些使用上述方式简化输入吧。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Swift中Optional的map和flatMap]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/07/13/swift-optional-map/</url>
       <content type="html"><![CDATA[<p>用过Swift的读者想必对<code>map</code>和<code>flatMap</code>不陌生，它们定义在<code>SequenceType</code>协议及其extension中，讲它们用法的文章一大堆，我就不拾人牙慧了。</p>
