@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title><![CDATA[与Clang共舞 —— __attribute__]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/08/03/clang-attribute/</url>
+      <content type="html"><![CDATA[<p>__attribute__是一个编译器指令，用于在C、C++、Objective-C中修饰变量、函数、参数、方法、类等。</p>
+<a id="more"></a>
+<h2 id="使用-attribute"><a href="#使用-attribute" class="headerlink" title="使用__attribute__"></a>使用__attribute__</h2><p>合理使用__attribute__有什么好处？</p>
+<ol>
+<li>给编译器提供上下文，帮助编译器做优化，合理使用可以收到显著的优化效果</li>
+<li>编译器会根据__attribute__产生一些编译警告，使代码更规范</li>
+<li>给代码阅读者提供必要的注解，助其理解代码意图</li>
+</ol>
+<p>总之，__attribute__起到了给编译器提供上下文的作用。任何可以给编译器提供一些额外的信息的机会，都应该把握住。但是务必要记住，当不确定是否该添加__attribute__或者不知道是否用对了__attribute__时，果断删掉吧，因为提供了错误的上下文，还不如不提供，由此引起的错误通常很难被发现。</p>
+<h2 id="一些核心的-attribute"><a href="#一些核心的-attribute" class="headerlink" title="一些核心的__attribute__"></a>一些核心的__attribute__</h2><p>很多编译器和平台都支持__attribute__，了解每个平台上每种架构的每个__attribute__指令的ROI太低了，我们选一些较为常用的添加到工具包里，就能事半功倍。</p>
+<h3 id="attribute-objc-requires-super"><a href="#attribute-objc-requires-super" class="headerlink" title="__attribute__((objc_requires_super))"></a><code>__attribute__((objc_requires_super))</code></h3><p>用于修饰一个方法，向编译器表明，当子类覆盖这个方法时，必须要调用super。但是这个指令不制约调用super的位置，编译器仅检查调用与否。</p>
+<p>比如在覆盖<code>dealloc</code>方法时，我们会在最后调用<code>[super dealloc]</code>，这是满足requires super要求的。</p>
+<p>Foundation里提供了宏<code>NS_REQUIRES_SUPER</code>，详见NSObjcRuntime.h。</p>
+<h3 id="attribute-unused"><a href="#attribute-unused" class="headerlink" title="__attribute__((unused))"></a><code>__attribute__((unused))</code></h3><p>用于修饰一个变量或函数，表明变量或函数可能暂时没用到，但是为了代码的扩展性或者其它原因是有用的，请求编译器不要产生编译警告。</p>
+<h3 id="attribute-sentinel"><a href="#attribute-sentinel" class="headerlink" title="__attribute__((sentinel))"></a><code>__attribute__((sentinel))</code></h3><p>sentinel这个英文单词是「哨兵」的意思，其用于修饰一个接收可变参数的方法或函数，表达方法或函数最后一个参数需为nil的诉求。</p>
+<p>BTW，可以用<code>__attribute__((sentinel(index))</code>来标明需要<strong>倒数</strong>第<code>index</code>个参数为nil。</p>
+<p>例子参见<code>NSArray</code>的<code>initWithObjects:</code>方法，Foundation里面提供了宏<code>NS_REQUIRES_NIL_TERMINATION</code>。</p>
+<h3 id="attribute-const"><a href="#attribute-const" class="headerlink" title="__attribute__((const))"></a><code>__attribute__((const))</code></h3><p>用于修饰一个方法或者函数，表明这个函数不去检测和修改任何东西或状态，它的返回值只依赖函数的参数。参数是引用传递的函数务必不要使用这个attribute，类似，如果函数里面调用了非const的函数，也禁止使用这个attribute，注意这里用「禁止」这个词不太确切，大意是这类函数压根就不是const的函数，用了必然会出错。另外如果这个attribute用在了一个没有返回值的函数上，也是没有意义的。</p>
+<p>例如<code>int square(int n) __attribute__((const));</code>，这个求平方的函数，就是一个const函数。它的返回值就只跟参数n有关系，无需检测什么，传过来6，返回值永远是常量36。</p>
+<p>如果指定了高度优化的编译选项，通常编译器会把const函数调用的参数和结果缓存起来以提高性能。这也是这个attribute用错会很难debug的原因，因为可能编译器不会在DEBUG模式下做编译优化，导致函数的每次调用是正确的，而在RELEASE模式下，经过优化的代码执行时，把一个不是const的函数的执行结果缓存起来，出现诡异的bug，甚至需要去看汇编代码才能找出问题。</p>
+<p>另有<code>__attribute__((pure))</code>，比const条件稍微宽松一些，标明了函数除了依赖其参数外，还可以依赖一些global/static的变量。</p>
+<p>推荐所有单例类的<code>sharedInstance</code>方法都使用const注解。此外，如果一个类的类方法经常被调用而且是const或者pure，那么不妨把它用纯C函数实现，会有不错的性能提升。</p>
+<h2 id="跟内存管理相关的-attribute"><a href="#跟内存管理相关的-attribute" class="headerlink" title="跟内存管理相关的__attribute__"></a>跟内存管理相关的__attribute__</h2><h3 id="attribute-objc-precise-lifetime"><a href="#attribute-objc-precise-lifetime" class="headerlink" title="__attribute__((objc_precise_lifetime))"></a><code>__attribute__((objc_precise_lifetime))</code></h3><p>用这个attribute修饰一个变量，防止ARC过早释放它。即向编译器表明，变量在它所处的整个作用域内，都应被认为是有用的。</p>
+<p>Foundation里提供了宏<code>NS_VALID_UNTIL_END_OF_SCOPE</code>。</p>
+<p>看下面的例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)foo &#123;</div><div class="line">    NS_VALID_UNTIL_END_OF_SCOPE MyObject *obj = [[MyObject alloc] init];</div><div class="line">    NSValue *value = [NSValue valueWithPointer:obj];</div><div class="line"></div><div class="line">    <span class="comment">// 如果没有前面的修饰符，</span></div><div class="line">    <span class="comment">// obj可能在高度优化编译过的程序里，被放在NSValue里之后就会被ARC释放了</span></div><div class="line">    <span class="comment">// 下面再去访问obj就会crash</span></div><div class="line"></div><div class="line">    MyObject *objAgain = [value pointerValue];</div><div class="line">    objAgain.bar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="attribute-objc-returns-inner-pointer"><a href="#attribute-objc-returns-inner-pointer" class="headerlink" title="__attribute__((objc_returns_inner_pointer))"></a><code>__attribute__((objc_returns_inner_pointer))</code></h3><p>用于修饰一个方法，防止ARC过早释放这个方法的所有者。Foundation里提供了宏<code>NS_RETURNS_INNER_POINTER</code>，顾名思义，它标明了这个方法返回了一个指向方法所有者自身或其内部内存的指针，有点绕，例子见<code>NSMutableData</code>里的<code>mutableBytes</code>方法。</p>
+<p>看个具体的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Foo</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</div><div class="line">    NSMutableData *buffer = [[NSMutableData alloc] initWithLength:<span class="number">8</span>];</div><div class="line">    <span class="comment">// mutableBytes返回了一个指向buffer内部内存的指针</span></div><div class="line">    <span class="keyword">char</span>* cBuffer = buffer.mutableBytes;</div><div class="line"></div><div class="line">    <span class="comment">// 如果没有NS_RETURNS_INNER_POINTER修饰</span></div><div class="line">    <span class="comment">// 到此为止ARC可能销毁buffer</span></div><div class="line">    <span class="comment">// 那么后续对cBuffer的操作可能会导致crash</span></div><div class="line">    <span class="built_in">memcpy</span>(cBuffer, <span class="string">"1234567"</span>, <span class="number">8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="attribute-ns-returns-retained"><a href="#attribute-ns-returns-retained" class="headerlink" title="__attribute__((ns_returns_retained))"></a><code>__attribute__((ns_returns_retained))</code></h3><p>在Objective-C里，很多方法的命名都是有约定的含义的。比如以<code>alloc</code>、<code>new</code>、<code>copy</code>、<code>mutableCopy</code>开头的方法，会返回一个retain count为1的对象。对于那些未遵守这些约定，却做了类似操作的方法，可以使用<code>__attribute__((ns_returns_retained))</code>来标明，但如果方法遵守了命名约定，就不必再修饰。</p>
+<p>另见：<br><code>__attribute__((objc_method_family(X)))</code><br><code>__attribute__((ns_returns_not_retained))</code></p>
+<h3 id="attribute-ns-consumes-self"><a href="#attribute-ns-consumes-self" class="headerlink" title="__attribute__((ns_consumes_self))"></a><code>__attribute__((ns_consumes_self))</code></h3><p>用于修饰一个方法，表明这个方法<strong>可能</strong>会更把消息接受者换成另一个对象，并使消息接收者的retain count为0。例子见<code>NSObject</code>里的<code>awakeAfterUsingCoder:</code>方法；如有必要，请稍微读一下文档。</p>
+<p>Foundation里面提供了这个attribute的宏<code>NS_REPLACES_RECEIVER</code>，它的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NS_REPLACES_RECEIVER __attribute__((ns_consumes_self)) NS_RETURNS_RETAINED</span></div></pre></td></tr></table></figure>
+<h3 id="attribute-objc-arc-weak-reference-unavailable"><a href="#attribute-objc-arc-weak-reference-unavailable" class="headerlink" title="__attribute__((objc_arc_weak_reference_unavailable))"></a><code>__attribute__((objc_arc_weak_reference_unavailable))</code></h3><p>用于修饰一个类，标明这个类不支持对它实例的弱引用。</p>
+<h2 id="其它有用的-attribute"><a href="#其它有用的-attribute" class="headerlink" title="其它有用的__attribute__"></a>其它有用的__attribute__</h2><ul>
+<li><code>__attribute__((constructor(…)))</code>和<code>__attribute__((destructor(…)))</code></li>
+<li><code>__attribute__((enable_if(…)))</code></li>
+<li><code>__attribute__((cleanup))</code></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://blog.twitter.com/2014/attribute-directives-in-objective-c" target="_blank" rel="external">__attribute__ directives in Objective-C</a></li>
+<li><a href="http://nshipster.com/__attribute__/" target="_blank" rel="external">__attribute__</a></li>
+<li><a href="http://clang.llvm.org/docs/AttributeReference.html" target="_blank" rel="external">Clang Attribute Doc</a></li>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Attribute-Syntax.html" target="_blank" rel="external">GCC Attribute doc</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[KBtalKing Race II按键编程手记]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/07/24/kbtalking-programing/</url>
       <content type="html"><![CDATA[<p>入手这款红轴机械键盘已经一年半多了，直到最近才掌握了它的自定义按键编程技巧。前几天得知，这个键盘居然停产了。</p>

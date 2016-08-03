@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-07-24T14:55:51.000Z</updated>
+  <updated>2016-08-03T13:59:17.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>与Clang共舞 —— __attribute__</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/08/03/clang-attribute/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/08/03/clang-attribute/</id>
+    <published>2016-08-03T13:53:28.000Z</published>
+    <updated>2016-08-03T13:59:17.000Z</updated>
+    
+    <content type="html">&lt;p&gt;__attribute__是一个编译器指令，用于在C、C++、Objective-C中修饰变量、函数、参数、方法、类等。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;使用-attribute&quot;&gt;&lt;a href=&quot;#使用-attribute&quot; class=&quot;headerlink&quot; title=&quot;使用__attribute__&quot;&gt;&lt;/a&gt;使用__attribute__&lt;/h2&gt;&lt;p&gt;合理使用__attribute__有什么好处？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;给编译器提供上下文，帮助编译器做优化，合理使用可以收到显著的优化效果&lt;/li&gt;
+&lt;li&gt;编译器会根据__attribute__产生一些编译警告，使代码更规范&lt;/li&gt;
+&lt;li&gt;给代码阅读者提供必要的注解，助其理解代码意图&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总之，__attribute__起到了给编译器提供上下文的作用。任何可以给编译器提供一些额外的信息的机会，都应该把握住。但是务必要记住，当不确定是否该添加__attribute__或者不知道是否用对了__attribute__时，果断删掉吧，因为提供了错误的上下文，还不如不提供，由此引起的错误通常很难被发现。&lt;/p&gt;
+&lt;h2 id=&quot;一些核心的-attribute&quot;&gt;&lt;a href=&quot;#一些核心的-attribute&quot; class=&quot;headerlink&quot; title=&quot;一些核心的__attribute__&quot;&gt;&lt;/a&gt;一些核心的__attribute__&lt;/h2&gt;&lt;p&gt;很多编译器和平台都支持__attribute__，了解每个平台上每种架构的每个__attribute__指令的ROI太低了，我们选一些较为常用的添加到工具包里，就能事半功倍。&lt;/p&gt;
+&lt;h3 id=&quot;attribute-objc-requires-super&quot;&gt;&lt;a href=&quot;#attribute-objc-requires-super&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((objc_requires_super))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((objc_requires_super))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用于修饰一个方法，向编译器表明，当子类覆盖这个方法时，必须要调用super。但是这个指令不制约调用super的位置，编译器仅检查调用与否。&lt;/p&gt;
+&lt;p&gt;比如在覆盖&lt;code&gt;dealloc&lt;/code&gt;方法时，我们会在最后调用&lt;code&gt;[super dealloc]&lt;/code&gt;，这是满足requires super要求的。&lt;/p&gt;
+&lt;p&gt;Foundation里提供了宏&lt;code&gt;NS_REQUIRES_SUPER&lt;/code&gt;，详见NSObjcRuntime.h。&lt;/p&gt;
+&lt;h3 id=&quot;attribute-unused&quot;&gt;&lt;a href=&quot;#attribute-unused&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((unused))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((unused))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用于修饰一个变量或函数，表明变量或函数可能暂时没用到，但是为了代码的扩展性或者其它原因是有用的，请求编译器不要产生编译警告。&lt;/p&gt;
+&lt;h3 id=&quot;attribute-sentinel&quot;&gt;&lt;a href=&quot;#attribute-sentinel&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((sentinel))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((sentinel))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;sentinel这个英文单词是「哨兵」的意思，其用于修饰一个接收可变参数的方法或函数，表达方法或函数最后一个参数需为nil的诉求。&lt;/p&gt;
+&lt;p&gt;BTW，可以用&lt;code&gt;__attribute__((sentinel(index))&lt;/code&gt;来标明需要&lt;strong&gt;倒数&lt;/strong&gt;第&lt;code&gt;index&lt;/code&gt;个参数为nil。&lt;/p&gt;
+&lt;p&gt;例子参见&lt;code&gt;NSArray&lt;/code&gt;的&lt;code&gt;initWithObjects:&lt;/code&gt;方法，Foundation里面提供了宏&lt;code&gt;NS_REQUIRES_NIL_TERMINATION&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;attribute-const&quot;&gt;&lt;a href=&quot;#attribute-const&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((const))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((const))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用于修饰一个方法或者函数，表明这个函数不去检测和修改任何东西或状态，它的返回值只依赖函数的参数。参数是引用传递的函数务必不要使用这个attribute，类似，如果函数里面调用了非const的函数，也禁止使用这个attribute，注意这里用「禁止」这个词不太确切，大意是这类函数压根就不是const的函数，用了必然会出错。另外如果这个attribute用在了一个没有返回值的函数上，也是没有意义的。&lt;/p&gt;
+&lt;p&gt;例如&lt;code&gt;int square(int n) __attribute__((const));&lt;/code&gt;，这个求平方的函数，就是一个const函数。它的返回值就只跟参数n有关系，无需检测什么，传过来6，返回值永远是常量36。&lt;/p&gt;
+&lt;p&gt;如果指定了高度优化的编译选项，通常编译器会把const函数调用的参数和结果缓存起来以提高性能。这也是这个attribute用错会很难debug的原因，因为可能编译器不会在DEBUG模式下做编译优化，导致函数的每次调用是正确的，而在RELEASE模式下，经过优化的代码执行时，把一个不是const的函数的执行结果缓存起来，出现诡异的bug，甚至需要去看汇编代码才能找出问题。&lt;/p&gt;
+&lt;p&gt;另有&lt;code&gt;__attribute__((pure))&lt;/code&gt;，比const条件稍微宽松一些，标明了函数除了依赖其参数外，还可以依赖一些global/static的变量。&lt;/p&gt;
+&lt;p&gt;推荐所有单例类的&lt;code&gt;sharedInstance&lt;/code&gt;方法都使用const注解。此外，如果一个类的类方法经常被调用而且是const或者pure，那么不妨把它用纯C函数实现，会有不错的性能提升。&lt;/p&gt;
+&lt;h2 id=&quot;跟内存管理相关的-attribute&quot;&gt;&lt;a href=&quot;#跟内存管理相关的-attribute&quot; class=&quot;headerlink&quot; title=&quot;跟内存管理相关的__attribute__&quot;&gt;&lt;/a&gt;跟内存管理相关的__attribute__&lt;/h2&gt;&lt;h3 id=&quot;attribute-objc-precise-lifetime&quot;&gt;&lt;a href=&quot;#attribute-objc-precise-lifetime&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((objc_precise_lifetime))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((objc_precise_lifetime))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用这个attribute修饰一个变量，防止ARC过早释放它。即向编译器表明，变量在它所处的整个作用域内，都应被认为是有用的。&lt;/p&gt;
+&lt;p&gt;Foundation里提供了宏&lt;code&gt;NS_VALID_UNTIL_END_OF_SCOPE&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;看下面的例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;- (&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)foo &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    NS_VALID_UNTIL_END_OF_SCOPE MyObject *obj = [[MyObject alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    NSValue *value = [NSValue valueWithPointer:obj];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 如果没有前面的修饰符，&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// obj可能在高度优化编译过的程序里，被放在NSValue里之后就会被ARC释放了&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 下面再去访问obj就会crash&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    MyObject *objAgain = [value pointerValue];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    objAgain.bar();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;attribute-objc-returns-inner-pointer&quot;&gt;&lt;a href=&quot;#attribute-objc-returns-inner-pointer&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((objc_returns_inner_pointer))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((objc_returns_inner_pointer))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用于修饰一个方法，防止ARC过早释放这个方法的所有者。Foundation里提供了宏&lt;code&gt;NS_RETURNS_INNER_POINTER&lt;/code&gt;，顾名思义，它标明了这个方法返回了一个指向方法所有者自身或其内部内存的指针，有点绕，例子见&lt;code&gt;NSMutableData&lt;/code&gt;里的&lt;code&gt;mutableBytes&lt;/code&gt;方法。&lt;/p&gt;
+&lt;p&gt;看个具体的例子。&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    NSMutableData *buffer = [[NSMutableData alloc] initWithLength:&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// mutableBytes返回了一个指向buffer内部内存的指针&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt;* cBuffer = buffer.mutableBytes;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 如果没有NS_RETURNS_INNER_POINTER修饰&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 到此为止ARC可能销毁buffer&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 那么后续对cBuffer的操作可能会导致crash&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;memcpy&lt;/span&gt;(cBuffer, &lt;span class=&quot;string&quot;&gt;&quot;1234567&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;attribute-ns-returns-retained&quot;&gt;&lt;a href=&quot;#attribute-ns-returns-retained&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((ns_returns_retained))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((ns_returns_retained))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;在Objective-C里，很多方法的命名都是有约定的含义的。比如以&lt;code&gt;alloc&lt;/code&gt;、&lt;code&gt;new&lt;/code&gt;、&lt;code&gt;copy&lt;/code&gt;、&lt;code&gt;mutableCopy&lt;/code&gt;开头的方法，会返回一个retain count为1的对象。对于那些未遵守这些约定，却做了类似操作的方法，可以使用&lt;code&gt;__attribute__((ns_returns_retained))&lt;/code&gt;来标明，但如果方法遵守了命名约定，就不必再修饰。&lt;/p&gt;
+&lt;p&gt;另见：&lt;br&gt;&lt;code&gt;__attribute__((objc_method_family(X)))&lt;/code&gt;&lt;br&gt;&lt;code&gt;__attribute__((ns_returns_not_retained))&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;attribute-ns-consumes-self&quot;&gt;&lt;a href=&quot;#attribute-ns-consumes-self&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((ns_consumes_self))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((ns_consumes_self))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用于修饰一个方法，表明这个方法&lt;strong&gt;可能&lt;/strong&gt;会更把消息接受者换成另一个对象，并使消息接收者的retain count为0。例子见&lt;code&gt;NSObject&lt;/code&gt;里的&lt;code&gt;awakeAfterUsingCoder:&lt;/code&gt;方法；如有必要，请稍微读一下文档。&lt;/p&gt;
+&lt;p&gt;Foundation里面提供了这个attribute的宏&lt;code&gt;NS_REPLACES_RECEIVER&lt;/code&gt;，它的定义如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;define&lt;/span&gt; NS_REPLACES_RECEIVER __attribute__((ns_consumes_self)) NS_RETURNS_RETAINED&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;attribute-objc-arc-weak-reference-unavailable&quot;&gt;&lt;a href=&quot;#attribute-objc-arc-weak-reference-unavailable&quot; class=&quot;headerlink&quot; title=&quot;__attribute__((objc_arc_weak_reference_unavailable))&quot;&gt;&lt;/a&gt;&lt;code&gt;__attribute__((objc_arc_weak_reference_unavailable))&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;用于修饰一个类，标明这个类不支持对它实例的弱引用。&lt;/p&gt;
+&lt;h2 id=&quot;其它有用的-attribute&quot;&gt;&lt;a href=&quot;#其它有用的-attribute&quot; class=&quot;headerlink&quot; title=&quot;其它有用的__attribute__&quot;&gt;&lt;/a&gt;其它有用的__attribute__&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__attribute__((constructor(…)))&lt;/code&gt;和&lt;code&gt;__attribute__((destructor(…)))&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__attribute__((enable_if(…)))&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__attribute__((cleanup))&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.twitter.com/2014/attribute-directives-in-objective-c&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;__attribute__ directives in Objective-C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://nshipster.com/__attribute__/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;__attribute__&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://clang.llvm.org/docs/AttributeReference.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Clang Attribute Doc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Attribute-Syntax.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCC Attribute doc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;__attribute__是一个编译器指令，用于在C、C++、Objective-C中修饰变量、函数、参数、方法、类等。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="程序设计语言" scheme="http://blog.liushuaiko.be/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Clang" scheme="http://blog.liushuaiko.be/tags/Clang/"/>
+    
+      <category term="attribute" scheme="http://blog.liushuaiko.be/tags/attribute/"/>
+    
+  </entry>
   
   <entry>
     <title>KBtalKing Race II按键编程手记</title>
@@ -1406,32 +1476,6 @@ foo          | X.X.X.X                        | A(Address)
     
     
       <category term="Apache" scheme="http://blog.liushuaiko.be/tags/Apache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NoSQL &amp; MongoDB（3）——Keynote</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-3/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/03/18/nosql-mongodb-3/</id>
-    <published>2014-03-18T13:49:00.000Z</published>
-    <updated>2016-07-09T05:42:52.000Z</updated>
-    
-    <content type="html">&lt;p&gt;本次讲座的Keynote，在Sperker Deck上。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;script async class=&quot;speakerdeck-embed&quot; data-id=&quot;6908b030da9901310a6036f9d2e151d0&quot; data-ratio=&quot;1.33333333333333&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本次讲座的Keynote，在Sperker Deck上。
-    
-    </summary>
-    
-      <category term="数据库" scheme="http://blog.liushuaiko.be/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="MongoDB" scheme="http://blog.liushuaiko.be/tags/MongoDB/"/>
-    
-      <category term="NoSQL" scheme="http://blog.liushuaiko.be/tags/NoSQL/"/>
     
   </entry>
   
