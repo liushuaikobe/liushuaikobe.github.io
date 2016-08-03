@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.liushuaiko.be/awesome/index.html</loc>
+    
+    <lastmod>2016-08-03T14:15:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.liushuaiko.be/blog/2016/08/03/clang-attribute/</loc>
     
     <lastmod>2016-08-03T13:59:17.000Z</lastmod>
@@ -411,13 +418,6 @@
     <loc>http://blog.liushuaiko.be/404.html</loc>
     
     <lastmod>2016-07-09T05:00:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.liushuaiko.be/awesome/index.html</loc>
-    
-    <lastmod>2016-07-09T01:47:58.000Z</lastmod>
     
   </url>
   
