@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[几件提升工作效率的利器]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/08/18/alfred-vim-tmux/</url>
+      <content type="html"><![CDATA[<p>最近用的几件利器，大大提高了我的工作效率。</p>
+<a id="more"></a>
+<h2 id="Alfred的Clipboard和Snippets"><a href="#Alfred的Clipboard和Snippets" class="headerlink" title="Alfred的Clipboard和Snippets"></a>Alfred的Clipboard和Snippets</h2><p>Alfred应该从很早的版本就有这些功能了，而我居然上周才掌握。</p>
+<p>除了经常被提起的search和workflow外，Alfred还可以实现Text Expand的功能，称为『Snippet』。即事先定义好一些Snippet和对应的缩写，Alfred会全局Observe你的输入（需要给Alfred辅助功能控制电脑的权限），如果输入命中了某个缩写词，它会立刻把缩写词替换成对应的Snippet。如下图。</p>
+<p><img src="http://7nj23c.com1.z0.glb.clouddn.com/alfred_1.gif" alt="alfred_1"></p>
+<p>当然，也可以关闭Observe，采用通过Hotkey唤醒Alfred查找的方式，如下图。可在Alfred Preference -&gt; Features -&gt; Snippets里进行Hotkey等具体设置。</p>
+<p><img src="http://7nj23c.com1.z0.glb.clouddn.com/alfred_2.gif" alt="alfred_2"></p>
+<p>除了这个功能外，Alfred还可以保存系统剪贴板的记录。这个也很实用，我经常有这样的需求：在iTerm里面复制了一个单词，然后到AppCode里去Find，过了一段时间，又要去其它地方查找这个词，按下Cmd + v时，发现剪贴板已然被覆盖。有了Alfred，最近粘贴了什么，随时调出，一目了然。当然，也有一些危险，因为稍有不慎，曾经粘贴过的羞羞的东西都会被保存起来看到😬，好在可以配置忽略来自某些指定应用的复制内容。详细可以在Alfred Preference -&gt; Features -&gt; Clipboard里设置。</p>
+<h2 id="AppCode的Vim-Plugin"><a href="#AppCode的Vim-Plugin" class="headerlink" title="AppCode的Vim Plugin"></a>AppCode的Vim Plugin</h2><p>这个是之前Vim操作不熟练时，被我装了卸，卸了又装的一个AppCode插件。不仅是AppCode，其它JetBrains家的IDE都可以安装。</p>
+<p><img src="http://7nj23c.com1.z0.glb.clouddn.com/alfred_3.png" alt="vim"></p>
+<p>最近把忘了的Vim命令重新捡了捡，又趁闲暇时学了些高级Vim操作技巧，强迫自己适应Vim Mode下的AppCode，发现其学习曲线跟双拼很类似，不熟练的时候，的确有点慢有点着急，这时千万别放弃，随着时间的积累，会越来越high。</p>
+<p>我不会忘记那个下午，同事们挪动、敲击着鼠标， 而我熟练地移动着光标，再配合AppCode的无敌代码编辑，完成某方法最后一行代码，右手小指敲下回车，形成的那道完美的弧线。</p>
+<p>BTW，一篇不可多得的入门Vim的好文：[简明 Vim 练级攻略]。</p>
+<h2 id="一份好的Tmux配置文件"><a href="#一份好的Tmux配置文件" class="headerlink" title="一份好的Tmux配置文件"></a>一份好的Tmux配置文件</h2><p>曾经我使用iTerm的一个主要原因是它可以方便的横竖分屏，直到我发现了[tmux]。这里不做tmux的介绍。一份好的tmux config file更是能让你如虎添翼。</p>
+<p>如果你对如何配置tmux还比较生疏，不放先去读一读[别人]的[配置文件]，简单做一些配置，使用一段时间，逐渐成为老司机后，再做更详细、全面，符合自己使用习惯的配置。</p>
+<p>如果你碰巧跟我一样有两台Mac，使用iCloud Drive或者其它云同步平台同步这些杂七杂八的配置文件是个不错的选择。</p>
+<p>以iCloud Drive为例，新建一个MacConfig文件夹，用于保存需要同步的配置文件，然后把tmux的配置文件放到这个目录下，命名为<code>tmux.conf</code>。</p>
+<p><img src="http://7nj23c.com1.z0.glb.clouddn.com/alfred_4.png" alt="tmux"></p>
+<p>之后在用户目录建立一个指向这个配置文件的软连接：</p>
+<pre><code>ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/MacConfig/tmux.conf .tmux.conf
+</code></pre><p>在另一台Mac上建立同样的软连接，即实现了同步。</p>
+<p>工欲善其事必先利其器，祝玩得开心。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[与Clang共舞 —— __attribute__]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/08/03/clang-attribute/</url>
       <content type="html"><![CDATA[<p>__attribute__是一个编译器指令，用于在C、C++、Objective-C中修饰变量、函数、参数、方法、类等。</p>

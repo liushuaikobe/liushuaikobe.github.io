@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-08-03T13:59:17.000Z</updated>
+  <updated>2016-08-18T14:31:49.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>几件提升工作效率的利器</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/08/18/alfred-vim-tmux/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/08/18/alfred-vim-tmux/</id>
+    <published>2016-08-18T14:25:55.000Z</published>
+    <updated>2016-08-18T14:31:49.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近用的几件利器，大大提高了我的工作效率。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;Alfred的Clipboard和Snippets&quot;&gt;&lt;a href=&quot;#Alfred的Clipboard和Snippets&quot; class=&quot;headerlink&quot; title=&quot;Alfred的Clipboard和Snippets&quot;&gt;&lt;/a&gt;Alfred的Clipboard和Snippets&lt;/h2&gt;&lt;p&gt;Alfred应该从很早的版本就有这些功能了，而我居然上周才掌握。&lt;/p&gt;
+&lt;p&gt;除了经常被提起的search和workflow外，Alfred还可以实现Text Expand的功能，称为『Snippet』。即事先定义好一些Snippet和对应的缩写，Alfred会全局Observe你的输入（需要给Alfred辅助功能控制电脑的权限），如果输入命中了某个缩写词，它会立刻把缩写词替换成对应的Snippet。如下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/alfred_1.gif&quot; alt=&quot;alfred_1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;当然，也可以关闭Observe，采用通过Hotkey唤醒Alfred查找的方式，如下图。可在Alfred Preference -&amp;gt; Features -&amp;gt; Snippets里进行Hotkey等具体设置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/alfred_2.gif&quot; alt=&quot;alfred_2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;除了这个功能外，Alfred还可以保存系统剪贴板的记录。这个也很实用，我经常有这样的需求：在iTerm里面复制了一个单词，然后到AppCode里去Find，过了一段时间，又要去其它地方查找这个词，按下Cmd + v时，发现剪贴板已然被覆盖。有了Alfred，最近粘贴了什么，随时调出，一目了然。当然，也有一些危险，因为稍有不慎，曾经粘贴过的羞羞的东西都会被保存起来看到😬，好在可以配置忽略来自某些指定应用的复制内容。详细可以在Alfred Preference -&amp;gt; Features -&amp;gt; Clipboard里设置。&lt;/p&gt;
+&lt;h2 id=&quot;AppCode的Vim-Plugin&quot;&gt;&lt;a href=&quot;#AppCode的Vim-Plugin&quot; class=&quot;headerlink&quot; title=&quot;AppCode的Vim Plugin&quot;&gt;&lt;/a&gt;AppCode的Vim Plugin&lt;/h2&gt;&lt;p&gt;这个是之前Vim操作不熟练时，被我装了卸，卸了又装的一个AppCode插件。不仅是AppCode，其它JetBrains家的IDE都可以安装。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/alfred_3.png&quot; alt=&quot;vim&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最近把忘了的Vim命令重新捡了捡，又趁闲暇时学了些高级Vim操作技巧，强迫自己适应Vim Mode下的AppCode，发现其学习曲线跟双拼很类似，不熟练的时候，的确有点慢有点着急，这时千万别放弃，随着时间的积累，会越来越high。&lt;/p&gt;
+&lt;p&gt;我不会忘记那个下午，同事们挪动、敲击着鼠标， 而我熟练地移动着光标，再配合AppCode的无敌代码编辑，完成某方法最后一行代码，右手小指敲下回车，形成的那道完美的弧线。&lt;/p&gt;
+&lt;p&gt;BTW，一篇不可多得的入门Vim的好文：[简明 Vim 练级攻略]。&lt;/p&gt;
+&lt;h2 id=&quot;一份好的Tmux配置文件&quot;&gt;&lt;a href=&quot;#一份好的Tmux配置文件&quot; class=&quot;headerlink&quot; title=&quot;一份好的Tmux配置文件&quot;&gt;&lt;/a&gt;一份好的Tmux配置文件&lt;/h2&gt;&lt;p&gt;曾经我使用iTerm的一个主要原因是它可以方便的横竖分屏，直到我发现了[tmux]。这里不做tmux的介绍。一份好的tmux config file更是能让你如虎添翼。&lt;/p&gt;
+&lt;p&gt;如果你对如何配置tmux还比较生疏，不放先去读一读[别人]的[配置文件]，简单做一些配置，使用一段时间，逐渐成为老司机后，再做更详细、全面，符合自己使用习惯的配置。&lt;/p&gt;
+&lt;p&gt;如果你碰巧跟我一样有两台Mac，使用iCloud Drive或者其它云同步平台同步这些杂七杂八的配置文件是个不错的选择。&lt;/p&gt;
+&lt;p&gt;以iCloud Drive为例，新建一个MacConfig文件夹，用于保存需要同步的配置文件，然后把tmux的配置文件放到这个目录下，命名为&lt;code&gt;tmux.conf&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7nj23c.com1.z0.glb.clouddn.com/alfred_4.png&quot; alt=&quot;tmux&quot;&gt;&lt;/p&gt;
+&lt;p&gt;之后在用户目录建立一个指向这个配置文件的软连接：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/MacConfig/tmux.conf .tmux.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在另一台Mac上建立同样的软连接，即实现了同步。&lt;/p&gt;
+&lt;p&gt;工欲善其事必先利其器，祝玩得开心。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近用的几件利器，大大提高了我的工作效率。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="工具集" scheme="http://blog.liushuaiko.be/categories/%E5%B7%A5%E5%85%B7%E9%9B%86/"/>
+    
+    
+      <category term="Alfred" scheme="http://blog.liushuaiko.be/tags/Alfred/"/>
+    
+      <category term="vim" scheme="http://blog.liushuaiko.be/tags/vim/"/>
+    
+      <category term="tmux" scheme="http://blog.liushuaiko.be/tags/tmux/"/>
+    
+  </entry>
   
   <entry>
     <title>与Clang共舞 —— __attribute__</title>
@@ -1338,144 +1386,6 @@ mutableCopy
     
     
       <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Apache的mod_proxy模块设置其反向代理</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/05/16/apache-reverse-proxy/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/05/16/apache-reverse-proxy/</id>
-    <published>2014-05-16T14:05:00.000Z</published>
-    <updated>2016-07-09T05:42:53.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;反向代理简介&quot;&gt;&lt;a href=&quot;#反向代理简介&quot; class=&quot;headerlink&quot; title=&quot;反向代理简介&quot;&gt;&lt;/a&gt;反向代理简介&lt;/h3&gt;&lt;p&gt;本文介绍一下使用mod_proxy模块配置Apache2作为反向代理服务器。&lt;/p&gt;
-&lt;p&gt;首先什么是反向代理呢？我们来看两个例子。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;晚上在实验室，我很饿，但是由于某种原因不能亲自去超市买吃的，我就对yuri同学说：“yuri，我要一袋小浣熊干脆面，你去帮我买一袋带回来！”yuri听罢，跑去超市买了一袋干脆面给了我，这样，我愉快的吃上了干脆面。在这个过程中，我让yuri代理我去做了一些事情，把超市想象成Server，把我想象成Client，那么yuri起到的就是一个正向代理的作用，正向代理，代理的是Client。&lt;/p&gt;
-&lt;p&gt;再看另一个例子。超市授权yuri作为代理负责接客。顾客买东西不直接去超市买，直接去yuri那里：“yuri，我要一袋干脆面！”，这时yuri就会去超市取出干脆面给顾客。对于顾客来说，他不知道自己买的东西是在超市里，只知道yuri给了我想要的东西。仍然把顾客想象成Client，把超市想象成Server，这样，yuri起到的是一个反向代理的作用，反向代理，代理的是Server。&lt;/p&gt;
-&lt;p&gt;这里有一篇非常好的&lt;a href=&quot;http://z00w00.blog.51cto.com/515114/1031287&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;介绍两种代理的作用以及应用场景。&lt;/p&gt;
-&lt;h3 id=&quot;一种应用场景&quot;&gt;&lt;a href=&quot;#一种应用场景&quot; class=&quot;headerlink&quot; title=&quot;一种应用场景&quot;&gt;&lt;/a&gt;一种应用场景&lt;/h3&gt;&lt;p&gt;反向代理一种典型应用场景是我买了一个VPS，假设其IP是X.X.X.X，注册了一个域名example.com，想跑一些网站。有一个用node写的网站，默认端口是3000。&lt;/p&gt;
-&lt;p&gt;如果我们想做出这样的映射：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;example.com         -&amp;gt;    X.X.X.X （即默认的80端口）
-foo.example.com     -&amp;gt;    X.X.X.X:3000 （即node的站点）
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当然，在域名提供商那里做一些配置，实现第一个映射不难，然后我们当然可以通过example.com:3000访问到我的node站。&lt;/p&gt;
-&lt;p&gt;但是这样一点都不酷，当你向妹子吹嘘：“呐，我写了个很屌的网站，example.com，加上3000端口号去访问下”。好吧，这时会想到把该node站的端口改成HTTP默认的80，以便可以直接通过example.com访问到，但是问题又来了，已经有一个站点在80端口上了，这就麻烦了。&lt;/p&gt;
-&lt;p&gt;这时候，用Apache的反向代理可以非常优雅地解决这个问题。&lt;/p&gt;
-&lt;h3 id=&quot;mod-proxy和Apache&quot;&gt;&lt;a href=&quot;#mod-proxy和Apache&quot; class=&quot;headerlink&quot; title=&quot;mod_proxy和Apache&quot;&gt;&lt;/a&gt;mod_proxy和Apache&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.2/mod/mod_proxy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mod_proxy&lt;/a&gt;实现了代理和网关的功能。Apache的代理功能被分到几个不同的模块中：mod_proxy_http，mod_proxy_ftp，mod_proxy_ajp，mod_proxy_balancer，mod_proxy_connect。根据需求需要加载mod_proxy和不同的模块。&lt;/p&gt;
-&lt;h4 id=&quot;安装Apache2&quot;&gt;&lt;a href=&quot;#安装Apache2&quot; class=&quot;headerlink&quot; title=&quot;安装Apache2&quot;&gt;&lt;/a&gt;安装Apache2&lt;/h4&gt;&lt;p&gt;首先确认Apache2已经安装在了机器上。在Ubuntu Server下去&lt;code&gt;/etc/apache2&lt;/code&gt;下看一下，看看有没有&lt;code&gt;apache2.conf&lt;/code&gt;，以及&lt;code&gt;sites-available&lt;/code&gt;等目录，如果没有，使用：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install apache2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;即可安装。安装完成后，在浏览器访问机器的默认的80端口就会看到It works的提示了。&lt;/p&gt;
-&lt;p&gt;在&lt;code&gt;/etc/inid.d/apache2&lt;/code&gt;中有apache的控制脚本，使用这些脚本控制Apache。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;* Usage: /etc/init.d/apache2 {start|stop|graceful-stop|restart|reload|force-reload|start-htcacheclean|stop-htcacheclean|status}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;安装并加载mod-proxy&quot;&gt;&lt;a href=&quot;#安装并加载mod-proxy&quot; class=&quot;headerlink&quot; title=&quot;安装并加载mod_proxy&quot;&gt;&lt;/a&gt;安装并加载mod_proxy&lt;/h4&gt;&lt;p&gt;接着，使用以下命令看一下Apache目前已经加载了哪些模块：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ apache2ctl -M
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果没有proxy相关的模块，那么就需要安装模块：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libapache2-mod-proxy-html
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;还要安装它的依赖：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libxml2-dev
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接着enable proxy模块：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ a2enmod proxy proxy_http
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此为止，我们做好了准备工作，现在再次查看已加载的模块发现已经有proxy相关的模块了。&lt;/p&gt;
-&lt;h4 id=&quot;配置反向代理&quot;&gt;&lt;a href=&quot;#配置反向代理&quot; class=&quot;headerlink&quot; title=&quot;配置反向代理&quot;&gt;&lt;/a&gt;配置反向代理&lt;/h4&gt;&lt;p&gt;打开Apache2的默认的配置文件&lt;code&gt;/etc/apache2/sites-enabled/000-default&lt;/code&gt;，增加一个&lt;code&gt;VirtualHost *:80&lt;/code&gt;的配置：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
-    ServerAdmin webmaster@localhost
-    ServerName foo.example.com
-
-    ProxyRequests off
-
-    &amp;lt;Proxy *&amp;gt;
-        Order deny,allow
-        allow from all
-    &amp;lt;/Proxy&amp;gt;
-
-    &amp;lt;Location /&amp;gt;
-        ProxyPass http://localhost:3000/
-        ProxyPassReverse http://localhost:3000/
-    &amp;lt;/Location&amp;gt;
-&amp;lt;/VirtualHost&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样，就把来自foo.example.com请求转发给了localhost:3000，而80端口仍然可用。&lt;/p&gt;
-&lt;p&gt;同时将旧的&lt;code&gt;VirtualHost *:80&lt;/code&gt;中&lt;code&gt;ServerName&lt;/code&gt;改成&lt;code&gt;example.com&lt;/code&gt;，完成的配置文件如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
-    ServerAdmin webmaster@localhost
-    ServerName example.com
-
-    DocumentRoot /var/www
-    &amp;lt;Directory /&amp;gt;
-        Options FollowSymLinks
-        AllowOverride None
-    &amp;lt;/Directory&amp;gt;
-    &amp;lt;Directory /var/www/&amp;gt;
-        Options Indexes FollowSymLinks MultiViews
-        AllowOverride None
-        Order allow,deny
-        allow from all
-    &amp;lt;/Directory&amp;gt;
-
-    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
-    &amp;lt;Directory &amp;quot;/usr/lib/cgi-bin&amp;quot;&amp;gt;
-        AllowOverride None
-        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
-        Order allow,deny
-        Allow from all
-    &amp;lt;/Directory&amp;gt;
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-
-    # Possible values include: debug, info, notice, warn, error, crit,
-    # alert, emerg.
-    LogLevel warn
-
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-
-    Alias /doc/ &amp;quot;/usr/share/doc/&amp;quot;
-    &amp;lt;Directory &amp;quot;/usr/share/doc/&amp;quot;&amp;gt;
-        Options Indexes MultiViews FollowSymLinks
-        AllowOverride None
-        Order deny,allow
-        Deny from all
-        Allow from 127.0.0.0/255.0.0.0 ::1/128
-    &amp;lt;/Directory&amp;gt;
-&amp;lt;/VirtualHost&amp;gt;
-
-&amp;lt;VirtualHost *:80&amp;gt;
-    ServerAdmin webmaster@localhost
-    ServerName foo.example.com
-
-    ProxyRequests off
-
-    &amp;lt;Proxy *&amp;gt;
-        Order deny,allow
-        allow from all
-    &amp;lt;/Proxy&amp;gt;
-
-    &amp;lt;Location /&amp;gt;
-        ProxyPass http://localhost:3000/
-        ProxyPassReverse http://localhost:3000/
-    &amp;lt;/Location&amp;gt;
-&amp;lt;/VirtualHost&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后，重启一下Apache。对了，别忘了去域名提供商那里设置一下！&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---------------------------------------------------------
-HOST NAME | IP ADDRESS/URL                | RECORD TYPE
----------------------------------------------------------
-@          | http://www.example.com        | URL Redirect
----------------------------------------------------------
-www          | X.X.X.X                        | A(Address)
----------------------------------------------------------
-foo          | X.X.X.X                        | A(Address)
----------------------------------------------------------
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;以上就是我是配置Apache2将不同域名映射到同一IP的不同端口的全过程，如有错误，恳请指正。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;反向代理简介&quot;&gt;&lt;a href=&quot;#反向代理简介&quot; class=&quot;headerlink&quot; title=&quot;反向代理简介&quot;&gt;&lt;/a&gt;反向代理简介&lt;/h3&gt;&lt;p&gt;本文介绍一下使用mod_proxy模块配置Apache2作为反向代理服务器。&lt;/p&gt;
-&lt;p&gt;首先什么是反向代理呢？我们来看两个例子。
-    
-    </summary>
-    
-      <category term="架构" scheme="http://blog.liushuaiko.be/categories/%E6%9E%B6%E6%9E%84/"/>
-    
-    
-      <category term="Apache" scheme="http://blog.liushuaiko.be/tags/Apache/"/>
     
   </entry>
   
