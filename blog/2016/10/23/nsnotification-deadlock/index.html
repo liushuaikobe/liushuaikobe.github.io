@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="liushuaikobe">
 <meta property="og:description" content="NSNotification避坑指南。">
 <meta property="og:image" content="http://7nj23c.com1.z0.glb.clouddn.com/NSNotification-deadlock.png">
-<meta property="og:updated_time" content="2016-10-23T09:07:36.000Z">
+<meta property="og:updated_time" content="2016-10-23T09:11:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSNotification避坑指南">
 <meta name="twitter:description" content="NSNotification避坑指南。">
@@ -404,7 +404,7 @@
 <p><img src="http://7nj23c.com1.z0.glb.clouddn.com/NSNotification-deadlock.png" alt="stack"></p>
 <p>如果我们把上面注册Observer时提供的operation queue改为一个自定义的queue，如直接初始化一个<code>OperationQueue()</code>，那么我们发现一切回归正常，输出如下。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Post Notification: &lt;NSThread: 0x608000079280&gt;&#123;number = 3, name = (null)&#125;</div><div class="line">This will never print: + &lt;NSThread: 0x6080000791c0&gt;&#123;number = 4, name = (null)&#125;</div><div class="line">Post Ended</div><div class="line">This will never print, neither</div></pre></td></tr></table></figure>
-<p>上面例子的代码过于刻意，在实际的生产实践中，没人会去阻塞主线程。但是，如这篇文章里说的，对dispatch once token的争夺也会引发类似的死锁。如有必要，请读一下。因此在使用的过程中，务必小心。</p>
+<p>上面例子的代码过于刻意，在实际的生产实践中，没人会去阻塞主线程。但是，如<a href="https://medium.com/@elfenlaid/the-good-the-bad-and-the-notification-275198fa2e86#.h1bnvclk7" target="_blank" rel="external">这篇文章</a>里说的，对dispatch once token的争夺也会引发类似的死锁。如有必要，请读一下。因此在使用的过程中，务必小心。</p>
 
       
     </div>
