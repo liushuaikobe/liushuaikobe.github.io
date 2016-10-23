@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.liushuaiko.be/blog/2016/10/23/nsnotification-deadlock/</loc>
+    
+    <lastmod>2016-10-23T09:07:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.liushuaiko.be/blog/2016/08/18/alfred-vim-tmux/</loc>
     
     <lastmod>2016-08-18T14:31:49.000Z</lastmod>
