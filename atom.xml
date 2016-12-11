@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-10-23T09:11:03.000Z</updated>
+  <updated>2016-12-11T15:02:34.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac上给树莓派安装Raspbian</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/12/11/pi-raspbian/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/12/11/pi-raspbian/</id>
+    <published>2016-12-11T14:55:18.000Z</published>
+    <updated>2016-12-11T15:02:34.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;下载img文件&quot;&gt;&lt;a href=&quot;#下载img文件&quot; class=&quot;headerlink&quot; title=&quot;下载img文件&quot;&gt;&lt;/a&gt;下载img文件&lt;/h2&gt;&lt;p&gt;到[这里]下载img文件，记得下载完成后比对一下文件的摘要，确保拿到的文件没有损坏：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ shasum ~/Downloads/2016-09-23-raspbian-jessie-lite.zip&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;解压zip文件，得到img文件。&lt;/p&gt;
+&lt;h2 id=&quot;格式化SD-Card&quot;&gt;&lt;a href=&quot;#格式化SD-Card&quot; class=&quot;headerlink&quot; title=&quot;格式化SD Card&quot;&gt;&lt;/a&gt;格式化SD Card&lt;/h2&gt;&lt;p&gt;要求SD Card必须是FAT，使用前先用Disk Utility格式化：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/raspbian-1.png&quot; alt=&quot;raspbian-1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;注意别选成你Mac的硬盘，不然可就酸爽了。&lt;/p&gt;
+&lt;h2 id=&quot;unmount-SD-Card&quot;&gt;&lt;a href=&quot;#unmount-SD-Card&quot; class=&quot;headerlink&quot; title=&quot;unmount SD Card&quot;&gt;&lt;/a&gt;unmount SD Card&lt;/h2&gt;&lt;p&gt;打开终端，使用&lt;code&gt;diskutil&lt;/code&gt;找到你的SD Card并取消挂载，本例中，SD Card是&lt;code&gt;/dev/disk2&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/raspbian-2.png&quot; alt=&quot;raspbian-2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;烧入img&quot;&gt;&lt;a href=&quot;#烧入img&quot; class=&quot;headerlink&quot; title=&quot;烧入img&quot;&gt;&lt;/a&gt;烧入img&lt;/h2&gt;&lt;p&gt;使用下面的命令写入镜像。注意&lt;code&gt;if&lt;/code&gt;参数的值是img文件的path，&lt;code&gt;of&lt;/code&gt;参数的值是上一步找到的SD Card的标识符，但是&lt;code&gt;disk2&lt;/code&gt;换成了&lt;code&gt;rdisk2&lt;/code&gt;。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ sudo dd bs=1m if=/path/to/2016-09-23-raspbian-jessie-lite.img of=/dev/rdisk2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;整个过程需要几分钟。完毕后，系统就安装完毕了，插入Raspberry，系统初始账户名字为&lt;code&gt;pi&lt;/code&gt;，密码为&lt;code&gt;raspberry&lt;/code&gt;，搞起！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;下载img文件&quot;&gt;&lt;a href=&quot;#下载img文件&quot; class=&quot;headerlink&quot; title=&quot;下载img文件&quot;&gt;&lt;/a&gt;下载img文件&lt;/h2&gt;&lt;p&gt;到[这里]下载img文件，记得下载完成后比对一下文件的摘要，确保拿到的文件没有损坏：&lt;/p&gt;
+&lt;fi
+    
+    </summary>
+    
+      <category term="其它" scheme="http://blog.liushuaiko.be/categories/%E5%85%B6%E5%AE%83/"/>
+    
+    
+      <category term="Raspberry" scheme="http://blog.liushuaiko.be/tags/Raspberry/"/>
+    
+  </entry>
   
   <entry>
     <title>NSNotification避坑指南</title>
@@ -1337,36 +1371,6 @@ mutableCopy
     <summary type="html">
     
       &lt;h3 id=&quot;Automatic-Reference-Counting&quot;&gt;&lt;a href=&quot;#Automatic-Reference-Counting&quot; class=&quot;headerlink&quot; title=&quot;Automatic Reference Counting&quot;&gt;&lt;/a&gt;Automatic Reference Counting&lt;/h3&gt;&lt;p&gt;提到Objective-C中的内存管理，就不得不提到ARC（自动引用计数）。使用了ARC和不使用ARC，OC内存管理方式没有变，都是基于引用计数，但是程序员在编写代码上大有不同。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS入门——View（2）</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/07/24/ios-view-introduction-2/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/07/24/ios-view-introduction-2/</id>
-    <published>2014-07-24T03:35:24.000Z</published>
-    <updated>2016-07-09T05:42:55.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;view的重绘&quot;&gt;&lt;a href=&quot;#view的重绘&quot; class=&quot;headerlink&quot; title=&quot;view的重绘&quot;&gt;&lt;/a&gt;view的重绘&lt;/h3&gt;&lt;p&gt;当一个UIView的实例收到&lt;code&gt;setNeedsDisplay:&lt;/code&gt;，便会重绘它所维护的图像。当它们的内容发生变化时，UIView的子类会给自己发&lt;code&gt;setNeedsDisplay:&lt;/code&gt;消息。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;要注意的是，view的重绘不是立即完成的，而是被添加到一个装有需要重绘的view的list中。每个iOS APP都有一个run loop，这个无线循环的的作用是监听用户的输入，然后找到处理这个事件的handlers，handlers可能还会调用其他的方法来处理事件，当所有的方法结束后，控制权转会run loop，这时，view才回被重绘。&lt;/p&gt;
-&lt;p&gt;控制权转回run loop时，在run loop中会检查有哪些view需要被重绘，然后run loop会准备好必要的drawing contexts，向所有收到&lt;code&gt;setNeedsDisplay:&lt;/code&gt;消息的view发送&lt;code&gt;drawRect:&lt;/code&gt;消息。&lt;/p&gt;
-&lt;p&gt;只有发生变化的view才回被重绘，其他的view的image会直接显示到屏幕上。&lt;/p&gt;
-&lt;h3 id=&quot;UIResponder&quot;&gt;&lt;a href=&quot;#UIResponder&quot; class=&quot;headerlink&quot; title=&quot;UIResponder&quot;&gt;&lt;/a&gt;&lt;code&gt;UIResponder&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;UIResponder&lt;/code&gt;这个类很重要。它是&lt;code&gt;UIView&lt;/code&gt;、&lt;code&gt;UIViewController&lt;/code&gt;和&lt;code&gt;UIApplication&lt;/code&gt;的基类（顺便提一下，&lt;code&gt;UIWindow&lt;/code&gt;是&lt;code&gt;UIView&lt;/code&gt;的子类）。&lt;/p&gt;
-&lt;p&gt;responser，顾名思义就是可以对事件做出响应以及能够处理事件的对象。在iOS中有响应链的概念，这在Android开发中也有类似的事件分发和传递的概念。具体可以查看SO的这个问题：&lt;a href=&quot;http://stackoverflow.com/questions/6005033/why-uiviewcontroller-is-a-subclass-of-uiresponder&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Why UIViewController is a subclass of UIResponder?&lt;/a&gt;。有关响应链，iOS&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;说的再好不过了（可以等到看完下篇介绍ViewController的文章后再回来看看这个）。&lt;/p&gt;
-&lt;p&gt;想让一个responser成为window的first responser（第一个响应事件的对象），向它发送&lt;code&gt;becomeFirstResponder:&lt;/code&gt;的消息即可，前提是responser的&lt;code&gt;canBecomeFirstResponder:&lt;/code&gt;返回YES。要注意的是，如果想要给一个view发送这个消息时，只有view在view hierarchy中时才可以这样做。判断一个view是不是在view hierarchy中只需看view的window属性是不是指向一个UIWindow对象，如果没有指向（为nil），则view不在view hierarchy中。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;view的重绘&quot;&gt;&lt;a href=&quot;#view的重绘&quot; class=&quot;headerlink&quot; title=&quot;view的重绘&quot;&gt;&lt;/a&gt;view的重绘&lt;/h3&gt;&lt;p&gt;当一个UIView的实例收到&lt;code&gt;setNeedsDisplay:&lt;/code&gt;，便会重绘它所维护的图像。当它们的内容发生变化时，UIView的子类会给自己发&lt;code&gt;setNeedsDisplay:&lt;/code&gt;消息。&lt;/p&gt;
     
     </summary>
     

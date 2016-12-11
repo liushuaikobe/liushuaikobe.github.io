@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.liushuaiko.be/blog/2016/12/11/pi-raspbian/</loc>
+    
+    <lastmod>2016-12-11T15:02:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.liushuaiko.be/blog/2016/10/23/nsnotification-deadlock/</loc>
     
     <lastmod>2016-10-23T09:11:03.000Z</lastmod>

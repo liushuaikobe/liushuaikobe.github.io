@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title><![CDATA[Mac上给树莓派安装Raspbian]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/12/11/pi-raspbian/</url>
+      <content type="html"><![CDATA[<h2 id="下载img文件"><a href="#下载img文件" class="headerlink" title="下载img文件"></a>下载img文件</h2><p>到[这里]下载img文件，记得下载完成后比对一下文件的摘要，确保拿到的文件没有损坏：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ shasum ~/Downloads/2016-09-23-raspbian-jessie-lite.zip</div></pre></td></tr></table></figure>
+<p>解压zip文件，得到img文件。</p>
+<h2 id="格式化SD-Card"><a href="#格式化SD-Card" class="headerlink" title="格式化SD Card"></a>格式化SD Card</h2><p>要求SD Card必须是FAT，使用前先用Disk Utility格式化：</p>
+<p><img src="http://vars.qiniudn.com/raspbian-1.png" alt="raspbian-1"></p>
+<p>注意别选成你Mac的硬盘，不然可就酸爽了。</p>
+<h2 id="unmount-SD-Card"><a href="#unmount-SD-Card" class="headerlink" title="unmount SD Card"></a>unmount SD Card</h2><p>打开终端，使用<code>diskutil</code>找到你的SD Card并取消挂载，本例中，SD Card是<code>/dev/disk2</code>。</p>
+<p><img src="http://vars.qiniudn.com/raspbian-2.png" alt="raspbian-2"></p>
+<h2 id="烧入img"><a href="#烧入img" class="headerlink" title="烧入img"></a>烧入img</h2><p>使用下面的命令写入镜像。注意<code>if</code>参数的值是img文件的path，<code>of</code>参数的值是上一步找到的SD Card的标识符，但是<code>disk2</code>换成了<code>rdisk2</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo dd bs=1m if=/path/to/2016-09-23-raspbian-jessie-lite.img of=/dev/rdisk2</div></pre></td></tr></table></figure>
+<p>整个过程需要几分钟。完毕后，系统就安装完毕了，插入Raspberry，系统初始账户名字为<code>pi</code>，密码为<code>raspberry</code>，搞起！</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[NSNotification避坑指南]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/10/23/nsnotification-deadlock/</url>
       <content type="html"><![CDATA[<p>NSNotification避坑指南。</p>
