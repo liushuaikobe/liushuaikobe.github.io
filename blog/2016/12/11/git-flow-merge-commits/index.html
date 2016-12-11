@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="dev, articles" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -88,15 +88,19 @@
 
 
 
-<meta name="description" content="iDeveloper | Pythoner | 🍺">
-<meta property="og:type" content="website">
-<meta property="og:title" content="liushuaikobe">
-<meta property="og:url" content="http://blog.liushuaiko.be/archives/2014/05/index.html">
+<meta name="description" content="Git flow )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git flow中的Merge Commits">
+<meta property="og:url" content="http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/index.html">
 <meta property="og:site_name" content="liushuaikobe">
-<meta property="og:description" content="iDeveloper | Pythoner | 🍺">
+<meta property="og:description" content="Git flow )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。">
+<meta property="og:image" content="http://vars.qiniudn.com/git-flow-1.png">
+<meta property="og:image" content="http://vars.qiniudn.com/git-flow-2.png">
+<meta property="og:updated_time" content="2016-12-11T15:09:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="liushuaikobe">
-<meta name="twitter:description" content="iDeveloper | Pythoner | 🍺">
+<meta name="twitter:title" content="Git flow中的Merge Commits">
+<meta name="twitter:description" content="Git flow )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。">
+<meta name="twitter:image" content="http://vars.qiniudn.com/git-flow-1.png">
 
 
 
@@ -117,9 +121,9 @@
 
 
 
-  <link rel="canonical" href="http://blog.liushuaiko.be/archives/2014/05/"/>
+  <link rel="canonical" href="http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/"/>
 
-  <title> 归档 | liushuaikobe </title>
+  <title> Git flow中的Merge Commits | liushuaikobe </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -149,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -280,65 +284,188 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 59 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git flow中的Merge Commits
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-11T23:05:11+08:00" content="2016-12-11">
+              2016-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具集/" itemprop="url" rel="index">
+                    <span itemprop="name">工具集</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/12/11/git-flow-merge-commits/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2016/12/11/git-flow-merge-commits/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/12/11/git-flow-merge-commits/" class="leancloud_visitors" data-flag-title="Git flow中的Merge Commits">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p><a href="[A successful Git branching model » nvie.com](http://nvie.com/posts/a-successful-git-branching-model/">Git flow</a> )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。</p>
+<a id="more"></a>
+<p><img src="http://vars.qiniudn.com/git-flow-1.png" alt="git-flow-1.png"></p>
+<p>这样不仅会让git log的路径变曲折，而且也给通过commit history定位问题增加了难度。<br>本文来谈一谈如何避免这类提交。</p>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a><code>git stash</code></h2><p>多人在一个分支上协同开发时，一个好的习惯是开发前先执行<code>git pull</code>操作，保持远程的代码和本地的代码同步，但即使这样也无法避免在开发的过程中，他人产生了commits，并push到了远程。</p>
+<p>可以在commit之前，准确地说，是在<code>git add</code>任何东西之前，先通过<code>git stash save</code>把变更暂存起来， 然后执行<code>git pull</code>来同步远程更新，最后通过<code>git stash pop</code>命令暂存的改动应用到已经与远程同步过的代码base上，再add、commit、push。</p>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a><code>git rebase</code></h2><p>Alice基于develop分支拉了一条feature/awesome-feature，在上面进行开发，随着开发过程的演进，develop也有新的commits，向前演进。如果某天feature/awesome-feature需要develop分支上的代码，通常的做法是（命令行以装了git插件的oh-my-zsh为例）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜  ae git:(feature/awesome-feature) git merge develop --no-ff</div></pre></td></tr></table></figure>
+<p>这样妥妥会产生一次merge。即使不加<code>--no-ff</code>，那么如果git判断无法执行fast forward操作，也会产生一次merge。</p>
+<p>为了避免这类commit，可以在feature/awesome-feature上，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜  ae git:(feature/awesome-feature) git rebase develop</div></pre></td></tr></table></figure>
+<p>示意图如下（来源： <a href="http://rypress.com/tutorials/git/rebasing" target="_blank" rel="external">Rebasing - Ry’s Git Tutorial - RyPress</a> ）。</p>
+<p><img src="http://vars.qiniudn.com/git-flow-2.png" alt="git-flow-2.png"></p>
+<p>有冲突的话要解决冲突，完成后执行<code>git rebase -—continue</code>继续rebase的过程。</p>
+<p>需要注意的是，rebase后的feature/awesome-feature，所有的commits的hash值都变了😂。那么可能在push到远程时遭到拒绝，可以给git push命令添加<code>--force</code>参数来强制push到远程。</p>
+<p>这里只是粗略的介绍了rebase的冰山一角。rebase还有interactive模式，如有必要，请务必找相关文档读一下。另外，如果第一次操作还不熟练，请务必先做好<strong>repo的备份</strong>。</p>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a><code>git cherry-pick</code></h2><p>还是基于<code>git rebase</code>所假设的场景，另一种把develop分支的代码改动应用到自己的feature分支的手段就是cherry-pick。故名思议，该命令就是把某一个或某几个commits，从其它分支pick过来。这要求其它分支的commits之间关联度比较小，commit的粒度刚好合适。否则，你cherry-pick了一个commit，结果这个commit的变更是基于它的前一个commit，这么拔出萝卜带出泥可就不好玩了。</p>
+<p><code>shell
+➜  ae git:(feature/awesome-feature) git cherry-pick 7075fcd</code> shell</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>不过也有人argue说，既然使用了Git，就要体现出代码完成的演进流程，强行通过一些手段把git log弄的整齐划一，有点粉饰太平的意思。Anyway，手段在这，供你参考。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div id="donation" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="donation_qr_code" src="http://7xjdjy.com1.z0.glb.clouddn.com/donate.png" alt="donate liushuaikobe" style="width: 900px; max-width: 100%;"/>
+</div>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2014">2014</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/12/11/pi-raspbian/" rel="next" title="Mac上给树莓派安装Raspbian">
+                <i class="fa fa-chevron-left"></i> Mac上给树莓派安装Raspbian
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2014/05/16/apache-reverse-proxy/" itemprop="url">
-              
-                <span itemprop="name">使用Apache的mod_proxy模块设置其反向代理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2014-05-16T22:05:00+08:00"
-              content="2014-05-16" >
-          05-16
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-578066612723d983" async = "async" ></script>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +473,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -365,8 +503,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.PNG"
@@ -467,6 +614,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-stash"><span class="nav-number">1.</span> <span class="nav-text">git stash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase"><span class="nav-number">2.</span> <span class="nav-text">git rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-cherry-pick"><span class="nav-number">3.</span> <span class="nav-text">git cherry-pick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -586,11 +744,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
@@ -608,9 +764,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'liushuaikobe';
-      var disqus_identifier = 'archives/2014/05/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = 'blog/2016/12/11/git-flow-merge-commits/';
+      var disqus_title = "Git flow中的Merge Commits";
+      var disqus_url = 'http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -621,6 +777,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   

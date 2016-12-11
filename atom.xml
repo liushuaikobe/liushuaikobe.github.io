@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.liushuaiko.be/"/>
-  <updated>2016-12-11T15:02:34.000Z</updated>
+  <updated>2016-12-11T15:09:09.000Z</updated>
   <id>http://blog.liushuaiko.be/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git flow中的Merge Commits</title>
+    <link href="http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/"/>
+    <id>http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/</id>
+    <published>2016-12-11T15:05:11.000Z</published>
+    <updated>2016-12-11T15:09:09.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;[A successful Git branching model » nvie.com](http://nvie.com/posts/a-successful-git-branching-model/&quot;&gt;Git flow&lt;/a&gt; )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/git-flow-1.png&quot; alt=&quot;git-flow-1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这样不仅会让git log的路径变曲折，而且也给通过commit history定位问题增加了难度。&lt;br&gt;本文来谈一谈如何避免这类提交。&lt;/p&gt;
+&lt;h2 id=&quot;git-stash&quot;&gt;&lt;a href=&quot;#git-stash&quot; class=&quot;headerlink&quot; title=&quot;git stash&quot;&gt;&lt;/a&gt;&lt;code&gt;git stash&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;多人在一个分支上协同开发时，一个好的习惯是开发前先执行&lt;code&gt;git pull&lt;/code&gt;操作，保持远程的代码和本地的代码同步，但即使这样也无法避免在开发的过程中，他人产生了commits，并push到了远程。&lt;/p&gt;
+&lt;p&gt;可以在commit之前，准确地说，是在&lt;code&gt;git add&lt;/code&gt;任何东西之前，先通过&lt;code&gt;git stash save&lt;/code&gt;把变更暂存起来， 然后执行&lt;code&gt;git pull&lt;/code&gt;来同步远程更新，最后通过&lt;code&gt;git stash pop&lt;/code&gt;命令暂存的改动应用到已经与远程同步过的代码base上，再add、commit、push。&lt;/p&gt;
+&lt;h2 id=&quot;git-rebase&quot;&gt;&lt;a href=&quot;#git-rebase&quot; class=&quot;headerlink&quot; title=&quot;git rebase&quot;&gt;&lt;/a&gt;&lt;code&gt;git rebase&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;Alice基于develop分支拉了一条feature/awesome-feature，在上面进行开发，随着开发过程的演进，develop也有新的commits，向前演进。如果某天feature/awesome-feature需要develop分支上的代码，通常的做法是（命令行以装了git插件的oh-my-zsh为例）：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;➜  ae git:(feature/awesome-feature) git merge develop --no-ff&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样妥妥会产生一次merge。即使不加&lt;code&gt;--no-ff&lt;/code&gt;，那么如果git判断无法执行fast forward操作，也会产生一次merge。&lt;/p&gt;
+&lt;p&gt;为了避免这类commit，可以在feature/awesome-feature上，执行：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;➜  ae git:(feature/awesome-feature) git rebase develop&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;示意图如下（来源： &lt;a href=&quot;http://rypress.com/tutorials/git/rebasing&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Rebasing - Ry’s Git Tutorial - RyPress&lt;/a&gt; ）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://vars.qiniudn.com/git-flow-2.png&quot; alt=&quot;git-flow-2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;有冲突的话要解决冲突，完成后执行&lt;code&gt;git rebase -—continue&lt;/code&gt;继续rebase的过程。&lt;/p&gt;
+&lt;p&gt;需要注意的是，rebase后的feature/awesome-feature，所有的commits的hash值都变了😂。那么可能在push到远程时遭到拒绝，可以给git push命令添加&lt;code&gt;--force&lt;/code&gt;参数来强制push到远程。&lt;/p&gt;
+&lt;p&gt;这里只是粗略的介绍了rebase的冰山一角。rebase还有interactive模式，如有必要，请务必找相关文档读一下。另外，如果第一次操作还不熟练，请务必先做好&lt;strong&gt;repo的备份&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;git-cherry-pick&quot;&gt;&lt;a href=&quot;#git-cherry-pick&quot; class=&quot;headerlink&quot; title=&quot;git cherry-pick&quot;&gt;&lt;/a&gt;&lt;code&gt;git cherry-pick&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;还是基于&lt;code&gt;git rebase&lt;/code&gt;所假设的场景，另一种把develop分支的代码改动应用到自己的feature分支的手段就是cherry-pick。故名思议，该命令就是把某一个或某几个commits，从其它分支pick过来。这要求其它分支的commits之间关联度比较小，commit的粒度刚好合适。否则，你cherry-pick了一个commit，结果这个commit的变更是基于它的前一个commit，这么拔出萝卜带出泥可就不好玩了。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+➜  ae git:(feature/awesome-feature) git cherry-pick 7075fcd&lt;/code&gt; shell&lt;/p&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h2&gt;&lt;p&gt;不过也有人argue说，既然使用了Git，就要体现出代码完成的演进流程，强行通过一些手段把git log弄的整齐划一，有点粉饰太平的意思。Anyway，手段在这，供你参考。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;[A successful Git branching model » nvie.com](http://nvie.com/posts/a-successful-git-branching-model/&quot;&gt;Git flow&lt;/a&gt; )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="工具集" scheme="http://blog.liushuaiko.be/categories/%E5%B7%A5%E5%85%B7%E9%9B%86/"/>
+    
+    
+      <category term="git" scheme="http://blog.liushuaiko.be/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac上给树莓派安装Raspbian</title>
@@ -1297,80 +1339,6 @@ __autoreleasing
     <summary type="html">
     
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;一定要记住，&lt;a href=&quot;http://blog.vars.me/blog/2014/07/30/ioskai-fa-zhi-nei-cun-guan-li-1-before-arc/&quot;&gt;上文&lt;/a&gt;所提到的“引用计数式内存管理”的本质部分在ARC中并没有相应的改变。ARC只是在RC的前面加了一个A，即自动帮我们处理“引用计数”的相关部分。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="移动互联网开发" scheme="http://blog.liushuaiko.be/categories/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="iOS" scheme="http://blog.liushuaiko.be/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS开发之内存管理（1）——Before ARC</title>
-    <link href="http://blog.liushuaiko.be/blog/2014/07/30/ios-memory-management-mrc/"/>
-    <id>http://blog.liushuaiko.be/blog/2014/07/30/ios-memory-management-mrc/</id>
-    <published>2014-07-30T09:23:10.000Z</published>
-    <updated>2016-07-09T05:42:56.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;Automatic-Reference-Counting&quot;&gt;&lt;a href=&quot;#Automatic-Reference-Counting&quot; class=&quot;headerlink&quot; title=&quot;Automatic Reference Counting&quot;&gt;&lt;/a&gt;Automatic Reference Counting&lt;/h3&gt;&lt;p&gt;提到Objective-C中的内存管理，就不得不提到ARC（自动引用计数）。使用了ARC和不使用ARC，OC内存管理方式没有变，都是基于引用计数，但是程序员在编写代码上大有不同。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;首先要明确的&quot;&gt;&lt;a href=&quot;#首先要明确的&quot; class=&quot;headerlink&quot; title=&quot;首先要明确的&quot;&gt;&lt;/a&gt;首先要明确的&lt;/h3&gt;&lt;p&gt;内存管理的目的，简而言之，就是确保对象在分配了内存并初始化后，程序中要用到该对象时候，对象还在，程序不再使用该对象时，该对象占用的内存能及时释放，不会造成内存泄露。&lt;/p&gt;
-&lt;p&gt;在引用计数式内存管理中，还要明确以下几点（说原则不是原则，读了之后你就明白了）：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;* 自己生成的对象，自己所持有
-* 非自己生成的对象，自己也可以持有
-* 自己持有的对象，不再需要时释放
-* 非自己持有的对象，不能释放
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;持有，比较难理解，意思是有一个强引用指向了对象，&lt;strong&gt;持有了对象 &amp;lt;=&amp;gt; 导致对象的引用计数加1&lt;/strong&gt;。把对象比喻成氢气球，持有就是用一根线拴住了气球，你拿着气球线。&lt;/p&gt;
-&lt;h3 id=&quot;Before-ARC&quot;&gt;&lt;a href=&quot;#Before-ARC&quot; class=&quot;headerlink&quot; title=&quot;Before ARC&quot;&gt;&lt;/a&gt;Before ARC&lt;/h3&gt;&lt;p&gt;在ARC之前，程序员需要手动管理内存，对对象的持有和释放主要是通过retain和release方法来完成的。&lt;/p&gt;
-&lt;p&gt;虽然新版本的SDK默认使用了ARC，但是正如郭总说的，真是不能同意更多。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;选择SDK要注意的一点就是，在iOS 4.0以后，引入了Auto Reference Counting（ARC）这一技术，个人感觉使用ARC虽然方便了内存管理，但是对于新手来说缺少了手动管理内存的历练，这里欠下的债，将来一定要还的。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;自己生成的对象，自己所持有&quot;&gt;&lt;a href=&quot;#自己生成的对象，自己所持有&quot; class=&quot;headerlink&quot; title=&quot;自己生成的对象，自己所持有&quot;&gt;&lt;/a&gt;自己生成的对象，自己所持有&lt;/h4&gt;&lt;p&gt;下面的代码，意味着创建了一个NSObject的对象，并让id类型的变量obj持有了该对象。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [[NSObject alloc] init];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此外，如果你的方法使用以下名称开头（驼峰式开头，例如名为allocate的方法就不会有相同的效果），意为着调用这些方法达到的效果是一致的，都是生成了一个对象，并返回一个指向该对象并持有该对象的指针。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;alloc
-new
-copy
-mutableCopy
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;非自己生成的对象，自己也可以持有&quot;&gt;&lt;a href=&quot;#非自己生成的对象，自己也可以持有&quot; class=&quot;headerlink&quot; title=&quot;非自己生成的对象，自己也可以持有&quot;&gt;&lt;/a&gt;非自己生成的对象，自己也可以持有&lt;/h4&gt;&lt;p&gt;不是自己把对象造出来的，但是也可以持有这个对象。&lt;/p&gt;
-&lt;p&gt;如下面的例子：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [NSMutableArray array];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;到此为止，上面的代码并没有创建一个NSMutableArray，仅仅是取得了对象的存在（这是通过autorelease实现的），也即仅仅获得了对象的地址，obj没有持有对象，也即对象的引用计数并未因这行代码而加1。&lt;/p&gt;
-&lt;p&gt;但是，当你给obj发送retain的消息后，obj就持有了对象，对象的引用计数加1了。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;[obj retain];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;自己持有的对象，不再需要时释放-非自己持有的对象，不能释放&quot;&gt;&lt;a href=&quot;#自己持有的对象，不再需要时释放-非自己持有的对象，不能释放&quot; class=&quot;headerlink&quot; title=&quot;自己持有的对象，不再需要时释放 | 非自己持有的对象，不能释放&quot;&gt;&lt;/a&gt;自己持有的对象，不再需要时释放 | 非自己持有的对象，不能释放&lt;/h4&gt;&lt;p&gt;自己持有的对象，一旦不再需要，持有者有义务释放对象。释放对象使用的是release方法。记住一定得是持有了对象才能释放，你根本就没牵住气球怎么释放啊。&lt;/p&gt;
-&lt;p&gt;看下面的例子。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;id obj = [[NSObject alloc] init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[obj release];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;我们首先生成了一个对象，并让obj持有了对象，接着我们调用release方法释放了对象。在release方法内部会判断对象的引用计数，如果为0了就调用对象的dealloc方法废弃对象。&lt;/p&gt;
-&lt;h4 id=&quot;小结&quot;&gt;&lt;a href=&quot;#小结&quot; class=&quot;headerlink&quot; title=&quot;小结&quot;&gt;&lt;/a&gt;小结&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;调用alloc或者retain方法后，引用计数值加1&lt;/li&gt;
-&lt;li&gt;调用release后，引用计数值减1&lt;/li&gt;
-&lt;li&gt;引用计数值为0时，调用dealloc方法废弃对象&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;记住，这些都是在没有ARC，程序员进行手动内存管理时的一些东西。&lt;/p&gt;
-&lt;h3 id=&quot;After-ARC&quot;&gt;&lt;a href=&quot;#After-ARC&quot; class=&quot;headerlink&quot; title=&quot;After ARC&quot;&gt;&lt;/a&gt;After ARC&lt;/h3&gt;&lt;p&gt;自从有了ARC，一切都不一样了。具体请看&lt;a href=&quot;http://blog.vars.me/blog/2014/07/31/ioskai-fa-zhi-nei-cun-guan-li-2-after-arc/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;下篇文章&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;还看了其他的东西，如autorelease和autoreleasepool等，以及引用计数具体的实现（直接将引用计数保存在对象里和使用散列表等），说太多不容易被接受，再加上自己的理解也不是很透彻，就不叙述了。&lt;/p&gt;
-&lt;p&gt;此外推荐一些比较有用的OC和iOS的网站：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.raywenderlich.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;raywenderlich&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.objc.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;objc&lt;/a&gt; | &lt;a href=&quot;http://objccn.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;objc中文翻译&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;本文参考文献：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.douban.com/subject/24720270/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Objective-C高级编程》&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;最后送一句话，与君共勉。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;不要因为走得太远，就忘了自己为什么出发。&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Automatic-Reference-Counting&quot;&gt;&lt;a href=&quot;#Automatic-Reference-Counting&quot; class=&quot;headerlink&quot; title=&quot;Automatic Reference Counting&quot;&gt;&lt;/a&gt;Automatic Reference Counting&lt;/h3&gt;&lt;p&gt;提到Objective-C中的内存管理，就不得不提到ARC（自动引用计数）。使用了ARC和不使用ARC，OC内存管理方式没有变，都是基于引用计数，但是程序员在编写代码上大有不同。&lt;/p&gt;
     
     </summary>
     

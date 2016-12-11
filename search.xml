@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title><![CDATA[Git flow中的Merge Commits]]></title>
+      <url>http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/</url>
+      <content type="html"><![CDATA[<p><a href="[A successful Git branching model » nvie.com](http://nvie.com/posts/a-successful-git-branching-model/">Git flow</a> )是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。</p>
+<a id="more"></a>
+<p><img src="http://vars.qiniudn.com/git-flow-1.png" alt="git-flow-1.png"></p>
+<p>这样不仅会让git log的路径变曲折，而且也给通过commit history定位问题增加了难度。<br>本文来谈一谈如何避免这类提交。</p>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a><code>git stash</code></h2><p>多人在一个分支上协同开发时，一个好的习惯是开发前先执行<code>git pull</code>操作，保持远程的代码和本地的代码同步，但即使这样也无法避免在开发的过程中，他人产生了commits，并push到了远程。</p>
+<p>可以在commit之前，准确地说，是在<code>git add</code>任何东西之前，先通过<code>git stash save</code>把变更暂存起来， 然后执行<code>git pull</code>来同步远程更新，最后通过<code>git stash pop</code>命令暂存的改动应用到已经与远程同步过的代码base上，再add、commit、push。</p>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a><code>git rebase</code></h2><p>Alice基于develop分支拉了一条feature/awesome-feature，在上面进行开发，随着开发过程的演进，develop也有新的commits，向前演进。如果某天feature/awesome-feature需要develop分支上的代码，通常的做法是（命令行以装了git插件的oh-my-zsh为例）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜  ae git:(feature/awesome-feature) git merge develop --no-ff</div></pre></td></tr></table></figure>
+<p>这样妥妥会产生一次merge。即使不加<code>--no-ff</code>，那么如果git判断无法执行fast forward操作，也会产生一次merge。</p>
+<p>为了避免这类commit，可以在feature/awesome-feature上，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜  ae git:(feature/awesome-feature) git rebase develop</div></pre></td></tr></table></figure>
+<p>示意图如下（来源： <a href="http://rypress.com/tutorials/git/rebasing" target="_blank" rel="external">Rebasing - Ry’s Git Tutorial - RyPress</a> ）。</p>
+<p><img src="http://vars.qiniudn.com/git-flow-2.png" alt="git-flow-2.png"></p>
+<p>有冲突的话要解决冲突，完成后执行<code>git rebase -—continue</code>继续rebase的过程。</p>
+<p>需要注意的是，rebase后的feature/awesome-feature，所有的commits的hash值都变了😂。那么可能在push到远程时遭到拒绝，可以给git push命令添加<code>--force</code>参数来强制push到远程。</p>
+<p>这里只是粗略的介绍了rebase的冰山一角。rebase还有interactive模式，如有必要，请务必找相关文档读一下。另外，如果第一次操作还不熟练，请务必先做好<strong>repo的备份</strong>。</p>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a><code>git cherry-pick</code></h2><p>还是基于<code>git rebase</code>所假设的场景，另一种把develop分支的代码改动应用到自己的feature分支的手段就是cherry-pick。故名思议，该命令就是把某一个或某几个commits，从其它分支pick过来。这要求其它分支的commits之间关联度比较小，commit的粒度刚好合适。否则，你cherry-pick了一个commit，结果这个commit的变更是基于它的前一个commit，这么拔出萝卜带出泥可就不好玩了。</p>
+<p><code>shell
+➜  ae git:(feature/awesome-feature) git cherry-pick 7075fcd</code> shell</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>不过也有人argue说，既然使用了Git，就要体现出代码完成的演进流程，强行通过一些手段把git log弄的整齐划一，有点粉饰太平的意思。Anyway，手段在这，供你参考。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Mac上给树莓派安装Raspbian]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/12/11/pi-raspbian/</url>
       <content type="html"><![CDATA[<h2 id="下载img文件"><a href="#下载img文件" class="headerlink" title="下载img文件"></a>下载img文件</h2><p>到[这里]下载img文件，记得下载完成后比对一下文件的摘要，确保拿到的文件没有损坏：</p>
