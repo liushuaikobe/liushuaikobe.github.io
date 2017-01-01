@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title><![CDATA[2016总结]]></title>
+      <url>http://blog.liushuaiko.be/blog/2017/01/01/my-2016/</url>
+      <content type="html"><![CDATA[<p>2016这一年，过得不算顺利，甚至有些操蛋，但是好在很多事情最终有了一个不错的结局。</p>
+<a id="more"></a>
+<p>按时间顺序捋吧。</p>
+<ol>
+<li>2016伊始就感冒了，吃了很多药</li>
+<li>春节假期，发生了一些不愉快的事情</li>
+<li>假期回来，给iPad Product Detail改版项目善后</li>
+<li>另一个project终于close，买了一个Apple Watch</li>
+<li>开始学习使用小鹤双拼输入法</li>
+<li>年终奖，调薪</li>
+<li>房东卖房，边找新的出租房边准备晋升答辩，那时我居然还翻译了一个bash-handbook-zh-CN，最后找到了一个还不错的房子，五一假期搬家</li>
+<li>晋升答辩的Keynote被boss批写的太少，改了一版后参加答辩，一切顺利，晋升成功</li>
+<li>bitch is always a bitch, damn right</li>
+<li>当V4.7.0和V4.8.0的PM，同时自己还投入了Gift Card这一很重要的项目，成长很多，一个显著的变化就是，我终于能不用顾忌自己和对方的面子，怼一个人能怼到体无完肤</li>
+<li>意识到自己就是个普通人，并没有什么牛逼的点，普通的不能再普通的人</li>
+<li>去日本玩了一圈后又去珠海团建，在珠海得知boss要转行做PD了</li>
+<li>G20前后，见了双方父母</li>
+<li>准备双十一，投入一个新收货地址的项目，万万没想到，一做就做到了年底</li>
+<li>买了iPhone 7 Plus，128G</li>
+<li>穷尽自己的Python知识，为Team写了一个构建工具，把各个库的版本集中管理，一点微小的工作</li>
+<li>12月的关键词是买房，跟女朋友凑钱买了个89方的房子，穷尽所有，哦，没拿父母的钱</li>
+</ol>
+<p>今年看了不少书和电影。</p>
+<ol>
+<li>《三体》从大四开始看第一部，今年终于看完了第三部，写的真好</li>
+<li>东野圭吾的小说又看了两本，《恶意》和《解忧杂货店》，此外大学里一直想看的《追风筝的人》也看完了</li>
+<li>偶然看到了余华的《活着》的介绍，一气儿读完，又看了葛优和巩俐的同名电影，好一个苦难</li>
+<li>周浩辉的《死亡通知单》系列，情节设计很巧妙，让人欲罢不能</li>
+<li>因为主角的颜值看了一部韩剧《太阳的后裔》，一部日剧《逃避虽可耻但有用》，新桓结衣太可爱了</li>
+<li>美剧看了《西部世界》，以及之前的剧集的新一季，《硅谷》、《疑犯追踪》、《行尸走肉》，大POI终于完结了</li>
+<li>电影补上了不少豆瓣TOP250，《霸王别姬》、《大话西游》、《怦然心动》、《致命ID》、《海上钢琴师》，其它不错的有《疯狂动物城》、《驴得水》、《釜山行》等</li>
+<li>国内的剧，看了《欢乐颂》，国内综艺节目看了《我们来了》和《真正男子汉》，权当乐子看</li>
+</ol>
+<p>2017年的一点小希望。</p>
+<ol>
+<li>如果可以，要么买个车位，要么买一辆车</li>
+<li>好好做做技术，iOS技能树</li>
+<li>比2016再多读一些书，非小说类的书占比可以多一些</li>
+<li>一切都好</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Git flow中的Merge Commits]]></title>
       <url>http://blog.liushuaiko.be/blog/2016/12/11/git-flow-merge-commits/</url>
       <content type="html"><![CDATA[<p><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">Git flow</a>是一个成熟的Git branching model，在实际的开发流程中，为保持代码同步，或者需要另一条分支的代码，经常会做分支Merge的操作，产生了大量的无意义的commits，如下图。</p>
